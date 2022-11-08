@@ -1,6 +1,25 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
+import { Global } from "../common";
+import { AppWithPageLayout } from "../common/types";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../common/theme";
 
-export default function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
-}
+const App = ({ Component, pageProps }: AppWithPageLayout) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Global />
+      {Component.PageLayout ? (
+        <Component.PageLayout>
+          <Component {...pageProps} />
+        </Component.PageLayout>
+      ) : (
+        <Component {...pageProps} />
+      )}
+    </ThemeProvider>
+  );
+};
+
+export default App;
