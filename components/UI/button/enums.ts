@@ -1,7 +1,7 @@
 export enum ButtonType {
-  DEFAULT,
-  OUTLINED,
-  TEXT,
+  PRIMARY,
+  OUTLINE,
+  FLAT,
 }
 
 export enum ButtonSize {

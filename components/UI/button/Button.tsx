@@ -1,7 +1,9 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import React, { ReactNode } from "react";
 import { ButtonSize, ButtonType } from "./enums";
-import { Color } from "../../../common/enums";
+import { Color } from "../../../common/types";
+import { BrandColor, LightBlueColor } from "../../../common/enums";
+import SpinnerSVG from "../../../public/assets/svg/SpinnerSVG";
 
 type Props = {
   children: ReactNode;
@@ -10,16 +12,26 @@ type Props = {
   buttonSize?: ButtonSize;
   backGroundColor?: Color;
   disabled?: boolean;
+  loading?: boolean;
+  onClick?: () => void;
 };
 
 const Button: React.FC<Props> = ({
   children,
   className,
-  buttonType = ButtonType.DEFAULT,
+  buttonType = ButtonType.PRIMARY,
   buttonSize = ButtonSize.SMALL,
-  backGroundColor = Color.NONE,
+  backGroundColor = "none",
   disabled = false,
+  loading = false,
+  onClick,
 }) => {
+  const handleClick = (func: (() => void) | undefined) => () => {
+    if (func && !loading && !disabled) {
+      func();
+    }
+  };
+
   return (
     <StyledButton
       buttonSize={buttonSize}
@@ -27,22 +39,63 @@ const Button: React.FC<Props> = ({
       className={className}
       backGroundColor={backGroundColor}
       disabled={disabled}
+      loading={loading}
+      onClick={handleClick(onClick)}
     >
-      {children}
+      {!loading ? children : <StyledSpinner />}
     </StyledButton>
   );
 };
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+const StyledSpinner = styled(SpinnerSVG)`
+  animation: ${rotate} 0.5s linear infinite;
+`;
 
 const StyledButton = styled.button<{
   buttonType: ButtonType;
   buttonSize: ButtonSize;
   backGroundColor: Color;
   disabled: boolean;
+  loading: boolean;
 }>`
   display: flex;
-  //justify-content: center;
-  //align-items: center;
-  cursor: ${({ disabled }) => !disabled && "pointer"};
+  cursor: ${({ disabled, loading }) => !disabled && !loading && "pointer"};
+  border-radius: 12px;
+  justify-content: center;
+  align-items: center;
+
+  ${({ buttonType, disabled, loading }) => {
+    switch (buttonType) {
+      case ButtonType.OUTLINE:
+        return css`
+          width: 170px;
+          height: 36px;
+          border: 2px solid
+            ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
+          background: none;
+          & > * {
+            color: ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
+          }
+          &:hover {
+            background: ${!disabled && !loading && BrandColor.BRAND_12};
+          }
+          &:active {
+            background: ${!disabled && !loading && BrandColor.BRAND_16};
+          }
+        `;
+    }
+  }}
+
   ${({ buttonSize }) => {
     switch (buttonSize) {
       case ButtonSize.MEDIUM:
@@ -53,24 +106,10 @@ const StyledButton = styled.button<{
         `;
       default:
         return css`
-          padding: 7px 12px 9px;
+          padding: 7px 11px 9px;
         `;
     }
   }}
-  border: ${(props) =>
-    props.buttonType === ButtonType.OUTLINED &&
-    `2px solid ${props.theme.color.bluePrimary}`};
-  border-radius: ${({ buttonType }) =>
-    buttonType !== ButtonType.TEXT && "12px"};
-  background: ${({ backGroundColor }) => backGroundColor};
-  &:hover {
-    border-color: ${(props) =>
-      props.buttonType === ButtonType.OUTLINED &&
-      props.theme.color.blueSecondary};
-    & > * {
-      color: ${(props) => props.theme.color.blueSecondary};
-    }
-  }
 `;
 
 export default Button;

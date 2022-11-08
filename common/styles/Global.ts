@@ -16,11 +16,11 @@ const Global = createGlobalStyle`
 
   * {
     box-sizing: border-box;
-    transition: 0.3s all;
-    -moz-transition: 0.3s all;
-    -ms-transition: 0.3s all;
-    -o-transition: 0.3s all;
-    -webkit-transition: 0.3s all;
+    transition: 0.3s all linear;
+    -moz-transition: 0.3s all linear;
+    -ms-transition: 0.3s all linear;
+    -o-transition: 0.3s all linear;
+    -webkit-transition: 0.3s all linear; 
   }
 `;
 
