@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type Props = {
   className?: string;
 };
@@ -24,4 +26,4 @@ const SpinnerSVG: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default SpinnerSVG;
+export default memo(SpinnerSVG);

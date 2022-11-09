@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { memo, ReactNode } from "react";
 import Header from "./header";
 import Footer from "./footer";
 
@@ -16,4 +16,4 @@ const PageLayout: React.FC<Props> = ({ children }) => {
   );
 };
 
-export default PageLayout;
+export default memo(PageLayout);
