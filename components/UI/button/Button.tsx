@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from "styled-components";
-import React, { ReactNode } from "react";
+import React, { memo, ReactNode } from "react";
 import { ButtonSize, ButtonType } from "./enums";
 import { Color } from "../../../common/types";
 import { BrandColor, LightBlueColor } from "../../../common/enums";
@@ -112,4 +112,4 @@ const StyledButton = styled.button<{
   }}
 `;
 
-export default Button;
+export default memo(Button);
