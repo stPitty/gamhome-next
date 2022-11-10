@@ -2,7 +2,7 @@ import styled, { css, keyframes } from "styled-components";
 import React, { memo, ReactNode } from "react";
 import { ButtonSize, ButtonType } from "./enums";
 import { Color } from "../../../common/types";
-import { BrandColor, LightBlueColor } from "../../../common/enums";
+import { BrandColor, WhiteColor } from "../../../common/enums";
 import SpinnerSVG from "../../../public/assets/svg/SpinnerSVG";
 
 type Props = {
@@ -78,8 +78,6 @@ const StyledButton = styled.button<{
     switch (buttonType) {
       case ButtonType.OUTLINE:
         return css`
-          width: 170px;
-          height: 36px;
           border: 2px solid
             ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
           background: none;
@@ -91,6 +89,25 @@ const StyledButton = styled.button<{
           }
           &:active {
             background: ${!disabled && !loading && BrandColor.BRAND_16};
+          }
+        `;
+      case ButtonType.PRIMARY:
+        return css`
+          border: none;
+          background: ${!disabled
+            ? BrandColor.BRAND
+            : BrandColor.BRAND_DISABLED};
+          & > * {
+            color: ${WhiteColor.WHITE};
+          }
+          & > svg path {
+            fill: white;
+          }
+          &:hover {
+            background: ${!disabled && !loading && BrandColor.BRAND_HOVER};
+          }
+          &:active {
+            background: ${!disabled && !loading && BrandColor.BRAND_ACTIVE};
           }
         `;
     }
@@ -106,7 +123,7 @@ const StyledButton = styled.button<{
         `;
       default:
         return css`
-          padding: 7px 11px 9px;
+          padding: 7px 10px 9px;
         `;
     }
   }}
