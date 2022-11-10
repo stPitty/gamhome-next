@@ -8,6 +8,7 @@ type Props = {
 const LogoSVG: React.FC<Props> = ({ onClick, className }) => {
   return (
     <svg
+      onClick={onClick}
       className={className}
       width="192"
       height="24"

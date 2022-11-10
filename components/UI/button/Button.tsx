@@ -176,7 +176,9 @@ const StyledButton = styled.button<{
   ${({ buttonSize }) => {
     switch (buttonSize) {
       case ButtonSize.MEDIUM:
-        return css``;
+        return css`
+          padding: 9px 20px 11px;
+        `;
       case ButtonSize.LARGE:
         return css`
           width: 100%;
