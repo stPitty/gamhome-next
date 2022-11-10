@@ -9,6 +9,7 @@ import { Route } from "../../common/routes";
 import ChevronSVG from "../../public/assets/svg/ChevronSVG";
 import { handleRedirClick, handleSwapImageClick } from "../../common/helpers";
 import { useAppDispatch } from "../../redux/hooks";
+import PreviewList from "../../components/UI/preview-list/PreviewList";
 
 const FullscreenCarousel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -55,7 +56,9 @@ const FullscreenCarousel: React.FC = () => {
           <StyledChevron orientation="right" />
         </ControlArea>
       </PhotoWrapper>
-      <PreviewWrapper></PreviewWrapper>
+      <PreviewWrapper>
+        <PreviewList size={[98, 80]} quantity={8} />
+      </PreviewWrapper>
     </Container>
   );
 };
@@ -63,11 +66,10 @@ const FullscreenCarousel: React.FC = () => {
 const PreviewWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   width: 896px;
-  height: 80px;
-  margin: 16px;
   overflow: hidden;
+  margin-bottom: 16px;
 `;
 
 const StyledChevron = styled(ChevronSVG)<{ orientation: "left" | "right" }>`
