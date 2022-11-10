@@ -6,26 +6,20 @@ import ChevronSVG from "../../public/assets/svg/ChevronSVG";
 import PhotoCarousel from "./PhotoCarousel";
 import { photos } from "../../mock";
 import PreviewStack from "./PreviewStack";
-import { useAppSelector } from "../../redux/hooks";
-import { TPhotoPosition } from "../../redux/slicers/photoPositionSlicer";
 
 const PhotoBlock: React.FC = () => {
-  const { position } = useAppSelector<TPhotoPosition>(
-    (state) => state.position
-  );
-
   return (
     <Container>
       <PhotoWrapper>
         <Control length={photos.length} orientation="left">
           <ChevronSVG />
         </Control>
-        <PhotoCarousel count={position} />
+        <PhotoCarousel />
         <Control length={photos.length} orientation="right">
           <ChevronSVG />
         </Control>
       </PhotoWrapper>
-      <PreviewStack position={position} />
+      <PreviewStack />
     </Container>
   );
 };
