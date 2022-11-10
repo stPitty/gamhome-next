@@ -1,6 +1,6 @@
 import React, { memo } from "react";
 import styled from "styled-components";
-import Carousel from "../UI/carousel/Carousel";
+import Carousel from "../../UI/carousel/Carousel";
 
 const PhotoCarousel: React.FC = () => {
   return (

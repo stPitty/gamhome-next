@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { photos } from "../../mock";
+import { photos } from "../../../mock";
 import { Dispatch, memo, SetStateAction } from "react";
-import { BrandColor } from "../../common/enums";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { BrandColor } from "../../../common/enums";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   setPosition,
   TPhotoPosition,
-} from "../../redux/slicers/photoPositionSlicer";
-import PreviewList from "../UI/preview-list/PreviewList";
+} from "../../../redux/slicers/photoPositionSlicer";
+import PreviewList from "../../UI/preview-list/PreviewList";
 
 const PreviewStack: React.FC = () => {
   const dispatch = useAppDispatch();

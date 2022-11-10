@@ -29,9 +29,16 @@ export enum BrandColor {
   BRAND = "#526EFF",
   BRAND_HOVER = "#3652E3",
   BRAND_ACTIVE = "#233FD1",
-  BRAND_DISABLED = "#cfd5f2",
+  BRAND_DISABLED = "rgba(82,110,255,0.2)",
   BRAND_12 = "#526EFF1F",
   BRAND_16 = "#526EFF29",
+}
+
+export enum PurpleColor {
+  PURPLE = "#BD52FF",
+  PURPLE_HOVER = "#A748E1",
+  PURPLE_ACTIVE = "#8437B4",
+  PURPLE_DISABLED = "rgba(189,82,255,0.2)",
 }
 
 export enum LinerColor {
