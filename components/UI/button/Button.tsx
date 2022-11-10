@@ -2,7 +2,12 @@ import styled, { css, keyframes } from "styled-components";
 import React, { memo, ReactNode } from "react";
 import { ButtonSize, ButtonType } from "./enums";
 import { Color } from "../../../common/types";
-import { BrandColor, WhiteColor } from "../../../common/enums";
+import {
+  BlackColor,
+  BrandColor,
+  PurpleColor,
+  WhiteColor,
+} from "../../../common/enums";
 import SpinnerSVG from "../../../public/assets/svg/SpinnerSVG";
 
 type Props = {
@@ -110,6 +115,61 @@ const StyledButton = styled.button<{
             background: ${!disabled && !loading && BrandColor.BRAND_ACTIVE};
           }
         `;
+      case ButtonType.PRIMARY_PURPLE:
+        return css`
+          border: none;
+          background: ${!disabled
+            ? PurpleColor.PURPLE
+            : PurpleColor.PURPLE_DISABLED};
+          & > * {
+            color: ${WhiteColor.WHITE};
+          }
+          & > svg path {
+            fill: white;
+          }
+          &:hover {
+            background: ${!disabled && !loading && PurpleColor.PURPLE_HOVER};
+          }
+          &:active {
+            background: ${!disabled && !loading && PurpleColor.PURPLE_ACTIVE};
+          }
+        `;
+      case ButtonType.PRIMARY_WB:
+        return css`
+          border: none;
+          background: ${!disabled ? WhiteColor.WHITE : "none"};
+          & > * {
+            color: ${!disabled
+              ? BlackColor.BLACK_SECONDARY
+              : BlackColor.BLACK_16};
+          }
+          & > svg path {
+            fill: black;
+          }
+          &:hover {
+            background: ${!disabled && !loading && BlackColor.BLACK_16};
+          }
+          &:active {
+            background: ${!disabled && !loading && BlackColor.BLACK_32};
+          }
+        `;
+      case ButtonType.FLAT:
+        return css`
+          border: none;
+          background: none;
+          & > * {
+            color: ${!disabled ? BrandColor.BRAND : BrandColor.BRAND_DISABLED};
+          }
+          & > svg path {
+            fill: ${BrandColor.BRAND};
+          }
+          &:hover {
+            background: ${!disabled && !loading && BrandColor.BRAND_12};
+          }
+          &:active {
+            background: ${!disabled && !loading && BrandColor.BRAND_16};
+          }
+        `;
     }
   }}
 
@@ -120,6 +180,8 @@ const StyledButton = styled.button<{
       case ButtonSize.LARGE:
         return css`
           width: 100%;
+          height: 56px;
+          padding: 15px 32px;
         `;
       default:
         return css`

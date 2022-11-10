@@ -19,7 +19,6 @@ const photoPositionSlicer = createSlice({
       state.position !== 0 && (state.position -= 1);
     },
     setPosition(state, action) {
-      console.log(action.payload);
       state.position = action.payload;
     },
   },

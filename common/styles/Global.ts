@@ -22,6 +22,7 @@ const Global = createGlobalStyle`
     -ms-transition: 0.3s all linear;
     -o-transition: 0.3s all linear;
     -webkit-transition: 0.3s all linear;
+    scroll-behavior: smooth;
     ::-webkit-scrollbar {
       width: 10px;
       background-color: ${LightBlueColor.LB_100};

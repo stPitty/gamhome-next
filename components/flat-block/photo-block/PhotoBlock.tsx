@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { LightBlueColor } from "../../common/enums";
-import Control from "../UI/control/Control";
-import ChevronSVG from "../../public/assets/svg/ChevronSVG";
+import { LightBlueColor } from "../../../common/enums";
+import Control from "../../UI/control/Control";
+import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 import PhotoCarousel from "./PhotoCarousel";
-import { photos } from "../../mock";
+import { photos } from "../../../mock";
 import PreviewStack from "./PreviewStack";
 
 const PhotoBlock: React.FC = () => {

@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
-import PhotoBlock from "./PhotoBlock";
+import PhotoBlock from "./photo-block/PhotoBlock";
+import InfoBlock from "./info-block";
 
 const FlatBlock: React.FC = () => {
   return (
     <Container>
       <HeaderText>2-комн. апартаменты, 78 м²</HeaderText>
       <PhotoBlock />
+      <InfoBlock />
     </Container>
   );
 };
