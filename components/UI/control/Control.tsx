@@ -1,11 +1,17 @@
-import React, { Dispatch, memo, ReactNode, SetStateAction } from "react";
+import React, { memo, ReactNode } from "react";
 import styled, { css } from "styled-components";
-import { BrandColor, LightBlueColor } from "../../../common/enums";
+import { LightBlueColor } from "../../../common/enums";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  decrement,
+  increment,
+  TPhotoPosition,
+} from "../../../redux/slicers/photoPositionSlicer";
+import { handleSwapImageClick } from "../../../common/helpers";
 
 type Props = {
   orientation: "right" | "left";
   children: ReactNode;
-  setPosition: Dispatch<SetStateAction<number>>;
   length: number;
   className?: string;
 };
@@ -14,27 +20,16 @@ const Control: React.FC<Props> = ({
   orientation,
   children,
   className,
-  setPosition,
   length,
 }) => {
-  const handleSwapClick = () => {
-    switch (orientation) {
-      case "left":
-        setPosition((prevState) =>
-          prevState === 0 ? prevState : prevState - 1
-        );
-        break;
-      case "right":
-        setPosition((prevState) =>
-          prevState === length - 1 ? prevState : prevState + 1
-        );
-        break;
-    }
-  };
+  const dispatch = useAppDispatch();
+  const { position } = useAppSelector<TPhotoPosition>(
+    (state) => state.position
+  );
 
   return (
     <Body
-      onClick={handleSwapClick}
+      onClick={handleSwapImageClick(orientation, dispatch)}
       orientation={orientation}
       className={className}
     >

@@ -19,7 +19,7 @@ const Container = styled.div`
   padding: 32px 64px;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 2;
 `;
 
 export default Header;

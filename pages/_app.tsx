@@ -8,6 +8,7 @@ import "@fontsource/inter/500.css";
 import "@fontsource/inter/700.css";
 import { Global } from "../common";
 import { AppWithPageLayout } from "../common/types";
+import { wrapper } from "../redux/store";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (
@@ -24,4 +25,4 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   );
 };
 
-export default App;
+export default wrapper.withRedux(App);

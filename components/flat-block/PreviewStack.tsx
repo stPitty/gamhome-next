@@ -2,15 +2,18 @@ import styled from "styled-components";
 import { photos } from "../../mock";
 import { Dispatch, memo, SetStateAction } from "react";
 import { BrandColor } from "../../common/enums";
+import { useAppDispatch } from "../../redux/hooks";
+import { setPosition } from "../../redux/slicers/photoPositionSlicer";
 
 type Props = {
   position: number;
-  setPosition: Dispatch<SetStateAction<number>>;
 };
 
-const PreviewStack: React.FC<Props> = ({ position, setPosition }) => {
+const PreviewStack: React.FC<Props> = ({ position }) => {
+  const dispatch = useAppDispatch();
+
   const handelPreviewClick = (index: number) => () => {
-    setPosition(index);
+    dispatch(setPosition(index));
   };
 
   return (
