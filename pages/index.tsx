@@ -8,6 +8,8 @@ import ServicesBlock from "../components/services-block";
 import MainServices from "../components/main-services";
 import CheckOwnerBlock from "../components/check-owner-block";
 import CardWitsImage from "../components/card-with-image";
+import DiscountsBlock from "../components/discounts-block";
+import WebinarBlock from "../components/WebinarBlock";
 
 const HomePage: ComponentWithLayout = () => {
   return (
@@ -21,6 +23,8 @@ const HomePage: ComponentWithLayout = () => {
         <CheckOwnerBlock />
         <CardWitsImage />
         <MainServices />
+        <DiscountsBlock />
+        <WebinarBlock />
       </ColumnWrapper>
       <PriceBlock />
     </Container>
