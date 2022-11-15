@@ -1,28 +1,57 @@
 import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
-import DoubleCircleSVG from "../../public/assets/svg/DoubleCircleSVG";
 import CircleSVG from "../../public/assets/svg/CircleSVG";
+import { flatData } from "../../mock";
+import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
 
 const MapBlock = () => {
   return (
     <Container>
       <HeaderText>Расположение</HeaderText>
       <AddressText>Москва, Шарикоподшипниковская ул., 9</AddressText>
-      <MetroWrapper>
-        <DoubleCircleIcon />
-        <MetroNameText>Дубровская</MetroNameText>
-      </MetroWrapper>
-      <MetroWrapper>
-        <CircleIcon />
-        <MetroNameText>Волгоградский проспект</MetroNameText>
-      </MetroWrapper>
-      <MetroWrapper>
-        <CircleIcon />
-        <MetroNameText>Пролетарская</MetroNameText>
-      </MetroWrapper>
+      <MetroContainer>
+        {flatData.address.metro.map((el, i) => {
+          return (
+            <MetroWrapper key={el.name + i}>
+              <CircleSVG />
+              <MetroNameText>{el.name}</MetroNameText>
+              <TimeText>{el.time}</TimeText>
+            </MetroWrapper>
+          );
+        })}
+      </MetroContainer>
+      <Map
+        defaultState={{
+          center: flatData.address.city,
+          zoom: 12,
+          controls: ["zoomControl"],
+        }}
+        width={864}
+        height={448}
+      >
+        <GeolocationControl options={{ float: "left" }} />
+        <Placemark defaultGeometry={flatData.address.addressCoordinates} />
+      </Map>
     </Container>
   );
 };
+
+const MetroContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 8px;
+  margin: 16px 0;
+`;
+
+const TimeText = styled.p`
+  font-family: ${Font.ROBOTO};
+  font-size: 16px;
+  line-height: 24px;
+  color: ${BlackColor.BLACK_64};
+  margin: 0;
+`;
 
 const MetroNameText = styled.p`
   font-family: ${Font.ROBOTO};
@@ -32,20 +61,12 @@ const MetroNameText = styled.p`
   margin: 0;
 `;
 
-const CircleIcon = styled(CircleSVG)`
-  margin-right: 4px;
-`;
-
-const DoubleCircleIcon = styled(DoubleCircleSVG)`
-  margin-right: 4px;
-`;
-
 const MetroWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 8px;
   width: 100%;
+  column-gap: 4px;
 `;
 
 const AddressText = styled.p`
@@ -54,7 +75,7 @@ const AddressText = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
-  margin: 16px 0;
+  margin: 0;
 `;
 
 const HeaderText = styled.p`
@@ -71,7 +92,7 @@ const Container = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 48px 0;
+  margin: 48px 0 112px;
 `;
 
 export default MapBlock;

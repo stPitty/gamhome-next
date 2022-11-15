@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type Props = {
   className?: string;
@@ -19,4 +19,4 @@ const CircleSVG: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default CircleSVG;
+export default memo(CircleSVG);

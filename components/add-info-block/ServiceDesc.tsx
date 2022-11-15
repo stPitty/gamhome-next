@@ -18,8 +18,8 @@ const ServiceDesc: React.FC<Props> = ({ headerText, desc, image, height }) => {
       <InfoWrapper>
         <HeaderText>{headerText}</HeaderText>
         <DescText>{desc}</DescText>
-        <Button buttonSize={ButtonSize.MEDIUM}>
-          <ButtonText>Подробнее</ButtonText>
+        <Button width={123} buttonSize={ButtonSize.MEDIUM}>
+          Подробнее
         </Button>
       </InfoWrapper>
       <Image height={height} image={image} />
@@ -35,14 +35,6 @@ const Image = styled.div<{
   height: ${({ height }) => height + "px"};
   background: url(${({ image }) => image}) center no-repeat;
   background-size: cover;
-`;
-
-const ButtonText = styled.p`
-  font-family: ${Font.ROBOTO};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0;
 `;
 
 const DescText = styled.p`

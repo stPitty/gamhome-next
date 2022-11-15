@@ -32,6 +32,7 @@ export enum BrandColor {
   BRAND_DISABLED = "rgba(82,110,255,0.2)",
   BRAND_12 = "#526EFF1F",
   BRAND_16 = "#526EFF29",
+  BRAND_MARKED_TEXT = "#798FFF",
 }
 
 export enum PurpleColor {

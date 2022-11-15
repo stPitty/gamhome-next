@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 type Props = {
   className?: string;
@@ -22,4 +22,4 @@ const CloseSVG: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default CloseSVG;
+export default memo(CloseSVG);

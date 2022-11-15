@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type Props = {
   className?: string;
 };
@@ -20,4 +22,4 @@ const ChevronSVG: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default ChevronSVG;
+export default memo(ChevronSVG);

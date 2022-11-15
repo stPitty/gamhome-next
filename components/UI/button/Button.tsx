@@ -5,6 +5,7 @@ import { Color } from "../../../common/types";
 import {
   BlackColor,
   BrandColor,
+  Font,
   PurpleColor,
   WhiteColor,
 } from "../../../common/enums";
@@ -19,6 +20,7 @@ type Props = {
   disabled?: boolean;
   loading?: boolean;
   onClick?: () => void;
+  width?: number;
 };
 
 const Button: React.FC<Props> = ({
@@ -30,6 +32,7 @@ const Button: React.FC<Props> = ({
   disabled = false,
   loading = false,
   onClick,
+  width,
 }) => {
   const handleClick = (func: (() => void) | undefined) => () => {
     if (func && !loading && !disabled) {
@@ -46,6 +49,7 @@ const Button: React.FC<Props> = ({
       disabled={disabled}
       loading={loading}
       onClick={handleClick(onClick)}
+      width={width}
     >
       {!loading ? children : <StyledSpinner />}
     </StyledButton>
@@ -72,12 +76,17 @@ const StyledButton = styled.button<{
   backGroundColor: Color;
   disabled: boolean;
   loading: boolean;
+  width?: number;
 }>`
   display: flex;
   cursor: ${({ disabled, loading }) => !disabled && !loading && "pointer"};
   border-radius: 12px;
   justify-content: center;
   align-items: center;
+  width: ${({ width }) => (width ? width + "px" : "100%")};
+
+  font-family: ${Font.ROBOTO};
+  font-weight: 500;
 
   ${({ buttonType, disabled, loading }) => {
     switch (buttonType) {
@@ -86,9 +95,7 @@ const StyledButton = styled.button<{
           border: 2px solid
             ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
           background: none;
-          & > * {
-            color: ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
-          }
+          color: ${disabled ? BrandColor.BRAND_DISABLED : BrandColor.BRAND};
           &:hover {
             background: ${!disabled && !loading && BrandColor.BRAND_12};
           }
@@ -102,9 +109,7 @@ const StyledButton = styled.button<{
           background: ${!disabled
             ? BrandColor.BRAND
             : BrandColor.BRAND_DISABLED};
-          & > * {
-            color: ${WhiteColor.WHITE};
-          }
+          color: ${WhiteColor.WHITE};
           & > svg path {
             fill: white;
           }
@@ -121,9 +126,7 @@ const StyledButton = styled.button<{
           background: ${!disabled
             ? PurpleColor.PURPLE
             : PurpleColor.PURPLE_DISABLED};
-          & > * {
-            color: ${WhiteColor.WHITE};
-          }
+          color: ${WhiteColor.WHITE};
           & > svg path {
             fill: white;
           }
@@ -138,11 +141,9 @@ const StyledButton = styled.button<{
         return css`
           border: none;
           background: ${!disabled ? WhiteColor.WHITE : "none"};
-          & > * {
-            color: ${!disabled
-              ? BlackColor.BLACK_SECONDARY
-              : BlackColor.BLACK_16};
-          }
+          color: ${!disabled
+            ? BlackColor.BLACK_SECONDARY
+            : BlackColor.BLACK_16};
           & > svg path {
             fill: black;
           }
@@ -153,15 +154,43 @@ const StyledButton = styled.button<{
             background: ${!disabled && !loading && BlackColor.BLACK_32};
           }
         `;
+      case ButtonType.PRIMARY_WHITE:
+        return css`
+          border: none;
+          background: ${!disabled ? WhiteColor.WHITE : WhiteColor.WHITE_24};
+          color: ${!disabled ? BrandColor.BRAND : BrandColor.BRAND_DISABLED};
+          & > svg path {
+            fill: ${BrandColor.BRAND};
+          }
+          &:hover {
+            background: ${!disabled && !loading && WhiteColor.WHITE_32};
+          }
+          &:active {
+            background: ${!disabled && !loading && WhiteColor.WHITE_16};
+          }
+        `;
       case ButtonType.FLAT:
         return css`
           border: none;
           background: none;
-          & > * {
-            color: ${!disabled ? BrandColor.BRAND : BrandColor.BRAND_DISABLED};
-          }
+          color: ${!disabled ? BrandColor.BRAND : BrandColor.BRAND_DISABLED};
           & > svg path {
             fill: ${BrandColor.BRAND};
+          }
+          &:hover {
+            background: ${!disabled && !loading && BrandColor.BRAND_12};
+          }
+          &:active {
+            background: ${!disabled && !loading && BrandColor.BRAND_16};
+          }
+        `;
+      case ButtonType.FLAT_WHITE:
+        return css`
+          border: none;
+          background: none;
+          color: ${!disabled ? WhiteColor.WHITE : WhiteColor.WHITE_16};
+          & > svg path {
+            fill: ${WhiteColor.WHITE};
           }
           &:hover {
             background: ${!disabled && !loading && BrandColor.BRAND_12};
@@ -177,17 +206,21 @@ const StyledButton = styled.button<{
     switch (buttonSize) {
       case ButtonSize.MEDIUM:
         return css`
-          padding: 9px 20px 11px;
+          padding: 9px 0 11px;
+          font-size: 16px;
+          line-height: 24px;
         `;
       case ButtonSize.LARGE:
         return css`
-          width: 100%;
           height: 56px;
-          padding: 15px 32px;
+          padding: 15px;
+          font-size: 16px;
+          line-height: 24px;
         `;
       default:
         return css`
-          padding: 7px 10px 9px;
+          padding: 7px 0 9px;
+          font-size: 13px;
         `;
     }
   }}

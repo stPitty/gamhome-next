@@ -36,9 +36,13 @@ const FullscreenCarousel: React.FC = () => {
           {showNumber ? (
             <NumberText href="tel:+79167086382">+7 916 708-63-82</NumberText>
           ) : (
-            <StyledButton onClick={handleShowNumberClick} loading={loading}>
-              <ButtonText>Показать телефон</ButtonText>
-            </StyledButton>
+            <Button
+              width={137}
+              onClick={handleShowNumberClick}
+              loading={loading}
+            >
+              Показать телефон
+            </Button>
           )}
           <CloseButton onClick={handleRedirClick(router, Route.HOME)}>
             <CloseSVG />
@@ -121,11 +125,6 @@ const NumberText = styled.a`
   line-height: 36px;
   margin-left: 12px;
   color: ${WhiteColor.WHITE};
-`;
-
-const StyledButton = styled(Button)`
-  width: 137px;
-  height: 36px;
 `;
 
 const ButtonText = styled.p`

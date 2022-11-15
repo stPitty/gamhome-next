@@ -15,13 +15,16 @@ const Global = createGlobalStyle`
     text-decoration: none;
   }
 
-  * {
-    box-sizing: border-box;
+  div, button, ul, p, a {
     transition: 0.3s all linear;
     -moz-transition: 0.3s all linear;
     -ms-transition: 0.3s all linear;
     -o-transition: 0.3s all linear;
     -webkit-transition: 0.3s all linear;
+  }
+  
+  * {
+    box-sizing: border-box;
     scroll-behavior: smooth;
     ::-webkit-scrollbar {
       width: 10px;
@@ -39,6 +42,7 @@ const Global = createGlobalStyle`
       background-color: ${LightBlueColor.LB_200};
     }
   }
+  
 `;
 
 export default Global;
