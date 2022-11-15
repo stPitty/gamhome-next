@@ -9,18 +9,26 @@ import "@fontsource/inter/700.css";
 import { Global } from "../common";
 import { AppWithPageLayout } from "../common/types";
 import { wrapper } from "../redux/store";
+import { YMaps } from "@pbe/react-yandex-maps";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (
     <>
       <Global />
-      {Component.PageLayout ? (
-        <Component.PageLayout>
+      <YMaps
+        query={{
+          ns: "use-load-option",
+          load: "Map,Placemark,control.ZoomControl",
+        }}
+      >
+        {Component.PageLayout ? (
+          <Component.PageLayout>
+            <Component {...pageProps} />
+          </Component.PageLayout>
+        ) : (
           <Component {...pageProps} />
-        </Component.PageLayout>
-      ) : (
-        <Component {...pageProps} />
-      )}
+        )}
+      </YMaps>
     </>
   );
 };

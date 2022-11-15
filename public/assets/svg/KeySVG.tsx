@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type Props = {
   className?: string;
 };
@@ -22,4 +24,4 @@ const KeySVG: React.FC<Props> = ({ className }) => {
   );
 };
 
-export default KeySVG;
+export default memo(KeySVG);

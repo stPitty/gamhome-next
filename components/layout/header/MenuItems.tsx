@@ -26,6 +26,7 @@ const Divider = styled.div`
   top: 5px;
   height: 1px;
   background: ${BlackColor.BLACK_64};
+  align-self: flex-end;
 `;
 
 const TextContainer = styled.div`
@@ -35,9 +36,10 @@ const TextContainer = styled.div`
     & p {
       color: ${BlackColor.BLACK_80};
     }
-    & :last-child {
-      width: 100%;
-    }
+    //& :last-child {
+    //  width: 100%;
+    //  align-self: flex-start;
+    //}
   }
 `;
 

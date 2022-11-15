@@ -12,6 +12,7 @@
     "@babel/core": ">=7.0.0 <8.0.0",
     "@fontsource/inter": "^4.5.14",
     "@fontsource/roboto": "^4.5.8",
+    "@pbe/react-yandex-maps": "^1.2.2",
     "@reduxjs/toolkit": "^1.9.0",
     "@types/node": "18.11.9",
     "@types/react": "18.0.25",

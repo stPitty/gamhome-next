@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
@@ -25,18 +25,16 @@ const PriceBlock: React.FC = () => {
       <SubHeaderText>
         Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
       </SubHeaderText>
-      <Button buttonSize={ButtonSize.LARGE}>
-        <ButtonText>Показать телефон</ButtonText>
-      </Button>
+      <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
       <Button
         buttonType={ButtonType.PRIMARY_PURPLE}
         buttonSize={ButtonSize.LARGE}
       >
         <KeyIcon />
-        <ButtonText>Подберите мне квартиру</ButtonText>
+        Подберите мне квартиру
       </Button>
       <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
-        <ButtonText>Перейти на страницу объявления</ButtonText>
+        Перейти на страницу объявления
       </Button>
     </Container>
   );
@@ -44,14 +42,6 @@ const PriceBlock: React.FC = () => {
 
 const KeyIcon = styled(KeySVG)`
   margin-right: 7px;
-`;
-
-const ButtonText = styled.p`
-  font-family: ${Font.ROBOTO};
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  margin: 0;
 `;
 
 const SubHeaderText = styled.p`
@@ -78,7 +68,11 @@ const Container = styled.div<{ translation: number }>`
   justify-content: flex-start;
   width: 416px;
   gap: 12px;
-  transform: translateY(${({ translation }) => translation}px);
+  transition: none;
+  position: ${({ translation }) => (translation < 2740 ? "fixed" : "absolute")};
+  top: ${({ translation }) => (translation >= 2740 ? "2850px" : "116px")};
+  right: 0;
+  margin-right: 64px;
 `;
 
 export default PriceBlock;

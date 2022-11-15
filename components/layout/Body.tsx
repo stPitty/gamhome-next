@@ -17,10 +17,11 @@ const Body = () => {
       <ButtonsWrapper>
         <MenuItems />
         <Button
+          width={168}
           onClick={handleRedirClick(router, Route.HOME)}
           buttonType={ButtonType.OUTLINE}
         >
-          <ButtonText>Перейти в Telegram Bot</ButtonText>
+          Перейти в Telegram Bot
         </Button>
         <TelephoneNumberText href="tel:88009999999">
           8 800 999-99-99
