@@ -44,8 +44,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  justify-content: flex-start;
-  align-items: flex-start;
+  padding: 0 64px;
 `;
 
 export default ServicesBlock;

@@ -36,6 +36,8 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  max-width: 1440px;
+  padding: 32px 64px;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -55,14 +57,6 @@ const TelephoneNumberText = styled.a`
   &:hover {
     color: ${BlackColor.BLACK_80};
   }
-`;
-
-const ButtonText = styled.p`
-  font-family: ${Font.ROBOTO};
-  font-weight: 500;
-  font-size: 13px;
-  margin: 0;
-  color: ${BrandColor.BRAND};
 `;
 
 const StyledLogo = styled(LogoSVG)`

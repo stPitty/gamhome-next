@@ -15,35 +15,46 @@ const HomePage: ComponentWithLayout = () => {
   return (
     <Container>
       <ColumnWrapper>
-        <InfoWrapper>
-          <FlatBlock />
-          <AddInfoBlock />
-          <ServicesBlock />
-        </InfoWrapper>
+        <InfoWrapperRow>
+          <InfoWrapperColumn>
+            <FlatBlock />
+            <AddInfoBlock />
+          </InfoWrapperColumn>
+          <PriceBlock />
+        </InfoWrapperRow>
+        <ServicesBlock />
         <CheckOwnerBlock />
         <CardWitsImage />
         <MainServices />
         <DiscountsBlock />
         <WebinarBlock />
       </ColumnWrapper>
-      <PriceBlock />
     </Container>
   );
 };
 
-const InfoWrapper = styled.div`
+const InfoWrapperRow = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 64px;
+  height: 100%;
+`;
+
+const InfoWrapperColumn = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 864px;
-  padding: 21px 64px 0;
+  padding: 21px 0 0;
 `;
 
 const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   width: 100%;
 `;
@@ -51,8 +62,7 @@ const ColumnWrapper = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  width: 100%;
+  max-width: 1440px;
 `;
 
 HomePage.PageLayout = PageLayout;

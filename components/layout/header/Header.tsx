@@ -13,10 +13,8 @@ const Header: React.FC = () => {
 const Container = styled.div`
   background: ${WhiteColor.WHITE};
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
-  padding: 32px 64px;
   position: sticky;
   top: 0;
   z-index: 2;

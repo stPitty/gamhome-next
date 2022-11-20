@@ -20,25 +20,35 @@ const PriceBlock: React.FC = () => {
   }, []);
 
   return (
-    <Container translation={translateBlock}>
-      <HeaderText>390 000 ₽ в мес</HeaderText>
-      <SubHeaderText>
-        Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
-      </SubHeaderText>
-      <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
-      <Button
-        buttonType={ButtonType.PRIMARY_PURPLE}
-        buttonSize={ButtonSize.LARGE}
-      >
-        <KeyIcon />
-        Подберите мне квартиру
-      </Button>
-      <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
-        Перейти на страницу объявления
-      </Button>
-    </Container>
+    <Wrapper>
+      <Container translation={translateBlock}>
+        <HeaderText>390 000 ₽ в мес</HeaderText>
+        <SubHeaderText>
+          Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
+        </SubHeaderText>
+        <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
+        <Button
+          buttonType={ButtonType.PRIMARY_PURPLE}
+          buttonSize={ButtonSize.LARGE}
+        >
+          <KeyIcon />
+          Подберите мне квартиру
+        </Button>
+        <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
+          Перейти на страницу объявления
+        </Button>
+      </Container>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  height: 100%;
+  position: sticky;
+  z-index: 1;
+  top: 100px;
+  margin-bottom: 112px;
+`;
 
 const KeyIcon = styled(KeySVG)`
   margin-right: 7px;
@@ -68,11 +78,6 @@ const Container = styled.div<{ translation: number }>`
   justify-content: flex-start;
   width: 416px;
   gap: 12px;
-  transition: none;
-  position: ${({ translation }) => (translation < 2740 ? "fixed" : "absolute")};
-  top: ${({ translation }) => (translation >= 2740 ? "2850px" : "116px")};
-  right: 0;
-  margin-right: 64px;
 `;
 
 export default PriceBlock;
