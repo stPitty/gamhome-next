@@ -61,7 +61,6 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   padding: 182px 64px 64px;
   border-radius: 48px;
   background-color: ${BlackColor.BLACK_SECONDARY};
@@ -69,6 +68,8 @@ const Container = styled.div`
   background-size: 301px;
   background-repeat: no-repeat;
   background-position: left 53px bottom 344px;
+  column-gap: 112px;
+  overflow-y: hidden;
 `;
 
 export default CardWitsImage;

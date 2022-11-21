@@ -50,7 +50,7 @@ const HeaderText = styled.p`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 864px;
   align-items: flex-start;
   justify-content: flex-start;
   margin: 48px 0;

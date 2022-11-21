@@ -33,10 +33,9 @@ const Body = () => {
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
   align-items: center;
-  justify-content: space-between;
-  max-width: 1440px;
+  justify-content: center;
+  width: 100%;
   padding: 32px 64px;
 `;
 

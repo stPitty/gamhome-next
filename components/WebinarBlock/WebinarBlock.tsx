@@ -79,11 +79,12 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
   background: ${BrandColor.BRAND};
   padding: 152px 48px 64px 64px;
   border-radius: 48px;
   margin-bottom: 50px;
+  overflow-x: hidden;
+  column-gap: 84px;
 `;
 
 export default WebinarBlock;

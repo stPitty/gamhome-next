@@ -6,22 +6,9 @@ import KeySVG from "../../public/assets/svg/KeySVG";
 import { useEffect, useRef, useState } from "react";
 
 const PriceBlock: React.FC = () => {
-  const [translateBlock, setTranslateBlock] = useState<number>(0);
-
-  const handleFixBlockScroll = () => {
-    if (typeof window !== "undefined") {
-      setTranslateBlock(window.scrollY);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("scroll", handleFixBlockScroll);
-    return () => document.removeEventListener("scroll", handleFixBlockScroll);
-  }, []);
-
   return (
     <Wrapper>
-      <Container translation={translateBlock}>
+      <Container>
         <HeaderText>390 000 ₽ в мес</HeaderText>
         <SubHeaderText>
           Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
@@ -71,7 +58,7 @@ const HeaderText = styled.p`
   margin: 0;
 `;
 
-const Container = styled.div<{ translation: number }>`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;

@@ -25,13 +25,13 @@ const HeaderText = styled.p`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   background: ${BlackColor.BLACK_SECONDARY};
   border-radius: 48px;
   z-index: 1;
   padding: 64px;
   row-gap: 40px;
   margin-bottom: -96px;
+  overflow-x: hidden;
 `;
 
 export default DiscountsBlock;

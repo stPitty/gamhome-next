@@ -14,21 +14,19 @@ import WebinarBlock from "../components/WebinarBlock";
 const HomePage: ComponentWithLayout = () => {
   return (
     <Container>
-      <ColumnWrapper>
-        <InfoWrapperRow>
-          <InfoWrapperColumn>
-            <FlatBlock />
-            <AddInfoBlock />
-          </InfoWrapperColumn>
-          <PriceBlock />
-        </InfoWrapperRow>
-        <ServicesBlock />
-        <CheckOwnerBlock />
-        <CardWitsImage />
-        <MainServices />
-        <DiscountsBlock />
-        <WebinarBlock />
-      </ColumnWrapper>
+      <InfoWrapperRow>
+        <InfoWrapperColumn>
+          <FlatBlock />
+          <AddInfoBlock />
+        </InfoWrapperColumn>
+        <PriceBlock />
+      </InfoWrapperRow>
+      <ServicesBlock />
+      <CheckOwnerBlock />
+      <CardWitsImage />
+      <MainServices />
+      <DiscountsBlock />
+      <WebinarBlock />
     </Container>
   );
 };
@@ -36,33 +34,25 @@ const HomePage: ComponentWithLayout = () => {
 const InfoWrapperRow = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: stretch;
+  justify-items: center;
+  justify-content: center;
   padding: 0 64px;
   height: 100%;
+  column-gap: 32px;
 `;
 
 const InfoWrapperColumn = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  width: 864px;
   padding: 21px 0 0;
-`;
-
-const ColumnWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
 `;
 
 const Container = styled.div`
   display: flex;
-  align-items: flex-start;
-  max-width: 1440px;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 `;
 
 HomePage.PageLayout = PageLayout;

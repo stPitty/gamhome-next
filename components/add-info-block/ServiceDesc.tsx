@@ -63,7 +63,7 @@ const InfoWrapper = styled.div`
 
 const Container = styled.div`
   display: flex;
-  width: 100%;
+  width: 864px;
   justify-content: space-between;
   align-items: center;
   margin: 48px 0;

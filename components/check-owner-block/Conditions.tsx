@@ -47,7 +47,6 @@ const ButtonGroupContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 218px;
-  margin: 48px;
   row-gap: 12px;
 `;
 
@@ -106,8 +105,9 @@ const Wrapper = styled.div`
 const Container = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
-  padding: 32px 72px 0;
+  justify-items: center;
+  column-gap: 32px;
+  margin-top: 32px;
 `;
 
 export default Conditions;

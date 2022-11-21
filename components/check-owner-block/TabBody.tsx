@@ -21,8 +21,7 @@ const TabBody: React.FC<Props> = ({ data }) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  align-items: flex-start;
+  align-items: center;
   justify-content: flex-start;
   background: ${LightBlueColor.LB_100};
   border-radius: 48px;

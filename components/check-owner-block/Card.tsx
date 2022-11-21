@@ -130,11 +130,11 @@ const ContentTextContainer = styled.div`
 const MainContentWrapper = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
   background: ${WhiteColor.WHITE};
   border-radius: 24px;
   padding: 48px;
+  column-gap: 126px;
 `;
 
 export default Card;

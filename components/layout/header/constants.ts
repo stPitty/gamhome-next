@@ -23,10 +23,6 @@ const menuItems: MenuItem[] = [
     name: MenuEntryName.WEBINAR,
     link: Route.HOME,
   },
-  {
-    name: MenuEntryName.LEND_FLAT,
-    link: Route.HOME,
-  },
 ];
 
 export { menuItems };

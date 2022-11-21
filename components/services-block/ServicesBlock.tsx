@@ -6,7 +6,9 @@ import { CardType, PrimaryContent, SecondaryContent } from "./enums";
 const ServicesBlock = () => {
   return (
     <Container>
-      <HeaderText>Полезные документы</HeaderText>
+      <HeaderTextContainer>
+        <HeaderText>Полезные документы</HeaderText>
+      </HeaderTextContainer>
       <CardsWrapper>
         <UsefulDocsCard
           cardType={CardType.PRIMARY}
@@ -32,6 +34,13 @@ const CardsWrapper = styled.div`
   column-gap: 32px;
 `;
 
+const HeaderTextContainer = styled.div`
+  display: flex;
+  width: 100%;
+  justify-items: flex-start;
+  justify-content: flex-start;
+`;
+
 const HeaderText = styled.p`
   font-weight: 600;
   font-size: 40px;
@@ -43,8 +52,8 @@ const HeaderText = styled.p`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
-  padding: 0 64px;
+  align-content: center;
+  align-items: center;
 `;
 
 export default ServicesBlock;

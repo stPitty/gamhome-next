@@ -13,21 +13,11 @@ const MenuItems: React.FC = () => {
       {menuItems.map((item, i) => (
         <TextContainer key={item.name + i}>
           <Text onClick={handleRedirClick(router, item.link)}>{item.name}</Text>
-          <Divider />
         </TextContainer>
       ))}
     </MenuWrapper>
   );
 };
-
-const Divider = styled.div`
-  width: 0;
-  position: relative;
-  top: 5px;
-  height: 1px;
-  background: ${BlackColor.BLACK_64};
-  align-self: flex-end;
-`;
 
 const TextContainer = styled.div`
   display: flex;
@@ -36,10 +26,6 @@ const TextContainer = styled.div`
     & p {
       color: ${BlackColor.BLACK_80};
     }
-    //& :last-child {
-    //  width: 100%;
-    //  align-self: flex-start;
-    //}
   }
 `;
 
@@ -55,7 +41,7 @@ const MenuWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   column-gap: 16px;
-  margin-right: 45px;
+  margin: 0 185px 0 144px;
 `;
 
 export default MenuItems;
