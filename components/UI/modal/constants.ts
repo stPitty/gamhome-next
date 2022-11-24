@@ -1,5 +1,11 @@
 import { ModalBodyData } from "./types";
 import { ModalState } from "../../../redux/slicers/enums";
+import {
+  docsSent,
+  openBuyCheckListWithEmail,
+  openFreeDocsWithEmail,
+  thanksForBuy,
+} from "../../../redux/slicers/modalStateSlicer";
 
 const modalData: ModalBodyData = {
   [ModalState.CHECK_LISTS_INFORMATION]: {
@@ -24,12 +30,14 @@ const modalData: ModalBodyData = {
     ],
     buttonText: "Купить за 799 ₽",
     modalType: "withInfo",
+    nextStateBtnAction: openBuyCheckListWithEmail,
   },
   [ModalState.CHECK_LISTS_ENTER_EMAIL]: {
     header: "Чек-листы и документы для аренды",
     desc: "Файл с чек-листами и документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
     buttonText: "Перейти к оплате 799 ₽",
     modalType: "withEmailInput",
+    nextStateBtnAction: thanksForBuy,
   },
   [ModalState.THANKS_FOR_BUY]: {
     header: "Спасибо за покупку",
@@ -66,12 +74,14 @@ const modalData: ModalBodyData = {
     ],
     buttonText: "Получить документы",
     modalType: "withInfo",
+    nextStateBtnAction: openFreeDocsWithEmail,
   },
   [ModalState.FREE_DOCS_BAG_ENTER_EMAIL]: {
     header: "Пакет бесплатных документов",
     desc: "Файл с документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности",
     buttonText: "Отправить",
     modalType: "withEmailInput",
+    nextStateBtnAction: docsSent,
   },
   [ModalState.DOCS_SENT]: {
     header: "Документы отправлены на почту",

@@ -207,20 +207,20 @@ const StyledButton = styled.button<{
     switch (buttonSize) {
       case ButtonSize.MEDIUM:
         return css`
-          padding: 9px 0 11px;
+          padding: 9px 18px 11px;
           font-size: 16px;
           line-height: 24px;
         `;
       case ButtonSize.LARGE:
         return css`
           height: 56px;
-          padding: 15px;
+          padding: 15px 32px;
           font-size: 16px;
           line-height: 24px;
         `;
       default:
         return css`
-          padding: 7px 0 9px;
+          padding: 6px 10px 9px;
           font-size: 13px;
         `;
     }

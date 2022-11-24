@@ -1,6 +1,6 @@
 import { ModalState } from "../../../redux/slicers/enums";
 
-type Modal = "withEmailInput" | "withInfo" | "lastMessage";
+export type Modal = "withEmailInput" | "withInfo" | "lastMessage";
 
 export type DescText = {
   id: number;
@@ -9,9 +9,10 @@ export type DescText = {
 
 export type ModalBody = {
   header: string;
+  modalType: Modal;
   desc?: DescText[] | string;
   buttonText?: string;
-  modalType: Modal;
+  nextStateBtnAction?: any;
 };
 
 export type ModalBodyData = {
