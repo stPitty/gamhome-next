@@ -10,10 +10,11 @@ import CheckOwnerBlock from "../components/check-owner-block";
 import CardWitsImage from "../components/card-with-image";
 import DiscountsBlock from "../components/discounts-block";
 import WebinarBlock from "../components/WebinarBlock";
+import { Hook } from "../common/routes";
 
 const HomePage: ComponentWithLayout = () => {
   return (
-    <Container>
+    <Container id={Hook.HOME}>
       <InfoWrapperRow>
         <InfoWrapperColumn>
           <FlatBlock />
@@ -53,6 +54,7 @@ const Container = styled.div`
   align-items: center;
   align-content: center;
   width: 100%;
+  margin-bottom: 82px;
 `;
 
 HomePage.PageLayout = PageLayout;

@@ -2,11 +2,13 @@ import React, { memo } from "react";
 
 type Props = {
   className?: string;
+  onClick?: () => void;
 };
 
-const CloseSVG: React.FC<Props> = ({ className }) => {
+const CloseSVG: React.FC<Props> = ({ className, onClick }) => {
   return (
     <svg
+      onClick={onClick}
       className={className}
       width="17"
       height="18"

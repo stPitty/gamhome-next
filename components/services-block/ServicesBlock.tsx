@@ -2,10 +2,17 @@ import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
 import UsefulDocsCard from "./UsefulDocsCard";
 import { CardType, PrimaryContent, SecondaryContent } from "./enums";
+import { Hook } from "../../common/routes";
+import {
+  openBuyCheckListInformation,
+  openBuyCheckListWithEmail,
+  openFreeDocsInformation,
+  openFreeDocsWithEmail,
+} from "../../redux/slicers/modalStateSlicer";
 
 const ServicesBlock = () => {
   return (
-    <Container>
+    <Container id={Hook.USEFUL_DOCS}>
       <HeaderTextContainer>
         <HeaderText>Полезные документы</HeaderText>
       </HeaderTextContainer>
@@ -15,12 +22,16 @@ const ServicesBlock = () => {
           headerText={PrimaryContent.HEADER}
           descText={PrimaryContent.DESC}
           buttonText={PrimaryContent.BUTTON_TEXT}
+          primaryBtnAction={openBuyCheckListWithEmail}
+          secondaryBtnAction={openBuyCheckListInformation}
         />
         <UsefulDocsCard
           cardType={CardType.SECONDARY}
           headerText={SecondaryContent.HEADER}
           descText={SecondaryContent.DESC}
           buttonText={SecondaryContent.BUTTON_TEXT}
+          primaryBtnAction={openFreeDocsWithEmail}
+          secondaryBtnAction={openFreeDocsInformation}
         />
       </CardsWrapper>
     </Container>

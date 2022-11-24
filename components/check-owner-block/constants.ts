@@ -31,7 +31,7 @@ const objData: TabBodyData = {
       desc: "Проверка занимает от 30 минут до 3 дней. Если не хотите упустить квартиру, оставьте залог собственнику на время проверки",
     },
   ],
-  image: "/images/man-in-home.png",
+  image: "/images/man-in-home.jpg",
   additionalInfo: {
     header: "Какие риски исключаете",
     points: [
@@ -65,7 +65,7 @@ const ownerData: TabBodyData = {
       desc: "Проверка занимает от 30 минут до 3 дней. Если не хотите упустить квартиру, оставьте залог собственнику на время проверки",
     },
   ],
-  image: "/images/woman-searches.png",
+  image: "/images/woman-searches.jpg",
   additionalInfo: {
     header: "Какую информацию получаете",
     points: [

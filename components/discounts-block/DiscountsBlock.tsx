@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { BlackColor, WhiteColor } from "../../common/enums";
 import { cardsData } from "./constants";
 import Card from "./Card";
+import { Hook } from "../../common/routes";
 
 const DiscountsBlock = () => {
   return (
-    <Container>
+    <Container id={Hook.PARTNERS}>
       <HeaderText>Скидки от партнёров</HeaderText>
       {cardsData.map((el) => (
         <Card data={el} key={el.id} />
@@ -31,7 +32,6 @@ const Container = styled.div`
   padding: 64px;
   row-gap: 40px;
   margin-bottom: -96px;
-  overflow-x: hidden;
 `;
 
 export default DiscountsBlock;

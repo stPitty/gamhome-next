@@ -1,9 +1,10 @@
 import { MenuEntryName } from "./enums";
-import { Route } from "../../../common/routes";
+import { Hook } from "../../../common/routes";
 
 type MenuItem = {
+  id: number;
   name: MenuEntryName;
-  link: Route;
+  link: Hook;
 };
 
 export type { MenuItem };

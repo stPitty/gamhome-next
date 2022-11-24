@@ -9,13 +9,16 @@ const Global = createGlobalStyle`
     font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
-  
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
   a {
     color: inherit;
     text-decoration: none;
   }
 
-  div, button, ul, p, a {
+  div, button, ul, p, a, input {
     transition: 0.3s all linear;
     -moz-transition: 0.3s all linear;
     -ms-transition: 0.3s all linear;
@@ -25,7 +28,6 @@ const Global = createGlobalStyle`
   
   * {
     box-sizing: border-box;
-    scroll-behavior: smooth;
     ::-webkit-scrollbar {
       width: 10px;
       background-color: ${LightBlueColor.LB_100};

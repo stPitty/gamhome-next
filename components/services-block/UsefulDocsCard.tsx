@@ -12,12 +12,17 @@ import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import StarSVG from "../../public/assets/svg/StarSVG";
 import DocumentSVG from "../../public/assets/svg/DocumentSVG";
+import { useAppDispatch } from "../../redux/hooks";
+import { ThunkAction } from "redux-thunk";
+import { AnyAction } from "redux";
 
 type Props = {
   cardType: CardType;
   headerText: PrimaryContent | SecondaryContent;
   descText: PrimaryContent | SecondaryContent;
   buttonText: PrimaryContent | SecondaryContent;
+  primaryBtnAction: () => void;
+  secondaryBtnAction: () => void;
 };
 
 const UsefulDocsCard: React.FC<Props> = ({
@@ -25,13 +30,21 @@ const UsefulDocsCard: React.FC<Props> = ({
   headerText,
   descText,
   buttonText,
+  primaryBtnAction,
+  secondaryBtnAction,
 }) => {
+  const dispatch = useAppDispatch();
+
   const buyBtnType =
     cardType === CardType.PRIMARY
       ? ButtonType.PRIMARY_WHITE
       : ButtonType.OUTLINE;
   const moreBtnType =
     cardType === CardType.PRIMARY ? ButtonType.FLAT_WHITE : ButtonType.FLAT;
+
+  const handleOpenModal = (action: any) => () => {
+    dispatch(action());
+  };
 
   return (
     <Container cardType={cardType}>
@@ -43,6 +56,7 @@ const UsefulDocsCard: React.FC<Props> = ({
             width={207}
             buttonSize={ButtonSize.MEDIUM}
             buttonType={buyBtnType}
+            onClick={handleOpenModal(primaryBtnAction)}
           >
             {buttonText}
           </Button>
@@ -50,6 +64,7 @@ const UsefulDocsCard: React.FC<Props> = ({
             width={123}
             buttonType={moreBtnType}
             buttonSize={ButtonSize.MEDIUM}
+            onClick={handleOpenModal(secondaryBtnAction)}
           >
             Подробнее
           </Button>

@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { act } from "react-dom/test-utils";
-
-type TPhotoPosition = {
-  position: number;
-};
+import { TPhotoPosition } from "./types";
 
 const initialState: TPhotoPosition = {
   position: 0,
@@ -26,7 +22,5 @@ const photoPositionSlicer = createSlice({
 
 export const { increment, decrement, setPosition } =
   photoPositionSlicer.actions;
-
-export type { TPhotoPosition };
 
 export default photoPositionSlicer.reducer;

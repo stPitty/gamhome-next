@@ -2,9 +2,11 @@ import { AnyAction, combineReducers } from "redux";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { configureStore } from "@reduxjs/toolkit";
 import photoPositionReducer from "./slicers/photoPositionSlicer";
+import modalStateReducer from "./slicers/modalStateSlicer";
 
 const combinedReducer = combineReducers({
   position: photoPositionReducer,
+  modalState: modalStateReducer,
 });
 
 const reducer = (

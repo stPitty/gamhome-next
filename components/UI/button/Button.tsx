@@ -7,6 +7,7 @@ import {
   BrandColor,
   Font,
   PurpleColor,
+  PWBtnColor,
   WhiteColor,
 } from "../../../common/enums";
 import SpinnerSVG from "../../../public/assets/svg/SpinnerSVG";
@@ -140,7 +141,7 @@ const StyledButton = styled.button<{
       case ButtonType.PRIMARY_WB:
         return css`
           border: none;
-          background: ${!disabled ? WhiteColor.WHITE : "none"};
+          background: ${!disabled ? WhiteColor.WHITE : PWBtnColor.P_W_DISABLED};
           color: ${!disabled
             ? BlackColor.BLACK_SECONDARY
             : BlackColor.BLACK_16};
@@ -148,25 +149,25 @@ const StyledButton = styled.button<{
             fill: black;
           }
           &:hover {
-            background: ${!disabled && !loading && BlackColor.BLACK_16};
+            background: ${!disabled && !loading && PWBtnColor.P_W_HOVER};
           }
           &:active {
-            background: ${!disabled && !loading && BlackColor.BLACK_32};
+            background: ${!disabled && !loading && PWBtnColor.P_W_ACTIVE};
           }
         `;
       case ButtonType.PRIMARY_WHITE:
         return css`
           border: none;
-          background: ${!disabled ? WhiteColor.WHITE : WhiteColor.WHITE_24};
+          background: ${!disabled ? WhiteColor.WHITE : PWBtnColor.P_W_DISABLED};
           color: ${!disabled ? BrandColor.BRAND : BrandColor.BRAND_DISABLED};
           & > svg path {
             fill: ${BrandColor.BRAND};
           }
           &:hover {
-            background: ${!disabled && !loading && WhiteColor.WHITE_32};
+            background: ${!disabled && !loading && PWBtnColor.P_W_HOVER};
           }
           &:active {
-            background: ${!disabled && !loading && WhiteColor.WHITE_16};
+            background: ${!disabled && !loading && PWBtnColor.P_W_ACTIVE};
           }
         `;
       case ButtonType.FLAT:

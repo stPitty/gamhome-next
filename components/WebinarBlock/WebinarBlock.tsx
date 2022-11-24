@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
+import { Hook } from "../../common/routes";
 
 const WebinarBlock = () => {
   return (
-    <Container>
+    <Container id={Hook.WEBINAR}>
       <ContentContainer>
         <Tag>Бесплатный доступ к вебинару</Tag>
         <HeaderText>
@@ -82,8 +83,6 @@ const Container = styled.div`
   background: ${BrandColor.BRAND};
   padding: 152px 48px 64px 64px;
   border-radius: 48px;
-  margin-bottom: 50px;
-  overflow-x: hidden;
   column-gap: 84px;
 `;
 

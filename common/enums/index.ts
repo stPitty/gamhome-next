@@ -19,6 +19,12 @@ export enum WhiteColor {
   WHITE_16 = "#FFFFFF29",
 }
 
+export enum PWBtnColor {
+  P_W_HOVER = "#f3f3f3",
+  P_W_ACTIVE = "#cecece",
+  P_W_DISABLED = "#f0f0f0",
+}
+
 export enum LightBlueColor {
   LB_100 = "#F5F7F9",
   LB_200 = "#DFE5EC",

@@ -26,7 +26,7 @@ const CardWitsImage = () => {
 const Image = styled.div`
   width: 528px;
   height: 503px;
-  background: no-repeat url("/images/unboxing.png");
+  background: no-repeat url("/images/unboxing.jpg");
   background-size: cover;
   border-radius: 40px;
 `;
@@ -69,7 +69,6 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: left 53px bottom 344px;
   column-gap: 112px;
-  overflow-y: hidden;
 `;
 
 export default CardWitsImage;

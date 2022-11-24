@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
 import { cardsData } from "./constants";
 import Cards from "./Card";
+import { Hook } from "../../common/routes";
 
 const MainServices = () => {
   return (
-    <Container>
+    <Container id={Hook.SERVICES}>
       <HeaderText>Услуги</HeaderText>
       <Cards data={cardsData} />
     </Container>

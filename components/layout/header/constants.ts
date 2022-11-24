@@ -1,27 +1,32 @@
 import { MenuItem } from "./types";
 import { MenuEntryName } from "./enums";
-import { Route } from "../../../common/routes";
+import { Hook } from "../../../common/routes";
 
 const menuItems: MenuItem[] = [
   {
+    id: 1,
     name: MenuEntryName.MAIN,
-    link: Route.HOME,
+    link: Hook.HOME,
   },
   {
+    id: 2,
     name: MenuEntryName.CHECK_OBJ,
-    link: Route.HOME,
+    link: Hook.CHECK_OBJ,
   },
   {
+    id: 3,
     name: MenuEntryName.SERVICES,
-    link: Route.HOME,
+    link: Hook.SERVICES,
   },
   {
+    id: 4,
     name: MenuEntryName.PARTNERS,
-    link: Route.HOME,
+    link: Hook.PARTNERS,
   },
   {
+    id: 5,
     name: MenuEntryName.WEBINAR,
-    link: Route.HOME,
+    link: Hook.WEBINAR,
   },
 ];
 

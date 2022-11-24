@@ -38,9 +38,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
-  padding: 64px;
-  gap: 48px;
+  row-gap: 21px;
+  padding-bottom: 64px;
 `;
 
 export default Footer;

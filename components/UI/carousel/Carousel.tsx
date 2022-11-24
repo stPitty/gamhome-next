@@ -1,13 +1,10 @@
 import React from "react";
 import { photos } from "../../../mock";
 import styled from "styled-components";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  setPosition,
-  TPhotoPosition,
-} from "../../../redux/slicers/photoPositionSlicer";
+import { useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
 import { Route } from "../../../common/routes";
+import { TPhotoPosition } from "../../../redux/slicers/types";
 
 type Props = {
   size: [number, number];

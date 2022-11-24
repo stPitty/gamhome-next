@@ -4,23 +4,34 @@ import { ButtonSize } from "../UI/button/enums";
 import { BlackColor, Font } from "../../common/enums";
 import React, { memo } from "react";
 import { Concierge, Owner } from "./enums";
+import { Hook } from "../../common/routes";
+import Link from "next/link";
 
 type Props = {
   headerText: Concierge | Owner;
   desc: Concierge | Owner;
   image: Concierge | Owner;
   height: Concierge | Owner;
+  btnLink: Hook;
 };
 
-const ServiceDesc: React.FC<Props> = ({ headerText, desc, image, height }) => {
+const ServiceDesc: React.FC<Props> = ({
+  headerText,
+  desc,
+  image,
+  height,
+  btnLink,
+}) => {
   return (
     <Container>
       <InfoWrapper>
         <HeaderText>{headerText}</HeaderText>
         <DescText>{desc}</DescText>
-        <Button width={123} buttonSize={ButtonSize.MEDIUM}>
-          Подробнее
-        </Button>
+        <Link href={"#" + btnLink} scroll={false}>
+          <Button width={123} buttonSize={ButtonSize.MEDIUM}>
+            Подробнее
+          </Button>
+        </Link>
       </InfoWrapper>
       <Image height={height} image={image} />
     </Container>

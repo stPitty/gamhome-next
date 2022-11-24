@@ -46,7 +46,7 @@ const Image = styled.div<{ image: string }>`
   background-repeat: no-repeat;
   background-size: cover;
   width: 656px;
-  height: 508px;
+  height: 512px;
   border-radius: 24px;
 `;
 
@@ -61,7 +61,7 @@ const PromoText = styled.p`
 
 const ButtonsContainer = styled.div`
   display: flex;
-  margin-top: 56px;
+  margin-top: 54px;
 `;
 
 const Tag = styled.div`
@@ -89,7 +89,7 @@ const DescText = styled.p`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
-  margin: 16px 0 40px;
+  margin: 16px 0 32px;
   color: ${BlackColor.BLACK_64};
 `;
 

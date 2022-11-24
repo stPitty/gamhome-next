@@ -2,12 +2,8 @@ import React, { memo, ReactNode } from "react";
 import styled, { css } from "styled-components";
 import { LightBlueColor } from "../../../common/enums";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  decrement,
-  increment,
-  TPhotoPosition,
-} from "../../../redux/slicers/photoPositionSlicer";
 import { handleSwapImageClick } from "../../../common/helpers";
+import { TPhotoPosition } from "../../../redux/slicers/types";
 
 type Props = {
   orientation: "right" | "left";
@@ -23,9 +19,6 @@ const Control: React.FC<Props> = ({
   length,
 }) => {
   const dispatch = useAppDispatch();
-  const { position } = useAppSelector<TPhotoPosition>(
-    (state) => state.position
-  );
 
   return (
     <Body

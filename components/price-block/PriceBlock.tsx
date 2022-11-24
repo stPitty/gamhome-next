@@ -4,6 +4,8 @@ import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import KeySVG from "../../public/assets/svg/KeySVG";
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+import { Hook } from "../../common/routes";
 
 const PriceBlock: React.FC = () => {
   return (
@@ -14,13 +16,15 @@ const PriceBlock: React.FC = () => {
           Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
         </SubHeaderText>
         <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
-        <Button
-          buttonType={ButtonType.PRIMARY_PURPLE}
-          buttonSize={ButtonSize.LARGE}
-        >
-          <KeyIcon />
-          Подберите мне квартиру
-        </Button>
+        <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
+          <Button
+            buttonType={ButtonType.PRIMARY_PURPLE}
+            buttonSize={ButtonSize.LARGE}
+          >
+            <KeyIcon />
+            Подберите мне квартиру
+          </Button>
+        </StyledLink>
         <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
           Перейти на страницу объявления
         </Button>
@@ -28,6 +32,10 @@ const PriceBlock: React.FC = () => {
     </Wrapper>
   );
 };
+
+const StyledLink = styled(Link)`
+  width: 100%;
+`;
 
 const Wrapper = styled.div`
   height: 100%;
