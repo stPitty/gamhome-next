@@ -9,7 +9,7 @@ export const fetchFlatData = createAsyncThunk<
   "flatData/getFlatData",
   async function (payload: string, { rejectWithValue }) {
     try {
-      return await axiosInstance.get(`api/adv/properties/${payload}`);
+      return await axiosInstance.get(`adv/properties/${payload}`);
     } catch (error: any) {
       return rejectWithValue(error.response.status);
     }
