@@ -2,11 +2,17 @@ import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
 import PhotoBlock from "./photo-block/PhotoBlock";
 import InfoBlock from "./info-block";
+import { useRouter } from "next/router";
+import { useAppSelector } from "../../redux/hooks";
+import { TFlatState } from "../../redux/slicers/types";
+import { useEffect } from "react";
 
 const FlatBlock: React.FC = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      <HeaderText>2-комн. апартаменты, 78 м²</HeaderText>
+      <HeaderText>{flatData?.title}</HeaderText>
       <PhotoBlock />
       <InfoBlock />
     </Container>

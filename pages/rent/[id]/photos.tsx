@@ -1,22 +1,29 @@
 import { memo, useState } from "react";
 import styled from "styled-components";
-import { BlackColor, Font, WhiteColor } from "../../common/enums";
-import CloseSVG from "../../public/assets/svg/CloseSVG";
-import Button from "../../components/UI/button/Button";
-import Carousel from "../../components/UI/carousel/Carousel";
+import { BlackColor, Font, WhiteColor } from "../../../common/enums";
+import CloseSVG from "../../../public/assets/svg/CloseSVG";
+import Button from "../../../components/UI/button/Button";
+import Carousel from "../../../components/UI/carousel/Carousel";
 import { useRouter } from "next/router";
-import { Route } from "../../common/routes";
-import ChevronSVG from "../../public/assets/svg/ChevronSVG";
-import { handleRedirClick, handleSwapImageClick } from "../../common/helpers";
-import { useAppDispatch } from "../../redux/hooks";
-import PreviewList from "../../components/UI/preview-list/PreviewList";
+import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
+import { handleSwapImageClick } from "../../../common/helpers";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import PreviewList from "../../../components/UI/preview-list/PreviewList";
+import { TFlatState } from "../../../redux/slicers/types";
 
 const FullscreenCarousel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showNumber, setShowNumber] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   const router = useRouter();
+
+  const handleCloseClick = () => {
+    const path = router.asPath.replace("photos", "");
+    router.push(path);
+  };
 
   const handleShowNumberClick = () => {
     if (!showNumber) {
@@ -44,19 +51,31 @@ const FullscreenCarousel: React.FC = () => {
               Показать телефон
             </Button>
           )}
-          <CloseButton onClick={handleRedirClick(router, Route.HOME)}>
+          <CloseButton onClick={handleCloseClick}>
             <CloseSVG />
           </CloseButton>
         </ControlWrapper>
       </HeaderContainer>
       <PhotoWrapper>
-        <ControlArea onClick={handleSwapImageClick("left", dispatch)}>
+        <ControlArea
+          onClick={handleSwapImageClick(
+            "left",
+            dispatch,
+            flatData?.images.length
+          )}
+        >
           <StyledChevron orientation="left" />
         </ControlArea>
         <PhotoContainer>
           <Carousel isFullscreen={true} size={[1088, 747]} />
         </PhotoContainer>
-        <ControlArea onClick={handleSwapImageClick("right", dispatch)}>
+        <ControlArea
+          onClick={handleSwapImageClick(
+            "right",
+            dispatch,
+            flatData?.images.length
+          )}
+        >
           <StyledChevron orientation="right" />
         </ControlArea>
       </PhotoWrapper>

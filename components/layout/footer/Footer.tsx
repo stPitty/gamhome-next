@@ -31,7 +31,10 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 1440px;
+  @media ${(props) => props.theme.screenSize.lg} {
+    width: 1024px;
+  }
 `;
 
 const Container = styled.div`

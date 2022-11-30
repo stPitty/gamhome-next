@@ -10,6 +10,8 @@ import { Global } from "../common";
 import { AppWithPageLayout } from "../common/types";
 import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
+import { ThemeProvider } from "styled-components";
+import { theme } from "../common/theme/theme";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (
@@ -21,13 +23,15 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
           load: "Map,Placemark,control.ZoomControl",
         }}
       >
-        {Component.PageLayout ? (
-          <Component.PageLayout>
+        <ThemeProvider theme={theme}>
+          {Component.PageLayout ? (
+            <Component.PageLayout>
+              <Component {...pageProps} />
+            </Component.PageLayout>
+          ) : (
             <Component {...pageProps} />
-          </Component.PageLayout>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </ThemeProvider>
       </YMaps>
     </>
   );

@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
-import { flatData } from "../../../mock";
 import ChevronDoneSVG from "../../../public/assets/svg/ChevronDoneSVG";
+import { useAppSelector } from "../../../redux/hooks";
+import { TFlatState } from "../../../redux/slicers/types";
 
 const SubInfoBlock = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      {flatData.otherConditions.map((el, i) => {
+      {flatData?.parameters.map((el, i) => {
         return (
-          <TextWrapper key={el + i}>
+          <TextWrapper key={el.parameterId + i}>
             <ChevronDoneSVG />
-            <Text>{el}</Text>
+            <Text>{el.value}</Text>
           </TextWrapper>
         );
       })}

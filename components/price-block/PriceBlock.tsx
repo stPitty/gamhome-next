@@ -1,17 +1,26 @@
-import styled, { css, keyframes } from "styled-components";
+import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import KeySVG from "../../public/assets/svg/KeySVG";
-import { useEffect, useRef, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { Hook } from "../../common/routes";
+import { useAppSelector } from "../../redux/hooks";
+import { TFlatState } from "../../redux/slicers/types";
+import { handleMoneyDataFormatter } from "../../common/helpers";
 
 const PriceBlock: React.FC = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const formattedMoneyNum = useMemo(handleMoneyDataFormatter(flatData?.price), [
+    flatData,
+  ]);
+
   return (
     <Wrapper>
       <Container>
-        <HeaderText>390 000 ₽ в мес</HeaderText>
+        <HeaderText>{formattedMoneyNum}₽ в мес</HeaderText>
         <SubHeaderText>
           Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
         </SubHeaderText>

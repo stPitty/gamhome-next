@@ -1,37 +1,40 @@
 import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import CircleSVG from "../../public/assets/svg/CircleSVG";
-import { flatData } from "../../mock";
 import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
+import { useAppSelector } from "../../redux/hooks";
+import { TFlatState } from "../../redux/slicers/types";
 
 const MapBlock = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
       <HeaderText>Расположение</HeaderText>
-      <AddressText>Москва, Шарикоподшипниковская ул., 9</AddressText>
+      <AddressText>{`${flatData?.city.name}, ${flatData?.address}`}</AddressText>
       <MetroContainer>
-        {flatData.address.metro.map((el, i) => {
-          return (
-            <MetroWrapper key={el.name + i}>
-              <CircleSVG />
-              <MetroNameText>{el.name}</MetroNameText>
-              <TimeText>{el.time}</TimeText>
-            </MetroWrapper>
-          );
-        })}
+        {flatData?.metro && (
+          <MetroWrapper>
+            <CircleSVG />
+            <MetroNameText>{flatData?.metro?.name}</MetroNameText>
+            <TimeText>{}</TimeText>
+          </MetroWrapper>
+        )}
       </MetroContainer>
-      <Map
-        defaultState={{
-          center: flatData.address.city,
-          zoom: 12,
-          controls: ["zoomControl"],
-        }}
-        width={864}
-        height={448}
-      >
-        <GeolocationControl options={{ float: "left" }} />
-        <Placemark defaultGeometry={flatData.address.addressCoordinates} />
-      </Map>
+      {flatData && (
+        <Map
+          defaultState={{
+            center: [flatData.lat, flatData.lng],
+            zoom: 12,
+            controls: ["zoomControl"],
+          }}
+          width={864}
+          height={448}
+        >
+          <GeolocationControl options={{ float: "left" }} />
+          <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
+        </Map>
+      )}
     </Container>
   );
 };

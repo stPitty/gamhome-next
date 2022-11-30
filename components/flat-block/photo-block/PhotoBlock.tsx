@@ -4,18 +4,21 @@ import { LightBlueColor } from "../../../common/enums";
 import Control from "../../UI/control/Control";
 import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 import PhotoCarousel from "./PhotoCarousel";
-import { photos } from "../../../mock";
 import PreviewStack from "./PreviewStack";
+import { useAppSelector } from "../../../redux/hooks";
+import { TFlatState } from "../../../redux/slicers/types";
 
 const PhotoBlock: React.FC = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
       <PhotoWrapper>
-        <Control length={photos.length} orientation="left">
+        <Control length={flatData?.images.length} orientation="left">
           <ChevronSVG />
         </Control>
         <PhotoCarousel />
-        <Control length={photos.length} orientation="right">
+        <Control length={flatData?.images.length} orientation="right">
           <ChevronSVG />
         </Control>
       </PhotoWrapper>
@@ -33,6 +36,10 @@ const PhotoWrapper = styled.div`
   background-color: ${LightBlueColor.LB_100};
   border-radius: 12px;
   overflow: hidden;
+  @media ${(props) => props.theme.screenSize.lg} {
+    width: 624px;
+    height: 393px;
+  }
 `;
 
 const Container = styled.div`

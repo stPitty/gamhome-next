@@ -1,6 +1,8 @@
 export enum Route {
   HOME = "/",
-  PHOTO = "/photo/",
+  RENT = "/rent/",
+  BUY = "/buy/",
+  PHOTOS = "/photos/",
 }
 
 export enum Hook {

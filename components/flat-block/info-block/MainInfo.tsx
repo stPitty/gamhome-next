@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import { flatData, FlatDataFields } from "../../../mock";
 import { BlackColor, Font } from "../../../common/enums";
+import { useAppSelector } from "../../../redux/hooks";
+import { TFlatState } from "../../../redux/slicers/types";
 
 const MainInfo = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <MainInfoWrapper>
-      {Object.entries(flatData.mainInfo).map((el, i) => {
+      {flatData?.parameters.map((el, i) => {
         return (
-          <TextWrapper key={el[0] + i}>
-            <FieldNameText>{el[0]}</FieldNameText>
-            <FieldValueText>{el[1]}</FieldValueText>
+          <TextWrapper key={el.parameterId + i}>
+            <FieldNameText>{el.parameter.name}:</FieldNameText>
+            <FieldValueText>{el.value}</FieldValueText>
           </TextWrapper>
         );
       })}

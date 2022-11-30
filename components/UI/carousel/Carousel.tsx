@@ -1,10 +1,11 @@
 import React from "react";
-import { photos } from "../../../mock";
 import styled from "styled-components";
 import { useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
 import { Route } from "../../../common/routes";
-import { TPhotoPosition } from "../../../redux/slicers/types";
+import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
+import { Url } from "../../../common/config_enums/url.enum";
+import { handleRedirClick } from "../../../common/helpers";
 
 type Props = {
   size: [number, number];
@@ -14,25 +15,30 @@ type Props = {
 const Carousel: React.FC<Props> = ({ isFullscreen, size }) => {
   const router = useRouter();
 
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   const { position } = useAppSelector<TPhotoPosition>(
     (state) => state.position
   );
   const handleImageClick = (index: number) => () => {
     if (!isFullscreen) {
-      router.push(Route.PHOTO + index);
+      const path = `${Url.CLIENT_PATH}/${router.pathname.split("/")[1]}/${
+        router.query.id
+      }${Route.PHOTOS}`;
+      router.push(path);
     }
   };
 
   return (
     <StyledUl size={size} count={position}>
-      {photos.map((item, index) => {
+      {flatData?.images.map((item, index) => {
         return (
-          <StyledLi key={item + index}>
+          <StyledLi key={index}>
             <Image
               onClick={handleImageClick(index)}
               clickable={!isFullscreen}
               size={size}
-              image={item}
+              image={item.url}
             />
           </StyledLi>
         );
@@ -51,7 +57,7 @@ const Image = styled.div<{
   min-width: ${({ size }) => size[0] + "px"};
   height: ${({ size }) => size[1] + "px"};
   background: url(${({ image }) => image}) center no-repeat;
-  background-size: ${({ size }) => `${size[0]}px ${size[1]}px`};
+  // background-size: ${({ size }) => `${size[0]}px ${size[1]}px`};
   cursor: ${({ clickable }) => clickable && "pointer"};
 `;
 

@@ -3,10 +3,13 @@ import { createWrapper, HYDRATE } from "next-redux-wrapper";
 import { configureStore } from "@reduxjs/toolkit";
 import photoPositionReducer from "./slicers/photoPositionSlicer";
 import modalStateReducer from "./slicers/modalStateSlicer";
+import flatDataReducer from "./slicers/flatDataSlicer";
+import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
   position: photoPositionReducer,
   modalState: modalStateReducer,
+  flatData: flatDataReducer,
 });
 
 const reducer = (
@@ -27,6 +30,10 @@ const reducer = (
 export const makeStore = () =>
   configureStore({
     reducer,
+    middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<any>) =>
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }),
   } as any);
 
 export const wrapper = createWrapper(makeStore, { debug: true });

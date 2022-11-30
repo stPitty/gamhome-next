@@ -8,7 +8,7 @@ import { TPhotoPosition } from "../../../redux/slicers/types";
 type Props = {
   orientation: "right" | "left";
   children: ReactNode;
-  length: number;
+  length: number | undefined;
   className?: string;
 };
 
@@ -22,7 +22,7 @@ const Control: React.FC<Props> = ({
 
   return (
     <Body
-      onClick={handleSwapImageClick(orientation, dispatch)}
+      onClick={handleSwapImageClick(orientation, dispatch, length)}
       orientation={orientation}
       className={className}
     >

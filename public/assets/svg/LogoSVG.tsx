@@ -1,7 +1,7 @@
 import { memo } from "react";
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
   className?: string;
 };
 

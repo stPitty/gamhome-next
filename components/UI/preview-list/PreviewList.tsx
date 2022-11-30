@@ -1,10 +1,9 @@
 import React from "react";
-import { photos } from "../../../mock";
 import styled from "styled-components";
 import { BrandColor } from "../../../common/enums";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setPosition } from "../../../redux/slicers/photoPositionSlicer";
-import { TPhotoPosition } from "../../../redux/slicers/types";
+import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
 
 type Props = {
   size: [number, number];
@@ -13,6 +12,8 @@ type Props = {
 
 const PreviewList: React.FC<Props> = ({ size, quantity }) => {
   const dispatch = useAppDispatch();
+
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const { position } = useAppSelector<TPhotoPosition>(
     (state) => state.position
@@ -24,12 +25,12 @@ const PreviewList: React.FC<Props> = ({ size, quantity }) => {
 
   return (
     <ImagesWrapper size={size} quantity={quantity} position={position}>
-      {photos.map((el, index) => (
+      {flatData?.images.map((el, index) => (
         <Image
           onClick={handelPreviewClick(index)}
           outline={position === index}
-          key={el + index}
-          image={el}
+          key={el.id}
+          image={el.url}
           size={size}
         />
       ))}

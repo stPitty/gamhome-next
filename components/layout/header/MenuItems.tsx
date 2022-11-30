@@ -4,6 +4,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import { BlackColor } from "../../../common/enums";
 import Link from "next/link";
+import { theme } from "../../../common/theme/theme";
 
 const MenuItems: React.FC = () => {
   const router = useRouter();
@@ -34,7 +35,9 @@ const MenuWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   column-gap: 16px;
-  margin: 0 185px 0 144px;
+  @media ${(props) => props.theme.screenSize.lg} {
+    display: none;
+  }
 `;
 
 export default MenuItems;

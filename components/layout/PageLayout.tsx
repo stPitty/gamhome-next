@@ -32,6 +32,9 @@ const Container = styled.div`
   justify-items: center;
   align-items: center;
   justify-content: center;
+  @media screen and ${(props) => props.theme.screenSize.lg} {
+    max-width: 1024px;
+  }
 `;
 
 export default memo(PageLayout);

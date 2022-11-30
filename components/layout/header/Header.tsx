@@ -5,7 +5,7 @@ import { WhiteColor } from "../../../common/enums";
 const Header: React.FC = () => {
   return (
     <Container>
-      <Body />
+      <Body isHeader={true} />
     </Container>
   );
 };
@@ -13,7 +13,7 @@ const Header: React.FC = () => {
 const Container = styled.div`
   background: ${WhiteColor.WHITE};
   display: flex;
-  justify-items: center;
+  justify-content: center;
   width: 100%;
   position: sticky;
   top: 0;
