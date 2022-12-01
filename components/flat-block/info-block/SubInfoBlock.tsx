@@ -7,18 +7,20 @@ import { TFlatState } from "../../../redux/slicers/types";
 const SubInfoBlock = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const subInfoData: string[] | null = flatData
+    ? JSON.parse(flatData?.additionalParams as string)
+    : null;
+
   return (
     <Container>
-      {JSON.parse(flatData?.additionalParams as string).map(
-        (el: string, i: number) => {
-          return (
-            <TextWrapper key={el + i}>
-              <ChevronDoneSVG />
-              <Text>{el}</Text>
-            </TextWrapper>
-          );
-        }
-      )}
+      {subInfoData?.map((el: string, i: number) => {
+        return (
+          <TextWrapper key={el + i}>
+            <ChevronDoneSVG />
+            <Text>{el}</Text>
+          </TextWrapper>
+        );
+      })}
     </Container>
   );
 };

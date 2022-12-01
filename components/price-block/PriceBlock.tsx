@@ -13,12 +13,16 @@ import { handleMoneyDataFormatter } from "../../common/helpers";
 const PriceBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const comissionText = useMemo(() => {}, [flatData]);
+
   return (
     <Wrapper>
       <Container>
         <HeaderText>{flatData?.price}₽ в мес</HeaderText>
         <SubHeaderText>
-          Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
+          {flatData?.fee
+            ? "Залог 390 000 ₽, комиссия, предоплата за 1 месяц, от года"
+            : "Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года"}
         </SubHeaderText>
         <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
         <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
