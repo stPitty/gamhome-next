@@ -10,6 +10,8 @@ type TModalState = {
 };
 
 type FlatData = {
+  feeAmount: number | string;
+  deposit: number | string;
   fee: boolean;
   id: number;
   title: string;

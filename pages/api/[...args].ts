@@ -10,9 +10,9 @@ export const config = {
 const proxy = createProxyMiddleware({
   // target: 'http://localhost:4010/',
   target: Url.SERVER_PATH,
-  pathRewrite: {
-    "^/api/": "/", // remove base path
-  },
+  // pathRewrite: {
+  //   "^/api/": "/", // remove base path
+  // },
 });
 
 export default proxy;

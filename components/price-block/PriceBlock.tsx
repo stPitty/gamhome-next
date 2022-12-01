@@ -8,22 +8,21 @@ import Link from "next/link";
 import { Hook } from "../../common/routes";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
-import { handleMoneyDataFormatter } from "../../common/helpers";
 
 const PriceBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
-  const comissionText = useMemo(() => {}, [flatData]);
+  const handleGetSubHeader = useMemo(() => {
+    return `Залог ${flatData?.price} ₽, ${
+      flatData?.fee && "комиссия " + flatData.feeAmount + " ₽,"
+    } предоплата за 1 месяц, от года`;
+  }, [flatData]);
 
   return (
     <Wrapper>
       <Container>
         <HeaderText>{flatData?.price}₽ в мес</HeaderText>
-        <SubHeaderText>
-          {flatData?.fee
-            ? "Залог 390 000 ₽, комиссия, предоплата за 1 месяц, от года"
-            : "Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года"}
-        </SubHeaderText>
+        <SubHeaderText>{handleGetSubHeader}</SubHeaderText>
         <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
         <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
           <Button

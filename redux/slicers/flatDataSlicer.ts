@@ -12,7 +12,7 @@ export const fetchFlatData = createAsyncThunk<{ data: FlatData }, string>(
     try {
       return await axiosInstance.get(`adv/properties/${payload}`);
     } catch (error: any) {
-      return rejectWithValue(error.response);
+      return rejectWithValue(error);
     }
   }
 );
@@ -40,11 +40,11 @@ const flatDataSlicer = createSlice({
       .addCase(fetchFlatData.fulfilled, (state, action) => {
         state.isLoading = false;
         const data = action.payload.data;
-        const priceStr = handleMoneyDataFormatter(data?.price);
-        const formattedPhone = handlePhoneFormatter(data.phone);
         state.flatData = data;
-        state.flatData.phone = formattedPhone;
-        state.flatData.price = priceStr as string;
+        state.flatData.phone = handlePhoneFormatter(data.phone);
+        state.flatData.price = handleMoneyDataFormatter(data?.price);
+        state.flatData.feeAmount = handleMoneyDataFormatter(data?.feeAmount);
+        state.flatData.deposit = handleMoneyDataFormatter(data?.deposit);
       })
       .addCase(fetchFlatData.rejected, (state, action) => {
         state.isError = true;
