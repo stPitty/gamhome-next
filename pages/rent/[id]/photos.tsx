@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { BlackColor, Font, WhiteColor } from "../../../common/enums";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
@@ -10,6 +10,7 @@ import { handleSwapImageClick } from "../../../common/helpers";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import PreviewList from "../../../components/UI/preview-list/PreviewList";
 import { TFlatState } from "../../../redux/slicers/types";
+import { fetchFlatData } from "../../../redux/slicers/flatDataSlicer";
 
 const FullscreenCarousel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -19,6 +20,12 @@ const FullscreenCarousel: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const router = useRouter();
+
+  useEffect(() => {
+    if (router.query.id && flatData === null) {
+      dispatch(fetchFlatData(router.query.id as string));
+    }
+  }, [router.query.id]);
 
   const handleCloseClick = () => {
     const path = router.asPath.replace("photos", "");
@@ -38,10 +45,12 @@ const FullscreenCarousel: React.FC = () => {
   return (
     <Container>
       <HeaderContainer>
-        <HeaderText>2-комн. апартаменты, 78 м², 390 000 ₽ в мес.</HeaderText>
+        <HeaderText>
+          {flatData?.title}, {flatData?.price}₽ в мес.
+        </HeaderText>
         <ControlWrapper>
           {showNumber ? (
-            <NumberText href="tel:+79167086382">+7 916 708-63-82</NumberText>
+            <NumberText href="tel:+79167086382">{flatData?.phone}</NumberText>
           ) : (
             <Button
               width={137}

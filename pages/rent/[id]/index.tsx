@@ -13,16 +13,22 @@ import ServicesBlock from "../../../components/services-block";
 import { Hook } from "../../../common/routes";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { useAppDispatch } from "../../../redux/hooks";
-import { fetchFlatData } from "../../../redux/slicers/flatDataSlicer";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import {
+  clearFlatData,
+  fetchFlatData,
+} from "../../../redux/slicers/flatDataSlicer";
+import { TFlatState } from "../../../redux/slicers/types";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
 
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
   useEffect(() => {
-    if (router.query.id) {
+    if (router.query.id && flatData === null) {
       dispatch(fetchFlatData(router.query.id as string));
     }
   }, [router.query.id]);

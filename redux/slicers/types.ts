@@ -17,6 +17,7 @@ type FlatData = {
   parsedAt: string;
   updatedAt: string;
   address: string;
+  additionalParams: string;
   images: {
     id: number;
     url: string;
@@ -41,7 +42,7 @@ type FlatData = {
     users: string[];
     properties: string[];
   };
-  price: number;
+  price: number | string;
   oldPrice: number;
   lat: number;
   lng: number;
@@ -87,4 +88,4 @@ type TFlatState = {
   isError: boolean;
 };
 
-export type { TPhotoPosition, TModalState, TFlatState };
+export type { TPhotoPosition, TModalState, TFlatState, FlatData };

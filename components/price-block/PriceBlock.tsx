@@ -13,14 +13,10 @@ import { handleMoneyDataFormatter } from "../../common/helpers";
 const PriceBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
-  const formattedMoneyNum = useMemo(handleMoneyDataFormatter(flatData?.price), [
-    flatData,
-  ]);
-
   return (
     <Wrapper>
       <Container>
-        <HeaderText>{formattedMoneyNum}₽ в мес</HeaderText>
+        <HeaderText>{flatData?.price}₽ в мес</HeaderText>
         <SubHeaderText>
           Залог 390 000 ₽, без комиссии, предоплата за 1 месяц, от года
         </SubHeaderText>

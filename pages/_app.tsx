@@ -17,12 +17,7 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (
     <>
       <Global />
-      <YMaps
-        query={{
-          ns: "use-load-option",
-          load: "Map,Placemark,control.ZoomControl",
-        }}
-      >
+      <YMaps>
         <ThemeProvider theme={theme}>
           {Component.PageLayout ? (
             <Component.PageLayout>

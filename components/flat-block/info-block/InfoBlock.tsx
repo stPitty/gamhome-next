@@ -8,7 +8,7 @@ const InfoBlock: React.FC = () => {
     <Container>
       <HeaderText>Общая информация</HeaderText>
       <MainInfo />
-      {/*<SubInfoBlock />*/}
+      <SubInfoBlock />
     </Container>
   );
 };

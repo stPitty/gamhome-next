@@ -2,10 +2,8 @@ import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
 import PhotoBlock from "./photo-block/PhotoBlock";
 import InfoBlock from "./info-block";
-import { useRouter } from "next/router";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
-import { useEffect } from "react";
 
 const FlatBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);

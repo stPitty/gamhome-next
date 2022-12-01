@@ -1,12 +1,23 @@
 import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import CircleSVG from "../../public/assets/svg/CircleSVG";
-import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
+import {
+  GeolocationControl,
+  Map,
+  Placemark,
+  useYMaps,
+} from "@pbe/react-yandex-maps";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
+import { useEffect, useMemo } from "react";
+import { getTimeToMetro } from "../../common/helpers";
 
 const MapBlock = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const modules = ["control.ZoomControl", "Placemark", "route"];
+
+  const timeToMetro = useMemo(getTimeToMetro(flatData?.kmMetro), [flatData]);
 
   return (
     <Container>
@@ -15,9 +26,9 @@ const MapBlock = () => {
       <MetroContainer>
         {flatData?.metro && (
           <MetroWrapper>
-            <CircleSVG />
+            <StyledCircleIcon color={flatData?.metro.metroLine.color} />
             <MetroNameText>{flatData?.metro?.name}</MetroNameText>
-            <TimeText>{}</TimeText>
+            <TimeText>{timeToMetro}</TimeText>
           </MetroWrapper>
         )}
       </MetroContainer>
@@ -30,6 +41,7 @@ const MapBlock = () => {
           }}
           width={864}
           height={448}
+          modules={modules}
         >
           <GeolocationControl options={{ float: "left" }} />
           <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
@@ -38,6 +50,12 @@ const MapBlock = () => {
     </Container>
   );
 };
+
+const StyledCircleIcon = styled(CircleSVG)<{ color: string }>`
+  & rect {
+    fill: ${({ color }) => color};
+  }
+`;
 
 const MetroContainer = styled.div`
   display: flex;

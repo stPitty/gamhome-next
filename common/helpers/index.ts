@@ -24,7 +24,7 @@ const handleSwapImageClick =
     }
   };
 
-const handleMoneyDataFormatter = (num: number | undefined) => () => {
+const handleMoneyDataFormatter = (num: number | undefined | string): string => {
   if (num)
     return String(num)
       .split("")
@@ -34,6 +34,35 @@ const handleMoneyDataFormatter = (num: number | undefined) => () => {
         }
         return previousValue + currentValue;
       }, "");
+  return "";
 };
 
-export { handleRedirClick, handleSwapImageClick, handleMoneyDataFormatter };
+const handlePhoneFormatter = (phone: string): string => {
+  if (phone)
+    return phone
+      .split("")
+      .reduce((previousValue, currentValue, currentIndex) => {
+        if (currentIndex === 0) currentValue = "+7 ";
+        if (currentIndex === 3) currentValue += " ";
+        if (currentIndex === 6 || currentIndex === 8) currentValue += "-";
+        return previousValue + currentValue;
+      }, "");
+  return "";
+};
+
+const getTimeToMetro = (dist: number | undefined) => (): string => {
+  if (dist) {
+    const minsToMetroMin = Math.floor(60 * Number((dist / 5).toFixed(2)));
+    const minsToMetroMax = Math.floor(minsToMetroMin * 1.2);
+    return `${minsToMetroMin}-${minsToMetroMax} мин. пешком`;
+  }
+  return "";
+};
+
+export {
+  handleRedirClick,
+  handleSwapImageClick,
+  handleMoneyDataFormatter,
+  handlePhoneFormatter,
+  getTimeToMetro,
+};

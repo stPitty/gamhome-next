@@ -9,14 +9,16 @@ const SubInfoBlock = () => {
 
   return (
     <Container>
-      {flatData?.parameters.map((el, i) => {
-        return (
-          <TextWrapper key={el.parameterId + i}>
-            <ChevronDoneSVG />
-            <Text>{el.value}</Text>
-          </TextWrapper>
-        );
-      })}
+      {JSON.parse(flatData?.additionalParams as string).map(
+        (el: string, i: number) => {
+          return (
+            <TextWrapper key={el + i}>
+              <ChevronDoneSVG />
+              <Text>{el}</Text>
+            </TextWrapper>
+          );
+        }
+      )}
     </Container>
   );
 };
