@@ -15,6 +15,10 @@ type Props = {
 };
 
 const Card: React.FC<Props> = ({ data }) => {
+  const handlePromoCodeClick = () => {
+    navigator.clipboard.writeText("Gamhome");
+  };
+
   return (
     <Container>
       <ContentWrapper>
@@ -33,7 +37,7 @@ const Card: React.FC<Props> = ({ data }) => {
           >
             {data.primaryButton.text}
           </Button>
-          <PromoText>Промокод Gamhome</PromoText>
+          <PromoText onClick={handlePromoCodeClick}>Промокод Gamhome</PromoText>
         </ButtonsContainer>
       </ContentWrapper>
       <Image image={data.image} />
@@ -51,6 +55,7 @@ const Image = styled.div<{ image: string }>`
 `;
 
 const PromoText = styled.p`
+  cursor: pointer;
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
