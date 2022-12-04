@@ -7,33 +7,44 @@ import PhotoCarousel from "./PhotoCarousel";
 import PreviewStack from "./PreviewStack";
 import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
+import ImageLoadingSVG from "../../../public/assets/svg/ImageLoadingSVG";
+import LoadingPreviewPhotos from "../../UI/loading-ui/LoadingPreviewPhotos";
 
 const PhotoBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      <PhotoWrapper>
-        <Control length={flatData?.images.length} orientation="left">
-          <ChevronSVG />
-        </Control>
-        <PhotoCarousel />
-        <Control length={flatData?.images.length} orientation="right">
-          <ChevronSVG />
-        </Control>
+      <PhotoWrapper isLoading={isLoading}>
+        {isLoading ? (
+          <ImageLoadingSVG />
+        ) : (
+          <>
+            <Control length={flatData?.images.length} orientation="left">
+              <ChevronSVG />
+            </Control>
+            <PhotoCarousel />
+            <Control length={flatData?.images.length} orientation="right">
+              <ChevronSVG />
+            </Control>
+          </>
+        )}
       </PhotoWrapper>
-      <PreviewStack />
+      {isLoading ? <LoadingPreviewPhotos /> : <PreviewStack />}
     </Container>
   );
 };
 
-const PhotoWrapper = styled.div`
+const PhotoWrapper = styled.div<{ isLoading: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 864px;
   height: 544px;
-  background-color: ${LightBlueColor.LB_100};
+  background-color: ${({ isLoading }) =>
+    isLoading ? LightBlueColor.LB_100_64 : LightBlueColor.LB_100};
   border-radius: 12px;
   overflow: hidden;
   @media ${(props) => props.theme.screenSize.lg} {

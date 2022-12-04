@@ -50,7 +50,9 @@ const FullscreenCarousel: React.FC = () => {
         </HeaderText>
         <ControlWrapper>
           {showNumber ? (
-            <NumberText href="tel:+79167086382">{flatData?.phone}</NumberText>
+            <NumberText href={`tel:${flatData?.phone}`}>
+              {flatData?.phone}
+            </NumberText>
           ) : (
             <Button
               width={137}

@@ -2,12 +2,23 @@ import styled from "styled-components";
 import { BlackColor } from "../../../common/enums";
 import MainInfo from "./MainInfo";
 import SubInfoBlock from "./SubInfoBlock";
+import { useAppSelector } from "../../../redux/hooks";
+import { TFlatState } from "../../../redux/slicers/types";
+import LoadingFlatParameters from "../../UI/loading-ui/LoadingFlatParameters";
 
 const InfoBlock: React.FC = () => {
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      <HeaderText>Общая информация</HeaderText>
-      <MainInfo />
+      {isLoading ? (
+        <LoadingFlatParameters />
+      ) : (
+        <>
+          <HeaderText>Общая информация</HeaderText>
+          <MainInfo />
+        </>
+      )}
       <SubInfoBlock />
     </Container>
   );

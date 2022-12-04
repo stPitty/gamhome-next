@@ -1,16 +1,21 @@
 import styled from "styled-components";
-import { BlackColor, Font } from "../../common/enums";
+import { BlackColor, Font, LightBlueColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import KeySVG from "../../public/assets/svg/KeySVG";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Hook } from "../../common/routes";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
 
 const PriceBlock: React.FC = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [showNumber, setShowNumber] = useState<boolean>(false);
+
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const handleGetSubHeader = useMemo(() => {
     return `Залог ${flatData?.price} ₽, ${
@@ -18,12 +23,46 @@ const PriceBlock: React.FC = () => {
     } предоплата за 1 месяц, от года`;
   }, [flatData]);
 
+  const handleShowNumberClick = () => {
+    if (!showNumber) {
+      setLoading(true);
+      setTimeout(() => {
+        setShowNumber(true);
+        setLoading(false);
+      }, 500);
+    }
+  };
+
   return (
     <Wrapper>
       <Container>
-        <HeaderText>{flatData?.price}₽ в мес</HeaderText>
-        <SubHeaderText>{handleGetSubHeader}</SubHeaderText>
-        <Button buttonSize={ButtonSize.LARGE}>Показать телефон</Button>
+        {isLoading ? (
+          <LoadingBlock />
+        ) : (
+          <>
+            <HeaderText>{flatData?.price}₽ в мес</HeaderText>
+            <SubHeaderText>{handleGetSubHeader}</SubHeaderText>
+          </>
+        )}
+
+        {showNumber ? (
+          <PhoneNumberLink href={`tel:${flatData?.phone}`}>
+            <Button
+              buttonType={ButtonType.OUTLINE}
+              buttonSize={ButtonSize.LARGE}
+            >
+              {flatData?.phone}
+            </Button>
+          </PhoneNumberLink>
+        ) : (
+          <Button
+            loading={loading}
+            onClick={handleShowNumberClick}
+            buttonSize={ButtonSize.LARGE}
+          >
+            Показать телефон
+          </Button>
+        )}
         <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
           <Button
             buttonType={ButtonType.PRIMARY_PURPLE}
@@ -41,6 +80,18 @@ const PriceBlock: React.FC = () => {
   );
 };
 
+const LoadingBlock = styled.div`
+  width: 100%;
+  height: 72px;
+  background: ${LightBlueColor.LB_100};
+  border-radius: 16px;
+  margin-bottom: 20px;
+`;
+
+const PhoneNumberLink = styled.a`
+  width: 100%;
+`;
+
 const StyledLink = styled(Link)`
   width: 100%;
 `;
@@ -49,7 +100,7 @@ const Wrapper = styled.div`
   height: 100%;
   position: sticky;
   z-index: 1;
-  top: 100px;
+  top: 116px;
   margin-bottom: 112px;
 `;
 

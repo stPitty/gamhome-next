@@ -19,7 +19,7 @@ export const fetchFlatData = createAsyncThunk<{ data: FlatData }, string>(
 
 const initialState: TFlatState = {
   flatData: null,
-  isLoading: false,
+  isLoading: true,
   isError: false,
 };
 

@@ -14,10 +14,7 @@ import { Hook } from "../../../common/routes";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import {
-  clearFlatData,
-  fetchFlatData,
-} from "../../../redux/slicers/flatDataSlicer";
+import { fetchFlatData } from "../../../redux/slicers/flatDataSlicer";
 import { TFlatState } from "../../../redux/slicers/types";
 
 const RentPage: ComponentWithLayout = () => {
@@ -69,13 +66,13 @@ const InfoWrapperRow = styled.div`
 const InfoWrapperColumn = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 21px;
   @media ${(props) => props.theme.screenSize.lg} {
     padding-top: 16px;
   }
 `;
 
 const Container = styled.div`
+  padding-top: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;

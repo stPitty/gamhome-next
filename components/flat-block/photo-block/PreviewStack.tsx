@@ -6,16 +6,6 @@ import PreviewList from "../../UI/preview-list/PreviewList";
 import { TPhotoPosition } from "../../../redux/slicers/types";
 
 const PreviewStack: React.FC = () => {
-  const dispatch = useAppDispatch();
-
-  const { position } = useAppSelector<TPhotoPosition>(
-    (state) => state.position
-  );
-
-  const handelPreviewClick = (index: number) => () => {
-    dispatch(setPosition(index));
-  };
-
   return (
     <Container>
       <PreviewList isFullSized={false} quantity={5} />

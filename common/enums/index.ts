@@ -27,8 +27,10 @@ export enum PWBtnColor {
 
 export enum LightBlueColor {
   LB_100 = "#F5F7F9",
+  LB_100_64 = "rgba(245,247,249,0.64)",
   LB_200 = "#DFE5EC",
   LB_300 = "#C8D4DF",
+  LB_400 = "#F9FAFB",
 }
 
 export enum BrandColor {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { BlackColor } from "../../common/enums";
+import { BlackColor, LightBlueColor } from "../../common/enums";
 import PhotoBlock from "./photo-block/PhotoBlock";
 import InfoBlock from "./info-block";
 import { useAppSelector } from "../../redux/hooks";
@@ -8,14 +8,27 @@ import { TFlatState } from "../../redux/slicers/types";
 const FlatBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      <HeaderText>{flatData?.title}</HeaderText>
+      {isLoading ? (
+        <LoadingBlock />
+      ) : (
+        <HeaderText>{flatData?.title}</HeaderText>
+      )}
       <PhotoBlock />
       <InfoBlock />
     </Container>
   );
 };
+
+const LoadingBlock = styled.div`
+  width: 864px;
+  height: 40px;
+  background: ${LightBlueColor.LB_100};
+  border-radius: 16px;
+`;
 
 const HeaderText = styled.p`
   font-weight: 600;

@@ -8,45 +8,57 @@ import { useMemo } from "react";
 import { getTimeToMetro } from "../../common/helpers";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
+import LoadingMap from "../UI/loading-ui/LoadingMap";
 
 const MapBlock = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
-  const modules = ["control.ZoomControl", "Placemark", "route"];
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const modules = ["control.ZoomControl", "Placemark"];
 
   const timeToMetro = useMemo(getTimeToMetro(flatData?.kmMetro), [flatData]);
 
   return (
     <Container>
-      <HeaderText>Расположение</HeaderText>
-      <AddressText>{`${flatData?.city.name}, ${flatData?.address}`}</AddressText>
-      <MetroContainer>
-        {flatData?.metro && (
-          <MetroWrapper>
-            <StyledCircleIcon color={flatData?.metro.metroLine.color} />
-            <MetroNameText>{flatData?.metro?.name}</MetroNameText>
-            <TimeText>{timeToMetro}</TimeText>
-          </MetroWrapper>
-        )}
-      </MetroContainer>
-      {flatData && (
-        <Map
-          defaultState={{
-            center: [flatData.lat, flatData.lng],
-            zoom: 12,
-            controls: ["zoomControl"],
-          }}
-          width={864}
-          height={448}
-          modules={modules}
-        >
-          <GeolocationControl options={{ float: "left" }} />
-          <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
-        </Map>
+      {isLoading ? (
+        <LoadingMap />
+      ) : (
+        <>
+          <HeaderText>Расположение</HeaderText>
+          <AddressText>{`${flatData?.city.name}, ${flatData?.address}`}</AddressText>
+          <MetroContainer>
+            {flatData?.metro && (
+              <MetroWrapper>
+                <StyledCircleIcon color={flatData?.metro.metroLine.color} />
+                <MetroNameText>{flatData?.metro?.name}</MetroNameText>
+                <TimeText>{timeToMetro}</TimeText>
+              </MetroWrapper>
+            )}
+          </MetroContainer>
+          {flatData && (
+            <Map
+              defaultState={{
+                center: [flatData.lat, flatData.lng],
+                zoom: 12,
+                controls: ["zoomControl"],
+              }}
+              width={864}
+              height={448}
+              modules={modules}
+            >
+              <GeolocationControl options={{ float: "left" }} />
+              <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
+            </Map>
+          )}
+          <StyledButton
+            buttonSize={ButtonSize.LARGE}
+            buttonType={ButtonType.FLAT}
+          >
+            Перейти на страницу объявления
+          </StyledButton>
+        </>
       )}
-      <StyledButton buttonSize={ButtonSize.LARGE} buttonType={ButtonType.FLAT}>
-        Перейти на страницу объявления
-      </StyledButton>
     </Container>
   );
 };

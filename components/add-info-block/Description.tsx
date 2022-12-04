@@ -1,18 +1,43 @@
 import styled from "styled-components";
-import { BlackColor, Font } from "../../common/enums";
+import { BlackColor, Font, LightBlueColor } from "../../common/enums";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
 
 const Description = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+
   return (
     <Container>
-      <HeaderText>Описание</HeaderText>
-      <Text>{flatData?.desc}</Text>
+      {isLoading ? (
+        <>
+          <LoadingHeader />
+          <LoadingDescBlock />
+        </>
+      ) : (
+        <>
+          <HeaderText>Описание</HeaderText>
+          <Text>{flatData?.desc}</Text>
+        </>
+      )}
     </Container>
   );
 };
+
+const LoadingDescBlock = styled.div`
+  width: 100%;
+  height: 360px;
+  background: ${LightBlueColor.LB_400};
+  border-radius: 16px;
+`;
+
+const LoadingHeader = styled.div`
+  width: 100%;
+  height: 32px;
+  background: ${LightBlueColor.LB_100};
+  border-radius: 16px;
+`;
 
 const Text = styled.p`
   font-family: ${Font.ROBOTO};
@@ -27,7 +52,7 @@ const HeaderText = styled.p`
   font-size: 24px;
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};
-  margin: 0 0 16px;
+  margin: 0;
 `;
 
 const Container = styled.div`
@@ -37,6 +62,7 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   margin: 48px 0;
+  row-gap: 16px;
 `;
 
 export default Description;
