@@ -56,7 +56,7 @@ const MarkedText = styled.span`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 40px;
   line-height: 48px;
   color: ${WhiteColor.WHITE};

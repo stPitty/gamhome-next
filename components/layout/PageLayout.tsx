@@ -4,7 +4,8 @@ import Footer from "./footer";
 import styled from "styled-components";
 import Modal from "../UI/modal/Modal";
 import { useAppSelector } from "../../redux/hooks";
-import { TModalState } from "../../redux/slicers/types";
+import { TFlatState, TModalState } from "../../redux/slicers/types";
+import ErrorPage from "../error-page/ErrorPage";
 
 type Props = {
   children: ReactNode;

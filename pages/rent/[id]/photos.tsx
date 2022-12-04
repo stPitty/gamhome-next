@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import PreviewList from "../../../components/UI/preview-list/PreviewList";
 import { TFlatState } from "../../../redux/slicers/types";
 import { fetchFlatData } from "../../../redux/slicers/flatDataSlicer";
+import { Route } from "../../../common/routes";
 
 const FullscreenCarousel: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -18,6 +19,7 @@ const FullscreenCarousel: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { isError } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const router = useRouter();
 
@@ -26,6 +28,12 @@ const FullscreenCarousel: React.FC = () => {
       dispatch(fetchFlatData(router.query.id as string));
     }
   }, [router.query.id]);
+
+  useEffect(() => {
+    if (isError) {
+      router.push(Route.REQUEST_ERROR);
+    }
+  }, [isError]);
 
   const handleCloseClick = () => {
     const path = router.asPath.replace("photos", "");

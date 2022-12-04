@@ -18,13 +18,13 @@ const Global = createGlobalStyle`
     text-decoration: none;
   }
 
-  div, button, ul, p, a, input {
-    transition: 0.3s all linear;
-    -moz-transition: 0.3s all linear;
-    -ms-transition: 0.3s all linear;
-    -o-transition: 0.3s all linear;
-    -webkit-transition: 0.3s all linear;
-  }
+  //div, button, ul, p, a, input {
+  //  transition: 0.3s all linear;
+  //  -moz-transition: 0.3s all linear;
+  //  -ms-transition: 0.3s all linear;
+  //  -o-transition: 0.3s all linear;
+  //  -webkit-transition: 0.3s all linear;
+  //}
   
   * {
     box-sizing: border-box;

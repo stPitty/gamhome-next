@@ -99,7 +99,7 @@ const DescText = styled.p`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   line-height: 40px;
   margin: 0;

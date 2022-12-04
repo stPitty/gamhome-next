@@ -31,7 +31,7 @@ const LoadingBlock = styled.div`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 32px;
   line-height: 40px;
   color: ${BlackColor.BLACK_PRIMARY};

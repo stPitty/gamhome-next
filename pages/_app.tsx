@@ -13,10 +13,11 @@ import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../common/theme/theme";
+import ErrorBoundary from "../components/error-boundary/ErrorBoundary";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (
-    <>
+    <ErrorBoundary>
       <Global />
       <YMaps>
         <ThemeProvider theme={theme}>
@@ -29,7 +30,7 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
           )}
         </ThemeProvider>
       </YMaps>
-    </>
+    </ErrorBoundary>
   );
 };
 

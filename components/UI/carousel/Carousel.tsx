@@ -61,6 +61,7 @@ const Image = styled.div<{
 `;
 
 const StyledUl = styled.ul<{ count: number; isFullscreen: boolean }>`
+  transition: 0.3s all linear;
   margin: 0;
   padding: 0;
   list-style: none;

@@ -25,6 +25,7 @@ const Text = styled.p`
   margin: 0;
   color: ${BlackColor.BLACK_SECONDARY};
   cursor: pointer;
+  transition: 0.1s all linear;
   &:hover {
     color: ${BlackColor.BLACK_80};
   }

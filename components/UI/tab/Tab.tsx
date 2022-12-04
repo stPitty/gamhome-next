@@ -56,6 +56,7 @@ const TabLine = styled.div<{
   isActive: boolean;
   side: "start" | "end";
 }>`
+  transition: 0.3s all linear;
   width: ${({ isActive }) => (isActive ? "100%" : "0")};
   height: 2px;
   background: ${BrandColor.BRAND};

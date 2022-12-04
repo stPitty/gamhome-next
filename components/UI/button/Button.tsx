@@ -85,7 +85,7 @@ const StyledButton = styled.button<{
   justify-content: center;
   align-items: center;
   width: ${({ width }) => (width ? width + "px" : "100%")};
-
+  transition: 0.1s all linear;
   font-family: ${Font.ROBOTO};
   font-weight: 500;
 

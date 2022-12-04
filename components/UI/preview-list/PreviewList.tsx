@@ -47,6 +47,7 @@ const ImagesWrapper = styled.div<{
   quantity: number;
   isFullSized: boolean;
 }>`
+  transition: 0.3s all linear;
   display: flex;
   align-items: center;
   justify-content: flex-start;

@@ -139,6 +139,7 @@ const StyledInput = styled.input<{
   width: number | undefined;
   isValidationError: boolean;
 }>`
+  transition: 0.1s all linear;
   background: ${WhiteColor.WHITE};
   border: 1px solid
     ${({ isValidationError }) =>

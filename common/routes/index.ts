@@ -3,6 +3,7 @@ export enum Route {
   RENT = "/rent/",
   BUY = "/buy/",
   PHOTOS = "/photos/",
+  REQUEST_ERROR = "/request_error/",
 }
 
 export enum Hook {

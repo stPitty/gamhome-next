@@ -105,6 +105,7 @@ const TelephoneNumberText = styled.a`
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
   cursor: pointer;
+  transition: 0.1s all linear;
   &:hover {
     color: ${BlackColor.BLACK_80};
   }

@@ -32,6 +32,7 @@ const Control: React.FC<Props> = ({
 };
 
 const Body = styled.div<{ orientation: "right" | "left" }>`
+  transition: 0.1s all linear;
   display: flex;
   justify-content: center;
   align-items: center;

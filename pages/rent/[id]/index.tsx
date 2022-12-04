@@ -10,7 +10,7 @@ import CheckOwnerBlock from "../../../components/check-owner-block";
 import CardWitsImage from "../../../components/card-with-image";
 import AddInfoBlock from "../../../components/add-info-block";
 import ServicesBlock from "../../../components/services-block";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
@@ -23,12 +23,19 @@ const RentPage: ComponentWithLayout = () => {
   const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { isError } = useAppSelector<TFlatState>((state) => state.flatData);
 
   useEffect(() => {
     if (router.query.id && flatData === null) {
       dispatch(fetchFlatData(router.query.id as string));
     }
   }, [router.query.id]);
+
+  useEffect(() => {
+    if (isError) {
+      router.push(Route.REQUEST_ERROR);
+    }
+  }, [isError]);
 
   return (
     <Container id={Hook.HOME}>

@@ -103,7 +103,7 @@ const DescText = styled.p<{ cardType: CardType }>`
 `;
 
 const HeaderText = styled.p<{ cardType: CardType }>`
-  font-weight: 600;
+  font-weight: 700;
   font-size: 24px;
   line-height: 32px;
   margin: 0 0 16px;
