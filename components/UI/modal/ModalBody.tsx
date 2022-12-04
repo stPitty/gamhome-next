@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styled, { css } from "styled-components";
-import { emailValidationRegexp, modalData } from "./constants";
+import { modalData } from "./constants";
 import { TModalState } from "../../../redux/slicers/types";
 import { BlackColor } from "../../../common/enums";
 import ModalText from "./ModalText";
@@ -9,9 +9,10 @@ import { useState } from "react";
 import Button from "../button/Button";
 import { ButtonSize } from "../button/enums";
 import { Modal } from "./types";
+import Form from "../../check-owner-block/Form";
 
 const ModalBody = () => {
-  const [email, setEmail] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>("");
   const [isSubmitFailed, setIsSubmitFailed] = useState<boolean>(false);
   const [isValidationError, setIsValidationError] = useState<boolean>(false);
 
@@ -21,50 +22,87 @@ const ModalBody = () => {
     (state) => state.modalState
   );
 
+  const reduxState = useAppSelector((state) => state);
+
   const handleChangeStateClick = () => {
-    if (
-      currentState !== null &&
-      modalData[currentState].modalType !== "withEmailInput"
-    ) {
-      dispatch(modalData[currentState].nextStateBtnAction());
-      return;
-    }
-    if (email.length === 0) {
-      setIsSubmitFailed(true);
-      return;
+    if (currentState !== null && modalData[currentState].withMultiInputs) {
+      let rejectSubmit = false;
+      for (let i = 0; i < modalData[currentState].fieldNames!.length; i++) {
+        if (
+          reduxState[modalData[currentState].stateName!][
+            modalData[currentState].fieldNames![i]
+          ].value.length === 0
+        ) {
+          dispatch(
+            modalData[currentState].setSubmitErrorAction!({
+              value: true,
+              name: modalData[currentState].fieldNames![i],
+            })
+          );
+          rejectSubmit = true;
+        }
+        if (
+          reduxState[modalData[currentState].stateName!][
+            modalData[currentState].fieldNames![i]
+          ].isValidationError
+        ) {
+          rejectSubmit = true;
+        }
+      }
+      if (!rejectSubmit) {
+        dispatch(modalData[currentState].nextStateBtnAction!());
+        dispatch(modalData[currentState].clearAction!());
+      }
     } else if (
       currentState !== null &&
-      modalData[currentState].modalType === "withEmailInput" &&
-      !isValidationError
+      !modalData[currentState].withMultiInputs
     ) {
-      dispatch(modalData[currentState].nextStateBtnAction());
+      if (
+        modalData[currentState].modalType !== "withInput" &&
+        !isValidationError
+      ) {
+        dispatch(modalData[currentState].nextStateBtnAction!());
+        setInputValue("");
+        return;
+      }
+      if (inputValue.length === 0) {
+        setIsSubmitFailed(true);
+        return;
+      } else if (
+        modalData[currentState].modalType === "withInput" &&
+        !isValidationError
+      ) {
+        dispatch(modalData[currentState].nextStateBtnAction!());
+        setInputValue("");
+      }
     }
   };
 
   return (
-    <Container>
+    <>
       {currentState !== null && (
-        <>
-          {modalData[currentState].modalType === "lastMessage" && <Image />}
-          <TextWrapper modalType={modalData[currentState].modalType}>
+        <Container isLast={modalData[currentState].modalType === "lastMessage"}>
+          {modalData[currentState].modalType === "lastMessage" && (
+            <Image image={modalData[currentState].image!} />
+          )}
+          <TextWrapper
+            isErrorMessage={!!modalData[currentState].isErrorMessage}
+            modalType={modalData[currentState].modalType}
+          >
             <Header>{modalData[currentState].header}</Header>
             <ModalText data={modalData[currentState]} />
           </TextWrapper>
-          {modalData[currentState].modalType === "withEmailInput" && (
-            <StyledInput
-              value={email}
-              setValue={setEmail}
-              placeHolder="email"
-              validationPattern={emailValidationRegexp}
-              errorMessage="Введите корректный Email"
-              required={true}
+          {modalData[currentState].modalType === "withInput" && (
+            <Form
+              data={modalData[currentState]}
+              inputValue={inputValue}
+              setInputValue={setInputValue}
               isSubmitFailed={isSubmitFailed}
-              submitFailedMessage="Укажите Email"
               isValidationError={isValidationError}
               setIsValidationError={setIsValidationError}
             />
           )}
-          {modalData[currentState].modalType !== "lastMessage" && (
+          {modalData[currentState].buttonText && (
             <ButtonContainer modalType={modalData[currentState].modalType}>
               <Button
                 buttonSize={ButtonSize.MEDIUM}
@@ -74,9 +112,9 @@ const ModalBody = () => {
               </Button>
             </ButtonContainer>
           )}
-        </>
+        </Container>
       )}
-    </Container>
+    </>
   );
 };
 
@@ -84,7 +122,7 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
   transition: none;
   width: fit-content;
   ${({ modalType }) => {
-    if (modalType === "withInfo") {
+    if (modalType !== "withInput") {
       return css`
         margin-top: 32px;
       `;
@@ -96,27 +134,29 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
   }}
 `;
 
-const StyledInput = styled(Input)`
-  margin-top: 20px;
+const StyledInput = styled(Input)<{ withoutInfo: boolean }>`
+  margin-top: ${({ withoutInfo }) => (withoutInfo ? "0" : "20px")};
+  transition: none;
 `;
 
-const Image = styled.div`
+const Image = styled.div<{ image: string }>`
   width: 271px;
   height: 180px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/images/man-sends-message.jpg");
+  background-image: url(${({ image }) => image});
   align-self: center;
   margin-bottom: 24px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ isLast: boolean }>`
   display: flex;
   flex-direction: column;
+  align-items: ${({ isLast }) => isLast && "center"};
   padding-right: 40px;
 `;
 
-const TextWrapper = styled.div<{ modalType: Modal }>`
+const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
@@ -125,10 +165,10 @@ const TextWrapper = styled.div<{ modalType: Modal }>`
   & > * {
     margin: 0;
   }
-  ${({ modalType }) => {
+  ${({ modalType, isErrorMessage }) => {
     if (modalType === "lastMessage") {
       return css`
-        row-gap: 4px;
+        row-gap: ${isErrorMessage ? "16px" : "4px"};
         & > * {
           align-self: center;
           text-align: center;

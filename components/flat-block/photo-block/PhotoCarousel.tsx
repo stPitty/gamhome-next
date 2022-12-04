@@ -5,7 +5,7 @@ import Carousel from "../../UI/carousel/Carousel";
 const PhotoCarousel: React.FC = () => {
   return (
     <Container>
-      <Carousel isFullscreen={false} size={[792, 544]} />
+      <Carousel isFullscreen={false} />
     </Container>
   );
 };

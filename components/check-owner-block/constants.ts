@@ -1,5 +1,9 @@
 import { TabTitle } from "../UI/tab/types";
 import { TabBodyData } from "./types";
+import {
+  checkObjInputNum,
+  checkOwnerInputInfo,
+} from "../../redux/slicers/modalStateSlicer";
 
 const tabTitle: TabTitle[] = [
   {
@@ -43,6 +47,7 @@ const objData: TabBodyData = {
     ],
     cost: 799,
   },
+  btnAction: checkObjInputNum,
 };
 
 const ownerData: TabBodyData = {
@@ -75,8 +80,9 @@ const ownerData: TabBodyData = {
       "Информация о банкротстве",
       "Участие в экстремистской и террористической деятельности",
     ],
-    cost: 799,
+    cost: 549,
   },
+  btnAction: checkOwnerInputInfo,
 };
 
 const tabsData: [TabBodyData, TabBodyData] = [objData, ownerData];

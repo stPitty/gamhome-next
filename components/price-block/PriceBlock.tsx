@@ -34,7 +34,7 @@ const PriceBlock: React.FC = () => {
           </Button>
         </StyledLink>
         <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
-          Перейти на страницу объявления
+          Проверить объект
         </Button>
       </Container>
     </Wrapper>

@@ -1,16 +1,13 @@
 import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import CircleSVG from "../../public/assets/svg/CircleSVG";
-import {
-  GeolocationControl,
-  Map,
-  Placemark,
-  useYMaps,
-} from "@pbe/react-yandex-maps";
+import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 import { getTimeToMetro } from "../../common/helpers";
+import Button from "../UI/button/Button";
+import { ButtonSize, ButtonType } from "../UI/button/enums";
 
 const MapBlock = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -47,9 +44,17 @@ const MapBlock = () => {
           <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
         </Map>
       )}
+      <StyledButton buttonSize={ButtonSize.LARGE} buttonType={ButtonType.FLAT}>
+        Перейти на страницу объявления
+      </StyledButton>
     </Container>
   );
 };
+
+const StyledButton = styled(Button)`
+  margin-top: 40px;
+  height: 64px;
+`;
 
 const StyledCircleIcon = styled(CircleSVG)<{ color: string }>`
   & rect {

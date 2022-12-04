@@ -5,12 +5,20 @@ import { BlackColor, Font } from "../../common/enums";
 import DoneSVG from "../../public/assets/svg/DoneSVG";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
+import { useAppDispatch } from "../../redux/hooks";
+import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
 
 type Props = {
   data: TabBodyData;
 };
 
 const Conditions: React.FC<Props> = ({ data }) => {
+  const dispatch = useAppDispatch();
+
+  const handleOrderClick = () => {
+    dispatch(data.btnAction());
+  };
+
   return (
     <Container>
       <Wrapper>
@@ -30,7 +38,7 @@ const Conditions: React.FC<Props> = ({ data }) => {
         </ConditionsContainer>
       </Wrapper>
       <ButtonGroupContainer>
-        <Button buttonSize={ButtonSize.MEDIUM}>
+        <Button onClick={handleOrderClick} buttonSize={ButtonSize.MEDIUM}>
           Заказать за {data.additionalInfo.cost} ₽
         </Button>
         <Button buttonType={ButtonType.OUTLINE} buttonSize={ButtonSize.MEDIUM}>

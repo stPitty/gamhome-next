@@ -2,18 +2,26 @@ import styled from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
+import { useMemo } from "react";
+import { sortMainFlatParams } from "../../../common/helpers";
 
 const MainInfo = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const sortedParamsArr = useMemo(sortMainFlatParams(flatData?.parameters), [
+    flatData,
+  ]);
+
   return (
     <MainInfoWrapper>
-      {flatData?.parameters.map((el, i) => {
+      {sortedParamsArr?.map((el, i) => {
         return (
-          <TextWrapper key={el.parameterId + i}>
-            <FieldNameText>{el.parameter.name}:</FieldNameText>
-            <FieldValueText>{el.value}</FieldValueText>
-          </TextWrapper>
+          el && (
+            <TextWrapper key={el.parameter.id}>
+              <FieldNameText>{el.parameter.name}:</FieldNameText>
+              <FieldValueText>{el.value}</FieldValueText>
+            </TextWrapper>
+          )
         );
       })}
     </MainInfoWrapper>

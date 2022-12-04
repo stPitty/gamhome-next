@@ -2,6 +2,8 @@ import { Route } from "../routes";
 import { NextRouter } from "next/router";
 import { decrement, increment } from "../../redux/slicers/photoPositionSlicer";
 import { AppDispatch } from "../../redux/types";
+import { FlatData, Parameter } from "../../redux/slicers/types";
+import { regexpList } from "./constants";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -59,10 +61,49 @@ const getTimeToMetro = (dist: number | undefined) => (): string => {
   return "";
 };
 
+const sortMainFlatParams = (arr: FlatData["parameters"] | undefined) => () => {
+  if (arr) {
+    let newArr: (Parameter & { priority?: number })[] = structuredClone(arr);
+
+    const floors = newArr.find((el) =>
+      /этажей в доме/gi.test(el.parameter.name)
+    );
+
+    for (let i = 0; i < newArr.length; i++) {
+      let isOther = true;
+      for (let j = 0; j < regexpList.length; j++) {
+        if (regexpList[j].regexp.test(newArr[i].parameter.name)) {
+          newArr[i].priority = regexpList[j].priority;
+          isOther = false;
+          break;
+        }
+      }
+      if (/^этаж$/gi.test(newArr[i].parameter.name)) {
+        newArr[i].value = `этаж ${newArr[i].value} из ${floors?.value}`;
+      }
+      if (
+        /площадь/gi.test(newArr[i].parameter.name) &&
+        !newArr[i].value.includes("м²")
+      ) {
+        newArr[i].value += " м²";
+      }
+      if (isOther) newArr[i].priority = 100;
+    }
+
+    newArr = newArr
+      .filter((el) => !/этажей в доме/gi.test(el.parameter.name))
+      .sort((a, b) => (a.priority as number) - (b.priority as number));
+
+    return newArr;
+  }
+  return [];
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
   handleMoneyDataFormatter,
   handlePhoneFormatter,
   getTimeToMetro,
+  sortMainFlatParams,
 };

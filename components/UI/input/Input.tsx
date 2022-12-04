@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  memo,
-  SetStateAction,
-  SyntheticEvent,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, memo, SetStateAction, SyntheticEvent, useMemo } from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -13,10 +6,11 @@ import {
   OtherColor,
   WhiteColor,
 } from "../../../common/enums";
+import { useAppDispatch } from "../../../redux/hooks";
 
 type Props = {
   value: string;
-  setValue: Dispatch<SetStateAction<string>>;
+  setValue?: Dispatch<SetStateAction<string>> | any;
   placeHolder: string;
   validationPattern?: RegExp;
   errorMessage?: string;
@@ -25,8 +19,9 @@ type Props = {
   submitFailedMessage?: string;
   required?: boolean;
   isValidationError?: boolean;
-  setIsValidationError?: Dispatch<SetStateAction<boolean>>;
+  setIsValidationError?: Dispatch<SetStateAction<boolean>> | any;
   className?: string;
+  stateName?: string;
 };
 
 const Input: React.FC<Props> = ({
@@ -42,15 +37,34 @@ const Input: React.FC<Props> = ({
   isValidationError = false,
   setIsValidationError,
   className,
+  stateName,
 }) => {
-  // const [isValidationError, setIsValidationError] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const handleValueChange = (e: SyntheticEvent<HTMLInputElement>) => {
-    setValue(e.currentTarget.value);
-    if (validationPattern && setIsValidationError)
-      setIsValidationError(!validationPattern?.test(e.currentTarget.value));
-    if (e.currentTarget.value.length === 0 && setIsValidationError)
-      setIsValidationError(false);
+    if (stateName) {
+      dispatch(setValue({ name: stateName, value: e.currentTarget.value }));
+      if (validationPattern && setIsValidationError)
+        dispatch(
+          setIsValidationError({
+            name: stateName,
+            value: !validationPattern?.test(e.currentTarget.value),
+          })
+        );
+      if (e.currentTarget.value.length === 0 && setIsValidationError)
+        dispatch(
+          setIsValidationError({
+            name: stateName,
+            value: false,
+          })
+        );
+    } else {
+      setValue(e.currentTarget.value);
+      if (validationPattern && setIsValidationError)
+        setIsValidationError(!validationPattern?.test(e.currentTarget.value));
+      if (e.currentTarget.value.length === 0 && setIsValidationError)
+        setIsValidationError(false);
+    }
   };
 
   const currErrMsg = useMemo(() => {

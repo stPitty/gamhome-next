@@ -12,4 +12,5 @@ export type TabBodyData = {
     points: string[];
     cost: number;
   };
+  btnAction: Function;
 };

@@ -4,12 +4,16 @@ import { configureStore } from "@reduxjs/toolkit";
 import photoPositionReducer from "./slicers/photoPositionSlicer";
 import modalStateReducer from "./slicers/modalStateSlicer";
 import flatDataReducer from "./slicers/flatDataSlicer";
+import ownerDataReducer from "./slicers/ownerDataSlicer";
+import serviceDataReducer from "./slicers/serviceDataSlicer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
   position: photoPositionReducer,
   modalState: modalStateReducer,
   flatData: flatDataReducer,
+  ownerData: ownerDataReducer,
+  serviceData: serviceDataReducer,
 });
 
 const reducer = (

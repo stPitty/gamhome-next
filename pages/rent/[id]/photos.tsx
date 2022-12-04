@@ -76,7 +76,7 @@ const FullscreenCarousel: React.FC = () => {
           <StyledChevron orientation="left" />
         </ControlArea>
         <PhotoContainer>
-          <Carousel isFullscreen={true} size={[1088, 747]} />
+          <Carousel isFullscreen={true} />
         </PhotoContainer>
         <ControlArea
           onClick={handleSwapImageClick(
@@ -89,7 +89,7 @@ const FullscreenCarousel: React.FC = () => {
         </ControlArea>
       </PhotoWrapper>
       <PreviewWrapper>
-        <PreviewList size={[98, 80]} quantity={8} />
+        <PreviewList isFullSized={true} quantity={8} />
       </PreviewWrapper>
     </Container>
   );

@@ -61,6 +61,7 @@ const Text = styled.p`
   color: ${BlackColor.BLACK_80};
   margin: 0;
   width: 430px;
+  transition: none;
 `;
 
 export default ModalText;

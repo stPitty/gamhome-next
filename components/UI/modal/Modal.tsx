@@ -2,7 +2,10 @@ import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import { BlackColor, BrandColor, WhiteColor } from "../../../common/enums";
 import { useAppDispatch } from "../../../redux/hooks";
-import { closeModal } from "../../../redux/slicers/modalStateSlicer";
+import {
+  closeModal,
+  errorWithDocs,
+} from "../../../redux/slicers/modalStateSlicer";
 import ModalBody from "./ModalBody";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
 

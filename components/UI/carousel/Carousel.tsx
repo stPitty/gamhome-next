@@ -5,14 +5,12 @@ import { useRouter } from "next/router";
 import { Route } from "../../../common/routes";
 import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
 import { Url } from "../../../common/config_enums/url.enum";
-import { handleRedirClick } from "../../../common/helpers";
 
 type Props = {
-  size: [number, number];
   isFullscreen: boolean;
 };
 
-const Carousel: React.FC<Props> = ({ isFullscreen, size }) => {
+const Carousel: React.FC<Props> = ({ isFullscreen }) => {
   const router = useRouter();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -30,14 +28,14 @@ const Carousel: React.FC<Props> = ({ isFullscreen, size }) => {
   };
 
   return (
-    <StyledUl size={size} count={position}>
+    <StyledUl isFullscreen={isFullscreen} count={position}>
       {flatData?.images.map((item, index) => {
         return (
           <StyledLi key={index}>
             <Image
+              isFullscreen={isFullscreen}
               onClick={handleImageClick(index)}
               clickable={!isFullscreen}
-              size={size}
               image={item.url}
             />
           </StyledLi>
@@ -49,26 +47,30 @@ const Carousel: React.FC<Props> = ({ isFullscreen, size }) => {
 
 const Image = styled.div<{
   image: string;
-  size: [number, number];
   clickable: boolean;
+  isFullscreen: boolean;
 }>`
   display: block;
   margin: 0;
-  min-width: ${({ size }) => size[0] + "px"};
-  height: ${({ size }) => size[1] + "px"};
+  min-width: ${({ isFullscreen }) => (isFullscreen ? "1088px" : "792px")};
+  height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   background: url(${({ image }) => image}) center no-repeat;
-  // background-size: ${({ size }) => `${size[0]}px ${size[1]}px`};
+  background-size: auto
+    ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   cursor: ${({ clickable }) => clickable && "pointer"};
 `;
 
-const StyledUl = styled.ul<{ count: number; size: [number, number] }>`
+const StyledUl = styled.ul<{ count: number; isFullscreen: boolean }>`
   margin: 0;
   padding: 0;
   list-style: none;
-  width: 20000px;
-  height: ${({ size }) => size[1] + "px"};
+  width: 100000px;
+  height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   font-size: 0;
-  transform: translateX(${({ count, size }) => `-${count * size[0]}px`});
+  transform: translateX(
+    ${({ count, isFullscreen }) =>
+      isFullscreen ? `-${count * 1088}px` : `-${count * 792}px`}
+  );
 `;
 
 const StyledLi = styled.li`

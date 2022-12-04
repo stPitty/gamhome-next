@@ -9,6 +9,17 @@ type TModalState = {
   isOpened: boolean;
 };
 
+type Parameter = {
+  propertyId: number;
+  parameterId: number;
+  parameter: {
+    id: number;
+    name: string;
+    category: string;
+  };
+  value: string;
+};
+
 type FlatData = {
   feeAmount: number | string;
   deposit: number | string;
@@ -50,16 +61,7 @@ type FlatData = {
   lat: number;
   lng: number;
   kmMetro: number;
-  parameters: {
-    propertyId: number;
-    parameterId: number;
-    parameter: {
-      id: number;
-      name: string;
-      category: string;
-    };
-    value: string;
-  }[];
+  parameters: Parameter[];
   city: {
     id: number;
     name: string;
@@ -91,4 +93,47 @@ type TFlatState = {
   isError: boolean;
 };
 
-export type { TPhotoPosition, TModalState, TFlatState, FlatData };
+type CheckOwnerInputFieldNames =
+  | "nameValue"
+  | "bornDate"
+  | "passSer"
+  | "passNum"
+  | "dateGet"
+  | "divCode";
+
+type ServiceInputFieldNames = "name" | "phone" | "city";
+
+type InputData = {
+  value: string;
+  isSubmitFailed: boolean;
+  isValidationError: boolean;
+};
+
+type IsError = {
+  isError: boolean;
+};
+
+type TOwnerData = Record<CheckOwnerInputFieldNames, InputData> & IsError;
+
+type TServiceData = Record<ServiceInputFieldNames, InputData> & IsError;
+
+type FormActionType = {
+  type: string;
+  payload: {
+    name: CheckOwnerInputFieldNames | ServiceInputFieldNames;
+    value: string | boolean;
+  };
+};
+
+export type {
+  TPhotoPosition,
+  TModalState,
+  TFlatState,
+  FlatData,
+  Parameter,
+  TOwnerData,
+  CheckOwnerInputFieldNames,
+  FormActionType,
+  TServiceData,
+  ServiceInputFieldNames,
+};

@@ -18,7 +18,7 @@ const PreviewStack: React.FC = () => {
 
   return (
     <Container>
-      <PreviewList size={[160, 130]} quantity={5} />
+      <PreviewList isFullSized={false} quantity={5} />
     </Container>
   );
 };

@@ -1,16 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { BrandColor } from "../../../common/enums";
+import { BrandColor, LightBlueColor } from "../../../common/enums";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setPosition } from "../../../redux/slicers/photoPositionSlicer";
 import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
 
 type Props = {
-  size: [number, number];
   quantity: number;
+  isFullSized: boolean;
 };
 
-const PreviewList: React.FC<Props> = ({ size, quantity }) => {
+const PreviewList: React.FC<Props> = ({ quantity, isFullSized }) => {
   const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -24,14 +24,18 @@ const PreviewList: React.FC<Props> = ({ size, quantity }) => {
   };
 
   return (
-    <ImagesWrapper size={size} quantity={quantity} position={position}>
+    <ImagesWrapper
+      isFullSized={isFullSized}
+      quantity={quantity}
+      position={position}
+    >
       {flatData?.images.map((el, index) => (
         <Image
+          isFullSized={isFullSized}
           onClick={handelPreviewClick(index)}
           outline={position === index}
           key={el.id}
           image={el.url}
-          size={size}
         />
       ))}
     </ImagesWrapper>
@@ -41,27 +45,31 @@ const PreviewList: React.FC<Props> = ({ size, quantity }) => {
 const ImagesWrapper = styled.div<{
   position: number;
   quantity: number;
-  size: [number, number];
+  isFullSized: boolean;
 }>`
   display: flex;
   align-items: center;
   justify-content: flex-start;
   transform: translateX(
-    ${({ position, quantity, size }) =>
+    ${({ position, quantity, isFullSized }) =>
       position > 4 &&
-      `-${Math.floor(position / quantity) * quantity * (size[0] + 16)}px`}
+      `-${
+        Math.floor(position / quantity) *
+        quantity *
+        ((isFullSized ? 98 : 160) + 16)
+      }px`}
   );
 `;
 
 const Image = styled.div<{
   image: string;
   outline: boolean;
-  size: [number, number];
+  isFullSized: boolean;
 }>`
-  background: url(${({ image }) => image}) no-repeat border-box;
+  background: url(${({ image }) => image}) no-repeat border-box center;
   background-size: cover;
-  min-width: ${({ size }) => size[0] + "px"};
-  height: ${({ size }) => size[1] + "px"};
+  min-width: ${({ isFullSized }) => (isFullSized ? "98px" : "160px")};
+  height: ${({ isFullSized }) => (isFullSized ? "80px" : "130px")};
   border-radius: 12px;
   margin: 16px 16px 0 0;
   cursor: pointer;
