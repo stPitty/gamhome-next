@@ -15,12 +15,19 @@ import ChevronDoneBoltSVG from "../../public/assets/svg/ChevronDoneBoltSVG";
 import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
 import VectorArrowSVG from "../../public/assets/svg/VectorArrowSVG";
+import { useAppDispatch } from "../../redux/hooks";
 
 type Props = {
   data: CardData[];
 };
 
 const Cards: React.FC<Props> = ({ data }) => {
+  const dispatch = useAppDispatch();
+
+  const handleButtonClick = (buttonAction: Function) => () => {
+    dispatch(buttonAction());
+  };
+
   return (
     <Container>
       {data.map((el) => {
@@ -57,7 +64,11 @@ const Cards: React.FC<Props> = ({ data }) => {
               })}
             </PointsContainer>
             <ButtonContainer>
-              <Button buttonType={el.buttonType} buttonSize={ButtonSize.LARGE}>
+              <Button
+                onClick={handleButtonClick(el.buttonAction)}
+                buttonType={el.buttonType}
+                buttonSize={ButtonSize.LARGE}
+              >
                 Оставить заявку
               </Button>
             </ButtonContainer>

@@ -8,6 +8,7 @@ export type CardData = {
   headerText: string;
   cost: string;
   descText: string;
+  buttonAction: Function;
   points: {
     id: number;
     text: string;

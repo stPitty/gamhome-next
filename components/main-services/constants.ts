@@ -1,6 +1,11 @@
 import { CardData } from "./types";
 import { CardType } from "./enums";
 import { ButtonType } from "../UI/button/enums";
+import {
+  agentForContract,
+  conciergeService,
+  keySearch,
+} from "../../redux/slicers/modalStateSlicer";
 
 const cardsData: CardData[] = [
   {
@@ -10,6 +15,7 @@ const cardsData: CardData[] = [
     headerText: "Агент на договор",
     cost: "3 000 ₽",
     descText: "Единоразовый выезд агента для проверки и подписания договора",
+    buttonAction: agentForContract,
     points: [
       {
         id: 1,
@@ -37,6 +43,7 @@ const cardsData: CardData[] = [
     cost: "14 890 ₽",
     descText:
       "Найдём то что вам нужно, договоримся о просмотрах. Поиск длительностью 21 день",
+    buttonAction: conciergeService,
     points: [
       {
         id: 1,
@@ -73,6 +80,7 @@ const cardsData: CardData[] = [
     cost: "От 20 000 ₽",
     descText:
       "Персональное сопровождение от поиска до заселения в новую квартиру",
+    buttonAction: keySearch,
     points: [
       {
         id: 1,

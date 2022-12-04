@@ -2,14 +2,15 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styled, { css } from "styled-components";
 import { modalData } from "./constants";
 import { TModalState } from "../../../redux/slicers/types";
-import { BlackColor } from "../../../common/enums";
+import { BlackColor, Font } from "../../../common/enums";
 import ModalText from "./ModalText";
 import Input from "../input/Input";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../button/Button";
 import { ButtonSize } from "../button/enums";
 import { Modal } from "./types";
 import Form from "../../check-owner-block/Form";
+import { handleChangeStateClick } from "./helpers";
 
 const ModalBody = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -24,60 +25,6 @@ const ModalBody = () => {
 
   const reduxState = useAppSelector((state) => state);
 
-  const handleChangeStateClick = () => {
-    if (currentState !== null && modalData[currentState].withMultiInputs) {
-      let rejectSubmit = false;
-      for (let i = 0; i < modalData[currentState].fieldNames!.length; i++) {
-        if (
-          reduxState[modalData[currentState].stateName!][
-            modalData[currentState].fieldNames![i]
-          ].value.length === 0
-        ) {
-          dispatch(
-            modalData[currentState].setSubmitErrorAction!({
-              value: true,
-              name: modalData[currentState].fieldNames![i],
-            })
-          );
-          rejectSubmit = true;
-        }
-        if (
-          reduxState[modalData[currentState].stateName!][
-            modalData[currentState].fieldNames![i]
-          ].isValidationError
-        ) {
-          rejectSubmit = true;
-        }
-      }
-      if (!rejectSubmit) {
-        dispatch(modalData[currentState].nextStateBtnAction!());
-        dispatch(modalData[currentState].clearAction!());
-      }
-    } else if (
-      currentState !== null &&
-      !modalData[currentState].withMultiInputs
-    ) {
-      if (
-        modalData[currentState].modalType !== "withInput" &&
-        !isValidationError
-      ) {
-        dispatch(modalData[currentState].nextStateBtnAction!());
-        setInputValue("");
-        return;
-      }
-      if (inputValue.length === 0) {
-        setIsSubmitFailed(true);
-        return;
-      } else if (
-        modalData[currentState].modalType === "withInput" &&
-        !isValidationError
-      ) {
-        dispatch(modalData[currentState].nextStateBtnAction!());
-        setInputValue("");
-      }
-    }
-  };
-
   return (
     <>
       {currentState !== null && (
@@ -90,7 +37,9 @@ const ModalBody = () => {
             modalType={modalData[currentState].modalType}
           >
             <Header>{modalData[currentState].header}</Header>
-            <ModalText data={modalData[currentState]} />
+            {modalData[currentState].desc && (
+              <ModalText data={modalData[currentState]} />
+            )}
           </TextWrapper>
           {modalData[currentState].modalType === "withInput" && (
             <Form
@@ -102,11 +51,23 @@ const ModalBody = () => {
               setIsValidationError={setIsValidationError}
             />
           )}
+          {modalData[currentState].subDesc && (
+            <SubDescText>{modalData[currentState].subDesc}</SubDescText>
+          )}
           {modalData[currentState].buttonText && (
             <ButtonContainer modalType={modalData[currentState].modalType}>
               <Button
                 buttonSize={ButtonSize.MEDIUM}
-                onClick={handleChangeStateClick}
+                onClick={handleChangeStateClick(
+                  currentState,
+                  modalData,
+                  reduxState,
+                  dispatch,
+                  isValidationError,
+                  setInputValue,
+                  inputValue,
+                  setIsSubmitFailed
+                )}
               >
                 {modalData[currentState].buttonText}
               </Button>
@@ -117,6 +78,15 @@ const ModalBody = () => {
     </>
   );
 };
+
+const SubDescText = styled.p`
+  font-family: ${Font.ROBOTO_FLEX};
+  font-size: 16px;
+  line-height: 120%;
+  color: ${BlackColor.BLACK_80};
+  width: 478px;
+  margin: 4px 0 22px;
+`;
 
 const ButtonContainer = styled.div<{ modalType: Modal }>`
   transition: none;

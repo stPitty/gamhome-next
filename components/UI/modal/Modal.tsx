@@ -1,19 +1,28 @@
 import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import { BlackColor, BrandColor, WhiteColor } from "../../../common/enums";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   closeModal,
   errorWithDocs,
 } from "../../../redux/slicers/modalStateSlicer";
 import ModalBody from "./ModalBody";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
+import { modalData } from "./constants";
+import { TModalState } from "../../../redux/slicers/types";
 
 const Modal: React.FC = () => {
   const dispatch = useAppDispatch();
 
+  const { currentState } = useAppSelector<TModalState>(
+    (state) => state.modalState
+  );
+
   const handleModalWrapperClick = () => {
     dispatch(closeModal());
+    if (currentState && modalData[currentState].clearAction) {
+      dispatch(modalData[currentState].clearAction!());
+    }
   };
 
   const handleModalContainerClick = (e: SyntheticEvent<HTMLDivElement>) => {

@@ -1,4 +1,4 @@
-import { ModalBodyData } from "./types";
+import { ModalBody, ModalBodyData } from "./types";
 import { ModalState } from "../../../redux/slicers/enums";
 import {
   checkObjInputEmail,
@@ -9,6 +9,7 @@ import {
   openBuyCheckListWithEmail,
   openFreeDocsWithEmail,
   thanksForBuy,
+  thanksForOrder,
 } from "../../../redux/slicers/modalStateSlicer";
 import {
   clearOwnerData,
@@ -16,6 +17,16 @@ import {
   setOwnerValidationError,
   setOwnerValue,
 } from "../../../redux/slicers/ownerDataSlicer";
+import {
+  clearServiceData,
+  setServiceSubmitError,
+  setServiceValidationError,
+  setServiceValue,
+} from "../../../redux/slicers/serviceDataSlicer";
+import {
+  ownerInputFieldsNames,
+  serviceInputFieldsNames,
+} from "../../../redux/slicers/constants";
 
 const emailValidationRegexp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -29,6 +40,56 @@ const dateRegexp = /^.{0,30}$/im;
 const passSerRegexp = /^\d{4}$/;
 
 const passDivNumRegexp = /^\d{6}$/;
+
+const fiftySymbolsErrorMessage = "Не более 50 символов";
+
+const thirtySymbolsErrorMessage = "Не более 30 символов";
+
+const fourIntsErrorMessage = "Укажите 4 цифры";
+
+const sixIntsErrorMessage = "Укажите 6 цифр";
+
+const serviceModal: Omit<ModalBody, "header"> = {
+  modalType: "withInput",
+  subDesc:
+    "Отправляя заявку вы подтверждаете, что согласны с Политикой конфиденциальности и условиями Оферты",
+  buttonText: "Оставить заявку",
+  nextStateBtnAction: thanksForOrder,
+  clearAction: clearServiceData,
+  withMultiInputs: true,
+  fieldNames: serviceInputFieldsNames,
+  stateName: "serviceData",
+  setSubmitErrorAction: setServiceSubmitError,
+  setValidationErrorAction: setServiceValidationError,
+  setValueAction: setServiceValue,
+  lowRowGap: true,
+  multiInputsProps: [
+    {
+      id: 1,
+      name: "name",
+      validationPattern: personalDataRegexp,
+      placeHolder: "Имя",
+      errorMessage: fiftySymbolsErrorMessage,
+      submitFailedMessage: "Укажите имя",
+    },
+    {
+      id: 2,
+      name: "phone",
+      validationPattern: dateRegexp,
+      placeHolder: "Телефон",
+      errorMessage: thirtySymbolsErrorMessage,
+      submitFailedMessage: "Укажите телефон",
+    },
+    {
+      id: 3,
+      name: "city",
+      validationPattern: dateRegexp,
+      placeHolder: "Город",
+      errorMessage: thirtySymbolsErrorMessage,
+      submitFailedMessage: "Укажите город",
+    },
+  ],
+};
 
 const modalData: ModalBodyData = {
   [ModalState.CHECK_LISTS_INFORMATION]: {
@@ -70,7 +131,7 @@ const modalData: ModalBodyData = {
     header: "Спасибо за покупку",
     desc: "Чек-листы и документы отправлены на почту",
     modalType: "lastMessage",
-    image: "/images/man-sends-message.jpg",
+    image: "/images/man-sends-message.webp",
   },
   [ModalState.FREE_DOCS_BAG_INFORMATION]: {
     header: "Пакет бесплатных документов",
@@ -118,13 +179,13 @@ const modalData: ModalBodyData = {
   [ModalState.DOCS_SENT]: {
     header: "Документы отправлены на почту",
     modalType: "lastMessage",
-    image: "/images/man-sends-message.jpg",
+    image: "/images/man-sends-message.webp",
   },
   [ModalState.ERROR_WITH_DOCS_POST]: {
     header: "Не получилось отправить документы",
     modalType: "lastMessage",
     desc: "Попробуйте еще раз",
-    image: "/images/fatal-error.jpg",
+    image: "/images/fatal-error.webp",
     buttonText: "Отправить еще раз",
     nextStateBtnAction: closeModal,
     isErrorMessage: true,
@@ -155,7 +216,7 @@ const modalData: ModalBodyData = {
     header: "Информация отправлена на проверку",
     modalType: "lastMessage",
     desc: "Результат проверки придёт на почту. Проверка занимает от 30 минут до 3 дней",
-    image: "/images/perfect-candidate.jpg",
+    image: "/images/perfect-candidate.webp",
   },
   [ModalState.CHECK_OWNER_INPUT_INFO]: {
     header: "Проверить собственника",
@@ -169,14 +230,7 @@ const modalData: ModalBodyData = {
     setSubmitErrorAction: setOwnerSubmitError,
     setValidationErrorAction: setOwnerValidationError,
     setValueAction: setOwnerValue,
-    fieldNames: [
-      "nameValue",
-      "bornDate",
-      "passSer",
-      "passNum",
-      "dateGet",
-      "divCode",
-    ],
+    fieldNames: ownerInputFieldsNames,
     multiInputsProps: [
       {
         id: 1,
@@ -184,7 +238,7 @@ const modalData: ModalBodyData = {
         placeHolder: "ФИО",
         submitFailedMessage: "Укажите Фамилию Имя Отчество",
         validationPattern: personalDataRegexp,
-        errorMessage: "Не более 50 символов",
+        errorMessage: fiftySymbolsErrorMessage,
       },
       {
         id: 2,
@@ -192,24 +246,24 @@ const modalData: ModalBodyData = {
         placeHolder: "Дата рождения",
         submitFailedMessage: "Укажите Дату рождения",
         validationPattern: dateRegexp,
-        errorMessage: "Не более 30 символов",
+        errorMessage: thirtySymbolsErrorMessage,
       },
       {
         id: 3,
         name: "passSer",
         placeHolder: "Серия",
-        submitFailedMessage: "Укажите 4 цифры",
+        submitFailedMessage: fourIntsErrorMessage,
         validationPattern: passSerRegexp,
-        errorMessage: "Укажите 4 цифры",
+        errorMessage: fourIntsErrorMessage,
         halfWidth: true,
       },
       {
         id: 4,
         name: "passNum",
         placeHolder: "Номер",
-        submitFailedMessage: "Укажите 6 цифр",
+        submitFailedMessage: sixIntsErrorMessage,
         validationPattern: passDivNumRegexp,
-        errorMessage: "Укажите 6 цифр",
+        errorMessage: sixIntsErrorMessage,
         halfWidth: true,
       },
       {
@@ -218,16 +272,16 @@ const modalData: ModalBodyData = {
         placeHolder: "Дата выдачи",
         submitFailedMessage: "Укажите Дату выдачи",
         validationPattern: dateRegexp,
-        errorMessage: "Не более 30 символов",
+        errorMessage: thirtySymbolsErrorMessage,
         halfWidth: true,
       },
       {
         id: 6,
         name: "divCode",
         placeHolder: "Код подразделения",
-        submitFailedMessage: "Укажите 6 цифр",
+        submitFailedMessage: sixIntsErrorMessage,
         validationPattern: passDivNumRegexp,
-        errorMessage: "Укажите 6 цифр",
+        errorMessage: sixIntsErrorMessage,
         halfWidth: true,
       },
     ],
@@ -242,6 +296,28 @@ const modalData: ModalBodyData = {
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
+  },
+  [ModalState.WANT_TO_LEND_FLAT]: {
+    header: "Хочу сдать квартиру",
+    ...serviceModal,
+  },
+  [ModalState.AGENT_FOR_CONTRACT]: {
+    header: "Агент на договор",
+    ...serviceModal,
+  },
+  [ModalState.CONCIERGE_SERVICE]: {
+    header: "Консьерж сервис",
+    ...serviceModal,
+  },
+  [ModalState.KEY_SEARCH]: {
+    header: "Поиск под ключ",
+    ...serviceModal,
+  },
+  [ModalState.THANKS_FOR_ORDER]: {
+    header: "Спасибо за заявку",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    modalType: "lastMessage",
+    image: "/images/cozy-evening.webp",
   },
 };
 

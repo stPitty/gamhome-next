@@ -93,6 +93,11 @@ export const {
   informationSent,
   checkOwnerInputInfo,
   checkOwnerInputEmail,
+  wantToLendFlat,
+  agentForContract,
+  conciergeService,
+  keySearch,
+  thanksForOrder,
 } = modalStateSlicer.actions;
 
 export default modalStateSlicer.reducer;

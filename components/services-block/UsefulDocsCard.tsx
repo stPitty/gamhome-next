@@ -13,8 +13,6 @@ import { ButtonSize, ButtonType } from "../UI/button/enums";
 import StarSVG from "../../public/assets/svg/StarSVG";
 import DocumentSVG from "../../public/assets/svg/DocumentSVG";
 import { useAppDispatch } from "../../redux/hooks";
-import { ThunkAction } from "redux-thunk";
-import { AnyAction } from "redux";
 
 type Props = {
   cardType: CardType;

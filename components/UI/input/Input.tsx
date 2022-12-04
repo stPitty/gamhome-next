@@ -85,7 +85,7 @@ const Input: React.FC<Props> = ({
   }, [isSubmitFailed, value]);
 
   return (
-    <Wrapper className={className}>
+    <div className={className}>
       <Container>
         <StyledInput
           type="text"
@@ -98,7 +98,7 @@ const Input: React.FC<Props> = ({
         <StyledLabel isValidationError={isError}>{placeHolder}</StyledLabel>
       </Container>
       <ValidationMessage isError={isError}>{currErrMsg}</ValidationMessage>
-    </Wrapper>
+    </div>
   );
 };
 
@@ -111,8 +111,6 @@ const ValidationMessage = styled.p<{ isError: boolean }>`
   margin: 2px 0 0 16px;
   transition: none;
 `;
-
-const Wrapper = styled.div``;
 
 const Container = styled.div`
   height: 56px;

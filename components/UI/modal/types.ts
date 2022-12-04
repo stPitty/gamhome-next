@@ -1,9 +1,12 @@
 import { ModalState } from "../../../redux/slicers/enums";
-import { CheckOwnerInputFieldNames } from "../../../redux/slicers/types";
+import {
+  CheckOwnerInputFieldNames,
+  ServiceInputFieldNames,
+} from "../../../redux/slicers/types";
 
 export type Modal = "withInput" | "withInfo" | "lastMessage";
 
-type StateName = "ownerData";
+type StateName = "ownerData" | "serviceData";
 
 export type DescText = {
   id: number;
@@ -11,7 +14,7 @@ export type DescText = {
 };
 
 type InputProps = {
-  name: CheckOwnerInputFieldNames;
+  name: CheckOwnerInputFieldNames | ServiceInputFieldNames;
   validationPattern: RegExp;
   placeHolder: string;
   errorMessage: string;
@@ -22,6 +25,7 @@ export type ModalBody = Partial<InputProps> & {
   header: string;
   modalType: Modal;
   desc?: DescText[] | string;
+  subDesc?: string;
   buttonText?: string;
   nextStateBtnAction?: Function;
   clearAction?: Function;
@@ -29,11 +33,12 @@ export type ModalBody = Partial<InputProps> & {
   isErrorMessage?: boolean;
   withoutInfo?: boolean;
   withMultiInputs?: boolean;
-  fieldNames?: CheckOwnerInputFieldNames[];
+  fieldNames?: CheckOwnerInputFieldNames[] | ServiceInputFieldNames[];
   stateName?: StateName;
   setSubmitErrorAction?: Function;
   setValidationErrorAction?: Function;
   setValueAction?: Function;
+  lowRowGap?: boolean;
   multiInputsProps?: (InputProps & {
     halfWidth?: boolean;
     id: number;

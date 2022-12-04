@@ -28,7 +28,7 @@ const cardsData: CardData[] = [
       width: 257,
       text: "Заказать грузоперевозку",
     },
-    image: "/images/man-gets-box.jpg",
+    image: "/images/man-gets-box.webp",
   },
   {
     id: 2,
@@ -61,7 +61,7 @@ const cardsData: CardData[] = [
       width: 189,
       text: "Заказать уборку",
     },
-    image: "/images/cleaning.jpg",
+    image: "/images/cleaning.webp",
   },
 ];
 

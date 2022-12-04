@@ -109,13 +109,9 @@ type InputData = {
   isValidationError: boolean;
 };
 
-type IsError = {
-  isError: boolean;
-};
+type TOwnerData = Record<CheckOwnerInputFieldNames, InputData>;
 
-type TOwnerData = Record<CheckOwnerInputFieldNames, InputData> & IsError;
-
-type TServiceData = Record<ServiceInputFieldNames, InputData> & IsError;
+type TServiceData = Record<ServiceInputFieldNames, InputData>;
 
 type FormActionType = {
   type: string;

@@ -6,7 +6,7 @@ const Global = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    font-family: Inter, Roboto, -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
+    font-family: Inter, Roboto, "Roboto Flex", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
   html {

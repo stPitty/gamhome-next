@@ -2,8 +2,16 @@ import styled from "styled-components";
 import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
+import { useAppDispatch } from "../../redux/hooks";
+import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
 
 const CardWitsImage = () => {
+  const dispatch = useAppDispatch();
+
+  const handleButtonClick = () => {
+    dispatch(wantToLendFlat());
+  };
+
   return (
     <Container>
       <TextWrapper>
@@ -14,7 +22,11 @@ const CardWitsImage = () => {
         <Text>
           Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
         </Text>
-        <Button width={191} buttonSize={ButtonSize.LARGE}>
+        <Button
+          onClick={handleButtonClick}
+          width={191}
+          buttonSize={ButtonSize.LARGE}
+        >
           Оставить заявку
         </Button>
       </TextWrapper>
@@ -26,7 +38,7 @@ const CardWitsImage = () => {
 const Image = styled.div`
   width: 528px;
   height: 503px;
-  background: no-repeat url("/images/unboxing.jpg");
+  background: no-repeat url("/images/unboxing.webp");
   background-size: cover;
   border-radius: 40px;
 `;
@@ -64,7 +76,7 @@ const Container = styled.div`
   padding: 182px 64px 64px;
   border-radius: 48px;
   background-color: ${BlackColor.BLACK_SECONDARY};
-  background-image: url("/images/text-mark.png");
+  background-image: url("/images/text-mark.webp");
   background-size: 301px;
   background-repeat: no-repeat;
   background-position: left 53px bottom 344px;

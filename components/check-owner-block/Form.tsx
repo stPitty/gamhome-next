@@ -26,10 +26,11 @@ const Form: React.FC<Props> = ({
   return (
     <>
       {data.withMultiInputs ? (
-        <FormContainer>
+        <FormContainer withDesc={!!data.desc}>
           {data.multiInputsProps?.map((el) => {
             return (
               <StyledInput
+                lowMarginTop={!!data.lowRowGap}
                 key={el.id}
                 withoutInfo={!!data.withoutInfo}
                 isMultiInput={data.withMultiInputs}
@@ -72,21 +73,22 @@ const Form: React.FC<Props> = ({
   );
 };
 
-const FormContainer = styled.div`
+const FormContainer = styled.div<{ withDesc: boolean }>`
   display: flex;
   flex-wrap: wrap;
   width: 480px;
   column-gap: 20px;
-  margin-top: 20px;
+  margin-top: ${({ withDesc }) => (withDesc ? "20px" : "24px")};
 `;
 
 const StyledInput = styled(Input)<{
   withoutInfo: boolean;
   halfWidth?: boolean;
   isMultiInput?: boolean;
+  lowMarginTop?: boolean;
 }>`
-  margin-top: ${({ withoutInfo, isMultiInput }) =>
-    withoutInfo || isMultiInput ? "0" : "20px"};
+  margin-top: ${({ withoutInfo, isMultiInput, lowMarginTop }) =>
+    withoutInfo || isMultiInput ? "0" : lowMarginTop ? "16px" : "20px"};
   transition: none;
   width: ${({ halfWidth }) => (halfWidth ? "230px" : "100%")};
 `;

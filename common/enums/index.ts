@@ -77,4 +77,5 @@ export enum OtherColor {
 
 export enum Font {
   ROBOTO = "Roboto",
+  ROBOTO_FLEX = "Roboto Flex",
 }

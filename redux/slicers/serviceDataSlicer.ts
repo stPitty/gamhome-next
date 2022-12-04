@@ -19,7 +19,6 @@ const initialState: TServiceData = {
     isSubmitFailed: false,
     isValidationError: false,
   },
-  isError: false,
 };
 
 const serviceDataSlicer = createSlice({
@@ -43,7 +42,6 @@ const serviceDataSlicer = createSlice({
         state[serviceInputFieldsNames[i]].value = "";
         state[serviceInputFieldsNames[i]].isValidationError = false;
         state[serviceInputFieldsNames[i]].isSubmitFailed = false;
-        state.isError = false;
       }
     },
   },

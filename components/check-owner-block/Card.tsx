@@ -35,14 +35,12 @@ const Card: React.FC<Props> = ({ data }) => {
 };
 
 const Image = styled.div<{ background: string }>`
-  width: 466px;
+  width: 648px;
   height: 294px;
   transition: none;
   background: no-repeat url(${({ background }) => background});
   background-size: cover;
   position: relative;
-  right: 0;
-  margin-right: 32px;
 `;
 
 const HeaderContainer = styled.div`
@@ -134,7 +132,8 @@ const MainContentWrapper = styled.div`
   background: ${WhiteColor.WHITE};
   border-radius: 24px;
   padding: 48px;
-  column-gap: 126px;
+  padding-right: 0;
+  column-gap: 24px;
 `;
 
 export default Card;

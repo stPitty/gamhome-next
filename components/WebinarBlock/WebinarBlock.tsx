@@ -64,7 +64,7 @@ const Tag = styled.div`
 const Image = styled.div`
   height: 585px;
   width: 602px;
-  background-image: url("/images/woman-webinar.png");
+  background-image: url("/images/woman-webinar.webp");
   background-repeat: no-repeat;
   background-size: cover;
 `;

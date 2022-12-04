@@ -33,7 +33,6 @@ const initialState: TOwnerData = {
     isSubmitFailed: false,
     isValidationError: false,
   },
-  isError: false,
 };
 
 const ownerDataSlicer = createSlice({
@@ -53,12 +52,11 @@ const ownerDataSlicer = createSlice({
       state[action.payload.name as CheckOwnerInputFieldNames].isSubmitFailed =
         action.payload.value as boolean;
     },
-    clearOwnerOwnerData(state) {
+    clearOwnerData(state) {
       for (let i = 0; i < ownerInputFieldsNames.length; i++) {
         state[ownerInputFieldsNames[i]].value = "";
         state[ownerInputFieldsNames[i]].isValidationError = false;
         state[ownerInputFieldsNames[i]].isSubmitFailed = false;
-        state.isError = false;
       }
     },
   },
@@ -68,7 +66,7 @@ export const {
   setOwnerValue,
   setOwnerValidationError,
   setOwnerSubmitError,
-  clearOwnerOwnerData,
+  clearOwnerData,
 } = ownerDataSlicer.actions;
 
 export default ownerDataSlicer.reducer;
