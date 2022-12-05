@@ -6,14 +6,21 @@ import { Hook } from "../../common/routes";
 
 const DiscountsBlock = () => {
   return (
-    <Container id={Hook.PARTNERS}>
-      <HeaderText>Скидки от партнёров</HeaderText>
-      {cardsData.map((el) => (
-        <Card data={el} key={el.id} />
-      ))}
-    </Container>
+    <Wrapper id={Hook.PARTNERS}>
+      <Container>
+        <HeaderText>Скидки от партнёров</HeaderText>
+        {cardsData.map((el) => (
+          <Card data={el} key={el.id} />
+        ))}
+      </Container>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  padding-top: 112px;
+`;
 
 const HeaderText = styled.p`
   font-weight: 700;

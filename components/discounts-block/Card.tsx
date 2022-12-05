@@ -1,5 +1,5 @@
 import { CardData } from "./types";
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -9,14 +9,24 @@ import {
 } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
+import CopySVG from "../../public/assets/svg/CopySVG";
+import Notification from "../UI/notification/Notification";
 
 type Props = {
   data: CardData;
 };
 
 const Card: React.FC<Props> = ({ data }) => {
+  const [notificationQty, setNotificationQty] = useState<number>(0);
+
+  const message = "Промокод скопирован";
+
   const handlePromoCodeClick = () => {
     navigator.clipboard.writeText("Gamhome");
+    setNotificationQty((prevState) => prevState + 1);
+    setTimeout(() => {
+      setNotificationQty((prevState) => prevState - 1);
+    }, 5000);
   };
 
   return (
@@ -37,13 +47,24 @@ const Card: React.FC<Props> = ({ data }) => {
           >
             {data.primaryButton.text}
           </Button>
-          <PromoText onClick={handlePromoCodeClick}>Промокод Gamhome</PromoText>
+          <PromoCodeContainer onClick={handlePromoCodeClick}>
+            <CopySVG />
+            <PromoText>Промокод Gamhome</PromoText>
+          </PromoCodeContainer>
         </ButtonsContainer>
       </ContentWrapper>
       <Image image={data.image} />
+      <Notification message={message} quantity={notificationQty} />
     </Container>
   );
 };
+
+const PromoCodeContainer = styled.div`
+  display: flex;
+  margin-left: 24px;
+  column-gap: 4px;
+  cursor: pointer;
+`;
 
 const Image = styled.div<{ image: string }>`
   background-image: url(${({ image }) => image});
@@ -55,18 +76,18 @@ const Image = styled.div<{ image: string }>`
 `;
 
 const PromoText = styled.p`
-  cursor: pointer;
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
-  margin-left: 24px;
+  margin: 0;
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   margin-top: 54px;
+  align-items: center;
 `;
 
 const Tag = styled.div`

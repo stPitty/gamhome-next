@@ -4,6 +4,7 @@ import PhotoBlock from "./photo-block/PhotoBlock";
 import InfoBlock from "./info-block";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
+import { Hook } from "../../common/routes";
 
 const FlatBlock: React.FC = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);

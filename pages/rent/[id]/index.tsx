@@ -79,7 +79,7 @@ const InfoWrapperColumn = styled.div`
 `;
 
 const Container = styled.div`
-  padding-top: 16px;
+  padding-top: 106px;
   display: flex;
   flex-direction: column;
   align-items: center;

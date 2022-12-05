@@ -7,6 +7,7 @@ type Props = {
 const ChevronDoneSVG: React.FC<Props> = ({ className }) => {
   return (
     <svg
+      className={className}
       width="15"
       height="12"
       viewBox="0 0 15 12"

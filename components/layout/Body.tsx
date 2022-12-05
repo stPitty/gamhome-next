@@ -19,10 +19,7 @@ const Body: React.FC<Props> = ({ isHeader = false }) => {
 
   return (
     <Container>
-      <LogoSVG
-      // isHeader={isHeader}
-      // onClick={handleRedirClick(router, Route.HOME)}
-      />
+      <LogoSVG />
       <MenuWrapper>
         <MenuItems />
         {isHeader && (
@@ -81,8 +78,8 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 1440px;
-  padding: 32px 64px;
+  width: 1360px;
+  padding: 16px 24px;
   @media ${(props) => props.theme.screenSize.lg} {
     width: 1024px;
     padding-left: 36px;
@@ -110,9 +107,5 @@ const TelephoneNumberText = styled.a`
     color: ${BlackColor.BLACK_80};
   }
 `;
-
-// const StyledLogo = styled(LogoSVG)<{ isHeader: boolean }>`
-//   cursor: pointer;
-// `;
 
 export default memo(Body);

@@ -130,7 +130,7 @@ const Container = styled.div`
   width: 100%;
   justify-content: flex-start;
   align-items: flex-start;
-  margin: 48px 0 112px;
+  margin: 48px 0 0 0;
 `;
 
 export default MapBlock;

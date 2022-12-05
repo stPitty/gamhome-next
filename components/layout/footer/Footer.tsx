@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Body from "../Body";
-import { BlackColor, Font } from "../../../common/enums";
+import { BlackColor, Font, OtherColor } from "../../../common/enums";
 
 const Footer: React.FC = () => {
   return (
@@ -8,8 +8,9 @@ const Footer: React.FC = () => {
       <Body />
       <TextContainer>
         <Text>
-          Использование сервиса означает согласие с Пользовательским соглашением
-          и Политикой конфиденциальности
+          Использование сервиса означает согласие с{" "}
+          <TextLink>Пользовательским соглашением</TextLink> и{" "}
+          <TextLink>Политикой конфиденциальности</TextLink>
         </Text>
         <br />
         <Text>Иллюстрации взяты с icons8.com</Text>
@@ -17,6 +18,15 @@ const Footer: React.FC = () => {
     </Container>
   );
 };
+
+const TextLink = styled.a`
+  color: ${OtherColor.LINK};
+  cursor: pointer;
+  &:hover {
+    color: ${OtherColor.LINK_HOVER};
+    transition: 0.1s linear all;
+  }
+`;
 
 const Text = styled.p`
   font-family: ${Font.ROBOTO};

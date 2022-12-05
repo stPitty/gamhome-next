@@ -1,4 +1,4 @@
-import React, { memo, ReactNode } from "react";
+import React, { memo, ReactNode, useEffect, useState } from "react";
 import Header from "./header";
 import Footer from "./footer";
 import styled from "styled-components";
@@ -6,12 +6,21 @@ import Modal from "../UI/modal/Modal";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState, TModalState } from "../../redux/slicers/types";
 import ErrorPage from "../error-page/ErrorPage";
+import CookiesPopup from "./cookies-popup/CookiesPopup";
 
 type Props = {
   children: ReactNode;
 };
 
 const PageLayout: React.FC<Props> = ({ children }) => {
+  const [acceptCookies, setAcceptCookies] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (localStorage.getItem("acceptCookies")) {
+      setAcceptCookies(true);
+    }
+  }, []);
+
   const { isOpened } = useAppSelector<TModalState>((state) => state.modalState);
 
   return (
@@ -22,6 +31,10 @@ const PageLayout: React.FC<Props> = ({ children }) => {
         {children}
         <Footer />
       </Container>
+      <CookiesPopup
+        acceptCookies={acceptCookies}
+        setAcceptCookies={setAcceptCookies}
+      />
     </>
   );
 };

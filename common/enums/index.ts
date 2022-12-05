@@ -75,6 +75,7 @@ export enum OtherColor {
   DARK_GREEN = "#00711B",
   YELLOW = "#FFCC70",
   GREY = "#8192A4",
+  LIGHT_GREEN = "#ddf5e3",
 }
 
 export enum Font {

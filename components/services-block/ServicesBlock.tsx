@@ -61,6 +61,7 @@ const HeaderText = styled.p`
 `;
 
 const Container = styled.div`
+  padding-top: 112px;
   display: flex;
   flex-direction: column;
   align-content: center;

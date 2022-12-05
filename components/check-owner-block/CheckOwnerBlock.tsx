@@ -18,8 +18,9 @@ const CheckOwnerBlock = () => {
 
 const Container = styled.div`
   display: flex;
-  margin: 112px 0 -112px;
+  margin-bottom: -112px;
   z-index: 1;
+  padding-top: 112px;
 `;
 
 export default CheckOwnerBlock;

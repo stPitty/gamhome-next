@@ -24,7 +24,8 @@ const HeaderText = styled.p`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 112px 64px;
+  margin: 0 64px;
+  padding-top: 112px;
 `;
 
 export default MainServices;
