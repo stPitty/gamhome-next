@@ -1,4 +1,4 @@
-import { CardData } from "./types";
+import { CardAbout, CardData } from "./types";
 import React, { useState } from "react";
 import styled from "styled-components";
 import {
@@ -53,7 +53,7 @@ const Card: React.FC<Props> = ({ data }) => {
           </PromoCodeContainer>
         </ButtonsContainer>
       </ContentWrapper>
-      <Image image={data.image} />
+      <Image cardType={data.cardType} image={data.image} />
       <Notification message={message} quantity={notificationQty} />
     </Container>
   );
@@ -66,13 +66,19 @@ const PromoCodeContainer = styled.div`
   cursor: pointer;
 `;
 
-const Image = styled.div<{ image: string }>`
+const Image = styled.div<{ image: string; cardType: CardAbout }>`
   background-image: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-size: cover;
   width: 656px;
   height: 512px;
   border-radius: 24px;
+  background-position: center;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 460px;
+    height: ${({ cardType }) => (cardType === "cleaning" ? "512px" : "608px")};
+    background-position: ${({ cardType }) => cardType === "cleaning" && "left"};
+  }
 `;
 
 const PromoText = styled.p`
@@ -136,6 +142,9 @@ const ContentWrapper = styled.div`
   flex-direction: column;
   margin: 40px;
   width: 576px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 412px;
+  }
 `;
 
 const Container = styled.div`

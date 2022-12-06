@@ -47,7 +47,7 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
     isLoading ? LightBlueColor.LB_100_64 : LightBlueColor.LB_100};
   border-radius: 12px;
   overflow: hidden;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
     height: 393px;
   }

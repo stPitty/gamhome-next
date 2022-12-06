@@ -36,7 +36,6 @@ const Body = styled.div<{ orientation: "right" | "left" }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 16px 10px;
   min-width: 56px;
   height: 56px;
   background: ${LightBlueColor.LB_300};
@@ -62,6 +61,10 @@ const Body = styled.div<{ orientation: "right" | "left" }>`
   }
   &:active {
     background: ${LightBlueColor.LB_200};
+  }
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    min-width: 48px;
+    height: 48px;
   }
 `;
 

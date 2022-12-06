@@ -155,6 +155,11 @@ const CostText = styled.p<{ cardType: CardType }>`
   color: ${({ cardType }) =>
     cardType === CardType.UNFILLED ? BrandColor.BRAND : WhiteColor.WHITE};
   margin: 0;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 600;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -177,6 +182,9 @@ const HeaderText = styled.p<{ cardType: CardType }>`
 
 const TagContainer = styled.div`
   height: 40px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    height: 64px;
+  }
 `;
 
 const Tag = styled.div<{ cardType: CardType }>`
@@ -197,6 +205,9 @@ const Tag = styled.div<{ cardType: CardType }>`
       : BlackColor.BLACK_SECONDARY};
   background-color: ${({ cardType }) =>
     cardType === CardType.FILLED && LinerColor.LINER_YELLOW_1};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    border-radius: 16px;
+  }
 `;
 
 const CardContainer = styled.div<{ cardType: CardType }>`
@@ -208,11 +219,17 @@ const CardContainer = styled.div<{ cardType: CardType }>`
   width: 416px;
   height: 916px;
   background: ${WhiteColor.WHITE};
+  border-top: 2px solid ${BrandColor.BRAND};
+  border-bottom: 2px solid ${BrandColor.BRAND};
   border: ${({ cardType }) =>
     cardType !== CardType.FILLED && `2px solid ${LightBlueColor.LB_100}`};
   border-radius: 24px;
   background-color: ${({ cardType }) =>
     cardType === CardType.FILLED && BrandColor.BRAND};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 296px;
+    height: 1172px;
+  }
 `;
 
 const Container = styled.div`

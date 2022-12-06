@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import Body from "../Body";
 import { BlackColor, Font, OtherColor } from "../../../common/enums";
+import MenuItems from "../header/MenuItems";
 
 const Footer: React.FC = () => {
   return (
     <Container>
       <Body />
+      <MenuItems isUnderFooter={true} />
       <TextContainer>
         <Text>
-          Использование сервиса означает согласие с{" "}
-          <TextLink>Пользовательским соглашением</TextLink> и{" "}
-          <TextLink>Политикой конфиденциальности</TextLink>
+          Использование сервиса означает согласие
+          <AdaptiveBR /> с <TextLink>
+            Пользовательским соглашением
+          </TextLink> и <TextLink>Политикой конфиденциальности</TextLink>
         </Text>
         <br />
         <Text>Иллюстрации взяты с icons8.com</Text>
@@ -18,6 +21,13 @@ const Footer: React.FC = () => {
     </Container>
   );
 };
+
+const AdaptiveBR = styled.br`
+  display: none;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: block;
+  }
+`;
 
 const TextLink = styled.a`
   color: ${OtherColor.LINK};
@@ -42,8 +52,13 @@ const TextContainer = styled.div`
   align-items: center;
   justify-content: center;
   width: 1440px;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    flex-direction: row;
     width: 1024px;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-left: 36px;
+    padding-right: 36px;
   }
 `;
 
@@ -53,6 +68,12 @@ const Container = styled.div`
   flex-direction: column;
   row-gap: 21px;
   padding-bottom: 64px;
+  padding-top: 112px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    align-items: flex-start;
+    padding-bottom: 56px;
+    row-gap: 24px;
+  }
 `;
 
 export default Footer;

@@ -46,6 +46,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  align-content: flex-start;
   flex-wrap: wrap;
   padding: 24px 48px 24px 24px;
   width: 864px;
@@ -55,6 +56,10 @@ const Container = styled.div`
   margin-top: 24px;
   row-gap: 12px;
   column-gap: 112.5px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+    height: 264px;
+  }
 `;
 
 export default SubInfoBlock;

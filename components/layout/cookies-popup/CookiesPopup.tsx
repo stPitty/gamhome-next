@@ -59,6 +59,7 @@ const Wrapper = styled.div<{ isAccept: boolean }>`
   justify-content: center;
   height: 72px;
   background-color: ${LightBlueColor.LB_100};
+  z-index: 3;
 `;
 
 export default CookiesPopup;

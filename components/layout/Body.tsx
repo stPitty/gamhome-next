@@ -48,7 +48,7 @@ const Body: React.FC<Props> = ({ isHeader = false }) => {
 const MenuWrapper = styled.div`
   display: flex;
   column-gap: 185px;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 28px;
   }
 `;
@@ -69,7 +69,7 @@ const BurgerMenuContainer = styled.div`
   column-gap: 7px;
   align-items: center;
   cursor: pointer;
-  @media screen and ${(props) => props.theme.screenSize.xl} {
+  @media screen and (min-width: 1440px) {
     display: none;
   }
 `;
@@ -80,7 +80,7 @@ const Container = styled.div`
   justify-content: space-between;
   width: 1360px;
   padding: 16px 24px;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 1024px;
     padding-left: 36px;
     padding-right: 36px;
@@ -91,7 +91,7 @@ const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 32px;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 24px;
   }
 `;

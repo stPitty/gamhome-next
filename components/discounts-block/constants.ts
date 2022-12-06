@@ -29,12 +29,13 @@ const cardsData: CardData[] = [
       text: "Заказать грузоперевозку",
     },
     image: "/images/man-gets-box.webp",
+    cardType: "delivery",
   },
   {
     id: 2,
     header: "Уборка в вашей квартире",
     subHeader: "со скидкой 10%",
-    desc: "Мы тщательно отбираем и обучаем исполнителей в нашeм сервисе заказа уборки",
+    desc: "Домовёнок тщательно отбирает и обучает исполнителей и отправляет их к вам в нужное время",
     tags: [
       {
         id: 1,
@@ -62,6 +63,7 @@ const cardsData: CardData[] = [
       text: "Заказать уборку",
     },
     image: "/images/cleaning.webp",
+    cardType: "cleaning",
   },
 ];
 

@@ -46,7 +46,7 @@ const Container = styled.div`
   justify-items: center;
   align-items: center;
   justify-content: center;
-  @media screen and ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     max-width: 1024px;
   }
 `;

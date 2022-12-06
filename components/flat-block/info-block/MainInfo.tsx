@@ -58,11 +58,15 @@ const FieldNameText = styled.p`
 const MainInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  //justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  max-height: 152px;
+  height: 152px;
   row-gap: 8px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+    height: 200px;
+  }
 `;
 
 export default MainInfo;

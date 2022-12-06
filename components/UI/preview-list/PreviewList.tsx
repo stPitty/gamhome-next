@@ -51,6 +51,8 @@ const ImagesWrapper = styled.div<{
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  column-gap: 16px;
+  margin-top: 16px;
   transform: translateX(
     ${({ position, quantity, isFullSized }) =>
       position > 4 &&
@@ -60,6 +62,21 @@ const ImagesWrapper = styled.div<{
         ((isFullSized ? 98 : 160) + 16)
       }px`}
   );
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    transform: translateX(
+      ${({ position, quantity, isFullSized }) =>
+        position > 4 &&
+        `-${
+          Math.floor(position / quantity) *
+          quantity *
+          ((isFullSized ? 98 : 115) + 12)
+        }px`}
+    );
+    column-gap: 12px;
+    margin-top: 12px;
+    width: 624px;
+    overflow: hidden;
+  }
 `;
 
 const Image = styled.div<{
@@ -72,10 +89,13 @@ const Image = styled.div<{
   min-width: ${({ isFullSized }) => (isFullSized ? "98px" : "160px")};
   height: ${({ isFullSized }) => (isFullSized ? "80px" : "130px")};
   border-radius: 12px;
-  margin: 16px 16px 0 0;
   cursor: pointer;
   transition: 0s;
   border: ${({ outline }) => outline && `2px solid ${BrandColor.BRAND}`};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    min-width: ${({ isFullSized }) => (isFullSized ? "98px" : "115px")};
+    height: ${({ isFullSized }) => (isFullSized ? "80px" : "94px")};
+  }
 `;
 
 export default PreviewList;

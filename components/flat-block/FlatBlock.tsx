@@ -29,6 +29,9 @@ const LoadingBlock = styled.div`
   height: 40px;
   background: ${LightBlueColor.LB_100};
   border-radius: 16px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+  }
 `;
 
 const HeaderText = styled.p`

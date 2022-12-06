@@ -26,6 +26,9 @@ const Container = styled.div`
   background: ${LightBlueColor.LB_100};
   border-radius: 48px;
   padding: 64px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    padding: 40px 36px;
+  }
 `;
 
 export default memo(TabBody);

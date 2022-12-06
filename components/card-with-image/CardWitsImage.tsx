@@ -16,8 +16,9 @@ const CardWitsImage = () => {
     <Container>
       <TextWrapper>
         <HeaderText>
-          Съезжаете с квартиры? <MarkedText>Заплатим 10%</MarkedText>, за
-          рекомендацию нас собственнику
+          Съезжаете с квартиры? <MarkedText>Заплатим 10%</MarkedText>,{" "}
+          <AdaptiveBR />
+          за рекомендацию нас собственнику
         </HeaderText>
         <Text>
           Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
@@ -35,12 +36,23 @@ const CardWitsImage = () => {
   );
 };
 
+const AdaptiveBR = styled.br`
+  display: none;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: block;
+  }
+`;
+
 const Image = styled.div`
   width: 528px;
   height: 503px;
-  background: no-repeat url("/images/unboxing.webp");
+  background: no-repeat url("/images/unboxing.webp") center;
   background-size: cover;
   border-radius: 40px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 378px;
+    background-position: -107px;
+  }
 `;
 
 const Text = styled.div`
@@ -49,6 +61,9 @@ const Text = styled.div`
   line-height: 24px;
   color: ${WhiteColor.WHITE};
   margin-bottom: 32px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 430px;
+  }
 `;
 
 const MarkedText = styled.span`
@@ -67,6 +82,9 @@ const TextWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 672px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 542px;
+  }
 `;
 
 const Container = styled.div`
@@ -81,6 +99,11 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-position: left 53px bottom 344px;
   column-gap: 112px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    column-gap: 32px;
+    padding: 182px 36px 64px;
+    background-position: left 28px bottom 385px;
+  }
 `;
 
 export default CardWitsImage;

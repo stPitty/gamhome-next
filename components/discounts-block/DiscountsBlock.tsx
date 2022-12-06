@@ -39,6 +39,10 @@ const Container = styled.div`
   padding: 64px;
   row-gap: 40px;
   margin-bottom: -96px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 `;
 
 export default DiscountsBlock;

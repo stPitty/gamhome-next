@@ -64,7 +64,7 @@ const InfoWrapperRow = styled.div`
   padding: 0 64px;
   height: 100%;
   column-gap: 32px;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;
     padding-right: 36px;
   }
@@ -73,8 +73,9 @@ const InfoWrapperRow = styled.div`
 const InfoWrapperColumn = styled.div`
   display: flex;
   flex-direction: column;
-  @media ${(props) => props.theme.screenSize.lg} {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-top: 16px;
+    width: 624px;
   }
 `;
 
@@ -85,7 +86,6 @@ const Container = styled.div`
   align-items: center;
   align-content: center;
   width: 100%;
-  margin-bottom: 82px;
 `;
 
 RentPage.PageLayout = PageLayout;

@@ -1,16 +1,16 @@
 import styled from "styled-components";
 import { menuItems } from "./constants";
-import React from "react";
-import { useRouter } from "next/router";
+import React, { memo } from "react";
 import { BlackColor } from "../../../common/enums";
 import Link from "next/link";
-import { theme } from "../../../common/theme/theme";
 
-const MenuItems: React.FC = () => {
-  const router = useRouter();
+type Props = {
+  isUnderFooter?: boolean;
+};
 
+const MenuItems: React.FC<Props> = ({ isUnderFooter }) => {
   return (
-    <MenuWrapper>
+    <MenuWrapper isUnderFooter={!!isUnderFooter}>
       {menuItems.map((item) => (
         <Link key={item.id} href={"#" + item.link} scroll={false}>
           <Text>{item.name}</Text>
@@ -31,14 +31,15 @@ const Text = styled.p`
   }
 `;
 
-const MenuWrapper = styled.div`
+const MenuWrapper = styled.div<{ isUnderFooter: boolean }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   column-gap: 16px;
-  @media ${(props) => props.theme.screenSize.lg} {
-    display: none;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: ${({ isUnderFooter }) => !isUnderFooter && "none"};
+    padding-left: 36px;
   }
 `;
 
-export default MenuItems;
+export default memo(MenuItems);

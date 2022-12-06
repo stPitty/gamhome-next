@@ -3,6 +3,8 @@ type ButtonContent = {
   text?: string;
 };
 
+export type CardAbout = "delivery" | "cleaning";
+
 export type CardData = {
   id: number;
   header: string;
@@ -14,4 +16,5 @@ export type CardData = {
   }[];
   primaryButton: ButtonContent;
   image: string;
+  cardType: CardAbout;
 };

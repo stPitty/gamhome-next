@@ -132,6 +132,9 @@ const Container = styled.div`
   justify-content: flex-start;
   width: 416px;
   gap: 12px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 296px;
+  }
 `;
 
 export default PriceBlock;

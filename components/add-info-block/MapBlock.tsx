@@ -4,13 +4,17 @@ import CircleSVG from "../../public/assets/svg/CircleSVG";
 import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { getTimeToMetro } from "../../common/helpers";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import LoadingMap from "../UI/loading-ui/LoadingMap";
+import { handleResizeMap } from "./helpers";
 
 const MapBlock = () => {
+  const [mapWidth, setMapWidth] = useState<number | undefined>();
+  const [mapHeight, setMapHeight] = useState<number | undefined>();
+
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -18,6 +22,20 @@ const MapBlock = () => {
   const modules = ["control.ZoomControl", "Placemark"];
 
   const timeToMetro = useMemo(getTimeToMetro(flatData?.kmMetro), [flatData]);
+
+  const handleChangeMapSize = () => {
+    handleResizeMap(window.innerWidth, setMapWidth, setMapHeight);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      handleResizeMap(window.innerWidth, setMapWidth, setMapHeight);
+    }
+
+    window.addEventListener("resize", handleChangeMapSize);
+
+    return () => window.removeEventListener("resize", handleChangeMapSize);
+  }, []);
 
   return (
     <Container>
@@ -43,8 +61,8 @@ const MapBlock = () => {
                 zoom: 12,
                 controls: ["zoomControl"],
               }}
-              width={864}
-              height={448}
+              width={mapWidth}
+              height={mapHeight}
               modules={modules}
             >
               <GeolocationControl options={{ float: "left" }} />

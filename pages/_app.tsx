@@ -12,7 +12,6 @@ import { AppWithPageLayout } from "../common/types";
 import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { ThemeProvider } from "styled-components";
-import { theme } from "../common/theme/theme";
 import ErrorBoundary from "../components/error-boundary/ErrorBoundary";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
@@ -20,15 +19,13 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
     <ErrorBoundary>
       <Global />
       <YMaps>
-        <ThemeProvider theme={theme}>
-          {Component.PageLayout ? (
-            <Component.PageLayout>
-              <Component {...pageProps} />
-            </Component.PageLayout>
-          ) : (
+        {Component.PageLayout ? (
+          <Component.PageLayout>
             <Component {...pageProps} />
-          )}
-        </ThemeProvider>
+          </Component.PageLayout>
+        ) : (
+          <Component {...pageProps} />
+        )}
       </YMaps>
     </ErrorBoundary>
   );

@@ -63,6 +63,9 @@ const Container = styled.div`
   justify-content: flex-start;
   margin: 48px 0;
   row-gap: 16px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+  }
 `;
 
 export default Description;

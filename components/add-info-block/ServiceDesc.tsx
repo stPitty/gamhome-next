@@ -46,6 +46,10 @@ const Image = styled.div<{
   height: ${({ height }) => height + "px"};
   background: url(${({ image }) => image}) center no-repeat;
   background-size: cover;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 214px;
+    background-size: 214px;
+  }
 `;
 
 const DescText = styled.p`
@@ -55,6 +59,9 @@ const DescText = styled.p`
   color: ${BlackColor.BLACK_80};
   width: 448px;
   margin: 0 0 24px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 376px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -70,6 +77,9 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 376px;
+  }
 `;
 
 const Container = styled.div`
@@ -78,6 +88,10 @@ const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   margin: 48px 0;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+    column-gap: 32px;
+  }
 `;
 
 export default memo(ServiceDesc);

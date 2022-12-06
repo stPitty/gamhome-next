@@ -50,16 +50,15 @@ const UsefulDocsCard: React.FC<Props> = ({
         <HeaderText cardType={cardType}>{headerText}</HeaderText>
         <DescText cardType={cardType}>{descText}</DescText>
         <ButtonsContainer>
-          <Button
-            width={207}
+          <StyledBtnPrim
+            cardType={cardType}
             buttonSize={ButtonSize.MEDIUM}
             buttonType={buyBtnType}
             onClick={handleOpenModal(primaryBtnAction)}
           >
             {buttonText}
-          </Button>
+          </StyledBtnPrim>
           <Button
-            width={123}
             buttonType={moreBtnType}
             buttonSize={ButtonSize.MEDIUM}
             onClick={handleOpenModal(secondaryBtnAction)}
@@ -75,12 +74,19 @@ const UsefulDocsCard: React.FC<Props> = ({
   );
 };
 
+const StyledBtnPrim = styled(Button)<{ cardType: CardType }>`
+  min-width: ${({ cardType }) =>
+    cardType === CardType.PRIMARY ? "160px" : "203px"};
+  height: 44px;
+`;
+
 const IconWrapper = styled.div<{ cardType: CardType }>`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 20px;
   border-radius: 100px;
+  width: 64px;
+  height: 64px;
   background-color: ${({ cardType }) =>
     cardType === CardType.PRIMARY ? WhiteColor.WHITE : LightBlueColor.LB_100};
 `;
@@ -119,6 +125,10 @@ const Body = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 300px;
+    height: 252px;
+  }
 `;
 
 const Container = styled.div<{ cardType: CardType }>`
@@ -135,7 +145,11 @@ const Container = styled.div<{ cardType: CardType }>`
     css`
       box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12),
         0px 20px 20px rgba(0, 0, 0, 0.08);
-    `}
+    `};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 460px;
+    height: 316px;
+  }
 `;
 
 export default memo(UsefulDocsCard);

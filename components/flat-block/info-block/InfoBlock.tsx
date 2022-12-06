@@ -39,6 +39,9 @@ const Container = styled.div`
   align-items: flex-start;
   width: 100%;
   padding-top: 56px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
+  }
 `;
 
 export default InfoBlock;

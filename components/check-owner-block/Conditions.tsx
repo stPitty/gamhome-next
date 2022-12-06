@@ -59,6 +59,9 @@ const ButtonGroupContainer = styled.div`
 `;
 
 const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 24px;
   height: 24px;
 `;
@@ -70,6 +73,10 @@ const ConditionText = styled.p`
   line-height: 24px;
   margin: 0;
   color: ${BlackColor.BLACK_64};
+  width: 274px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 265px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -78,6 +85,9 @@ const TextContainer = styled.div`
   justify-content: flex-start;
   width: 303px;
   column-gap: 6px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 295px;
+  }
 `;
 
 const ConditionsContainer = styled.div`
@@ -90,6 +100,10 @@ const ConditionsContainer = styled.div`
   row-gap: 16px;
   column-gap: 8px;
   height: 112px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    height: 152px;
+    column-gap: 20px;
+  }
 `;
 
 const Header = styled.p`
@@ -108,6 +122,9 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   row-gap: 24px;
   width: 909px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 610px;
+  }
 `;
 
 const Container = styled.div`
@@ -116,6 +133,9 @@ const Container = styled.div`
   justify-items: center;
   column-gap: 32px;
   margin-top: 32px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    column-gap: 24px;
+  }
 `;
 
 export default Conditions;

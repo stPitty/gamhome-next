@@ -38,9 +38,14 @@ const Image = styled.div<{ background: string }>`
   width: 648px;
   height: 294px;
   transition: none;
-  background: no-repeat url(${({ background }) => background});
+  background: no-repeat url(${({ background }) => background}) center;
   background-size: cover;
   position: relative;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 436px;
+    height: 241px;
+    background-size: 436px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -49,6 +54,9 @@ const HeaderContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 592px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 444px;
+  }
 `;
 
 const PointTextContainer = styled.div`
@@ -100,6 +108,9 @@ const PointsContainer = styled.div`
   margin-top: 32px;
   width: 485px;
   row-gap: 24px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 444px;
+  }
 `;
 
 const DescText = styled.p`
