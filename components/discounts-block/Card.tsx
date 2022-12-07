@@ -1,5 +1,5 @@
 import { CardAbout, CardData } from "./types";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -11,6 +11,9 @@ import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
 import CopySVG from "../../public/assets/svg/CopySVG";
 import Notification from "../UI/notification/Notification";
+import { useAppSelector } from "../../redux/hooks";
+import { TWindowSize } from "../../redux/slicers/types";
+import { WindowSize } from "../../redux/slicers/enums";
 
 type Props = {
   data: CardData;
@@ -19,7 +22,21 @@ type Props = {
 const Card: React.FC<Props> = ({ data }) => {
   const [notificationQty, setNotificationQty] = useState<number>(0);
 
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
   const message = "Промокод скопирован";
+
+  const sortedTagsForWindowSize = useMemo(() => {
+    if (windowSize === WindowSize.XL) {
+      return data.tags.sort((a, b) => a.xlPriority - b.xlPriority);
+    }
+    if (windowSize === WindowSize.LG) {
+      return data.tags.sort((a, b) => a.lgPriority - b.lgPriority);
+    }
+    return data.tags;
+  }, [windowSize]);
 
   const handlePromoCodeClick = () => {
     navigator.clipboard.writeText("Gamhome");
@@ -36,20 +53,17 @@ const Card: React.FC<Props> = ({ data }) => {
         <SubHeader>{data.subHeader}</SubHeader>
         <DescText>{data.desc}</DescText>
         <TagsWrapper>
-          {data.tags.map((el) => (
+          {sortedTagsForWindowSize.map((el) => (
             <Tag key={el.id}>{el.text}</Tag>
           ))}
         </TagsWrapper>
         <ButtonsContainer>
-          <Button
-            width={data.primaryButton.width}
-            buttonSize={ButtonSize.LARGE}
-          >
-            {data.primaryButton.text}
-          </Button>
+          <StyledButton cardType={data.cardType} buttonSize={ButtonSize.LARGE}>
+            {data.primaryButtonText}
+          </StyledButton>
           <PromoCodeContainer onClick={handlePromoCodeClick}>
             <CopySVG />
-            <PromoText>Промокод Gamhome</PromoText>
+            <PromoText>Промокод GAMHOME</PromoText>
           </PromoCodeContainer>
         </ButtonsContainer>
       </ContentWrapper>
@@ -58,6 +72,14 @@ const Card: React.FC<Props> = ({ data }) => {
     </Container>
   );
 };
+
+const StyledButton = styled(Button)<{ cardType: CardAbout }>`
+  width: ${({ cardType }) => (cardType === "cleaning" ? "189px" : "257px")};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    min-width: ${({ cardType }) => cardType === "delivery" && "237px"};
+    padding: 15px 22px;
+  }
+`;
 
 const PromoCodeContainer = styled.div`
   display: flex;
@@ -108,6 +130,9 @@ const Tag = styled.div`
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    padding: 7px 16px;
+  }
 `;
 
 const TagsWrapper = styled.div`
@@ -126,7 +151,7 @@ const DescText = styled.p`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   margin: 0;
@@ -140,10 +165,10 @@ const SubHeader = styled(HeaderText)`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 40px;
+  margin: 40px 0 40px 40px;
   width: 576px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 412px;
+    width: 415px;
   }
 `;
 
@@ -152,6 +177,10 @@ const Container = styled.div`
   width: 100%;
   background: ${WhiteColor.WHITE};
   border-radius: 24px;
+  column-gap: 40px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    column-gap: 37px;
+  }
 `;
 
 export default Card;

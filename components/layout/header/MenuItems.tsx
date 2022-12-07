@@ -6,11 +6,12 @@ import Link from "next/link";
 
 type Props = {
   isUnderFooter?: boolean;
+  className?: string;
 };
 
-const MenuItems: React.FC<Props> = ({ isUnderFooter }) => {
+const MenuItems: React.FC<Props> = ({ isUnderFooter, className }) => {
   return (
-    <MenuWrapper isUnderFooter={!!isUnderFooter}>
+    <MenuWrapper className={className} isUnderFooter={!!isUnderFooter}>
       {menuItems.map((item) => (
         <Link key={item.id} href={"#" + item.link} scroll={false}>
           <Text>{item.name}</Text>
@@ -37,8 +38,7 @@ const MenuWrapper = styled.div<{ isUnderFooter: boolean }>`
   justify-content: space-between;
   column-gap: 16px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    display: ${({ isUnderFooter }) => !isUnderFooter && "none"};
-    padding-left: 36px;
+    display: none;
   }
 `;
 

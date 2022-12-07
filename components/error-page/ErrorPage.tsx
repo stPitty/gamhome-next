@@ -78,7 +78,7 @@ const SecondaryDescContainer = styled.div`
 
 const HeaderText = styled.p`
   font-family: Inter, serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   text-align: center;

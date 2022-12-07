@@ -153,7 +153,7 @@ const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
 `;
 
 const Header = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 32px;
   line-height: 40px;
   color: ${BlackColor.BLACK_SECONDARY};

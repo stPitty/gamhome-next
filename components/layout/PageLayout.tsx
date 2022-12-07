@@ -47,7 +47,7 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    max-width: 1024px;
+    min-width: 1024px;
   }
 `;
 

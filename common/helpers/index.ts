@@ -2,8 +2,9 @@ import { Route } from "../routes";
 import { NextRouter } from "next/router";
 import { decrement, increment } from "../../redux/slicers/photoPositionSlicer";
 import { AppDispatch } from "../../redux/types";
-import { FlatData, Parameter } from "../../redux/slicers/types";
+import { FlatData, Parameter, TFlatState } from "../../redux/slicers/types";
 import { regexpList } from "./constants";
+import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -99,6 +100,16 @@ const sortMainFlatParams = (arr: FlatData["parameters"] | undefined) => () => {
   return [];
 };
 
+const handleGetFlatData = (
+  router: NextRouter,
+  flatData: TFlatState["flatData"] | null,
+  dispatch: AppDispatch
+) => {
+  if (router.query.id && flatData === null) {
+    dispatch(fetchFlatData(router.query.id as string));
+  }
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -106,4 +117,5 @@ export {
   handlePhoneFormatter,
   getTimeToMetro,
   sortMainFlatParams,
+  handleGetFlatData,
 };

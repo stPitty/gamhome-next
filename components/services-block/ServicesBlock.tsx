@@ -53,7 +53,7 @@ const HeaderTextContainer = styled.div`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 40px;
   line-height: 48px;
   margin: 0 0 40px;

@@ -3,7 +3,7 @@ import { BlackColor, Font } from "../../common/enums";
 import CircleSVG from "../../public/assets/svg/CircleSVG";
 import { GeolocationControl, Map, Placemark } from "@pbe/react-yandex-maps";
 import { useAppSelector } from "../../redux/hooks";
-import { TFlatState } from "../../redux/slicers/types";
+import { TFlatState, TWindowSize } from "../../redux/slicers/types";
 import { useEffect, useMemo, useState } from "react";
 import { getTimeToMetro } from "../../common/helpers";
 import Button from "../UI/button/Button";
@@ -19,23 +19,19 @@ const MapBlock = () => {
 
   const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
+  useEffect(() => {
+    if (windowSize !== null) {
+      handleResizeMap(windowSize, setMapWidth, setMapHeight);
+    }
+  }, [windowSize]);
+
   const modules = ["control.ZoomControl", "Placemark"];
 
   const timeToMetro = useMemo(getTimeToMetro(flatData?.kmMetro), [flatData]);
-
-  const handleChangeMapSize = () => {
-    handleResizeMap(window.innerWidth, setMapWidth, setMapHeight);
-  };
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      handleResizeMap(window.innerWidth, setMapWidth, setMapHeight);
-    }
-
-    window.addEventListener("resize", handleChangeMapSize);
-
-    return () => window.removeEventListener("resize", handleChangeMapSize);
-  }, []);
 
   return (
     <Container>
@@ -135,7 +131,7 @@ const AddressText = styled.p`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 24px;
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};

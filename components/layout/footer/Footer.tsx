@@ -7,7 +7,7 @@ const Footer: React.FC = () => {
   return (
     <Container>
       <Body />
-      <MenuItems isUnderFooter={true} />
+      <StyledMenuItems isUnderFooter={true} />
       <TextContainer>
         <Text>
           Использование сервиса означает согласие
@@ -21,6 +21,13 @@ const Footer: React.FC = () => {
     </Container>
   );
 };
+
+const StyledMenuItems = styled(MenuItems)`
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: flex;
+    padding-left: 36px;
+  }
+`;
 
 const AdaptiveBR = styled.br`
   display: none;
@@ -68,7 +75,7 @@ const Container = styled.div`
   flex-direction: column;
   row-gap: 21px;
   padding-bottom: 64px;
-  padding-top: 112px;
+  padding-top: 96px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     align-items: flex-start;
     padding-bottom: 56px;

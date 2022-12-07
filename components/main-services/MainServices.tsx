@@ -14,7 +14,7 @@ const MainServices = () => {
 };
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 40px;
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
@@ -26,6 +26,9 @@ const Container = styled.div`
   flex-direction: column;
   margin: 0 64px;
   padding-top: 112px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    margin: 0 36px;
+  }
 `;
 
 export default MainServices;

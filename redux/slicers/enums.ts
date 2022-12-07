@@ -17,3 +17,11 @@ export enum ModalState {
   KEY_SEARCH,
   THANKS_FOR_ORDER,
 }
+
+export enum WindowSize {
+  //min-width 1440 px
+  XL,
+  //max-width 1439 px and min-width 1024 px
+  LG,
+  MD,
+}

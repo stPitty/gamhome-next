@@ -1,4 +1,4 @@
-import { ModalState } from "./enums";
+import { ModalState, WindowSize } from "./enums";
 
 type TPhotoPosition = {
   position: number;
@@ -121,6 +121,10 @@ type FormActionType = {
   };
 };
 
+type TWindowSize = {
+  windowSize: WindowSize | null;
+};
+
 export type {
   TPhotoPosition,
   TModalState,
@@ -132,4 +136,5 @@ export type {
   FormActionType,
   TServiceData,
   ServiceInputFieldNames,
+  TWindowSize,
 };

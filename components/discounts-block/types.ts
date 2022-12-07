@@ -1,8 +1,3 @@
-type ButtonContent = {
-  width: number;
-  text?: string;
-};
-
 export type CardAbout = "delivery" | "cleaning";
 
 export type CardData = {
@@ -13,8 +8,10 @@ export type CardData = {
   tags: {
     id: number;
     text: string;
+    xlPriority: number;
+    lgPriority: number;
   }[];
-  primaryButton: ButtonContent;
+  primaryButtonText: string;
   image: string;
   cardType: CardAbout;
 };

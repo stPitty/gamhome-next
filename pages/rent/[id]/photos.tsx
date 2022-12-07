@@ -6,7 +6,10 @@ import Button from "../../../components/UI/button/Button";
 import Carousel from "../../../components/UI/carousel/Carousel";
 import { useRouter } from "next/router";
 import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
-import { handleSwapImageClick } from "../../../common/helpers";
+import {
+  handleGetFlatData,
+  handleSwapImageClick,
+} from "../../../common/helpers";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import PreviewList from "../../../components/UI/preview-list/PreviewList";
 import { TFlatState } from "../../../redux/slicers/types";
@@ -24,9 +27,7 @@ const FullscreenCarousel: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (router.query.id && flatData === null) {
-      dispatch(fetchFlatData(router.query.id as string));
-    }
+    handleGetFlatData(router, flatData, dispatch);
   }, [router.query.id]);
 
   useEffect(() => {

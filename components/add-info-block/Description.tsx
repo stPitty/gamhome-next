@@ -48,7 +48,7 @@ const Text = styled.p`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 24px;
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};

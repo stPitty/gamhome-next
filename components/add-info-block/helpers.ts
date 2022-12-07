@@ -1,15 +1,16 @@
 import { Dispatch, SetStateAction } from "react";
+import { WindowSize } from "../../redux/slicers/enums";
 
 const handleResizeMap = (
-  width: number,
+  windowSize: WindowSize,
   setWidth: Dispatch<SetStateAction<number | undefined>>,
   setHeight: Dispatch<SetStateAction<number | undefined>>
 ) => {
-  if (window.innerWidth >= 1440) {
+  if (windowSize === WindowSize.XL) {
     setWidth(864);
     setHeight(448);
   }
-  if (window.innerWidth < 1440 && window.innerWidth >= 1024) {
+  if (windowSize === WindowSize.LG) {
     setWidth(624);
     setHeight(385);
   }

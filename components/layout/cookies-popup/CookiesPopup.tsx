@@ -49,6 +49,9 @@ const Container = styled.div`
   width: 1440px;
   padding: 18px 64px;
   align-items: center;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 1024px;
+  }
 `;
 
 const Wrapper = styled.div<{ isAccept: boolean }>`

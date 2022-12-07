@@ -14,8 +14,9 @@ import { Hook, Route } from "../../../common/routes";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { fetchFlatData } from "../../../redux/slicers/flatDataSlicer";
 import { TFlatState } from "../../../redux/slicers/types";
+import { handleGetFlatData } from "../../../common/helpers";
+import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();
@@ -25,10 +26,20 @@ const RentPage: ComponentWithLayout = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
   const { isError } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const handleResizeWindow = () => {
+    dispatch(setWindowSize(window.innerWidth));
+  };
+
   useEffect(() => {
-    if (router.query.id && flatData === null) {
-      dispatch(fetchFlatData(router.query.id as string));
+    if (typeof window !== "undefined") {
+      handleResizeWindow();
     }
+    window.addEventListener("resize", handleResizeWindow);
+    return () => window.removeEventListener("resize", handleResizeWindow);
+  }, []);
+
+  useEffect(() => {
+    handleGetFlatData(router, flatData, dispatch);
   }, [router.query.id]);
 
   useEffect(() => {
@@ -67,6 +78,7 @@ const InfoWrapperRow = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;
     padding-right: 36px;
+    width: 1024px;
   }
 `;
 

@@ -39,7 +39,7 @@ const Text = styled.p`
 `;
 
 const HeaderText = styled.p`
-  font-weight: 700;
+  font-weight: 600;
   font-size: 40px;
   line-height: 48px;
   color: ${WhiteColor.WHITE};
@@ -67,6 +67,11 @@ const Image = styled.div`
   background-image: url("/images/woman-webinar.webp");
   background-repeat: no-repeat;
   background-size: cover;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 439px;
+    background-size: 439px;
+    height: 430px;
+  }
 `;
 
 const ContentContainer = styled.div`
@@ -74,6 +79,12 @@ const ContentContainer = styled.div`
   flex-direction: column;
   width: 642px;
   row-gap: 32px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 460px;
+    justify-content: flex-end;
+    justify-items: flex-end;
+    padding-top: 26px;
+  }
 `;
 
 const Container = styled.div`
@@ -84,6 +95,11 @@ const Container = styled.div`
   padding: 152px 48px 64px 64px;
   border-radius: 48px;
   column-gap: 84px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    column-gap: 75px;
+    padding: 182px 14px 100px 36px;
+    align-items: flex-start;
+  }
 `;
 
 export default WebinarBlock;
