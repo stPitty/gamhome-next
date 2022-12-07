@@ -13,12 +13,14 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Container>
+    <Container paramsCount={9}>
       {!isLoading &&
         subInfoData?.map((el: string, i: number) => {
           return (
             <TextWrapper key={el + i}>
-              <ChevronDoneSVG />
+              <IconContainer>
+                <ChevronDoneSVG />
+              </IconContainer>
               <Text>{el}</Text>
             </TextWrapper>
           );
@@ -27,38 +29,56 @@ const SubInfoBlock = () => {
   );
 };
 
+const IconContainer = styled.div`
+  display: flex;
+  width: 24px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+`;
+
 const Text = styled.p`
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
-  margin: 0 0 0 10px;
+  margin: 0;
 `;
 
 const TextWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  column-gap: 6px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 162px;
+  }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ paramsCount: number | undefined }>`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   align-content: flex-start;
   flex-wrap: wrap;
-  padding: 24px 48px 24px 24px;
+  padding: 24px;
   width: 864px;
-  height: 216px;
+  height: ${({ paramsCount }) => {
+    if (paramsCount) {
+      return `${(paramsCount / 3 + 1) * 36}px`;
+    }
+  }};
   background: ${LightBlueColor.LB_100};
   border-radius: 24px;
   margin-top: 24px;
   row-gap: 12px;
-  column-gap: 112.5px;
+  column-gap: 107px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
-    height: 264px;
+    column-gap: 32px;
+    height: ${({ paramsCount }) => {
+      if (paramsCount) {
+        return `${(paramsCount / 3) * 60 + 48}px`;
+      }
+    }};
   }
 `;
 

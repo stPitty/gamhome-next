@@ -6,12 +6,15 @@ import KeySVG from "../../public/assets/svg/KeySVG";
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { Hook } from "../../common/routes";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
+import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
 
 const PriceBlock: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showNumber, setShowNumber] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
@@ -31,6 +34,10 @@ const PriceBlock: React.FC = () => {
         setLoading(false);
       }, 500);
     }
+  };
+
+  const handleOpenModalClick = () => {
+    dispatch(checkObjInputNum());
   };
 
   return (
@@ -72,7 +79,11 @@ const PriceBlock: React.FC = () => {
             Подберите мне квартиру
           </Button>
         </StyledLink>
-        <Button buttonType={ButtonType.FLAT} buttonSize={ButtonSize.LARGE}>
+        <Button
+          onClick={handleOpenModalClick}
+          buttonType={ButtonType.FLAT}
+          buttonSize={ButtonSize.LARGE}
+        >
           Проверить объект
         </Button>
       </Container>

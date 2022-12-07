@@ -104,11 +104,6 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
   }}
 `;
 
-const StyledInput = styled(Input)<{ withoutInfo: boolean }>`
-  margin-top: ${({ withoutInfo }) => (withoutInfo ? "0" : "20px")};
-  transition: none;
-`;
-
 const Image = styled.div<{ image: string }>`
   width: 271px;
   height: 180px;

@@ -55,23 +55,30 @@ const Form: React.FC<Props> = ({
           })}
         </FormContainer>
       ) : (
-        <StyledInput
-          withoutInfo={!!data?.withoutInfo}
-          value={inputValue}
-          setValue={setInputValue}
-          placeHolder={data?.placeHolder!}
-          validationPattern={data?.validationPattern!}
-          errorMessage={data?.errorMessage!}
-          required={true}
-          isSubmitFailed={isSubmitFailed}
-          submitFailedMessage={data.submitFailedMessage!}
-          isValidationError={isValidationError}
-          setIsValidationError={setIsValidationError}
-        />
+        <InputContainer withoutDesc={!data.desc}>
+          <StyledInput
+            withoutInfo={!!data?.withoutInfo}
+            value={inputValue}
+            setValue={setInputValue}
+            placeHolder={data?.placeHolder!}
+            validationPattern={data?.validationPattern!}
+            errorMessage={data?.errorMessage!}
+            required={true}
+            isSubmitFailed={isSubmitFailed}
+            submitFailedMessage={data.submitFailedMessage!}
+            isValidationError={isValidationError}
+            setIsValidationError={setIsValidationError}
+          />
+        </InputContainer>
       )}
     </>
   );
 };
+
+const InputContainer = styled.div<{ withoutDesc: boolean }>`
+  display: flex;
+  margin-top: ${({ withoutDesc }) => withoutDesc && "16px"};
+`;
 
 const FormContainer = styled.div<{ withDesc: boolean }>`
   display: flex;

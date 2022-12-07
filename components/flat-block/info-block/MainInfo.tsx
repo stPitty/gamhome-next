@@ -13,7 +13,7 @@ const MainInfo = () => {
   ]);
 
   return (
-    <MainInfoWrapper>
+    <MainInfoWrapper paramsCount={sortedParamsArr.length}>
       {sortedParamsArr?.map((el, i) => {
         return (
           el && (
@@ -55,17 +55,24 @@ const FieldNameText = styled.p`
   float: left;
 `;
 
-const MainInfoWrapper = styled.div`
+const MainInfoWrapper = styled.div<{ paramsCount: number }>`
   display: flex;
   flex-direction: column;
-  //justify-content: space-between;
   align-items: flex-start;
   flex-wrap: wrap;
-  height: 152px;
+  height: ${({ paramsCount }) => {
+    if (paramsCount) {
+      return `${(paramsCount / 3) * 32}px`;
+    }
+  }};
   row-gap: 8px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
-    height: 200px;
+    height: ${({ paramsCount }) => {
+      if (paramsCount) {
+        return `${(paramsCount / 2) * 32}px`;
+      }
+    }};
   }
 `;
 
