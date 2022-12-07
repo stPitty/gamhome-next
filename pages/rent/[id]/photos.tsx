@@ -21,8 +21,9 @@ const FullscreenCarousel: React.FC = () => {
   const [showNumber, setShowNumber] = useState<boolean>(false);
   const dispatch = useAppDispatch();
 
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-  const { isError } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isError } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   const router = useRouter();
 

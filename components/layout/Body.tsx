@@ -9,6 +9,8 @@ import LogoSVG from "../../public/assets/svg/LogoSVG";
 import { useRouter } from "next/router";
 import HamburgerSVG from "../../public/assets/svg/HamburgerSVG";
 import { memo } from "react";
+import { useAppDispatch } from "../../redux/hooks";
+import { openMenu, setWontBeClosed } from "../../redux/slicers/sideMenuSlicer";
 
 type Props = {
   isHeader?: boolean;
@@ -17,13 +19,20 @@ type Props = {
 const Body: React.FC<Props> = ({ isHeader = false }) => {
   const router = useRouter();
 
+  const dispatch = useAppDispatch();
+
+  const handleOpenMenuClick = () => {
+    dispatch(setWontBeClosed());
+    dispatch(openMenu());
+  };
+
   return (
     <Container>
       <LogoSVG />
       <MenuWrapper>
         <MenuItems />
         {isHeader && (
-          <BurgerMenuContainer>
+          <BurgerMenuContainer onClick={handleOpenMenuClick}>
             <MenuLabel>Меню</MenuLabel>
             <BurgerIcon />
           </BurgerMenuContainer>

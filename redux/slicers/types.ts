@@ -125,6 +125,11 @@ type TWindowSize = {
   windowSize: WindowSize | null;
 };
 
+type TSideMenu = {
+  isOpened: boolean;
+  willBeClosed: boolean;
+};
+
 export type {
   TPhotoPosition,
   TModalState,
@@ -137,4 +142,5 @@ export type {
   TServiceData,
   ServiceInputFieldNames,
   TWindowSize,
+  TSideMenu,
 };

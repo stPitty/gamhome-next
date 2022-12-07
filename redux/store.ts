@@ -7,6 +7,7 @@ import flatDataReducer from "./slicers/flatDataSlicer";
 import ownerDataReducer from "./slicers/ownerDataSlicer";
 import serviceDataReducer from "./slicers/serviceDataSlicer";
 import windowSizeReducer from "./slicers/windowSizeSlicer";
+import sideMenuReducer from "./slicers/sideMenuSlicer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
@@ -16,6 +17,7 @@ const combinedReducer = combineReducers({
   ownerData: ownerDataReducer,
   serviceData: serviceDataReducer,
   windowSize: windowSizeReducer,
+  sideMenu: sideMenuReducer,
 });
 
 const reducer = (

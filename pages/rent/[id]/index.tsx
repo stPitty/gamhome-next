@@ -23,8 +23,9 @@ const RentPage: ComponentWithLayout = () => {
 
   const dispatch = useAppDispatch();
 
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-  const { isError } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isError } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   const handleResizeWindow = () => {
     dispatch(setWindowSize(window.innerWidth));

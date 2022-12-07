@@ -4,9 +4,10 @@ import Footer from "./footer";
 import styled from "styled-components";
 import Modal from "../UI/modal/Modal";
 import { useAppSelector } from "../../redux/hooks";
-import { TFlatState, TModalState } from "../../redux/slicers/types";
+import { TFlatState, TModalState, TSideMenu } from "../../redux/slicers/types";
 import ErrorPage from "../error-page/ErrorPage";
 import CookiesPopup from "./cookies-popup/CookiesPopup";
+import SideMenu from "../UI/side-menu/SideMenu";
 
 type Props = {
   children: ReactNode;
@@ -25,6 +26,7 @@ const PageLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
+      <SideMenu />
       {isOpened && <Modal />}
       <Container>
         <Header />
