@@ -47,6 +47,7 @@ const objData: TabBodyData = {
     ],
     cost: 799,
   },
+  contentType: "checkObject",
   btnAction: checkObjInputNum,
 };
 
@@ -82,6 +83,7 @@ const ownerData: TabBodyData = {
     ],
     cost: 549,
   },
+  contentType: "checkOwner",
   btnAction: checkOwnerInputInfo,
 };
 

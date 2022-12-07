@@ -79,7 +79,6 @@ const InfoWrapperRow = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;
     padding-right: 36px;
-    width: 1024px;
   }
 `;
 
@@ -88,7 +87,6 @@ const InfoWrapperColumn = styled.div`
   flex-direction: column;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-top: 16px;
-    width: 624px;
   }
 `;
 

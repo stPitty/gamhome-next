@@ -1,3 +1,5 @@
+export type TabContentType = "checkOwner" | "checkObject";
+
 export type TabBodyData = {
   name: string;
   desc: string;
@@ -12,5 +14,6 @@ export type TabBodyData = {
     points: string[];
     cost: number;
   };
+  contentType: TabContentType;
   btnAction: Function;
 };

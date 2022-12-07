@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
-import { TabBodyData } from "./types";
+import { TabBodyData, TabContentType } from "./types";
 
 type Props = {
   data: TabBodyData;
@@ -9,13 +9,13 @@ type Props = {
 
 const Card: React.FC<Props> = ({ data }) => {
   return (
-    <MainContentWrapper>
+    <MainContentWrapper background={data.image}>
       <ContentTextContainer>
-        <HeaderContainer>
+        <HeaderContainer contentType={data.contentType}>
           <HeaderText>{data.name}</HeaderText>
           <DescText>{data.desc}</DescText>
         </HeaderContainer>
-        <PointsContainer>
+        <PointsContainer contentType={data.contentType}>
           {data.points.map((el) => {
             return (
               <PointWrapper key={el.id}>
@@ -29,33 +29,19 @@ const Card: React.FC<Props> = ({ data }) => {
           })}
         </PointsContainer>
       </ContentTextContainer>
-      <Image background={data.image} />
     </MainContentWrapper>
   );
 };
 
-const Image = styled.div<{ background: string }>`
-  width: 648px;
-  height: 294px;
-  transition: none;
-  background: no-repeat url(${({ background }) => background}) center;
-  background-size: cover;
-  position: relative;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 436px;
-    height: 241px;
-    background-size: 436px;
-  }
-`;
-
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 592px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 444px;
+    width: ${({ contentType }) =>
+      contentType === "checkOwner" ? "593px" : "444px"};
   }
 `;
 
@@ -100,7 +86,7 @@ const PointWrapper = styled.div`
   column-gap: 12px;
 `;
 
-const PointsContainer = styled.div`
+const PointsContainer = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -109,7 +95,7 @@ const PointsContainer = styled.div`
   width: 485px;
   row-gap: 24px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 444px;
+    width: ${({ contentType }) => contentType === "checkObject" && "444px"};
   }
 `;
 
@@ -136,15 +122,21 @@ const ContentTextContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const MainContentWrapper = styled.div`
+const MainContentWrapper = styled.div<{ background: string }>`
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${WhiteColor.WHITE};
+  justify-content: flex-start;
+  background: no-repeat ${WhiteColor.WHITE} right;
   border-radius: 24px;
   padding: 48px;
   padding-right: 0;
   column-gap: 24px;
+  width: 1312px;
+  background-image: url(${({ background }) => background});
+  background-size: 648px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    background-size: 436px;
+    width: 952px;
+  }
 `;
 
 export default Card;

@@ -15,7 +15,7 @@ const Container = styled.div<{ photo?: string }>`
   height: 544px;
   overflow: hidden;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 576px;
+    min-width: 576px;
     height: 393px;
   }
 `;

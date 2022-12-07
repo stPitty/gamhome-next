@@ -74,8 +74,6 @@ const ImagesWrapper = styled.div<{
     );
     column-gap: 12px;
     margin-top: 12px;
-    width: 624px;
-    overflow: hidden;
   }
 `;
 
