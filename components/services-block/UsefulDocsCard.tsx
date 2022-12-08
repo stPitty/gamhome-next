@@ -146,8 +146,7 @@ const Container = styled.div<{ cardType: CardType }>`
   ${({ cardType }) =>
     cardType === CardType.SECONDARY &&
     css`
-      box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.12),
-        0px 20px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.12), 0 20px 20px rgba(0, 0, 0, 0.08);
     `};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 460px;

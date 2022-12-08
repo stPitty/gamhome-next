@@ -9,7 +9,7 @@ type Props = {
 
 const Card: React.FC<Props> = ({ data }) => {
   return (
-    <MainContentWrapper background={data.image}>
+    <MainContentWrapper background={data.image} contentType={data.contentType}>
       <ContentTextContainer>
         <HeaderContainer contentType={data.contentType}>
           <HeaderText>{data.name}</HeaderText>
@@ -42,6 +42,9 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: ${({ contentType }) =>
       contentType === "checkOwner" ? "593px" : "444px"};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 400px;
   }
 `;
 
@@ -97,6 +100,10 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: ${({ contentType }) => contentType === "checkObject" && "444px"};
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: ${({ contentType }) =>
+      contentType === "checkObject" ? "592px" : "485px"};
+  }
 `;
 
 const DescText = styled.p`
@@ -113,6 +120,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0 0 16px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const ContentTextContainer = styled.div`
@@ -122,7 +133,10 @@ const ContentTextContainer = styled.div`
   justify-content: flex-start;
 `;
 
-const MainContentWrapper = styled.div<{ background: string }>`
+const MainContentWrapper = styled.div<{
+  background: string;
+  contentType: TabContentType;
+}>`
   display: flex;
   justify-content: flex-start;
   background: no-repeat ${WhiteColor.WHITE} right;
@@ -136,6 +150,13 @@ const MainContentWrapper = styled.div<{ background: string }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     background-size: 436px;
     width: 952px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    background-size: ${({ contentType }) =>
+      contentType === "checkObject" ? "240px" : "220px"};
+    width: 688px;
+    background-position: right
+      ${({ contentType }) => (contentType === "checkObject" ? "46px" : "67px")};
   }
 `;
 

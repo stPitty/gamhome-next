@@ -14,6 +14,7 @@ import Notification from "../UI/notification/Notification";
 import { useAppSelector } from "../../redux/hooks";
 import { TWindowSize } from "../../redux/slicers/types";
 import { WindowSize } from "../../redux/slicers/enums";
+import { SortByPriority } from "../../common/helpers";
 
 type Props = {
   data: CardData;
@@ -28,15 +29,10 @@ const Card: React.FC<Props> = ({ data }) => {
 
   const message = "Промокод скопирован";
 
-  const sortedTagsForWindowSize = useMemo(() => {
-    if (windowSize === WindowSize.XL) {
-      return data.tags.sort((a, b) => a.xlPriority - b.xlPriority);
-    }
-    if (windowSize === WindowSize.LG) {
-      return data.tags.sort((a, b) => a.lgPriority - b.lgPriority);
-    }
-    return data.tags;
-  }, [windowSize]);
+  const sortedTagsForWindowSize = useMemo(
+    SortByPriority(windowSize, data.tags),
+    [windowSize]
+  );
 
   const handlePromoCodeClick = () => {
     navigator.clipboard.writeText("Gamhome");
@@ -48,9 +44,12 @@ const Card: React.FC<Props> = ({ data }) => {
 
   return (
     <Container>
+      <ColumnImage cardType={data.cardType} image={data.image} />
       <ContentWrapper>
-        <HeaderText>{data.header}</HeaderText>
-        <SubHeader>{data.subHeader}</SubHeader>
+        <HeaderWrapper>
+          <HeaderText>{data.header}</HeaderText>
+          <SubHeader>{data.subHeader}</SubHeader>
+        </HeaderWrapper>
         <DescText>{data.desc}</DescText>
         <TagsWrapper>
           {sortedTagsForWindowSize.map((el) => (
@@ -67,11 +66,20 @@ const Card: React.FC<Props> = ({ data }) => {
           </PromoCodeContainer>
         </ButtonsContainer>
       </ContentWrapper>
-      <Image cardType={data.cardType} image={data.image} />
+      <RowImage cardType={data.cardType} image={data.image} />
       <Notification message={message} quantity={notificationQty} />
     </Container>
   );
 };
+
+const HeaderWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: row;
+    column-gap: 7px;
+  }
+`;
 
 const StyledButton = styled(Button)<{ cardType: CardAbout }>`
   width: ${({ cardType }) => (cardType === "cleaning" ? "189px" : "257px")};
@@ -89,17 +97,40 @@ const PromoCodeContainer = styled.div`
 `;
 
 const Image = styled.div<{ image: string; cardType: CardAbout }>`
-  background-image: url(${({ image }) => image});
-  background-repeat: no-repeat;
-  background-size: cover;
   width: 656px;
   height: 512px;
   border-radius: 24px;
-  background-position: center;
+  background-repeat: no-repeat;
+`;
+
+const RowImage = styled(Image)`
+  background-image: url(${({ image }) => image});
+  background-size: ${({ cardType }) => cardType === "cleaning" && "auto 570px"};
+  background-position: ${({ cardType }) =>
+    cardType === "cleaning" ? "-70px -50px" : "center"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    background-size: ${({ cardType }) =>
+      cardType === "cleaning" ? "auto 575px" : "cover"};
     width: 460px;
     height: ${({ cardType }) => (cardType === "cleaning" ? "512px" : "608px")};
-    background-position: ${({ cardType }) => cardType === "cleaning" && "left"};
+    background-position: ${({ cardType }) =>
+      cardType === "cleaning" && "-75px bottom"};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const ColumnImage = styled(Image)`
+  display: none;
+  background-image: url(${({ image }) => image});
+  width: 688px;
+  height: ${({ cardType }) => (cardType === "cleaning" ? "414px" : "375px")};
+  background-size: 688px;
+  background-position: ${({ cardType }) =>
+    cardType !== "cleaning" && "left -40px"};
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: block;
   }
 `;
 
@@ -116,13 +147,16 @@ const ButtonsContainer = styled.div`
   display: flex;
   margin-top: 54px;
   align-items: center;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 48px;
+  }
 `;
 
 const Tag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
+  padding: 7px 16px;
   border: 1px solid ${LightBlueColor.LB_200};
   border-radius: 100px;
   font-family: ${Font.ROBOTO};
@@ -130,9 +164,6 @@ const Tag = styled.div`
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    padding: 7px 16px;
-  }
 `;
 
 const TagsWrapper = styled.div`
@@ -156,6 +187,10 @@ const HeaderText = styled.p`
   line-height: 40px;
   margin: 0;
   color: ${BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 const SubHeader = styled(HeaderText)`
@@ -170,6 +205,10 @@ const ContentWrapper = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 415px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin: 40px;
+    width: 608px;
+  }
 `;
 
 const Container = styled.div`
@@ -180,6 +219,9 @@ const Container = styled.div`
   column-gap: 40px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 37px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column;
   }
 `;
 

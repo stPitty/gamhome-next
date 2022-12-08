@@ -19,6 +19,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Container = styled.div`
@@ -28,6 +32,10 @@ const Container = styled.div`
   padding-top: 112px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     margin: 0 36px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+    margin: 0;
   }
 `;
 

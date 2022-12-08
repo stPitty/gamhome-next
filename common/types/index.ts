@@ -26,4 +26,14 @@ type Color =
   | OtherColor
   | "none";
 
-export type { AppWithPageLayout, ComponentWithLayout, Color };
+type AdaptiveLayoutPriority = Record<
+  "xlPriority" | "lgPriority" | "mdPriority",
+  number
+>;
+
+export type {
+  AppWithPageLayout,
+  ComponentWithLayout,
+  Color,
+  AdaptiveLayoutPriority,
+};

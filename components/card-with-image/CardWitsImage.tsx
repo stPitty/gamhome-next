@@ -14,10 +14,11 @@ const CardWitsImage = () => {
 
   return (
     <Container>
+      <ColumnImage />
       <TextWrapper>
         <HeaderText>
-          Съезжаете с квартиры? <MarkedText>Заплатим 10%</MarkedText>,{" "}
-          <AdaptiveBR />
+          Съезжаете с квартиры?
+          <AdaptiveBR1 /> <MarkedText>Заплатим 10%</MarkedText>, <AdaptiveBR0 />
           за рекомендацию нас собственнику
         </HeaderText>
         <Text>
@@ -31,12 +32,19 @@ const CardWitsImage = () => {
           Оставить заявку
         </Button>
       </TextWrapper>
-      <Image />
+      <RowImage />
     </Container>
   );
 };
 
-const AdaptiveBR = styled.br`
+const AdaptiveBR1 = styled.br`
+  display: none;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: block;
+  }
+`;
+
+const AdaptiveBR0 = styled.br`
   display: none;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     display: block;
@@ -46,12 +54,31 @@ const AdaptiveBR = styled.br`
 const Image = styled.div`
   width: 528px;
   height: 503px;
-  background: no-repeat url("/images/unboxing.webp") center;
-  background-size: cover;
   border-radius: 40px;
+`;
+
+const RowImage = styled(Image)`
+  background: no-repeat url("/images/unboxing.webp") -335px 0;
+  background-size: auto 650px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 378px;
-    background-position: -107px;
+    background-position: -445px 0;
+    background-size: auto 650px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const ColumnImage = styled(Image)`
+  background-size: cover;
+  background: no-repeat url("/images/unboxing.webp") center;
+  display: none;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: block;
+    width: 688px;
+    height: 373px;
+    background-position: right 0;
   }
 `;
 
@@ -76,6 +103,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0 0 20px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -103,6 +134,13 @@ const Container = styled.div`
     column-gap: 32px;
     padding: 182px 36px 64px;
     background-position: left 28px bottom 385px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column;
+    padding: 160px 40px 64px;
+    row-gap: 40px;
+    background-position: left 43px bottom 228px;
+    background-size: 239px;
   }
 `;
 

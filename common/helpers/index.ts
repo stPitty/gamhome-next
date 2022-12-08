@@ -1,11 +1,10 @@
-import { Route } from "../routes";
 import { NextRouter } from "next/router";
 import { decrement, increment } from "../../redux/slicers/photoPositionSlicer";
 import { AppDispatch } from "../../redux/types";
 import { FlatData, Parameter, TFlatState } from "../../redux/slicers/types";
 import { regexpList } from "./constants";
 import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
-import { useMemo } from "react";
+import { WindowSize } from "../../redux/slicers/enums";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -126,6 +125,19 @@ const handleGetSubHeader =
     return "";
   };
 
+const SortByPriority = (windowSize: WindowSize | null, arr: any[]) => () => {
+  if (windowSize === WindowSize.XL) {
+    return arr.sort((a, b) => a.xlPriority - b.xlPriority);
+  }
+  if (windowSize === WindowSize.LG) {
+    return arr.sort((a, b) => a.lgPriority - b.lgPriority);
+  }
+  if (windowSize === WindowSize.MD) {
+    return arr.sort((a, b) => a.mdPriority - b.mdPriority);
+  }
+  return arr;
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -135,4 +147,5 @@ export {
   sortMainFlatParams,
   handleGetFlatData,
   handleGetSubHeader,
+  SortByPriority,
 };

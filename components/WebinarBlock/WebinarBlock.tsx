@@ -25,7 +25,6 @@ const WebinarBlock = () => {
           Посмотреть видео
         </Button>
       </ContentContainer>
-      <Image />
     </Container>
   );
 };
@@ -44,6 +43,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Tag = styled.div`
@@ -61,19 +64,6 @@ const Tag = styled.div`
   color: ${BlackColor.BLACK_SECONDARY};
 `;
 
-const Image = styled.div`
-  height: 585px;
-  width: 602px;
-  background-image: url("/images/woman-webinar.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 439px;
-    background-size: 439px;
-    height: 430px;
-  }
-`;
-
 const ContentContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -85,20 +75,29 @@ const ContentContainer = styled.div`
     justify-items: flex-end;
     padding-top: 26px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 359px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: ${BrandColor.BRAND};
-  padding: 152px 48px 64px 64px;
+  background: ${BrandColor.BRAND} no-repeat url("/images/woman-webinar.webp")
+    800px 140px;
+  padding: 208px 64px 176px;
   border-radius: 48px;
-  column-gap: 84px;
+  width: 1440px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    column-gap: 75px;
-    padding: 182px 14px 100px 36px;
-    align-items: flex-start;
+    padding: 182px 36px 100px;
+    width: 1024px;
+    background-size: 439px;
+    background-position: 570px 210px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    background-size: 360px;
+    background-position: 405px center;
+    width: 768px;
+    padding: 192px 40px 96px;
   }
 `;
 

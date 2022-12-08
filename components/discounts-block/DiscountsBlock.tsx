@@ -20,6 +20,9 @@ const DiscountsBlock = () => {
 const Wrapper = styled.div`
   display: flex;
   padding-top: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -28,6 +31,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0 40px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Container = styled.div`
@@ -42,6 +49,10 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;
     padding-right: 36px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding: 56px 40px;
+    margin-bottom: -80px;
   }
 `;
 

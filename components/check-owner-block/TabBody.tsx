@@ -29,6 +29,9 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding: 40px 36px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding: 40px;
+  }
 `;
 
 export default memo(TabBody);

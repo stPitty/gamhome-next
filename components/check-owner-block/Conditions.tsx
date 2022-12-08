@@ -1,12 +1,14 @@
 import { TabBodyData } from "./types";
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { BlackColor, Font } from "../../common/enums";
 import DoneSVG from "../../public/assets/svg/DoneSVG";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
+import { SortByPriority } from "../../common/helpers";
+import { TWindowSize } from "../../redux/slicers/types";
 
 type Props = {
   data: TabBodyData;
@@ -14,6 +16,15 @@ type Props = {
 
 const Conditions: React.FC<Props> = ({ data }) => {
   const dispatch = useAppDispatch();
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
+  const sortedConditions = useMemo(
+    SortByPriority(windowSize, data.additionalInfo.points),
+    [windowSize]
+  );
 
   const handleOrderClick = () => {
     dispatch(data.btnAction());
@@ -24,14 +35,14 @@ const Conditions: React.FC<Props> = ({ data }) => {
       <Wrapper>
         <Header>{data.additionalInfo.header}</Header>
         <ConditionsContainer>
-          {data.additionalInfo.points.map((el, i) => {
+          {sortedConditions.map((el, i) => {
             return (
-              <TextContainer key={i}>
+              <TextContainer key={el.id}>
                 <IconContainer>
                   <DoneSVG />
                 </IconContainer>
 
-                <ConditionText>{el}</ConditionText>
+                <ConditionText>{el.text}</ConditionText>
               </TextContainer>
             );
           })}
@@ -56,6 +67,11 @@ const ButtonGroupContainer = styled.div`
   justify-content: flex-start;
   width: 218px;
   row-gap: 12px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: row;
+    width: 100%;
+    column-gap: 12px;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -77,6 +93,9 @@ const ConditionText = styled.p`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 265px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 288px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -87,6 +106,9 @@ const TextContainer = styled.div`
   column-gap: 6px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 295px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 318px;
   }
 `;
 
@@ -100,9 +122,9 @@ const ConditionsContainer = styled.div`
   row-gap: 16px;
   column-gap: 8px;
   height: 112px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    height: 152px;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 20px;
+    height: 152px;
   }
 `;
 
@@ -125,6 +147,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 610px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 656px;
+  }
 `;
 
 const Container = styled.div`
@@ -135,6 +160,10 @@ const Container = styled.div`
   margin-top: 32px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 24px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    row-gap: 40px;
+    flex-direction: column;
   }
 `;
 

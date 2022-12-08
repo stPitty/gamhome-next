@@ -1,3 +1,5 @@
+import { AdaptiveLayoutPriority } from "../../common/types";
+
 export type CardAbout = "delivery" | "cleaning";
 
 export type CardData = {
@@ -5,12 +7,10 @@ export type CardData = {
   header: string;
   subHeader: string;
   desc: string;
-  tags: {
+  tags: ({
     id: number;
     text: string;
-    xlPriority: number;
-    lgPriority: number;
-  }[];
+  } & Partial<AdaptiveLayoutPriority>)[];
   primaryButtonText: string;
   image: string;
   cardType: CardAbout;

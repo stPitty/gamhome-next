@@ -33,10 +33,10 @@ const Cards: React.FC<Props> = ({ data }) => {
       {data.map((el) => {
         return (
           <CardContainer key={el.id} cardType={el.cardType}>
-            <TagContainer>
+            <TagContainer cardId={el.id}>
               {el.tagText && <Tag cardType={el.cardType}>{el.tagText}</Tag>}
             </TagContainer>
-            <HeaderWrapper>
+            <HeaderWrapper cardId={el.id}>
               <HeaderText cardType={el.cardType}>{el.headerText}</HeaderText>
               <CostText cardType={el.cardType}>{el.cost}</CostText>
               <DescText cardType={el.cardType}>{el.descText}</DescText>
@@ -137,6 +137,9 @@ const PointsContainer = styled.div`
   flex-direction: column;
   row-gap: 24px;
   width: 100%;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-bottom: 56px;
+  }
 `;
 
 const DescText = styled.p<{ cardType: CardType }>`
@@ -155,18 +158,27 @@ const CostText = styled.p<{ cardType: CardType }>`
   color: ${({ cardType }) =>
     cardType === CardType.UNFILLED ? BrandColor.BRAND : WhiteColor.WHITE};
   margin: 0;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    font-weight: 600;
+  }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     font-size: 40px;
     line-height: 48px;
-    font-weight: 600;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 44px;
   }
 `;
 
-const HeaderWrapper = styled.div`
+const HeaderWrapper = styled.div<{ cardId: number }>`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
   margin: 24px 0 40px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: ${({ cardId }) => cardId === 1 && "0"};
+  }
 `;
 
 const HeaderText = styled.p<{ cardType: CardType }>`
@@ -180,10 +192,13 @@ const HeaderText = styled.p<{ cardType: CardType }>`
   margin: 0;
 `;
 
-const TagContainer = styled.div`
+const TagContainer = styled.div<{ cardId: number }>`
   height: 40px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     height: 64px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: ${({ cardId }) => cardId === 1 && "none"};
   }
 `;
 
@@ -230,6 +245,10 @@ const CardContainer = styled.div<{ cardType: CardType }>`
     width: 296px;
     height: 1172px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 448px;
+    height: auto;
+  }
 `;
 
 const Container = styled.div`
@@ -238,6 +257,10 @@ const Container = styled.div`
   justify-content: center;
   margin-top: 40px;
   column-gap: 32px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column;
+    row-gap: 40px;
+  }
 `;
 
 export default memo(Cards);

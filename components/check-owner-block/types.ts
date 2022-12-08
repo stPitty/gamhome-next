@@ -1,3 +1,5 @@
+import { AdaptiveLayoutPriority } from "../../common/types";
+
 export type TabContentType = "checkOwner" | "checkObject";
 
 export type TabBodyData = {
@@ -11,7 +13,10 @@ export type TabBodyData = {
   image: string;
   additionalInfo: {
     header: string;
-    points: string[];
+    points: ({
+      id: number;
+      text: string;
+    } & Partial<AdaptiveLayoutPriority>)[];
     cost: number;
   };
   contentType: TabContentType;
