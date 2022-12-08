@@ -15,9 +15,9 @@ const MapBlock = () => {
   const [mapWidth, setMapWidth] = useState<number | undefined>();
   const [mapHeight, setMapHeight] = useState<number | undefined>();
 
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-
-  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isLoading } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   const { windowSize } = useAppSelector<TWindowSize>(
     (state) => state.windowSize
@@ -80,6 +80,10 @@ const MapBlock = () => {
 const StyledButton = styled(Button)`
   margin-top: 40px;
   height: 64px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 24px;
+    height: 56px;
+  }
 `;
 
 const StyledCircleIcon = styled(CircleSVG)<{ color: string }>`
@@ -135,7 +139,7 @@ const HeaderText = styled.p`
   font-size: 24px;
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};
-  margin: 0;
+  margin: 0 0 16px;
 `;
 
 const Container = styled.div`

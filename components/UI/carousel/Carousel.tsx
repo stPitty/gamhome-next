@@ -64,6 +64,12 @@ const Image = styled.div<{
     background-size: auto
       ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    min-width: ${({ isFullscreen }) => (isFullscreen ? "768px" : "640px")};
+    height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
+    background-size: auto
+      ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
+  }
 `;
 
 const StyledUl = styled.ul<{ count: number; isFullscreen: boolean }>`
@@ -83,6 +89,13 @@ const StyledUl = styled.ul<{ count: number; isFullscreen: boolean }>`
     transform: translateX(
       ${({ count, isFullscreen }) =>
         isFullscreen ? `-${count * 788}px` : `-${count * 576}px`}
+    );
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
+    transform: translateX(
+      ${({ count, isFullscreen }) =>
+        isFullscreen ? `-${count * 768}px` : `-${count * 640}px`}
     );
   }
 `;

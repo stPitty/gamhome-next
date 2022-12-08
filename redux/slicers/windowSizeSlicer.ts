@@ -17,6 +17,9 @@ const windowSizeSlicer = createSlice({
       if (action.payload < 1440 && action.payload >= 1024) {
         state.windowSize = WindowSize.LG;
       }
+      if (action.payload < 1024 && action.payload >= 768) {
+        state.windowSize = WindowSize.MD;
+      }
     },
   },
 });

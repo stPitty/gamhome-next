@@ -14,9 +14,10 @@ import { openMenu, setWontBeClosed } from "../../redux/slicers/sideMenuSlicer";
 
 type Props = {
   isHeader?: boolean;
+  className?: string;
 };
 
-const Body: React.FC<Props> = ({ isHeader = false }) => {
+const Body: React.FC<Props> = ({ isHeader = false, className }) => {
   const router = useRouter();
 
   const dispatch = useAppDispatch();
@@ -27,7 +28,7 @@ const Body: React.FC<Props> = ({ isHeader = false }) => {
   };
 
   return (
-    <Container>
+    <Container className={className}>
       <LogoSVG />
       <MenuWrapper>
         <MenuItems />
@@ -57,7 +58,7 @@ const Body: React.FC<Props> = ({ isHeader = false }) => {
 const MenuWrapper = styled.div`
   display: flex;
   column-gap: 185px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 28px;
   }
 `;
@@ -94,13 +95,18 @@ const Container = styled.div`
     padding-left: 36px;
     padding-right: 36px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 768px;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
   display: flex;
   align-items: center;
   column-gap: 32px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 24px;
   }
 `;

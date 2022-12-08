@@ -5,6 +5,7 @@ import { AppDispatch } from "../../redux/types";
 import { FlatData, Parameter, TFlatState } from "../../redux/slicers/types";
 import { regexpList } from "./constants";
 import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
+import { useMemo } from "react";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -110,6 +111,21 @@ const handleGetFlatData = (
   }
 };
 
+const handleGetSubHeader =
+  (
+    price: number | string | undefined,
+    fee: boolean | undefined,
+    feeAmount: number | string | undefined
+  ) =>
+  () => {
+    if (price) {
+      return `Залог ${price} ₽, ${
+        fee && "комиссия " + feeAmount + " ₽,"
+      } предоплата за 1 месяц, от года`;
+    }
+    return "";
+  };
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -118,4 +134,5 @@ export {
   getTimeToMetro,
   sortMainFlatParams,
   handleGetFlatData,
+  handleGetSubHeader,
 };

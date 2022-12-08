@@ -11,9 +11,9 @@ import ImageLoadingSVG from "../../../public/assets/svg/ImageLoadingSVG";
 import LoadingPreviewPhotos from "../../UI/loading-ui/LoadingPreviewPhotos";
 
 const PhotoBlock: React.FC = () => {
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-
-  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isLoading } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   return (
     <Container>
@@ -47,9 +47,14 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
     isLoading ? LightBlueColor.LB_100_64 : LightBlueColor.LB_100};
   border-radius: 12px;
   overflow: hidden;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    height: 393px;
+  }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
-    height: 393px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
   }
 `;
 
@@ -59,6 +64,9 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 48px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 0;
+  }
 `;
 
 export default PhotoBlock;

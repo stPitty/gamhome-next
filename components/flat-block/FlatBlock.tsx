@@ -4,12 +4,11 @@ import PhotoBlock from "./photo-block/PhotoBlock";
 import InfoBlock from "./info-block";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
-import { Hook } from "../../common/routes";
 
 const FlatBlock: React.FC = () => {
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-
-  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isLoading } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   return (
     <Container>
@@ -32,6 +31,9 @@ const LoadingBlock = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -40,12 +42,15 @@ const HeaderText = styled.p`
   line-height: 40px;
   color: ${BlackColor.BLACK_PRIMARY};
   margin: 0;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
 `;
 

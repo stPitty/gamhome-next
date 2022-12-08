@@ -80,12 +80,16 @@ const InfoWrapperRow = styled.div`
     padding-left: 36px;
     padding-right: 36px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
 `;
 
 const InfoWrapperColumn = styled.div`
   display: flex;
   flex-direction: column;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     padding-top: 16px;
   }
 `;
@@ -97,6 +101,9 @@ const Container = styled.div`
   align-items: center;
   align-content: center;
   width: 100%;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 100px;
+  }
 `;
 
 RentPage.PageLayout = PageLayout;

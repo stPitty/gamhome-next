@@ -37,7 +37,7 @@ const MenuWrapper = styled.div<{ isUnderFooter: boolean }>`
   align-items: center;
   justify-content: space-between;
   column-gap: 16px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     display: none;
   }
 `;

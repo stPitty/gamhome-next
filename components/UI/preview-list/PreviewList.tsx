@@ -62,6 +62,10 @@ const ImagesWrapper = styled.div<{
         ((isFullSized ? 98 : 160) + 16)
       }px`}
   );
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    column-gap: 12px;
+    margin-top: 12px;
+  }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     transform: translateX(
       ${({ position, quantity, isFullSized }) =>
@@ -72,8 +76,13 @@ const ImagesWrapper = styled.div<{
           ((isFullSized ? 98 : 115) + 12)
         }px`}
     );
-    column-gap: 12px;
-    margin-top: 12px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    transform: translateX(
+      ${({ position, quantity }) =>
+        position > 4 &&
+        `-${Math.floor(position / quantity) * quantity * 140}px`}
+    );
   }
 `;
 
@@ -93,6 +102,10 @@ const Image = styled.div<{
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     min-width: ${({ isFullSized }) => (isFullSized ? "98px" : "115px")};
     height: ${({ isFullSized }) => (isFullSized ? "80px" : "94px")};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    min-width: ${({ isFullSized }) => !isFullSized && "128px"};
+    height: ${({ isFullSized }) => !isFullSized && "94px"};
   }
 `;
 

@@ -62,7 +62,7 @@ const Body = styled.div<{ orientation: "right" | "left" }>`
   &:active {
     background: ${LightBlueColor.LB_200};
   }
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     min-width: 48px;
     height: 48px;
   }

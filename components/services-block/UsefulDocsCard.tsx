@@ -129,6 +129,9 @@ const Body = styled.div`
     width: 300px;
     height: 252px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 528px;
+  }
 `;
 
 const Container = styled.div<{ cardType: CardType }>`
@@ -149,6 +152,10 @@ const Container = styled.div<{ cardType: CardType }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 460px;
     height: 316px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+    height: 236px;
   }
 `;
 

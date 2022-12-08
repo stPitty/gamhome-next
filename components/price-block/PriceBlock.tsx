@@ -9,6 +9,7 @@ import { Hook } from "../../common/routes";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
 import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
+import { handleGetSubHeader } from "../../common/helpers";
 
 const PriceBlock: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -16,15 +17,14 @@ const PriceBlock: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isLoading } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
-  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
-
-  const handleGetSubHeader = useMemo(() => {
-    return `Залог ${flatData?.price} ₽, ${
-      flatData?.fee && "комиссия " + flatData.feeAmount + " ₽,"
-    } предоплата за 1 месяц, от года`;
-  }, [flatData]);
+  const subHeader = useMemo(
+    handleGetSubHeader(flatData?.price, flatData?.fee, flatData?.feeAmount),
+    [flatData]
+  );
 
   const handleShowNumberClick = () => {
     if (!showNumber) {
@@ -48,7 +48,7 @@ const PriceBlock: React.FC = () => {
         ) : (
           <>
             <HeaderText>{flatData?.price}₽ в мес</HeaderText>
-            <SubHeaderText>{handleGetSubHeader}</SubHeaderText>
+            <SubHeaderText>{subHeader}</SubHeaderText>
           </>
         )}
 
@@ -113,6 +113,9 @@ const Wrapper = styled.div`
   z-index: 1;
   top: 116px;
   margin-bottom: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
 `;
 
 const KeyIcon = styled(KeySVG)`

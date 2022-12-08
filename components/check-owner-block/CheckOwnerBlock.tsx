@@ -21,6 +21,9 @@ const Container = styled.div`
   margin-bottom: -112px;
   z-index: 1;
   padding-top: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 export default CheckOwnerBlock;

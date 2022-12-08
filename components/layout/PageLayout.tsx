@@ -51,6 +51,9 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     min-width: 1024px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    min-width: 768px;
+  }
 `;
 
 export default memo(PageLayout);

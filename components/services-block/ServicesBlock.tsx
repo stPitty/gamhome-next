@@ -43,6 +43,10 @@ const CardsWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 32px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column;
+    row-gap: 32px;
+  }
 `;
 
 const HeaderTextContainer = styled.div`
@@ -66,6 +70,9 @@ const Container = styled.div`
   flex-direction: column;
   align-content: center;
   align-items: center;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 export default ServicesBlock;

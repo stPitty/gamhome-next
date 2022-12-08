@@ -66,8 +66,13 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
     }
   }};
   row-gap: 8px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 624px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+  }
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     height: ${({ paramsCount }) => {
       if (paramsCount) {
         return `${(paramsCount / 2) * 32}px`;

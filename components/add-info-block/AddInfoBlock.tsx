@@ -9,7 +9,7 @@ const AddInfoBlock = () => {
   return (
     <>
       <ServiceDesc
-        height={Concierge.IMAGE_HEIGHT}
+        cardType={Concierge.CARD_TYPE}
         desc={Concierge.DESC}
         image={Concierge.IMAGE}
         headerText={Concierge.HEADER}
@@ -19,7 +19,7 @@ const AddInfoBlock = () => {
       <Description />
       <Divider />
       <ServiceDesc
-        height={Owner.IMAGE_HEIGHT}
+        cardType={Owner.CARD_TYPE}
         desc={Owner.DESC}
         image={Owner.IMAGE}
         headerText={Owner.HEADER}

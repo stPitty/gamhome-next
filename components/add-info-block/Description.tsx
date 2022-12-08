@@ -4,9 +4,9 @@ import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
 
 const Description = () => {
-  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
-
-  const { isLoading } = useAppSelector<TFlatState>((state) => state.flatData);
+  const { flatData, isLoading } = useAppSelector<TFlatState>(
+    (state) => state.flatData
+  );
 
   return (
     <Container>
@@ -65,6 +65,9 @@ const Container = styled.div`
   row-gap: 16px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
   }
 `;
 

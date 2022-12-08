@@ -22,6 +22,9 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+  }
 `;
 
 export default memo(PreviewStack);

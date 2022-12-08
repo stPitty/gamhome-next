@@ -11,7 +11,7 @@ type Props = {
   headerText: Concierge | Owner;
   desc: Concierge | Owner;
   image: Concierge | Owner;
-  height: Concierge | Owner;
+  cardType: "concierge" | "owner";
   btnLink: Hook;
 };
 
@@ -19,48 +19,35 @@ const ServiceDesc: React.FC<Props> = ({
   headerText,
   desc,
   image,
-  height,
+  cardType,
   btnLink,
 }) => {
   return (
-    <Container>
+    <Container cardType={cardType} image={image}>
       <InfoWrapper>
         <HeaderText>{headerText}</HeaderText>
-        <DescText>{desc}</DescText>
+        <DescText cardType={cardType}>{desc}</DescText>
         <Link href={"#" + btnLink} scroll={false}>
           <Button width={123} buttonSize={ButtonSize.MEDIUM}>
             Подробнее
           </Button>
         </Link>
       </InfoWrapper>
-      <Image height={height} image={image} />
     </Container>
   );
 };
 
-const Image = styled.div<{
-  image: Concierge | Owner;
-  height: Concierge | Owner;
+const DescText = styled.p<{
+  cardType: "concierge" | "owner";
 }>`
-  width: 336px;
-  height: ${({ height }) => height + "px"};
-  background: url(${({ image }) => image}) center no-repeat;
-  background-size: cover;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 214px;
-    background-size: 214px;
-  }
-`;
-
-const DescText = styled.p`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   width: 448px;
   margin: 0 0 24px;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 376px;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "370px")};
   }
 `;
 
@@ -77,20 +64,35 @@ const InfoWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
+  width: 448px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 376px;
   }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{
+  image: Concierge | Owner;
+  cardType: "concierge" | "owner";
+}>`
   display: flex;
   width: 864px;
   justify-content: space-between;
   align-items: center;
   margin: 48px 0;
+  background: url(${({ image }) => image}) right no-repeat;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    column-gap: 32px;
+  }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
-    column-gap: 32px;
+    background-size: ${({ cardType }) =>
+      cardType === "concierge" ? "250px" : "220px"};
+    background-position: right 50px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+    background-size: ${({ cardType }) =>
+      cardType === "concierge" ? "296px" : "264px"};
   }
 `;
 

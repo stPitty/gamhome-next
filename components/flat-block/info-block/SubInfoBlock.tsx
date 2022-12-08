@@ -13,7 +13,7 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Container paramsCount={9}>
+    <Container paramsCount={subInfoData?.length}>
       {!isLoading &&
         subInfoData?.map((el: string, i: number) => {
           return (
@@ -77,6 +77,15 @@ const Container = styled.div<{ paramsCount: number | undefined }>`
     height: ${({ paramsCount }) => {
       if (paramsCount) {
         return `${(paramsCount / 3) * 60 + 48}px`;
+      }
+    }};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+    column-gap: 19px;
+    height: ${({ paramsCount }) => {
+      if (paramsCount) {
+        return `${(paramsCount / 3 + 1) * 36}px`;
       }
     }};
   }
