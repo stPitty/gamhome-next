@@ -5,6 +5,7 @@ import { FlatData, Parameter, TFlatState } from "../../redux/slicers/types";
 import { regexpList } from "./constants";
 import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
 import { WindowSize } from "../../redux/slicers/enums";
+import { Dispatch, SetStateAction } from "react";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -138,6 +139,22 @@ const SortByPriority = (windowSize: WindowSize | null, arr: any[]) => () => {
   return arr;
 };
 
+const handleShowNumberClick =
+  (
+    showNumber: boolean,
+    setLoading: Dispatch<SetStateAction<boolean>>,
+    setShowNumber: Dispatch<SetStateAction<boolean>>
+  ) =>
+  () => {
+    if (!showNumber) {
+      setLoading(true);
+      setTimeout(() => {
+        setShowNumber(true);
+        setLoading(false);
+      }, 500);
+    }
+  };
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -148,4 +165,5 @@ export {
   handleGetFlatData,
   handleGetSubHeader,
   SortByPriority,
+  handleShowNumberClick,
 };

@@ -4,8 +4,7 @@ import { modalData } from "./constants";
 import { TModalState } from "../../../redux/slicers/types";
 import { BlackColor, Font } from "../../../common/enums";
 import ModalText from "./ModalText";
-import Input from "../input/Input";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Button from "../button/Button";
 import { ButtonSize } from "../button/enums";
 import { Modal } from "./types";
@@ -153,6 +152,10 @@ const Header = styled.p`
   line-height: 40px;
   color: ${BlackColor.BLACK_SECONDARY};
   width: 430px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 export default ModalBody;

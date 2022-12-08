@@ -17,6 +17,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
 import { handleGetFlatData } from "../../../common/helpers";
 import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
+import MobileButtons from "../../../components/mobile-buttons/MobileButtons";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();
@@ -64,6 +65,7 @@ const RentPage: ComponentWithLayout = () => {
       <MainServices />
       <DiscountsBlock />
       <WebinarBlock />
+      <MobileButtons />
     </Container>
   );
 };

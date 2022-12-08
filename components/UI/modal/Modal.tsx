@@ -43,6 +43,8 @@ const StyledCloseIcon = styled(CloseSVG)`
   align-self: flex-end;
   cursor: pointer;
   margin: 18px 26px 0 0;
+  height: 16px;
+  width: 16px;
   & path {
     fill: ${BrandColor.BRAND};
   }

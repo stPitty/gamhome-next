@@ -9,7 +9,10 @@ import { Hook } from "../../common/routes";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
 import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
-import { handleGetSubHeader } from "../../common/helpers";
+import {
+  handleGetSubHeader,
+  handleShowNumberClick,
+} from "../../common/helpers";
 
 const PriceBlock: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(false);
@@ -25,16 +28,6 @@ const PriceBlock: React.FC = () => {
     handleGetSubHeader(flatData?.price, flatData?.fee, flatData?.feeAmount),
     [flatData]
   );
-
-  const handleShowNumberClick = () => {
-    if (!showNumber) {
-      setLoading(true);
-      setTimeout(() => {
-        setShowNumber(true);
-        setLoading(false);
-      }, 500);
-    }
-  };
 
   const handleOpenModalClick = () => {
     dispatch(checkObjInputNum());
@@ -53,18 +46,22 @@ const PriceBlock: React.FC = () => {
         )}
 
         {showNumber ? (
-          <PhoneNumberLink href={`tel:${flatData?.phone}`}>
+          <StyledLink href={`tel:${flatData?.phone}`}>
             <Button
               buttonType={ButtonType.OUTLINE}
               buttonSize={ButtonSize.LARGE}
             >
               {flatData?.phone}
             </Button>
-          </PhoneNumberLink>
+          </StyledLink>
         ) : (
           <Button
             loading={loading}
-            onClick={handleShowNumberClick}
+            onClick={handleShowNumberClick(
+              showNumber,
+              setLoading,
+              setShowNumber
+            )}
             buttonSize={ButtonSize.LARGE}
           >
             Показать телефон
@@ -97,10 +94,6 @@ const LoadingBlock = styled.div`
   background: ${LightBlueColor.LB_100};
   border-radius: 16px;
   margin-bottom: 20px;
-`;
-
-const PhoneNumberLink = styled.a`
-  width: 100%;
 `;
 
 const StyledLink = styled(Link)`
