@@ -8,6 +8,9 @@ import ownerDataReducer from "./slicers/ownerDataSlicer";
 import serviceDataReducer from "./slicers/serviceDataSlicer";
 import windowSizeReducer from "./slicers/windowSizeSlicer";
 import sideMenuReducer from "./slicers/sideMenuSlicer";
+import mobBtnViewReducer from "./slicers/mobBtnViewSlicer";
+import cookiePopUpReducer from "./slicers/cookiePopUpSlicer";
+import scrollTopBtnReducer from "./slicers/scrollTopBtnSlicer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
@@ -18,6 +21,9 @@ const combinedReducer = combineReducers({
   serviceData: serviceDataReducer,
   windowSize: windowSizeReducer,
   sideMenu: sideMenuReducer,
+  mobBtnView: mobBtnViewReducer,
+  cookiePopUp: cookiePopUpReducer,
+  scrollTopBtn: scrollTopBtnReducer,
 });
 
 const reducer = (

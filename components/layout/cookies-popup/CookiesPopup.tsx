@@ -3,20 +3,24 @@ import styled from "styled-components";
 import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
 import Button from "../../UI/button/Button";
 import { ButtonType } from "../../UI/button/enums";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { setAcceptedCookie } from "../../../redux/slicers/cookiePopUpSlicer";
+import { TCookiePopUp } from "../../../redux/slicers/types";
 
-type Props = {
-  acceptCookies: boolean;
-  setAcceptCookies: Dispatch<SetStateAction<boolean>>;
-};
+const CookiesPopup: React.FC = () => {
+  const dispatch = useAppDispatch();
 
-const CookiesPopup: React.FC<Props> = ({ setAcceptCookies, acceptCookies }) => {
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
+
   const handleButtonClick = () => {
-    setAcceptCookies(true);
+    dispatch(setAcceptedCookie());
     localStorage.setItem("acceptCookies", "true");
   };
 
   return (
-    <Wrapper isAccept={acceptCookies}>
+    <Wrapper isAccept={isCookieAccepted}>
       <Container>
         <Text>Мы используем cookies</Text>
         <StyledButton

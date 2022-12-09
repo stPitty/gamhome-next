@@ -3,8 +3,9 @@ import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import { Hook } from "../../common/routes";
+import React from "react";
 
-const WebinarBlock = () => {
+const WebinarBlock = React.forwardRef((_, ref) => {
   return (
     <Container id={Hook.WEBINAR}>
       <ContentContainer>
@@ -27,7 +28,7 @@ const WebinarBlock = () => {
       </ContentContainer>
     </Container>
   );
-};
+});
 
 const Text = styled.p`
   font-family: ${Font.ROBOTO};
@@ -100,5 +101,7 @@ const Container = styled.div`
     padding: 192px 40px 96px;
   }
 `;
+
+WebinarBlock.displayName = "WebinarBlock";
 
 export default WebinarBlock;

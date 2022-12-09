@@ -4,8 +4,9 @@ import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
 import { useAppDispatch } from "../../redux/hooks";
 import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
+import React, { memo } from "react";
 
-const CardWitsImage = () => {
+const CardWitsImage = React.forwardRef((_, ref) => {
   const dispatch = useAppDispatch();
 
   const handleButtonClick = () => {
@@ -13,29 +14,39 @@ const CardWitsImage = () => {
   };
 
   return (
-    <Container>
-      <ColumnImage />
-      <TextWrapper>
-        <HeaderText>
-          Съезжаете с квартиры?
-          <AdaptiveBR1 /> <MarkedText>Заплатим 10%</MarkedText>, <AdaptiveBR0 />
-          за рекомендацию нас собственнику
-        </HeaderText>
-        <Text>
-          Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
-        </Text>
-        <Button
-          onClick={handleButtonClick}
-          width={191}
-          buttonSize={ButtonSize.LARGE}
-        >
-          Оставить заявку
-        </Button>
-      </TextWrapper>
-      <RowImage />
-    </Container>
+    <>
+      <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      <Container>
+        <ColumnImage />
+        <TextWrapper>
+          <HeaderText>
+            Съезжаете с квартиры?
+            <AdaptiveBR1 /> <MarkedText>Заплатим 10%</MarkedText>,{" "}
+            <AdaptiveBR0 />
+            за рекомендацию нас собственнику
+          </HeaderText>
+          <Text>
+            Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
+          </Text>
+          <Button
+            onClick={handleButtonClick}
+            width={191}
+            buttonSize={ButtonSize.LARGE}
+          >
+            Оставить заявку
+          </Button>
+        </TextWrapper>
+        <RowImage />
+      </Container>
+    </>
   );
-};
+});
+
+const ObservableComponent = styled.div`
+  position: relative;
+  visibility: hidden;
+  top: 168px;
+`;
 
 const AdaptiveBR1 = styled.br`
   display: none;
@@ -144,4 +155,6 @@ const Container = styled.div`
   }
 `;
 
-export default CardWitsImage;
+CardWitsImage.displayName = "CardWitsImage";
+
+export default memo(CardWitsImage);

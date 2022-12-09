@@ -12,12 +12,15 @@ import AddInfoBlock from "../../../components/add-info-block";
 import ServicesBlock from "../../../components/services-block";
 import { Hook, Route } from "../../../common/routes";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { createRef, useEffect, useMemo, useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { TFlatState } from "../../../redux/slicers/types";
+import { TFlatState, TWindowSize } from "../../../redux/slicers/types";
 import { handleGetFlatData } from "../../../common/helpers";
 import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
 import MobileButtons from "../../../components/mobile-buttons/MobileButtons";
+import { setMobBtnVisibility } from "../../../redux/slicers/mobBtnViewSlicer";
+import { WindowSize } from "../../../redux/slicers/enums";
+import { BottomMenuSingleton } from "../../../common/helpers/changeScrollBtnTheme.helper";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();
@@ -28,9 +31,43 @@ const RentPage: ComponentWithLayout = () => {
     (state) => state.flatData
   );
 
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
+  const observingWrapperRef = useRef(null);
+
+  const cardWithImageDarkRef = createRef();
+  const mainServicesLightRef = createRef();
+  const discountPartnersDarkRef = createRef();
+  const webinarLightRef = createRef();
+
   const handleResizeWindow = () => {
     dispatch(setWindowSize(window.innerWidth));
   };
+
+  const handleChangeMobBtnVisibility = (isInteresting: boolean) => {
+    dispatch(setMobBtnVisibility(isInteresting));
+  };
+
+  useEffect(() => {
+    if (
+      windowSize === WindowSize.MD &&
+      observingWrapperRef.current &&
+      IntersectionObserver
+    ) {
+      if (!BottomMenuSingleton.refs) {
+        BottomMenuSingleton.setRefs(observingWrapperRef)?.init(
+          handleChangeMobBtnVisibility
+        );
+      } else {
+        BottomMenuSingleton.init(handleChangeMobBtnVisibility);
+      }
+    } else if (windowSize !== WindowSize.MD) {
+      handleChangeMobBtnVisibility(true);
+      BottomMenuSingleton.destroy();
+    }
+  }, [windowSize]);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -59,16 +96,26 @@ const RentPage: ComponentWithLayout = () => {
         </InfoWrapperColumn>
         <PriceBlock />
       </InfoWrapperRow>
-      <ServicesBlock />
-      <CheckOwnerBlock />
-      <CardWitsImage />
-      <MainServices />
-      <DiscountsBlock />
-      <WebinarBlock />
-      <MobileButtons />
+      <ObservingWrapper ref={observingWrapperRef}>
+        <ServicesBlock />
+        <CheckOwnerBlock />
+        <CardWitsImage ref={cardWithImageDarkRef} />
+        <MainServices ref={mainServicesLightRef} />
+        <DiscountsBlock ref={discountPartnersDarkRef} />
+        <WebinarBlock ref={webinarLightRef} />
+        <MobileButtons />
+      </ObservingWrapper>
     </Container>
   );
 };
+
+const ObservingWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  align-content: center;
+`;
 
 const InfoWrapperRow = styled.div`
   display: flex;

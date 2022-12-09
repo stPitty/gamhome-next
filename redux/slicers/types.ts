@@ -1,4 +1,4 @@
-import { ModalState, WindowSize } from "./enums";
+import { ModalState, ScrollBtnState, WindowSize } from "./enums";
 
 type TPhotoPosition = {
   position: number;
@@ -130,6 +130,18 @@ type TSideMenu = {
   willBeClosed: boolean;
 };
 
+type TMobBtnView = {
+  isShown: boolean;
+};
+
+type TCookiePopUp = {
+  isCookieAccepted: boolean;
+};
+
+type TScrollTopBtn = {
+  btnState: ScrollBtnState;
+};
+
 export type {
   TPhotoPosition,
   TModalState,
@@ -143,4 +155,7 @@ export type {
   ServiceInputFieldNames,
   TWindowSize,
   TSideMenu,
+  TMobBtnView,
+  TCookiePopUp,
+  TScrollTopBtn,
 };

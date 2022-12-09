@@ -3,8 +3,9 @@ import { BlackColor, WhiteColor } from "../../common/enums";
 import { cardsData } from "./constants";
 import Card from "./Card";
 import { Hook } from "../../common/routes";
+import React from "react";
 
-const DiscountsBlock = () => {
+const DiscountsBlock = React.forwardRef((_, ref) => {
   return (
     <Wrapper id={Hook.PARTNERS}>
       <Container>
@@ -15,7 +16,7 @@ const DiscountsBlock = () => {
       </Container>
     </Wrapper>
   );
-};
+});
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,5 +56,7 @@ const Container = styled.div`
     margin-bottom: -80px;
   }
 `;
+
+DiscountsBlock.displayName = "DiscountsBlock";
 
 export default DiscountsBlock;

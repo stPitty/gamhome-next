@@ -3,22 +3,23 @@ import Header from "./header";
 import Footer from "./footer";
 import styled from "styled-components";
 import Modal from "../UI/modal/Modal";
-import { useAppSelector } from "../../redux/hooks";
-import { TFlatState, TModalState, TSideMenu } from "../../redux/slicers/types";
-import ErrorPage from "../error-page/ErrorPage";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { TModalState } from "../../redux/slicers/types";
 import CookiesPopup from "./cookies-popup/CookiesPopup";
 import SideMenu from "../UI/side-menu/SideMenu";
+import ScrollTopBtn from "../UI/scroll-top-btn/ScrollTopBtn";
+import { setAcceptedCookie } from "../../redux/slicers/cookiePopUpSlicer";
 
 type Props = {
   children: ReactNode;
 };
 
 const PageLayout: React.FC<Props> = ({ children }) => {
-  const [acceptCookies, setAcceptCookies] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     if (localStorage.getItem("acceptCookies")) {
-      setAcceptCookies(true);
+      dispatch(setAcceptedCookie());
     }
   }, []);
 
@@ -27,16 +28,14 @@ const PageLayout: React.FC<Props> = ({ children }) => {
   return (
     <>
       <SideMenu />
+      <ScrollTopBtn />
       {isOpened && <Modal />}
       <Container>
         <Header />
         {children}
         <Footer />
       </Container>
-      <CookiesPopup
-        acceptCookies={acceptCookies}
-        setAcceptCookies={setAcceptCookies}
-      />
+      <CookiesPopup />
     </>
   );
 };

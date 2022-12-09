@@ -30,9 +30,18 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 296px;
   position: fixed;
-  right: 72px;
+  left: calc(50% + 350px);
   top: 125px;
   row-gap: 10px;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    top: 100px;
+  }
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    left: calc(50% + 180px);
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    left: calc(50% + 48px);
+  }
 `;
 
 export default Notification;

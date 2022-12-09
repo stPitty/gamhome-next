@@ -3,15 +3,27 @@ import { BlackColor } from "../../common/enums";
 import { cardsData } from "./constants";
 import Cards from "./Card";
 import { Hook } from "../../common/routes";
+import React from "react";
+import { useAppDispatch } from "../../redux/hooks";
 
-const MainServices = () => {
+const MainServices = React.forwardRef((_, ref) => {
+  const dispatch = useAppDispatch();
+
   return (
-    <Container id={Hook.SERVICES}>
-      <HeaderText>Услуги</HeaderText>
-      <Cards data={cardsData} />
-    </Container>
+    <>
+      <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      <Container id={Hook.SERVICES}>
+        <HeaderText>Услуги</HeaderText>
+        <Cards data={cardsData} />
+      </Container>
+    </>
   );
-};
+});
+
+const ObservableComponent = styled.div`
+  position: relative;
+  visibility: hidden;
+`;
 
 const HeaderText = styled.p`
   font-weight: 600;
@@ -38,5 +50,7 @@ const Container = styled.div`
     margin: 0;
   }
 `;
+
+MainServices.displayName = "MainServices";
 
 export default MainServices;

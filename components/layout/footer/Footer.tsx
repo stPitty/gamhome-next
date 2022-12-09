@@ -105,7 +105,6 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
     row-gap: 24px;
-    padding-bottom: 149px;
   }
 `;
 

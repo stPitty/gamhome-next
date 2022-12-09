@@ -1,10 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import { useState } from "react";
 import { useAppSelector } from "../../redux/hooks";
-import { TFlatState } from "../../redux/slicers/types";
+import {
+  TCookiePopUp,
+  TFlatState,
+  TMobBtnView,
+} from "../../redux/slicers/types";
 import KeySVG from "../../public/assets/svg/KeySVG";
 import Link from "next/link";
 import { Hook } from "../../common/routes";
@@ -16,10 +20,16 @@ const MobileButtons = () => {
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
+  const { isShown } = useAppSelector<TMobBtnView>((state) => state.mobBtnView);
+
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
+
   return (
-    <Wrapper>
+    <Wrapper isShown={isShown}>
       <TopShadow />
-      <Container>
+      <Container isCookieAccepted={isCookieAccepted}>
         <ButtonsContainer>
           {showNumber ? (
             <StyledLink href={`tel:${flatData?.phone}`}>
@@ -80,22 +90,24 @@ const ButtonsContainer = styled.div`
   column-gap: 12px;
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ isCookieAccepted: boolean }>`
   width: 100%;
-  height: 130px;
+  height: ${({ isCookieAccepted }) => (isCookieAccepted ? "130px" : "202px")};
+  transition: 0.2s linear all;
   margin-top: -1px;
   background-color: ${WhiteColor.WHITE};
   display: flex;
   justify-content: center;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isShown: boolean }>`
   display: none;
   flex-direction: column;
   position: fixed;
   z-index: 2;
   width: 100%;
-  bottom: 0;
+  bottom: ${({ isShown }) => (isShown ? "0" : "-150px")};
+  transition: 0.2s linear all;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     display: flex;
   }
