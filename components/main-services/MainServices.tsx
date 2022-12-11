@@ -21,6 +21,7 @@ const MainServices = React.forwardRef((_, ref) => {
 });
 
 const ObservableComponent = styled.div`
+  top: 54px;
   position: relative;
   visibility: hidden;
 `;

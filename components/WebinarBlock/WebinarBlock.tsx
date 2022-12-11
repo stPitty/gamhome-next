@@ -7,28 +7,41 @@ import React from "react";
 
 const WebinarBlock = React.forwardRef((_, ref) => {
   return (
-    <Container id={Hook.WEBINAR}>
-      <ContentContainer>
-        <Tag>Бесплатный доступ к вебинару</Tag>
-        <HeaderText>
-          Узнайте основные риски при аренде квартиры и какие схемы используют
-          мошенники
-        </HeaderText>
-        <Text>
-          На вебинаре разобраны основные методы мошенников и как их вычислить.
-          Изучите это видео, чтобы всегда понимать правила съёма квартиры
-        </Text>
-        <Button
-          width={206}
-          buttonSize={ButtonSize.LARGE}
-          buttonType={ButtonType.PRIMARY_WB}
-        >
-          Посмотреть видео
-        </Button>
-      </ContentContainer>
-    </Container>
+    <>
+      <ObservableElement ref={ref as React.RefObject<HTMLDivElement>} />
+      <Container id={Hook.WEBINAR}>
+        <ContentContainer>
+          <Tag>Бесплатный доступ к вебинару</Tag>
+          <HeaderText>
+            Узнайте основные риски при аренде квартиры и какие схемы используют
+            мошенники
+          </HeaderText>
+          <Text>
+            На вебинаре разобраны основные методы мошенников и как их вычислить.
+            Изучите это видео, чтобы всегда понимать правила съёма квартиры
+          </Text>
+          <Button
+            width={206}
+            buttonSize={ButtonSize.LARGE}
+            buttonType={ButtonType.PRIMARY_WB}
+          >
+            Посмотреть видео
+          </Button>
+        </ContentContainer>
+      </Container>
+    </>
   );
 });
+
+const ObservableElement = styled.div`
+  position: relative;
+  visibility: visible;
+  height: 50px;
+  width: 50px;
+  background-color: red;
+  z-index: 10;
+  top: 180px;
+`;
 
 const Text = styled.p`
   font-family: ${Font.ROBOTO};

@@ -7,16 +7,25 @@ import React from "react";
 
 const DiscountsBlock = React.forwardRef((_, ref) => {
   return (
-    <Wrapper id={Hook.PARTNERS}>
-      <Container>
-        <HeaderText>Скидки от партнёров</HeaderText>
-        {cardsData.map((el) => (
-          <Card data={el} key={el.id} />
-        ))}
-      </Container>
-    </Wrapper>
+    <>
+      <ObservableBlock ref={ref as React.RefObject<HTMLDivElement>} />
+      <Wrapper id={Hook.PARTNERS}>
+        <Container>
+          <HeaderText>Скидки от партнёров</HeaderText>
+          {cardsData.map((el) => (
+            <Card data={el} key={el.id} />
+          ))}
+        </Container>
+      </Wrapper>
+    </>
   );
 });
+
+const ObservableBlock = styled.div`
+  visibility: hidden;
+  position: relative;
+  top: 184px;
+`;
 
 const Wrapper = styled.div`
   display: flex;

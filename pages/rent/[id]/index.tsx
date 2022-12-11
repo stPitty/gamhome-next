@@ -12,15 +12,20 @@ import AddInfoBlock from "../../../components/add-info-block";
 import ServicesBlock from "../../../components/services-block";
 import { Hook, Route } from "../../../common/routes";
 import { useRouter } from "next/router";
-import { createRef, useEffect, useMemo, useRef, useState } from "react";
+import { createRef, useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { TFlatState, TWindowSize } from "../../../redux/slicers/types";
 import { handleGetFlatData } from "../../../common/helpers";
 import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
 import MobileButtons from "../../../components/mobile-buttons/MobileButtons";
-import { setMobBtnVisibility } from "../../../redux/slicers/mobBtnViewSlicer";
-import { WindowSize } from "../../../redux/slicers/enums";
-import { BottomMenuSingleton } from "../../../common/helpers/changeScrollBtnTheme.helper";
+import {
+  IOBottomMenuSingleton,
+  IOScrollButtonSingleton,
+} from "../../../common/helpers/IOSingleton";
+import {
+  setIOForBottomMenu,
+  setIOForScrollBtn,
+} from "../../../common/helpers/mainPageHelpers";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();
@@ -46,28 +51,21 @@ const RentPage: ComponentWithLayout = () => {
     dispatch(setWindowSize(window.innerWidth));
   };
 
-  const handleChangeMobBtnVisibility = (isInteresting: boolean) => {
-    dispatch(setMobBtnVisibility(isInteresting));
-  };
+  useEffect(() => {
+    setIOForBottomMenu(windowSize, observingWrapperRef.current, dispatch);
+    return () => IOBottomMenuSingleton.destroy();
+  }, [windowSize]);
 
   useEffect(() => {
-    if (
-      windowSize === WindowSize.MD &&
-      observingWrapperRef.current &&
-      IntersectionObserver
-    ) {
-      if (!BottomMenuSingleton.refs) {
-        BottomMenuSingleton.setRefs(observingWrapperRef)?.init(
-          handleChangeMobBtnVisibility
-        );
-      } else {
-        BottomMenuSingleton.init(handleChangeMobBtnVisibility);
-      }
-    } else if (windowSize !== WindowSize.MD) {
-      handleChangeMobBtnVisibility(true);
-      BottomMenuSingleton.destroy();
-    }
-  }, [windowSize]);
+    setIOForScrollBtn(
+      dispatch,
+      cardWithImageDarkRef.current,
+      mainServicesLightRef.current,
+      discountPartnersDarkRef.current,
+      webinarLightRef.current
+    );
+    return () => IOScrollButtonSingleton.destroy();
+  }, []);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

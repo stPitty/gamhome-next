@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import React from "react";
+import React, { MutableRefObject, RefObject } from "react";
 import {
   BlackColor,
   BrandColor,
@@ -31,9 +31,23 @@ type AdaptiveLayoutPriority = Record<
   number
 >;
 
+type ObservableElementsNames =
+  | "cardWithImage"
+  | "mainServices"
+  | "discountPartners"
+  | "webinar";
+
+type ObservableRefAttrs = {
+  ref: RefObject<unknown>["current"];
+  callback?: (param: boolean) => void;
+  name?: ObservableElementsNames;
+};
+
 export type {
   AppWithPageLayout,
   ComponentWithLayout,
   Color,
   AdaptiveLayoutPriority,
+  ObservableRefAttrs,
+  ObservableElementsNames,
 };

@@ -5,7 +5,8 @@ import { FlatData, Parameter, TFlatState } from "../../redux/slicers/types";
 import { regexpList } from "./constants";
 import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
 import { WindowSize } from "../../redux/slicers/enums";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, RefObject, SetStateAction } from "react";
+import { ObservableRefAttrs } from "../types";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -155,6 +156,41 @@ const handleShowNumberClick =
     }
   };
 
+const getRefsArr = (
+  cardWithImageDarkRef: RefObject<unknown>["current"],
+  mainServicesLightRef: RefObject<unknown>["current"],
+  discountPartnersDarkRef: RefObject<unknown>["current"],
+  webinarLightRef: RefObject<unknown>["current"]
+): ObservableRefAttrs[] => {
+  return [
+    {
+      ref: cardWithImageDarkRef,
+      name: "cardWithImage",
+    },
+    {
+      ref: mainServicesLightRef,
+      name: "mainServices",
+    },
+    {
+      ref: discountPartnersDarkRef,
+      name: "discountPartners",
+    },
+    {
+      ref: webinarLightRef,
+      name: "webinar",
+    },
+  ];
+};
+
+const handleCheckFalsyValues = (...args: any): boolean => {
+  for (let i = 0; i < args.length; i++) {
+    if (!args[i]) {
+      return false;
+    }
+  }
+  return true;
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -166,4 +202,6 @@ export {
   handleGetSubHeader,
   SortByPriority,
   handleShowNumberClick,
+  getRefsArr,
+  handleCheckFalsyValues,
 };
