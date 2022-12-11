@@ -1,4 +1,4 @@
-import { ModalState, ScrollBtnState, WindowSize } from "./enums";
+import { ModalState, WindowSize } from "./enums";
 
 type TPhotoPosition = {
   position: number;
@@ -139,7 +139,7 @@ type TCookiePopUp = {
 };
 
 type TScrollTopBtn = {
-  btnState: ScrollBtnState;
+  isLightTheme: boolean;
 };
 
 export type {

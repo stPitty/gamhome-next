@@ -26,8 +26,3 @@ export enum WindowSize {
   //max-width 1023 px and min-width 768 px
   MD,
 }
-
-export enum ScrollBtnState {
-  LIGHT,
-  DARK,
-}

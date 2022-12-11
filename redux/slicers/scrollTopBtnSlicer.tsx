@@ -1,25 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { TScrollTopBtn } from "./types";
-import { ScrollBtnState } from "./enums";
 
 const initialState: TScrollTopBtn = {
-  btnState: ScrollBtnState.LIGHT,
+  isLightTheme: true,
 };
 
 const scrollTopBtnSlicer = createSlice({
   name: "scrollTopBtn",
   initialState,
   reducers: {
-    setScrollBtnDark(state) {
-      state.btnState = ScrollBtnState.DARK;
-    },
-    setScrollBtnLight(state) {
-      state.btnState = ScrollBtnState.LIGHT;
+    setScrollBtnTheme(state, action) {
+      state.isLightTheme = action.payload;
     },
   },
 });
 
-export const { setScrollBtnDark, setScrollBtnLight } =
-  scrollTopBtnSlicer.actions;
+export const { setScrollBtnTheme } = scrollTopBtnSlicer.actions;
 
 export default scrollTopBtnSlicer.reducer;

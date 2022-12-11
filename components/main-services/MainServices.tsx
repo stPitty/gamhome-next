@@ -11,7 +11,9 @@ const MainServices = React.forwardRef((_, ref) => {
 
   return (
     <>
-      <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      <ObservableComponentWrapper>
+        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      </ObservableComponentWrapper>
       <Container id={Hook.SERVICES}>
         <HeaderText>Услуги</HeaderText>
         <Cards data={cardsData} />
@@ -21,9 +23,14 @@ const MainServices = React.forwardRef((_, ref) => {
 });
 
 const ObservableComponent = styled.div`
-  top: 54px;
-  position: relative;
-  visibility: hidden;
+  margin-top: 54px;
+`;
+
+const ObservableComponentWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  max-width: 0;
+  max-height: 0;
 `;
 
 const HeaderText = styled.p`

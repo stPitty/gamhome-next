@@ -8,7 +8,9 @@ import React from "react";
 const DiscountsBlock = React.forwardRef((_, ref) => {
   return (
     <>
-      <ObservableBlock ref={ref as React.RefObject<HTMLDivElement>} />
+      <ObservableComponentWrapper>
+        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      </ObservableComponentWrapper>
       <Wrapper id={Hook.PARTNERS}>
         <Container>
           <HeaderText>Скидки от партнёров</HeaderText>
@@ -21,10 +23,18 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableBlock = styled.div`
-  visibility: hidden;
-  position: relative;
-  top: 184px;
+const ObservableComponent = styled.div`
+  margin-top: 166px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 154px;
+  }
+`;
+
+const ObservableComponentWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  max-width: 0;
+  max-height: 0;
 `;
 
 const Wrapper = styled.div`

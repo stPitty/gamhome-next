@@ -18,14 +18,15 @@ import { TFlatState, TWindowSize } from "../../../redux/slicers/types";
 import { handleGetFlatData } from "../../../common/helpers";
 import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
 import MobileButtons from "../../../components/mobile-buttons/MobileButtons";
-import {
-  IOBottomMenuSingleton,
-  IOScrollButtonSingleton,
-} from "../../../common/helpers/IOSingleton";
+
 import {
   setIOForBottomMenu,
   setIOForScrollBtn,
 } from "../../../common/helpers/mainPageHelpers";
+import {
+  IOBottomMenuSingleton,
+  IOScrollButtonSingleton,
+} from "../../../common/helpers/IOSingleton";
 
 const RentPage: ComponentWithLayout = () => {
   const router = useRouter();

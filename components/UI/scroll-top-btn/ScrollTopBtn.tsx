@@ -9,7 +9,6 @@ import {
   TMobBtnView,
   TScrollTopBtn,
 } from "../../../redux/slicers/types";
-import { ScrollBtnState } from "../../../redux/slicers/enums";
 
 const ScrollTopBtn = () => {
   const { isShown } = useAppSelector<TMobBtnView>((state) => state.mobBtnView);
@@ -18,37 +17,36 @@ const ScrollTopBtn = () => {
     (state) => state.cookiePopUp
   );
 
-  const { btnState } = useAppSelector<TScrollTopBtn>(
+  const { isLightTheme } = useAppSelector<TScrollTopBtn>(
     (state) => state.scrollTopBtn
   );
 
   return (
     <Link href={"#" + Hook.HOME} scroll={false}>
       <Container
-        btnState={btnState}
+        isLightTheme={isLightTheme}
         isCookieAccepted={isCookieAccepted}
         isMenuShown={isShown}
       >
-        <ChevronIcon btnState={btnState} />
+        <ChevronIcon isLightTheme={isLightTheme} />
       </Container>
     </Link>
   );
 };
 
-const ChevronIcon = styled(ChevronSVG)<{ btnState: ScrollBtnState }>`
+const ChevronIcon = styled(ChevronSVG)<{ isLightTheme: boolean }>`
   transform: rotate(90deg);
   width: 23px;
   height: 23px;
   & path {
-    fill: ${({ btnState }) =>
-      btnState === ScrollBtnState.DARK && BlackColor.BLACK_SECONDARY};
+    fill: ${({ isLightTheme }) => !isLightTheme && BlackColor.BLACK_SECONDARY};
   }
 `;
 
 const Container = styled.div<{
   isMenuShown: boolean;
   isCookieAccepted: boolean;
-  btnState: ScrollBtnState;
+  isLightTheme: boolean;
 }>`
   cursor: pointer;
   justify-content: center;
@@ -62,18 +60,14 @@ const Container = styled.div<{
   width: 48px;
   height: 48px;
   border-radius: 100px;
-  background: ${({ btnState }) =>
-    btnState === ScrollBtnState.LIGHT
-      ? BlackColor.BLACK_32
-      : WhiteColor.WHITE_80};
+  background: ${({ isLightTheme }) =>
+    isLightTheme ? BlackColor.BLACK_32 : WhiteColor.WHITE_80};
   backdrop-filter: blur(8px);
   z-index: 2;
   transition: 0.2s linear;
   &:hover {
-    background: ${({ btnState }) =>
-      btnState === ScrollBtnState.LIGHT
-        ? BlackColor.BLACK_64
-        : WhiteColor.WHITE};
+    background: ${({ isLightTheme }) =>
+      isLightTheme ? BlackColor.BLACK_64 : WhiteColor.WHITE};
   }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     left: calc(50% + 432px);

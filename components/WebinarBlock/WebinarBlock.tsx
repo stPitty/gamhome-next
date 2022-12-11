@@ -8,7 +8,9 @@ import React from "react";
 const WebinarBlock = React.forwardRef((_, ref) => {
   return (
     <>
-      <ObservableElement ref={ref as React.RefObject<HTMLDivElement>} />
+      <ObservableComponentWrapper>
+        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      </ObservableComponentWrapper>
       <Container id={Hook.WEBINAR}>
         <ContentContainer>
           <Tag>Бесплатный доступ к вебинару</Tag>
@@ -33,14 +35,18 @@ const WebinarBlock = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableElement = styled.div`
-  position: relative;
-  visibility: visible;
-  height: 50px;
-  width: 50px;
-  background-color: red;
-  z-index: 10;
-  top: 180px;
+const ObservableComponent = styled.div`
+  margin-top: 150px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 136px;
+  }
+`;
+
+const ObservableComponentWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  max-width: 0;
+  max-height: 0;
 `;
 
 const Text = styled.p`

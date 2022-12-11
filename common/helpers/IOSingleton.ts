@@ -1,10 +1,7 @@
 import { ObservableElementsNames, ObservableRefAttrs } from "../types";
 import { MutableRefObject, RefObject } from "react";
 import { AppDispatch } from "../../redux/types";
-import {
-  setScrollBtnDark,
-  setScrollBtnLight,
-} from "../../redux/slicers/scrollTopBtnSlicer";
+import { setScrollBtnTheme } from "../../redux/slicers/scrollTopBtnSlicer";
 
 type Ref = MutableRefObject<null>["current"] | ObservableRefAttrs[] | undefined;
 
@@ -75,7 +72,7 @@ class IOScrollButtonSingleton extends IOSingletonConstructor {
   }
 
   private static changeVisibility(dispatch: AppDispatch) {
-    let lightTheme = true;
+    let isLightTheme = true;
     const keys: ObservableElementsNames[] = Object.keys(
       this.visibleElements
     ) as ObservableElementsNames[];
@@ -83,28 +80,23 @@ class IOScrollButtonSingleton extends IOSingletonConstructor {
     for (let i = 0; i < keys.length; i++) {
       if (this.visibleElements[keys[i]]) {
         if (keys[i] === "cardWithImage") {
-          lightTheme = false;
+          isLightTheme = false;
           continue;
         }
         if (keys[i] === "mainServices") {
-          lightTheme = true;
+          isLightTheme = true;
           continue;
         }
         if (keys[i] === "discountPartners") {
-          lightTheme = false;
+          isLightTheme = false;
           continue;
         }
         if (keys[i] === "webinar") {
-          lightTheme = true;
+          isLightTheme = true;
         }
       }
     }
-
-    if (lightTheme) {
-      dispatch(setScrollBtnLight());
-    } else {
-      dispatch(setScrollBtnDark());
-    }
+    dispatch(setScrollBtnTheme(isLightTheme));
   }
 
   static init(dispatch: AppDispatch) {

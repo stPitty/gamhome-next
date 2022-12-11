@@ -15,7 +15,9 @@ const CardWitsImage = React.forwardRef((_, ref) => {
 
   return (
     <>
-      <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      <ObservableComponentWrapper>
+        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+      </ObservableComponentWrapper>
       <Container>
         <ColumnImage />
         <TextWrapper>
@@ -43,9 +45,17 @@ const CardWitsImage = React.forwardRef((_, ref) => {
 });
 
 const ObservableComponent = styled.div`
-  position: relative;
-  visibility: hidden;
-  top: 168px;
+  margin-top: 166px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 154px;
+  }
+`;
+
+const ObservableComponentWrapper = styled.div`
+  position: sticky;
+  top: 0;
+  max-width: 0;
+  max-height: 0;
 `;
 
 const AdaptiveBR1 = styled.br`
