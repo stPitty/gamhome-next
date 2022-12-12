@@ -108,7 +108,7 @@ const Wrapper = styled.div<{ isShown: boolean }>`
   width: 100%;
   bottom: ${({ isShown }) => (isShown ? "0" : "-150px")};
   transition: 0.2s linear all;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
   }
 `;

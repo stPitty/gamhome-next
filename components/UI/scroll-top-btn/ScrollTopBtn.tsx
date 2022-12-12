@@ -41,6 +41,11 @@ const ChevronIcon = styled(ChevronSVG)<{ isLightTheme: boolean }>`
   & path {
     fill: ${({ isLightTheme }) => !isLightTheme && BlackColor.BLACK_SECONDARY};
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    left: calc(50% + 132px);
+    width: 19px;
+    height: 19px;
+  }
 `;
 
 const Container = styled.div<{
@@ -76,7 +81,11 @@ const Container = styled.div<{
     left: calc(50% + 304px);
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    left: calc(50% + 108px);
+    left: calc(50% + 132px);
+    width: 40px;
+    height: 40px;
+    bottom: ${({ isMenuShown, isCookieAccepted }) =>
+      isMenuShown ? "150px" : "14px"};
   }
 `;
 

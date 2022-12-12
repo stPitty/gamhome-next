@@ -22,23 +22,33 @@ const WebinarBlock = React.forwardRef((_, ref) => {
             На вебинаре разобраны основные методы мошенников и как их вычислить.
             Изучите это видео, чтобы всегда понимать правила съёма квартиры
           </Text>
-          <Button
-            width={206}
+          <StyledButton
             buttonSize={ButtonSize.LARGE}
             buttonType={ButtonType.PRIMARY_WB}
           >
             Посмотреть видео
-          </Button>
+          </StyledButton>
         </ContentContainer>
       </Container>
     </>
   );
 });
 
+const StyledButton = styled(Button)`
+  width: 206px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 100%;
+  }
+`;
+
 const ObservableComponent = styled.div`
   margin-top: 150px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-top: 136px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: -1954px;
+    height: 1954px;
   }
 `;
 
@@ -63,7 +73,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -118,6 +128,14 @@ const Container = styled.div`
     background-position: 405px center;
     width: 768px;
     padding: 192px 40px 96px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    background-size: cover;
+    width: 375px;
+    padding: 110px 13px 517px;
+    border-radius: 24px;
+    background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
+    background-position: center bottom 78px;
   }
 `;
 

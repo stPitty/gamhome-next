@@ -2,8 +2,8 @@ import styled from "styled-components";
 import Body from "../Body";
 import { BlackColor, Font, OtherColor } from "../../../common/enums";
 import MenuItems from "../header/MenuItems";
-import AdaptiveTextDivider from "../../UI/adaptive-text-divider/AdaptiveTextDivider";
 import React from "react";
+import AdaptiveTextDivider from "../../UI/adaptive-text-divider/AdaptiveTextDivider";
 
 const Footer: React.FC = () => {
   return (
@@ -144,6 +144,8 @@ const Container = styled.div`
     width: 375px;
     align-items: flex-start;
     row-gap: 16px;
+    padding-bottom: 48px;
+    padding-top: 64px;
   }
 `;
 

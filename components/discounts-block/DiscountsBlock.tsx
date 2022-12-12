@@ -13,7 +13,7 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
       </ObservableComponentWrapper>
       <Wrapper id={Hook.PARTNERS}>
         <Container>
-          <HeaderText>Скидки от партнёров</HeaderText>
+          <HeaderText>Скидки от партнёров</HeaderText>
           {cardsData.map((el) => (
             <Card data={el} key={el.id} />
           ))}
@@ -27,6 +27,9 @@ const ObservableComponent = styled.div`
   margin-top: 166px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-top: 154px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 100px;
   }
 `;
 
@@ -43,6 +46,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 64px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -51,9 +57,13 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0 40px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     font-size: 32px;
     line-height: 40px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin: 0;
+    width: 330px;
   }
 `;
 
@@ -73,6 +83,11 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding: 56px 40px;
     margin-bottom: -80px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 40px 13px 38px;
+    margin-bottom: -48px;
+    border-radius: 24px;
   }
 `;
 

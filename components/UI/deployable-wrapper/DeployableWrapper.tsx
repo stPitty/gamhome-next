@@ -5,10 +5,17 @@ import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 
 type Props = {
   children: ReactNode;
+  minHeight: number;
   className?: string;
+  preventDefault?: boolean;
 };
 
-const DeployableWrapper: React.FC<Props> = ({ children, className }) => {
+const DeployableWrapper: React.FC<Props> = ({
+  children,
+  className,
+  minHeight,
+  preventDefault = false,
+}) => {
   const [prevHeight, setPrevHeight] = useState<number | null>(null);
   const [isDeployed, setIsDeployed] = useState<boolean>(false);
 
@@ -25,10 +32,14 @@ const DeployableWrapper: React.FC<Props> = ({ children, className }) => {
 
   return (
     <Wrapper isDeployed={isDeployed} className={className}>
-      <ChildrenContainer height={prevHeight} isDeployed={isDeployed}>
+      <ChildrenContainer
+        minHeight={minHeight}
+        height={prevHeight}
+        isDeployed={isDeployed}
+      >
         <ChildrenWrapper ref={wrapperRef}>{children}</ChildrenWrapper>
       </ChildrenContainer>
-      <DeployBtnContainer onClick={handleDeployClick}>
+      <DeployBtnContainer prevent={preventDefault} onClick={handleDeployClick}>
         <BtnText>{isDeployed ? "Свернуть" : "Показать все"}</BtnText>
         <ChevronIconContainer>
           <ChevronIcon isDeployed={isDeployed} />
@@ -46,14 +57,15 @@ const ChildrenWrapper = styled.div`
 const ChildrenContainer = styled.div<{
   isDeployed: boolean;
   height: number | null;
+  minHeight: number;
 }>`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     transition: 0.2s linear;
-    height: ${({ isDeployed, height }) =>
-      !isDeployed ? "168px" : height ? `${height}px` : "auto"};
+    height: ${({ isDeployed, height, minHeight }) =>
+      !isDeployed ? `${minHeight}px` : height ? `${height}px` : "auto"};
   }
 `;
 
@@ -86,7 +98,7 @@ const BtnText = styled.p`
   transition: 0.1s linear;
 `;
 
-const DeployBtnContainer = styled.div`
+const DeployBtnContainer = styled.div<{ prevent: boolean }>`
   display: none;
   cursor: pointer;
   width: fit-content;
@@ -108,7 +120,7 @@ const DeployBtnContainer = styled.div`
     }
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    display: flex;
+    display: ${({ prevent }) => !prevent && "flex"};
   }
 `;
 

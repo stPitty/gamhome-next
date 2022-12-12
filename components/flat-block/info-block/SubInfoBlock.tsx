@@ -14,7 +14,7 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Wrapper>
+    <Wrapper minHeight={168}>
       <Container paramsCount={subInfoData?.length}>
         {!isLoading &&
           subInfoData?.map((el: string, i: number) => {

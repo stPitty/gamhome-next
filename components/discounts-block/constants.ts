@@ -5,7 +5,7 @@ const cardsData: CardData[] = [
     id: 1,
     header: "Грузоперевозки",
     subHeader: "со скидкой 15%",
-    desc: "Компания «Грузовичкоф» — перевозчик, которому можно доверять. Работаем на рынке транспортных услуг 17 лет. За это время открыли более 100 филиалов в разных регионах России и продолжаем открывать новые не только в нашей стране, но и в странах СНГ",
+    desc: "Компания «Грузовичкоф» — перевозчик, которому можно доверять. Работаем на рынке транспортных услуг 17 лет. За это время открыли более 100 филиалов в разных регионах России и продолжаем открывать новые не только в нашей стране, но и в странах СНГ",
     tags: [
       {
         id: 1,
@@ -13,6 +13,7 @@ const cardsData: CardData[] = [
         xlPriority: 1,
         lgPriority: 3,
         mdPriority: 3,
+        smPriority: 1,
       },
       {
         id: 2,
@@ -20,6 +21,7 @@ const cardsData: CardData[] = [
         xlPriority: 2,
         lgPriority: 1,
         mdPriority: 1,
+        smPriority: 4,
       },
       {
         id: 3,
@@ -27,6 +29,7 @@ const cardsData: CardData[] = [
         xlPriority: 3,
         lgPriority: 4,
         mdPriority: 4,
+        smPriority: 2,
       },
       {
         id: 4,
@@ -34,6 +37,7 @@ const cardsData: CardData[] = [
         xlPriority: 4,
         lgPriority: 2,
         mdPriority: 2,
+        smPriority: 3,
       },
     ],
     primaryButtonText: "Заказать грузоперевозку",
@@ -52,6 +56,7 @@ const cardsData: CardData[] = [
         xlPriority: 1,
         lgPriority: 3,
         mdPriority: 5,
+        smPriority: 3,
       },
       {
         id: 2,
@@ -59,6 +64,7 @@ const cardsData: CardData[] = [
         xlPriority: 2,
         lgPriority: 5,
         mdPriority: 4,
+        smPriority: 1,
       },
       {
         id: 3,
@@ -66,6 +72,7 @@ const cardsData: CardData[] = [
         xlPriority: 3,
         lgPriority: 1,
         mdPriority: 1,
+        smPriority: 4,
       },
       {
         id: 4,
@@ -73,6 +80,7 @@ const cardsData: CardData[] = [
         xlPriority: 4,
         lgPriority: 2,
         mdPriority: 3,
+        smPriority: 2,
       },
       {
         id: 5,
@@ -80,6 +88,7 @@ const cardsData: CardData[] = [
         xlPriority: 5,
         lgPriority: 4,
         mdPriority: 2,
+        smPriority: 5,
       },
     ],
     primaryButtonText: "Заказать уборку",

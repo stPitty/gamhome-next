@@ -23,10 +23,10 @@ const CardWitsImage = React.forwardRef((_, ref) => {
         <ColumnImage />
         <TextWrapper>
           <HeaderText>
-            Съезжаете с квартиры?
+            Съезжаете <AdaptiveTextDivider sm={true} />с квартиры?
             <AdaptiveTextDivider md={true} />
             <MarkedText>Заплатим 10%</MarkedText>,{" "}
-            <AdaptiveTextDivider lg={true} />
+            <AdaptiveTextDivider lg={true} sm={true} />
             за рекомендацию нас собственнику
           </HeaderText>
           <Text>
@@ -51,6 +51,9 @@ const ObservableComponent = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-top: 154px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 420px;
+  }
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -74,7 +77,7 @@ const RowImage = styled(Image)`
     background-position: -445px 0;
     background-size: auto 650px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: none;
   }
 `;
@@ -83,11 +86,20 @@ const ColumnImage = styled(Image)`
   background-size: cover;
   background: no-repeat url("/images/unboxing.webp") center;
   display: none;
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
+    display: block;
+  }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     display: block;
     width: 688px;
     height: 373px;
     background-position: right 0;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 375px;
+    height: 387px;
+    border-radius: 0;
+    background-position: -290px 0;
   }
 `;
 
@@ -112,7 +124,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0 0 20px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -124,6 +136,10 @@ const TextWrapper = styled.div`
   width: 672px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 542px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    padding-bottom: 64px;
   }
 `;
 
@@ -153,10 +169,11 @@ const Container = styled.div`
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     flex-direction: column;
-    padding: 160px 40px 64px;
+    padding: 0;
     row-gap: 40px;
-    background-position: left 43px bottom 228px;
+    background-position: 7px 502px;
     background-size: 239px;
+    border-radius: 24px;
   }
 `;
 

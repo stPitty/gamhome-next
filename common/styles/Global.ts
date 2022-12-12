@@ -17,14 +17,6 @@ const Global = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
-
-  //div, button, ul, p, a, input {
-  //  transition: 0.3s all linear;
-  //  -moz-transition: 0.3s all linear;
-  //  -ms-transition: 0.3s all linear;
-  //  -o-transition: 0.3s all linear;
-  //  -webkit-transition: 0.3s all linear;
-  //}
   
   * {
     box-sizing: border-box;
@@ -42,6 +34,20 @@ const Global = createGlobalStyle`
       -webkit-box-shadow: inset 0 0 6px ${WhiteColor.WHITE_16};
       border-radius: 10px;
       background-color: ${LightBlueColor.LB_200};
+    }
+    @media screen and (max-width: 767px) and (min-width: 375px) {
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+      }
+
+      ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 4px ${WhiteColor.WHITE_16};
+        border-radius: 5px;
+      }
     }
   }
   
