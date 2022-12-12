@@ -152,6 +152,9 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 100px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 66px;
+  }
 `;
 
 RentPage.PageLayout = PageLayout;

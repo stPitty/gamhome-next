@@ -24,18 +24,31 @@ const ServiceDesc: React.FC<Props> = ({
 }) => {
   return (
     <Container cardType={cardType} image={image}>
-      <InfoWrapper>
-        <HeaderText>{headerText}</HeaderText>
-        <DescText cardType={cardType}>{desc}</DescText>
+      <InfoWrapper cardType={cardType}>
+        <TextWrapper>
+          <HeaderText>{headerText}</HeaderText>
+          <DescText cardType={cardType}>{desc}</DescText>
+        </TextWrapper>
         <Link href={"#" + btnLink} scroll={false}>
-          <Button width={123} buttonSize={ButtonSize.MEDIUM}>
-            Подробнее
-          </Button>
+          <StyledButton buttonSize={ButtonSize.MEDIUM}>Подробнее</StyledButton>
         </Link>
       </InfoWrapper>
     </Container>
   );
 };
+
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+`;
+
+const StyledButton = styled(Button)`
+  width: 123px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
+`;
 
 const DescText = styled.p<{
   cardType: "concierge" | "owner";
@@ -45,9 +58,12 @@ const DescText = styled.p<{
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   width: 448px;
-  margin: 0 0 24px;
+  margin: 0;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "370px")};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
   }
 `;
 
@@ -56,17 +72,24 @@ const HeaderText = styled.p`
   font-size: 24px;
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};
-  margin: 0 0 12px;
+  margin: 0;
 `;
 
-const InfoWrapper = styled.div`
+const InfoWrapper = styled.div<{
+  cardType: "concierge" | "owner";
+}>`
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
   width: 448px;
+  row-gap: 24px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 376px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: 100%;
+    row-gap: ${({ cardType }) =>
+      cardType === "concierge" ? "156px" : "178px"};
   }
 `;
 
@@ -93,6 +116,14 @@ const Container = styled.div<{
     width: 688px;
     background-size: ${({ cardType }) =>
       cardType === "concierge" ? "296px" : "264px"};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    background-size: ${({ cardType }) =>
+      cardType === "concierge" ? "242px" : "202px"};
+    height: ${({ cardType }) => (cardType === "concierge" ? "316px" : "370px")};
+    background-position: ${({ cardType }) =>
+      cardType === "concierge" ? "-20px 135px" : "left 180px"};
   }
 `;
 

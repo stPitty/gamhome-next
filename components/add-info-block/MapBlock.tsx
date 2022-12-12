@@ -80,9 +80,16 @@ const MapBlock = () => {
 const StyledButton = styled(Button)`
   margin-top: 40px;
   height: 64px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     margin-top: 24px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
     height: 56px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    height: 36px;
+    font-size: 13px;
+    line-height: 20px;
   }
 `;
 
@@ -149,6 +156,9 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin: 48px 0 0 0;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 40px;
+  }
 `;
 
 export default MapBlock;

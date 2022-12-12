@@ -5,6 +5,8 @@ import { ButtonSize } from "../UI/button/enums";
 import { useAppDispatch } from "../../redux/hooks";
 import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
 import React, { memo } from "react";
+import { Hook } from "../../common/routes";
+import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
 
 const CardWitsImage = React.forwardRef((_, ref) => {
   const dispatch = useAppDispatch();
@@ -23,8 +25,9 @@ const CardWitsImage = React.forwardRef((_, ref) => {
         <TextWrapper>
           <HeaderText>
             Съезжаете с квартиры?
-            <AdaptiveBR1 /> <MarkedText>Заплатим 10%</MarkedText>,{" "}
-            <AdaptiveBR0 />
+            <AdaptiveTextDivider md={true} />
+            <MarkedText>Заплатим 10%</MarkedText>,{" "}
+            <AdaptiveTextDivider lg={true} />
             за рекомендацию нас собственнику
           </HeaderText>
           <Text>
@@ -56,20 +59,6 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
-`;
-
-const AdaptiveBR1 = styled.br`
-  display: none;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    display: block;
-  }
-`;
-
-const AdaptiveBR0 = styled.br`
-  display: none;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    display: block;
-  }
 `;
 
 const Image = styled.div`

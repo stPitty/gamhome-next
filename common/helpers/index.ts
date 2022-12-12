@@ -7,6 +7,8 @@ import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
 import { WindowSize } from "../../redux/slicers/enums";
 import { Dispatch, RefObject, SetStateAction } from "react";
 import { ObservableRefAttrs } from "../types";
+import { Hook } from "../routes";
+import { setScrollBtnTheme } from "../../redux/slicers/scrollTopBtnSlicer";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -122,7 +124,7 @@ const handleGetSubHeader =
     if (price) {
       return `Залог ${price} ₽, ${
         fee && "комиссия " + feeAmount + " ₽,"
-      } предоплата за 1 месяц, от года`;
+      } предоплата за 1 месяц, от года`;
     }
     return "";
   };
@@ -182,15 +184,6 @@ const getRefsArr = (
   ];
 };
 
-const handleCheckFalsyValues = (...args: any): boolean => {
-  for (let i = 0; i < args.length; i++) {
-    if (!args[i]) {
-      return false;
-    }
-  }
-  return true;
-};
-
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -203,5 +196,4 @@ export {
   SortByPriority,
   handleShowNumberClick,
   getRefsArr,
-  handleCheckFalsyValues,
 };

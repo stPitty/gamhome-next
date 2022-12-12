@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BlackColor, Font, LightBlueColor } from "../../common/enums";
 import { useAppSelector } from "../../redux/hooks";
 import { TFlatState } from "../../redux/slicers/types";
+import DeployableWrapper from "../UI/deployable-wrapper/DeployableWrapper";
 
 const Description = () => {
   const { flatData, isLoading } = useAppSelector<TFlatState>(
@@ -18,7 +19,9 @@ const Description = () => {
       ) : (
         <>
           <HeaderText>Описание</HeaderText>
-          <Text>{flatData?.desc}</Text>
+          <DeployableWrapper>
+            <Text>{flatData?.desc}</Text>
+          </DeployableWrapper>
         </>
       )}
     </Container>
@@ -68,6 +71,9 @@ const Container = styled.div`
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
   }
 `;
 

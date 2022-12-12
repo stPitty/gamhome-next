@@ -106,7 +106,7 @@ const Wrapper = styled.div`
   z-index: 1;
   top: 116px;
   margin-bottom: 112px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: none;
   }
 `;

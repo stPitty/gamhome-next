@@ -100,6 +100,10 @@ const Container = styled.div`
     padding-left: 40px;
     padding-right: 40px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 375px;
+    padding: 13px 13px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
@@ -108,6 +112,9 @@ const ButtonsWrapper = styled.div`
   column-gap: 32px;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 24px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: none;
   }
 `;
 const TelephoneNumberText = styled.a`

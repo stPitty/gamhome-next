@@ -30,10 +30,11 @@ const MainInfo = () => {
 
 const TextWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
   column-gap: 8px;
   margin-right: 40px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-right: 0;
+  }
 `;
 
 const FieldValueText = styled.p`
@@ -78,6 +79,10 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
         return `${(paramsCount / 2) * 32}px`;
       }
     }};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: auto;
   }
 `;
 

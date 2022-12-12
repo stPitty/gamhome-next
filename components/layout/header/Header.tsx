@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Body from "../Body";
 import { WhiteColor } from "../../../common/enums";
-import { SyntheticEvent, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Header: React.FC = () => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -39,6 +39,9 @@ const Wrapper = styled.div<{ scrolled: boolean }>`
   transition: 0.1s linear;
   box-shadow: ${({ scrolled }) =>
     scrolled && "0 0 2px rgba(0, 0, 0, 0.12), 0 10px 16px rgba(0, 0, 0, 0.08)"};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 4px;
+  }
 `;
 
 const Container = styled.div`

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 import styled from "styled-components";
 import { useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
@@ -18,7 +18,9 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
   const { position } = useAppSelector<TPhotoPosition>(
     (state) => state.position
   );
-  const handleImageClick = (index: number) => () => {
+  const handleImageClick = (index: number) => (e: SyntheticEvent) => {
+    const time = new Date();
+
     if (!isFullscreen) {
       const path = `${Url.CLIENT_PATH}/${router.pathname.split("/")[1]}/${
         router.query.id

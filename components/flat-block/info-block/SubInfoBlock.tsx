@@ -3,6 +3,7 @@ import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
 import ChevronDoneSVG from "../../../public/assets/svg/ChevronDoneSVG";
 import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
+import DeployableWrapper from "../../UI/deployable-wrapper/DeployableWrapper";
 
 const SubInfoBlock = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -13,19 +14,21 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Container paramsCount={subInfoData?.length}>
-      {!isLoading &&
-        subInfoData?.map((el: string, i: number) => {
-          return (
-            <TextWrapper key={el + i}>
-              <IconContainer>
-                <ChevronDoneSVG />
-              </IconContainer>
-              <Text>{el}</Text>
-            </TextWrapper>
-          );
-        })}
-    </Container>
+    <Wrapper>
+      <Container paramsCount={subInfoData?.length}>
+        {!isLoading &&
+          subInfoData?.map((el: string, i: number) => {
+            return (
+              <TextWrapper key={el + i}>
+                <IconContainer>
+                  <ChevronDoneSVG />
+                </IconContainer>
+                <Text>{el}</Text>
+              </TextWrapper>
+            );
+          })}
+      </Container>
+    </Wrapper>
   );
 };
 
@@ -54,23 +57,25 @@ const TextWrapper = styled.div`
   }
 `;
 
+const Wrapper = styled(DeployableWrapper)`
+  margin-top: 24px;
+  border-radius: 24px;
+  background: ${LightBlueColor.LB_100};
+  padding: 24px;
+`;
+
 const Container = styled.div<{ paramsCount: number | undefined }>`
   display: flex;
   flex-direction: column;
-  align-content: flex-start;
   flex-wrap: wrap;
-  padding: 24px;
+  row-gap: 12px;
+  column-gap: 107px;
   width: 864px;
   height: ${({ paramsCount }) => {
     if (paramsCount) {
       return `${(paramsCount / 3 + 1) * 36}px`;
     }
   }};
-  background: ${LightBlueColor.LB_100};
-  border-radius: 24px;
-  margin-top: 24px;
-  row-gap: 12px;
-  column-gap: 107px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
     column-gap: 32px;
@@ -88,6 +93,12 @@ const Container = styled.div<{ paramsCount: number | undefined }>`
         return `${(paramsCount / 3 + 1) * 36}px`;
       }
     }};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    column-gap: 0;
+    height: auto;
+    width: fit-content;
+    flex-wrap: nowrap;
   }
 `;
 

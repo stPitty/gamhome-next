@@ -67,6 +67,9 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 0;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: none;
+  }
 `;
 
 export default PhotoBlock;

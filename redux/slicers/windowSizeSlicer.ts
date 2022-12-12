@@ -20,6 +20,12 @@ const windowSizeSlicer = createSlice({
       if (action.payload < 1024 && action.payload >= 768) {
         state.windowSize = WindowSize.MD;
       }
+      if (action.payload < 768 && action.payload >= 375) {
+        state.windowSize = WindowSize.SM;
+      }
+      if (action.payload < 375) {
+        state.windowSize = WindowSize.XS;
+      }
     },
   },
 });

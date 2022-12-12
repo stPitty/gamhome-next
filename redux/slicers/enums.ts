@@ -25,4 +25,8 @@ export enum WindowSize {
   LG,
   //max-width 1023 px and min-width 768 px
   MD,
+  //max-width 767 px and min-width 375 px
+  SM,
+  //max-width 374 px
+  XS,
 }
