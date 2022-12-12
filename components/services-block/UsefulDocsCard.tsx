@@ -47,6 +47,9 @@ const UsefulDocsCard: React.FC<Props> = ({
   return (
     <Container cardType={cardType}>
       <Body>
+        <ColumnIconWrapper cardType={cardType}>
+          {cardType === CardType.PRIMARY ? <StarSVG /> : <DocumentSVG />}
+        </ColumnIconWrapper>
         <HeaderText cardType={cardType}>{headerText}</HeaderText>
         <DescText cardType={cardType}>{descText}</DescText>
         <ButtonsContainer>
@@ -67,9 +70,9 @@ const UsefulDocsCard: React.FC<Props> = ({
           </Button>
         </ButtonsContainer>
       </Body>
-      <IconWrapper cardType={cardType}>
+      <RowIconWrapper cardType={cardType}>
         {cardType === CardType.PRIMARY ? <StarSVG /> : <DocumentSVG />}
-      </IconWrapper>
+      </RowIconWrapper>
     </Container>
   );
 };
@@ -91,12 +94,31 @@ const IconWrapper = styled.div<{ cardType: CardType }>`
     cardType === CardType.PRIMARY ? WhiteColor.WHITE : LightBlueColor.LB_100};
 `;
 
+const RowIconWrapper = styled(IconWrapper)`
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: none;
+  }
+`;
+
+const ColumnIconWrapper = styled(IconWrapper)`
+  display: none;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: flex;
+    margin-bottom: 16px;
+  }
+`;
+
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   column-gap: 6px;
   margin-top: 32px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-direction: column;
+    width: 100%;
+    row-gap: 6px;
+  }
 `;
 
 const DescText = styled.p<{ cardType: CardType }>`
@@ -132,6 +154,9 @@ const Body = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 528px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 334px;
+  }
 `;
 
 const Container = styled.div<{ cardType: CardType }>`
@@ -155,6 +180,11 @@ const Container = styled.div<{ cardType: CardType }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
     height: 236px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 374px;
+    flex-direction: column;
+    padding: 20px;
   }
 `;
 

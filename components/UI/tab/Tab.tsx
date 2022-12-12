@@ -3,6 +3,7 @@ import React, {
   memo,
   ReactNode,
   SetStateAction,
+  SyntheticEvent,
   useState,
 } from "react";
 import styled from "styled-components";
@@ -15,23 +16,47 @@ type Props = {
   children: ReactNode;
   activeTab: number;
   setActiveTab: Dispatch<SetStateAction<number>>;
-  initialActiveTab?: number;
+  tabsQuantity: number;
 };
 
 const Tab: React.FC<Props> = ({
   title,
-  initialActiveTab,
   children,
   activeTab,
   setActiveTab,
+  tabsQuantity,
 }) => {
+  const [startX, setStartX] = useState<number | null>(null);
+  const [endX, setEndX] = useState<number | null>(null);
+
+  const handleTouchStart = (e: TouchEvent) => {
+    setStartX(e.changedTouches[0].clientX);
+  };
+
+  const handleTouchEnd = (e: TouchEvent) => {
+    if (e.changedTouches[0].clientX > startX! - 50 && activeTab > 1) {
+      setActiveTab((prev) => prev - 1);
+      return;
+    }
+    if (
+      e.changedTouches[0].clientX < startX! - 50 &&
+      activeTab < tabsQuantity
+    ) {
+      setActiveTab((prev) => prev + 1);
+      return;
+    }
+  };
+
   const handleSetActiveClick = (num: number) => () => {
     setActiveTab(num);
   };
 
   return (
     <Container>
-      <HeaderContainer>
+      <HeaderContainer
+        onTouchStart={handleTouchStart as any}
+        onTouchEnd={handleTouchEnd as any}
+      >
         {title.map((el) => (
           <LabelContainer
             onClick={handleSetActiveClick(el.id)}
@@ -48,10 +73,6 @@ const Tab: React.FC<Props> = ({
   );
 };
 
-const TabBodyContainer = styled.div<{ isActive: boolean }>`
-  display: ${({ isActive }) => (isActive ? "flex" : "none")};
-`;
-
 const TabLine = styled.div<{
   isActive: boolean;
   side: "start" | "end";
@@ -61,6 +82,9 @@ const TabLine = styled.div<{
   height: 2px;
   background: ${BrandColor.BRAND};
   align-self: ${({ side }) => `flex-${side}`};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: ${({ isActive }) => (isActive ? "calc(100% - 10px)" : "0")};
+  }
 `;
 
 const LabelText = styled.p<{ isActive: boolean }>`
@@ -71,6 +95,12 @@ const LabelText = styled.p<{ isActive: boolean }>`
   color: ${({ isActive }) =>
     isActive ? BrandColor.BRAND : BlackColor.BLACK_48};
   margin: 12px 0 14px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 `;
 
 const LabelContainer = styled.div<{ isActive: boolean }>`

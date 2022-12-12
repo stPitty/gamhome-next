@@ -5,7 +5,6 @@ import { ButtonSize } from "../UI/button/enums";
 import { useAppDispatch } from "../../redux/hooks";
 import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
 import React, { memo } from "react";
-import { Hook } from "../../common/routes";
 import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
 
 const CardWitsImage = React.forwardRef((_, ref) => {
@@ -146,6 +145,13 @@ const Container = styled.div`
     background-position: left 28px bottom 385px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
+    flex-direction: column;
+    padding: 160px 40px 64px;
+    row-gap: 40px;
+    background-position: left 43px bottom 228px;
+    background-size: 239px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     flex-direction: column;
     padding: 160px 40px 64px;
     row-gap: 40px;

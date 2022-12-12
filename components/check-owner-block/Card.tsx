@@ -46,6 +46,9 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 400px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 302px;
+  }
 `;
 
 const PointTextContainer = styled.div`
@@ -104,6 +107,10 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
     width: ${({ contentType }) =>
       contentType === "checkObject" ? "592px" : "485px"};
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 301px;
+    margin: 0;
+  }
 `;
 
 const DescText = styled.p`
@@ -120,7 +127,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0 0 16px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -131,6 +138,9 @@ const ContentTextContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    row-gap: 155px;
+  }
 `;
 
 const MainContentWrapper = styled.div<{
@@ -141,8 +151,7 @@ const MainContentWrapper = styled.div<{
   justify-content: flex-start;
   background: no-repeat ${WhiteColor.WHITE} right;
   border-radius: 24px;
-  padding: 48px;
-  padding-right: 0;
+  padding: 48px 0 48px;
   column-gap: 24px;
   width: 1312px;
   background-image: url(${({ background }) => background});
@@ -157,6 +166,13 @@ const MainContentWrapper = styled.div<{
     width: 688px;
     background-position: right
       ${({ contentType }) => (contentType === "checkObject" ? "46px" : "67px")};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 24px;
+    width: 349px;
+    background-position: ${({ contentType }) =>
+      contentType === "checkObject" ? "center 200px" : "center 245px"};
+    background-size: 235px;
   }
 `;
 

@@ -32,6 +32,10 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding: 40px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 24px 13px;
+    border-radius: 24px;
+  }
 `;
 
 export default memo(TabBody);

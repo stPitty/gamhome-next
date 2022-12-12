@@ -42,6 +42,11 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     left: calc(50% + 48px);
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    left: calc(50% - 15px);
+    width: 196px;
+    top: 70px;
+  }
 `;
 
 export default Notification;

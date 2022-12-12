@@ -6,7 +6,6 @@ import DoneSVG from "../../public/assets/svg/DoneSVG";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { checkObjInputNum } from "../../redux/slicers/modalStateSlicer";
 import { SortByPriority } from "../../common/helpers";
 import { TWindowSize } from "../../redux/slicers/types";
 
@@ -49,16 +48,25 @@ const Conditions: React.FC<Props> = ({ data }) => {
         </ConditionsContainer>
       </Wrapper>
       <ButtonGroupContainer>
-        <Button onClick={handleOrderClick} buttonSize={ButtonSize.MEDIUM}>
+        <StyledButton onClick={handleOrderClick} buttonSize={ButtonSize.MEDIUM}>
           Заказать за {data.additionalInfo.cost} ₽
-        </Button>
-        <Button buttonType={ButtonType.OUTLINE} buttonSize={ButtonSize.MEDIUM}>
+        </StyledButton>
+        <StyledButton
+          buttonType={ButtonType.OUTLINE}
+          buttonSize={ButtonSize.MEDIUM}
+        >
           Скачать пример отчёта
-        </Button>
+        </StyledButton>
       </ButtonGroupContainer>
     </Container>
   );
 };
+
+const StyledButton = styled(Button)`
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    height: 44px;
+  }
+`;
 
 const ButtonGroupContainer = styled.div`
   display: flex;
@@ -69,6 +77,11 @@ const ButtonGroupContainer = styled.div`
   row-gap: 12px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     flex-direction: row;
+    width: 100%;
+    column-gap: 12px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-direction: column;
     width: 100%;
     column-gap: 12px;
   }
@@ -93,7 +106,7 @@ const ConditionText = styled.p`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 265px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     width: 288px;
   }
 `;
@@ -107,7 +120,7 @@ const TextContainer = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 295px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     width: 318px;
   }
 `;
@@ -125,6 +138,10 @@ const ConditionsContainer = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 20px;
     height: 152px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-wrap: nowrap;
+    height: fit-content;
   }
 `;
 
@@ -150,6 +167,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 656px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
 `;
 
 const Container = styled.div`
@@ -161,9 +181,14 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 24px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
+    flex-direction: column;
+  }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;
-    flex-direction: column;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    row-gap: 32px;
   }
 `;
 

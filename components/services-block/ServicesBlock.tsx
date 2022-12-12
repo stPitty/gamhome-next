@@ -9,12 +9,16 @@ import {
   openFreeDocsInformation,
   openFreeDocsWithEmail,
 } from "../../redux/slicers/modalStateSlicer";
+import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
 
 const ServicesBlock = () => {
   return (
     <Container id={Hook.USEFUL_DOCS}>
       <HeaderTextContainer>
-        <HeaderText>Полезные документы</HeaderText>
+        <HeaderText>
+          Полезные
+          <AdaptiveTextDivider sm={true} /> документы
+        </HeaderText>
       </HeaderTextContainer>
       <CardsWrapper>
         <UsefulDocsCard
@@ -43,7 +47,7 @@ const CardsWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 32px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     flex-direction: column;
     row-gap: 32px;
   }
@@ -62,6 +66,10 @@ const HeaderText = styled.p`
   line-height: 48px;
   margin: 0 0 40px;
   color: ${BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Container = styled.div`
@@ -72,6 +80,9 @@ const Container = styled.div`
   align-items: center;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 64px;
   }
 `;
 

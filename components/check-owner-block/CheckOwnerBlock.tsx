@@ -9,7 +9,12 @@ const CheckOwnerBlock = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
   return (
     <Container id={Hook.CHECK_OBJ}>
-      <Tab activeTab={activeTab} setActiveTab={setActiveTab} title={tabTitle}>
+      <Tab
+        tabsQuantity={tabsData.length}
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        title={tabTitle}
+      >
         <TabBody data={tabsData[activeTab - 1]} />
       </Tab>
     </Container>
@@ -24,6 +29,10 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
     margin-bottom: -96px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 64px;
+    margin-bottom: -24px;
   }
 `;
 
