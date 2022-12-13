@@ -183,6 +183,9 @@ const Wrapper = styled.div<{ isOpen: boolean; willBeClosed: boolean }>`
   animation: 0.22s linear
     ${({ willBeClosed }) =>
       willBeClosed ? slowDisappearanceBackground : slowAppearanceBackground};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: none;
+  }
 `;
 
 export default SideMenu;

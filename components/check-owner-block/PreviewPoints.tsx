@@ -13,7 +13,7 @@ const PreviewPoints = () => {
 
   const offset = useMemo(() => {
     if (flatData) {
-      return Math.floor((309 / flatData?.images.length) * position);
+      return Math.floor((309 / flatData?.images.length - 1) * position);
     }
   }, [position]);
 
