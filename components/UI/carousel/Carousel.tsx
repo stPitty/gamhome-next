@@ -117,8 +117,7 @@ const Container = styled.div<{
   user-select: none;
   touch-action: pan-y;
   display: flex;
-  transition: ${({ touchOffset }) => (touchOffset !== null ? "0.1s" : "0.3s")}
-    linear;
+  transition: 0.3s linear;
   margin: 0;
   padding: 0;
   height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
