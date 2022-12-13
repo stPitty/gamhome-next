@@ -43,6 +43,10 @@ const HeaderText = styled.p`
     font-size: 32px;
     line-height: 40px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Container = styled.div`
@@ -58,6 +62,10 @@ const Container = styled.div`
     margin: 0;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 64px;
+    margin: 0;
+  }
+  @media screen and (max-width: 374px) {
     padding-top: 64px;
     margin: 0;
   }

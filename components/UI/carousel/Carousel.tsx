@@ -117,6 +117,11 @@ const Image = styled.div<{
     height: 284px;
     background-size: auto 284px;
   }
+  @media screen and (max-width: 374px) {
+    min-width: 349px;
+    height: 284px;
+    background-size: auto 284px;
+  }
 `;
 
 const Container = styled.div<{
@@ -168,6 +173,13 @@ const Container = styled.div<{
         transform: translateX(${-(count * 349)}px);
       `;
     }};
+    @media screen and (max-width: 374px) {
+      height: 284px;
+      ${({ count, isFullscreen }) => {
+        return css`
+          transform: translateX(${-(count * 349)}px);
+        `;
+      }};
   }
 `;
 

@@ -100,6 +100,12 @@ const Container = styled.div<{ paramsCount: number | undefined }>`
     width: fit-content;
     flex-wrap: nowrap;
   }
+  @media screen and (max-width: 374px) {
+    column-gap: 0;
+    height: auto;
+    width: fit-content;
+    flex-wrap: nowrap;
+  }
 `;
 
 export default SubInfoBlock;

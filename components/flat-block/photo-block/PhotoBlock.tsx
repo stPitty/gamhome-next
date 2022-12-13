@@ -67,6 +67,15 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
     padding-top: 24px;
     row-gap: 12px;
   }
+  @media screen and (max-width: 374px) {
+    width: 349px;
+    height: 332px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 24px;
+    row-gap: 12px;
+  }
 `;
 
 const Container = styled.div`
@@ -79,6 +88,10 @@ const Container = styled.div`
     padding-top: 0;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 16px;
+    margin-bottom: 32px;
+  }
+  @media screen and (max-width: 374px) {
     padding-top: 16px;
     margin-bottom: 32px;
   }

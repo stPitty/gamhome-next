@@ -100,6 +100,9 @@ const ButtonsContainer = styled.div`
   flex-direction: column;
   row-gap: 16px;
   align-items: center;
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -107,6 +110,9 @@ const HeaderContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 349px;
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const MenuItem = styled.a`
@@ -172,7 +178,7 @@ const Wrapper = styled.div<{
   z-index: 5;
   background-color: ${WhiteColor.WHITE};
   padding: ${({ isOpen }) => isOpen && "16px 13px 32px"};
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: flex;
   }
 `;

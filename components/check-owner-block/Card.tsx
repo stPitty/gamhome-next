@@ -49,6 +49,9 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 302px;
   }
+  @media screen and (max-width: 374px) {
+    width: 302px;
+  }
 `;
 
 const PointTextContainer = styled.div`
@@ -111,6 +114,10 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
     width: 301px;
     margin: 0;
   }
+  @media screen and (max-width: 374px) {
+    width: 301px;
+    margin: 0;
+  }
 `;
 
 const DescText = styled.p`
@@ -127,7 +134,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0 0 16px;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -139,6 +146,9 @@ const ContentTextContainer = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    row-gap: 155px;
+  }
+  @media screen and (max-width: 374px) {
     row-gap: 155px;
   }
 `;
@@ -168,6 +178,13 @@ const MainContentWrapper = styled.div<{
       ${({ contentType }) => (contentType === "checkObject" ? "46px" : "67px")};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 24px;
+    width: 349px;
+    background-position: ${({ contentType }) =>
+      contentType === "checkObject" ? "center 200px" : "center 245px"};
+    background-size: 235px;
+  }
+  @media screen and (max-width: 374px) {
     padding: 24px;
     width: 349px;
     background-position: ${({ contentType }) =>

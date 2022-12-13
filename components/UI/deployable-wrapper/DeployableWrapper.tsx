@@ -118,7 +118,7 @@ const DeployBtnContainer = styled.div<{ prevent: boolean }>`
       color: ${BrandColor.BRAND_ACTIVE};
     }
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: ${({ prevent }) => !prevent && "flex"};
   }
 `;
@@ -127,6 +127,11 @@ const Wrapper = styled.div<{ isDeployed: boolean }>`
   flex-direction: column;
   display: flex;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-wrap: nowrap;
+    width: 349px;
+    row-gap: 16px;
+  }
+  @media screen and (max-width: 374px) {
     flex-wrap: nowrap;
     width: 349px;
     row-gap: 16px;

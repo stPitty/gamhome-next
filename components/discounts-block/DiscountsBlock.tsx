@@ -31,6 +31,9 @@ const ObservableComponent = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     margin-top: 120px;
   }
+  @media screen and (max-width: 374px) {
+    margin-top: 120px;
+  }
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -49,6 +52,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding-top: 64px;
   }
+  @media screen and (max-width: 374px) {
+    padding-top: 64px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -62,6 +68,10 @@ const HeaderText = styled.p`
     line-height: 40px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin: 0;
+    width: 330px;
+  }
+  @media screen and (max-width: 374px) {
     margin: 0;
     width: 330px;
   }
@@ -85,6 +95,11 @@ const Container = styled.div`
     margin-bottom: -80px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 40px 13px 38px;
+    margin-bottom: -48px;
+    border-radius: 24px;
+  }
+  @media screen and (max-width: 374px) {
     padding: 40px 13px 38px;
     margin-bottom: -48px;
     border-radius: 24px;

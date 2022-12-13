@@ -145,6 +145,11 @@ const PointsContainer = styled.div`
     width: 301px;
     row-gap: 16px;
   }
+  @media screen and (max-width: 374px) {
+    margin-bottom: 40px;
+    width: 301px;
+    row-gap: 16px;
+  }
 `;
 
 const DescText = styled.p<{ cardType: CardType }>`
@@ -155,6 +160,9 @@ const DescText = styled.p<{ cardType: CardType }>`
     cardType === CardType.UNFILLED ? BlackColor.BLACK_64 : WhiteColor.WHITE_80};
   margin: 0;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 12px;
+  }
+  @media screen and (max-width: 374px) {
     margin-top: 12px;
   }
 `;
@@ -177,6 +185,10 @@ const CostText = styled.p<{ cardType: CardType }>`
     font-size: 36px;
     line-height: 44px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const HeaderWrapper = styled.div<{ cardId: number }>`
@@ -185,6 +197,10 @@ const HeaderWrapper = styled.div<{ cardId: number }>`
   row-gap: 12px;
   margin: 24px 0 40px;
   @media screen and (max-width: 1023px) and (min-width: 375px) {
+    margin-top: ${({ cardId }) => cardId === 1 && "0"};
+    margin-bottom: 32px;
+  }
+  @media screen and (max-width: 374px) {
     margin-top: ${({ cardId }) => cardId === 1 && "0"};
     margin-bottom: 32px;
   }
@@ -207,6 +223,9 @@ const TagContainer = styled.div<{ cardId: number }>`
     height: 64px;
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
+    display: ${({ cardId }) => cardId === 1 && "none"};
+  }
+  @media screen and (max-width: 374px) {
     display: ${({ cardId }) => cardId === 1 && "none"};
   }
 `;
@@ -233,6 +252,9 @@ const Tag = styled.div<{ cardType: CardType }>`
     border-radius: 16px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    border-radius: 16px;
+  }
+  @media screen and (max-width: 374px) {
     border-radius: 16px;
   }
 `;
@@ -265,6 +287,10 @@ const CardContainer = styled.div<{ cardType: CardType }>`
     width: 349px;
     height: auto;
   }
+  @media screen and (max-width: 374px) {
+    width: 349px;
+    height: auto;
+  }
 `;
 
 const Container = styled.div`
@@ -273,13 +299,16 @@ const Container = styled.div`
   justify-content: center;
   margin-top: 40px;
   column-gap: 32px;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    row-gap: 32px;
+  }
+  @media screen and (max-width: 374px) {
     row-gap: 32px;
   }
 `;

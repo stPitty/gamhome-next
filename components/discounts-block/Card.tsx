@@ -94,6 +94,10 @@ const HeaderWrapper = styled.div`
     flex-direction: column;
     column-gap: 7px;
   }
+  @media screen and (max-width: 374px) {
+    flex-direction: column;
+    column-gap: 7px;
+  }
 `;
 
 const StyledButton = styled(Button)<{ cardType: CardAbout }>`
@@ -102,7 +106,7 @@ const StyledButton = styled(Button)<{ cardType: CardAbout }>`
     min-width: ${({ cardType }) => cardType === "delivery" && "237px"};
     padding: 15px 22px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 `;
@@ -162,6 +166,15 @@ const ColumnImage = styled(Image)`
     background-size: ${({ cardType }) =>
       cardType === "cleaning" ? "390px" : "cover"};
   }
+  @media screen and (max-width: 374px) {
+    width: 349px;
+    height: ${({ cardType }) => (cardType === "cleaning" ? "234px" : "228px")};
+    border-radius: 16px;
+    background-position: ${({ cardType }) =>
+      cardType === "cleaning" ? "-20px" : "center"};
+    background-size: ${({ cardType }) =>
+      cardType === "cleaning" ? "390px" : "cover"};
+  }
 `;
 
 const PromoText = styled.p`
@@ -186,6 +199,12 @@ const ButtonsContainer = styled.div`
     width: 100%;
     row-gap: 24px;
   }
+  @media screen and (max-width: 374px) {
+    margin-top: 40px;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 24px;
+  }
 `;
 
 const Tag = styled.div`
@@ -203,6 +222,9 @@ const Tag = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 7px 11px;
   }
+  @media screen and (max-width: 374px) {
+    padding: 7px 11px;
+  }
 `;
 
 const TagsWrapper = styled.div`
@@ -211,6 +233,10 @@ const TagsWrapper = styled.div`
   flex-wrap: wrap;
   gap: 12px;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 308px;
+    column-gap: 15px;
+  }
+  @media screen and (max-width: 374px) {
     width: 308px;
     column-gap: 15px;
   }
@@ -229,6 +255,10 @@ const DescText = styled.p`
     width: 290px;
     margin-bottom: 0;
   }
+  @media screen and (max-width: 374px) {
+    width: 290px;
+    margin-bottom: 0;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -238,6 +268,10 @@ const HeaderText = styled.p`
   margin: 0;
   color: ${BlackColor.BLACK_SECONDARY};
   @media screen and (max-width: 1023px) and (min-width: 375px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  @media screen and (max-width: 374px) {
     font-size: 28px;
     line-height: 36px;
   }
@@ -263,6 +297,10 @@ const ContentWrapper = styled.div`
     margin: 40px 23px;
     width: 301px;
   }
+  @media screen and (max-width: 374px) {
+    margin: 40px 23px;
+    width: 301px;
+  }
 `;
 
 const Container = styled.div`
@@ -278,6 +316,9 @@ const Container = styled.div`
     flex-direction: column;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    border-radius: 16px;
+  }
+  @media screen and (max-width: 374px) {
     border-radius: 16px;
   }
 `;

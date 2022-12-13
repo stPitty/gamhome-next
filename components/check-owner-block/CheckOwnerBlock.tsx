@@ -34,6 +34,10 @@ const Container = styled.div`
     padding-top: 64px;
     margin-bottom: -24px;
   }
+  @media screen and (max-width: 374px) {
+    padding-top: 64px;
+    margin-bottom: -24px;
+  }
 `;
 
 export default CheckOwnerBlock;

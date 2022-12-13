@@ -25,7 +25,7 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;

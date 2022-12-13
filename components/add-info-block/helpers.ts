@@ -22,6 +22,10 @@ const handleResizeMap = (
     setWidth(349);
     setHeight(297);
   }
+  if (windowSize === WindowSize.XS) {
+    setWidth(288);
+    setHeight(297);
+  }
 };
 
 export { handleResizeMap };

@@ -16,8 +16,9 @@ const Footer: React.FC = () => {
       <TextContainer>
         <ConditionsText>
           Использование сервиса означает согласие
-          <AdaptiveTextDivider lg={true} sm={true} /> с{" "}
-          <TextLink>Пользовательским соглашением</TextLink> и
+          <AdaptiveTextDivider lg={true} sm={true} xs={true} /> с{" "}
+          <TextLink>Пользовательским соглашением</TextLink>
+          <AdaptiveTextDivider xs={true} /> и
           <TextLink> Политикой конфиденциальности</TextLink>
         </ConditionsText>
         <br />
@@ -39,7 +40,7 @@ const TelephoneNumberText = styled.a`
   &:hover {
     color: ${BlackColor.BLACK_80};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     padding-left: 13px;
     display: block;
   }
@@ -52,7 +53,7 @@ const StyledBody = styled(Body)`
 
 const StyledMenuItems = styled(MenuItems)`
   display: none;
-  @media screen and (max-width: 1439px) and (min-width: 375px) {
+  @media screen and (max-width: 1439px) {
     display: flex;
   }
   @media screen and (max-width: 1439px) and (min-width: 768px) {
@@ -61,13 +62,20 @@ const StyledMenuItems = styled(MenuItems)`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-left: 40px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     margin-top: 6px;
     flex-direction: column;
-    padding-left: 13px;
-    width: 349px;
     align-items: flex-start;
     row-gap: 16px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 6px;
+    padding-left: 13px;
+    width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    padding-left: 16px;
+    width: 288px;
   }
 `;
 
@@ -115,12 +123,20 @@ const TextContainer = styled.div`
     padding-left: 40px;
     padding-right: 40px;
   }
+  @media screen and (max-width: 767px) {
+    width: 375px;
+    margin-top: 6px;
+    align-items: flex-start;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 375px;
     padding-left: 13px;
     padding-right: 13px;
-    margin-top: 6px;
-    align-items: flex-start;
+  }
+  @media screen and (max-width: 374px) {
+    width: 320px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
 `;
 
@@ -140,12 +156,17 @@ const Container = styled.div`
     padding-top: 96px;
     row-gap: 24px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 375px;
+  @media screen and (max-width: 767px) {
     align-items: flex-start;
     row-gap: 16px;
     padding-bottom: 48px;
     padding-top: 64px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 375px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 320px;
   }
 `;
 

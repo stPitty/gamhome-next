@@ -42,6 +42,9 @@ const Wrapper = styled.div<{ scrolled: boolean }>`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     margin-top: 4px;
   }
+  @media screen and (max-width: 374px) {
+    margin-top: 3px;
+  }
 `;
 
 const Container = styled.div`

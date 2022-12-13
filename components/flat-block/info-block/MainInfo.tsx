@@ -32,7 +32,7 @@ const TextWrapper = styled.div`
   display: flex;
   column-gap: 8px;
   margin-right: 40px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     margin-right: 0;
   }
 `;
@@ -82,6 +82,10 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
+    height: auto;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
     height: auto;
   }
 `;

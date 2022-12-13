@@ -77,23 +77,34 @@ const MobileButtons = () => {
 };
 
 const StyledButton = styled(Button)`
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 169.5px;
+  @media screen and (max-width: 767px) {
     font-size: 13px;
     line-height: 20px;
     padding: 7px 15px;
     height: 36px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 169.5px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 142px;
+  }
 `;
 
 const KeyIcon = styled(KeySVG)`
   margin-right: 7px;
+  @media screen and (max-width: 374px) {
+    display: none;
+  }
 `;
 
 const StyledLink = styled(Link)`
   min-width: 338px;
   @media screen and (max-width: 767px) and (min-width: 375px) {
     min-width: 169.5px;
+  }
+  @media screen and (max-width: 374px) {
+    min-width: 142px;
   }
 `;
 
@@ -112,6 +123,10 @@ const ButtonsContainer = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 375px;
     padding: 13px 12px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 320px;
+    padding: 12px;
   }
 `;
 

@@ -36,6 +36,10 @@ const Container = styled.div`
     padding: 24px 13px;
     border-radius: 24px;
   }
+  @media screen and (max-width: 374px) {
+    padding: 24px 13px;
+    border-radius: 24px;
+  }
 `;
 
 export default memo(TabBody);

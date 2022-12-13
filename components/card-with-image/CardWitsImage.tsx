@@ -54,6 +54,9 @@ const ObservableComponent = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     margin-top: 440px;
   }
+  @media screen and (max-width: 374px) {
+    margin-top: 440px;
+  }
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -101,6 +104,12 @@ const ColumnImage = styled(Image)`
     border-radius: 0;
     background-position: -290px 0;
   }
+  @media screen and (max-width: 374px) {
+    width: 375px;
+    height: 387px;
+    border-radius: 0;
+    background-position: -290px 0;
+  }
 `;
 
 const Text = styled.div`
@@ -128,6 +137,10 @@ const HeaderText = styled.p`
     font-size: 32px;
     line-height: 40px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -138,6 +151,10 @@ const TextWrapper = styled.div`
     width: 542px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    padding-bottom: 64px;
+  }
+  @media screen and (max-width: 374px) {
     width: 349px;
     padding-bottom: 64px;
   }
@@ -168,6 +185,14 @@ const Container = styled.div`
     background-size: 239px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-direction: column;
+    padding: 0;
+    row-gap: 40px;
+    background-position: 7px 502px;
+    background-size: 239px;
+    border-radius: 24px;
+  }
+  @media screen and (max-width: 374px) {
     flex-direction: column;
     padding: 0;
     row-gap: 40px;

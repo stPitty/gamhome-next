@@ -51,6 +51,10 @@ const CardsWrapper = styled.div`
     flex-direction: column;
     row-gap: 32px;
   }
+  @media screen and (max-width: 374px) {
+    flex-direction: column;
+    row-gap: 32px;
+  }
 `;
 
 const HeaderTextContainer = styled.div`
@@ -70,6 +74,10 @@ const HeaderText = styled.p`
     font-size: 32px;
     line-height: 40px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const Container = styled.div`
@@ -82,6 +90,9 @@ const Container = styled.div`
     padding-top: 96px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-top: 64px;
+  }
+  @media screen and (max-width: 374px) {
     padding-top: 64px;
   }
 `;

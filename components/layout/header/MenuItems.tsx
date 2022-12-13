@@ -36,7 +36,7 @@ const MenuWrapper = styled.div`
   align-items: center;
   justify-content: space-between;
   column-gap: 16px;
-  @media screen and (max-width: 1439px) and (min-width: 375px) {
+  @media screen and (max-width: 1439px) {
     display: none;
   }
 `;

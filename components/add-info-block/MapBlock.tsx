@@ -91,6 +91,11 @@ const StyledButton = styled(Button)`
     font-size: 13px;
     line-height: 20px;
   }
+  @media screen and (max-width: 374px) {
+    height: 36px;
+    font-size: 13px;
+    line-height: 20px;
+  }
 `;
 
 const StyledCircleIcon = styled(CircleSVG)<{ color: string }>`
@@ -157,6 +162,9 @@ const Container = styled.div`
   align-items: flex-start;
   margin: 48px 0 0 0;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-top: 40px;
+  }
+  @media screen and (max-width: 374px) {
     margin-top: 40px;
   }
 `;

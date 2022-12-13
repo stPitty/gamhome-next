@@ -104,6 +104,10 @@ const Container = styled.div`
     width: 375px;
     padding: 13px 13px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 320px;
+    padding: 13px 16px;
+  }
 `;
 
 const ButtonsWrapper = styled.div`
@@ -113,7 +117,7 @@ const ButtonsWrapper = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 24px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: none;
   }
 `;

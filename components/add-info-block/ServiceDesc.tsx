@@ -65,6 +65,9 @@ const DescText = styled.p<{
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
   }
+  @media screen and (max-width: 374px) {
+    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
+  }
 `;
 
 const HeaderText = styled.p`
@@ -86,6 +89,12 @@ const InfoWrapper = styled.div<{
     width: 376px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: 100%;
+    row-gap: ${({ cardType }) =>
+      cardType === "concierge" ? "156px" : "178px"};
+  }
+  @media screen and (max-width: 374px) {
     width: 349px;
     height: 100%;
     row-gap: ${({ cardType }) =>
@@ -118,6 +127,14 @@ const Container = styled.div<{
       cardType === "concierge" ? "296px" : "264px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    background-size: ${({ cardType }) =>
+      cardType === "concierge" ? "242px" : "202px"};
+    height: ${({ cardType }) => (cardType === "concierge" ? "316px" : "370px")};
+    background-position: ${({ cardType }) =>
+      cardType === "concierge" ? "-20px 135px" : "left 180px"};
+  }
+  @media screen and (max-width: 374px) {
     width: 349px;
     background-size: ${({ cardType }) =>
       cardType === "concierge" ? "242px" : "202px"};

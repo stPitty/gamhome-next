@@ -81,6 +81,9 @@ const TabLine = styled.div<{
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: ${({ isActive }) => (isActive ? "calc(100% - 10px)" : "0")};
   }
+  @media screen and (max-width: 374px) {
+    width: ${({ isActive }) => (isActive ? "calc(100% - 10px)" : "0")};
+  }
 `;
 
 const LabelText = styled.p<{ isActive: boolean }>`

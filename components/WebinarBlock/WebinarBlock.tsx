@@ -137,6 +137,14 @@ const Container = styled.div`
     background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
     background-position: center bottom 78px;
   }
+  @media screen and (max-width: 374px) {
+    background-size: cover;
+    width: 375px;
+    padding: 110px 13px 517px;
+    border-radius: 24px;
+    background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
+    background-position: center bottom 78px;
+  }
 `;
 
 WebinarBlock.displayName = "WebinarBlock";

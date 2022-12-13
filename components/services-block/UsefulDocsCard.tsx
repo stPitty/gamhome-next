@@ -106,6 +106,10 @@ const ColumnIconWrapper = styled(IconWrapper)`
     display: flex;
     margin-bottom: 16px;
   }
+  @media screen and (max-width: 374px) {
+    display: flex;
+    margin-bottom: 16px;
+  }
 `;
 
 const ButtonsContainer = styled.div`
@@ -115,6 +119,11 @@ const ButtonsContainer = styled.div`
   column-gap: 6px;
   margin-top: 32px;
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-direction: column;
+    width: 100%;
+    row-gap: 6px;
+  }
+  @media screen and (max-width: 374px) {
     flex-direction: column;
     width: 100%;
     row-gap: 6px;
@@ -157,6 +166,9 @@ const Body = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 334px;
   }
+  @media screen and (max-width: 374px) {
+    width: 334px;
+  }
 `;
 
 const Container = styled.div<{ cardType: CardType }>`
@@ -182,6 +194,11 @@ const Container = styled.div<{ cardType: CardType }>`
     height: 236px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 374px;
+    flex-direction: column;
+    padding: 20px;
+  }
+  @media screen and (max-width: 374px) {
     width: 374px;
     flex-direction: column;
     padding: 20px;

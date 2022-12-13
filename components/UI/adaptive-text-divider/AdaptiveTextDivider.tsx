@@ -45,8 +45,8 @@ const StyledBR = styled.br<
         display: block;
       }
     `}
-  ${({ sm }) =>
-    sm &&
+  ${({ xs }) =>
+    xs &&
     css`
       @media screen and (max-width: 374px) {
         display: block;

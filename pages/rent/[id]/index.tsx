@@ -132,7 +132,7 @@ const InfoWrapperRow = styled.div`
     padding-left: 40px;
     padding-right: 40px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     padding-left: 13px;
     padding-right: 13px;
   }
@@ -158,6 +158,9 @@ const Container = styled.div`
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding-top: 66px;
+  }
+  @media screen and (max-width: 374px) {
+    padding-top: 65px;
   }
 `;
 

@@ -35,7 +35,7 @@ const Global = createGlobalStyle`
       border-radius: 10px;
       background-color: ${LightBlueColor.LB_200};
     }
-    @media screen and (max-width: 767px) and (min-width: 375px) {
+    @media screen and (max-width: 767px) {
       ::-webkit-scrollbar {
         width: 5px;
       }

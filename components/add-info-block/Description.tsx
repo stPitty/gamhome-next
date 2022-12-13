@@ -75,6 +75,9 @@ const Container = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 export default Description;

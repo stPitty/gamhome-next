@@ -66,6 +66,9 @@ const StyledButton = styled(Button)`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     height: 44px;
   }
+  @media screen and (max-width: 374px) {
+    height: 44px;
+  }
 `;
 
 const ButtonGroupContainer = styled.div`
@@ -81,6 +84,11 @@ const ButtonGroupContainer = styled.div`
     column-gap: 12px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-direction: column;
+    width: 100%;
+    column-gap: 12px;
+  }
+  @media screen and (max-width: 374px) {
     flex-direction: column;
     width: 100%;
     column-gap: 12px;
@@ -109,6 +117,9 @@ const ConditionText = styled.p`
   @media screen and (max-width: 1023px) and (min-width: 375px) {
     width: 288px;
   }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -121,6 +132,9 @@ const TextContainer = styled.div`
     width: 295px;
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
+    width: 318px;
+  }
+  @media screen and (max-width: 374px) {
     width: 318px;
   }
 `;
@@ -140,6 +154,10 @@ const ConditionsContainer = styled.div`
     height: 152px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    flex-wrap: nowrap;
+    height: fit-content;
+  }
+  @media screen and (max-width: 374px) {
     flex-wrap: nowrap;
     height: fit-content;
   }
@@ -170,6 +188,9 @@ const Wrapper = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    width: 349px;
+  }
 `;
 
 const Container = styled.div`
@@ -181,13 +202,16 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 24px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
+    row-gap: 32px;
+  }
+  @media screen and (max-width: 374px) {
     row-gap: 32px;
   }
 `;
