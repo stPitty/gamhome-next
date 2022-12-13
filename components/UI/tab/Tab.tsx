@@ -27,19 +27,18 @@ const Tab: React.FC<Props> = ({
   tabsQuantity,
 }) => {
   const [startX, setStartX] = useState<number | null>(null);
-  const [endX, setEndX] = useState<number | null>(null);
 
   const handleTouchStart = (e: TouchEvent) => {
     setStartX(e.changedTouches[0].clientX);
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
-    if (e.changedTouches[0].clientX > startX! - 50 && activeTab > 1) {
+    if (e.changedTouches[0].clientX > startX! - 150 && activeTab > 1) {
       setActiveTab((prev) => prev - 1);
       return;
     }
     if (
-      e.changedTouches[0].clientX < startX! - 50 &&
+      e.changedTouches[0].clientX < startX! - 150 &&
       activeTab < tabsQuantity
     ) {
       setActiveTab((prev) => prev + 1);
@@ -52,11 +51,11 @@ const Tab: React.FC<Props> = ({
   };
 
   return (
-    <Container>
-      <HeaderContainer
-        onTouchStart={handleTouchStart as any}
-        onTouchEnd={handleTouchEnd as any}
-      >
+    <Container
+      onTouchStart={handleTouchStart as any}
+      onTouchEnd={handleTouchEnd as any}
+    >
+      <HeaderContainer>
         {title.map((el) => (
           <LabelContainer
             onClick={handleSetActiveClick(el.id)}

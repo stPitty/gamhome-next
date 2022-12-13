@@ -1,17 +1,26 @@
-import React, { SyntheticEvent } from "react";
-import styled from "styled-components";
-import { useAppSelector } from "../../../redux/hooks";
+import React, { MouseEventHandler, SyntheticEvent, useState } from "react";
+import styled, { css } from "styled-components";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
 import { Route } from "../../../common/routes";
 import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
 import { Url } from "../../../common/config_enums/url.enum";
+import {
+  decrement,
+  increment,
+} from "../../../redux/slicers/photoPositionSlicer";
 
 type Props = {
   isFullscreen: boolean;
 };
 
 const Carousel: React.FC<Props> = ({ isFullscreen }) => {
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [listOffset, setListOffset] = useState<number | null>(null);
+
   const router = useRouter();
+
+  const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
@@ -19,8 +28,6 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
     (state) => state.position
   );
   const handleImageClick = (index: number) => (e: SyntheticEvent) => {
-    const time = new Date();
-
     if (!isFullscreen) {
       const path = `${Url.CLIENT_PATH}/${router.pathname.split("/")[1]}/${
         router.query.id
@@ -29,21 +36,49 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
     }
   };
 
+  const handleMouseOver = (e: TouchEvent) => {
+    if (touchStart) {
+      setListOffset(touchStart! - e.changedTouches[0].clientX);
+    }
+  };
+
+  const handleMouseUp = (e: TouchEvent) => {
+    if (Math.abs(listOffset!) > 150) {
+      if (listOffset! > 0) {
+        dispatch(increment(flatData?.images.length));
+      } else {
+        dispatch(decrement());
+      }
+    }
+    setTouchStart(null);
+    setListOffset(null);
+  };
+
+  const handleMouseDown = (e: TouchEvent) => {
+    setTouchStart(e.changedTouches[0].clientX);
+  };
+
   return (
-    <StyledUl isFullscreen={isFullscreen} count={position}>
+    <Container
+      touchOffset={listOffset}
+      onTouchMove={handleMouseOver as any}
+      onTouchStart={handleMouseDown as any}
+      onTouchEnd={handleMouseUp as any}
+      isFullscreen={isFullscreen}
+      count={position}
+    >
       {flatData?.images.map((item, index) => {
         return (
-          <StyledLi key={index}>
-            <Image
-              isFullscreen={isFullscreen}
-              onClick={handleImageClick(index)}
-              clickable={!isFullscreen}
-              image={item.url}
-            />
-          </StyledLi>
+          <Image
+            key={item.id}
+            isFullscreen={isFullscreen}
+            onClick={handleImageClick(index)}
+            clickable={!isFullscreen}
+            image={item.url}
+          />
         );
       })}
-    </StyledUl>
+    </Container>
   );
 };
 
@@ -74,38 +109,56 @@ const Image = styled.div<{
   }
 `;
 
-const StyledUl = styled.ul<{ count: number; isFullscreen: boolean }>`
-  transition: 0.3s all linear;
+const Container = styled.div<{
+  count: number;
+  isFullscreen: boolean;
+  touchOffset: number | null;
+}>`
+  user-select: none;
+  touch-action: pan-y;
+  display: flex;
+  transition: ${({ touchOffset }) => (touchOffset !== null ? "0.1s" : "0.3s")}
+    linear;
   margin: 0;
   padding: 0;
-  list-style: none;
-  width: 100000px;
   height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   font-size: 0;
-  transform: translateX(
-    ${({ count, isFullscreen }) =>
-      isFullscreen ? `-${count * 1088}px` : `-${count * 792}px`}
-  );
+
+  ${({ count, isFullscreen, touchOffset }) => {
+    return css`
+      transform: translateX(
+        ${isFullscreen
+          ? `${-((touchOffset !== null ? touchOffset : 0) + count * 1088)}px`
+          : `${-((touchOffset !== null ? touchOffset : 0) + count * 792)}px`}
+      );
+    `;
+  }};
+
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
-    transform: translateX(
-      ${({ count, isFullscreen }) =>
-        isFullscreen ? `-${count * 788}px` : `-${count * 576}px`}
-    );
+
+    ${({ count, isFullscreen, touchOffset }) => {
+      return css`
+        transform: translateX(
+          ${isFullscreen
+            ? `${-((touchOffset !== null ? touchOffset : 0) + count * 788)}px`
+            : `${-((touchOffset !== null ? touchOffset : 0) + count * 576)}px`}
+        );
+      `;
+    }};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
-    transform: translateX(
-      ${({ count, isFullscreen }) =>
-        isFullscreen ? `-${count * 768}px` : `-${count * 640}px`}
-    );
+    ${({ count, isFullscreen, touchOffset }) => {
+      return css`
+        transform: translateX(
+          ${isFullscreen
+            ? `${-((touchOffset !== null ? touchOffset : 0) + count * 768)}px`
+            : `${-((touchOffset !== null ? touchOffset : 0) + count * 640)}px`}
+        );
+      `;
+    }};
   }
-`;
-
-const StyledLi = styled.li`
-  display: inline-block;
-  margin: 0;
-  position: relative;
 `;
 
 export default Carousel;

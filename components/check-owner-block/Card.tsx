@@ -151,7 +151,7 @@ const MainContentWrapper = styled.div<{
   justify-content: flex-start;
   background: no-repeat ${WhiteColor.WHITE} right;
   border-radius: 24px;
-  padding: 48px 0 48px;
+  padding: 48px;
   column-gap: 24px;
   width: 1312px;
   background-image: url(${({ background }) => background});

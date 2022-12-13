@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 import { LightBlueColor } from "../../../common/enums";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { handleSwapImageClick } from "../../../common/helpers";
-import { TPhotoPosition } from "../../../redux/slicers/types";
 
 type Props = {
   orientation: "right" | "left";

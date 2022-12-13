@@ -24,9 +24,6 @@ const MainServices = React.forwardRef((_, ref) => {
 
 const ObservableComponent = styled.div`
   margin-top: 54px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 34px;
-  }
 `;
 
 const ObservableComponentWrapper = styled.div`

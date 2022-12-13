@@ -62,6 +62,7 @@ const Wrapper = styled(DeployableWrapper)`
   border-radius: 24px;
   background: ${LightBlueColor.LB_100};
   padding: 24px;
+  width: 100%;
 `;
 
 const Container = styled.div<{ paramsCount: number | undefined }>`
@@ -70,14 +71,13 @@ const Container = styled.div<{ paramsCount: number | undefined }>`
   flex-wrap: wrap;
   row-gap: 12px;
   column-gap: 107px;
-  width: 864px;
+  width: 100%;
   height: ${({ paramsCount }) => {
     if (paramsCount) {
       return `${(paramsCount / 3 + 1) * 36}px`;
     }
   }};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 624px;
     column-gap: 32px;
     height: ${({ paramsCount }) => {
       if (paramsCount) {

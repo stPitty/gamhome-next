@@ -29,7 +29,7 @@ const ObservableComponent = styled.div`
     margin-top: 154px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 100px;
+    margin-top: 120px;
   }
 `;
 

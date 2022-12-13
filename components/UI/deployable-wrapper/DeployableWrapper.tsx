@@ -24,7 +24,6 @@ const DeployableWrapper: React.FC<Props> = ({
 
   const handleDeployClick = () => {
     if (wrapperRef.current) {
-      console.log(wrapperRef.current.offsetHeight);
       setPrevHeight(wrapperRef.current.offsetHeight);
     }
     setIsDeployed((prev) => !prev);
