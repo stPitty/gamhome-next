@@ -15,7 +15,11 @@ const setIOForBottomMenu = (
   currentEl: React.MutableRefObject<null>["current"],
   dispatch: AppDispatch
 ) => {
-  if (windowSize === WindowSize.MD) {
+  if (
+    windowSize === WindowSize.MD ||
+    windowSize === WindowSize.SM ||
+    windowSize === WindowSize.XL
+  ) {
     if (!IOBottomMenuSingleton.isRefExisting()) {
       IOBottomMenuSingleton.setRefs(currentEl);
     }

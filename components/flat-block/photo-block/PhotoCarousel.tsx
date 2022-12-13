@@ -23,6 +23,10 @@ const Container = styled.div<{ photo?: string }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     min-width: 640px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    min-width: 349px;
+    height: 284px;
+  }
 `;
 
 export default PhotoCarousel;

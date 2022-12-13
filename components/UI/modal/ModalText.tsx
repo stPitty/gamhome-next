@@ -37,10 +37,11 @@ const ListItemWrapper = styled.div`
 `;
 
 const ListMarker = styled.div`
-  margin: 0 10px;
+  margin: 10px 10px;
   min-height: 4px;
   min-width: 4px;
   border-radius: 4px;
+  align-self: flex-start;
   background-color: ${BlackColor.BLACK_80};
 `;
 
@@ -62,6 +63,9 @@ const Text = styled.p`
   margin: 0;
   width: 430px;
   transition: none;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 335px;
+  }
 `;
 
 export default ModalText;

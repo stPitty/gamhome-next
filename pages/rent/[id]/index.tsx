@@ -132,6 +132,10 @@ const InfoWrapperRow = styled.div`
     padding-left: 40px;
     padding-right: 40px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
 `;
 
 const InfoWrapperColumn = styled.div`

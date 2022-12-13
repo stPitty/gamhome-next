@@ -9,6 +9,7 @@ import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
 import ImageLoadingSVG from "../../../public/assets/svg/ImageLoadingSVG";
 import LoadingPreviewPhotos from "../../UI/loading-ui/LoadingPreviewPhotos";
+import PreviewPoints from "../../check-owner-block/PreviewPoints";
 
 const PhotoBlock: React.FC = () => {
   const { flatData, isLoading } = useAppSelector<TFlatState>(
@@ -31,6 +32,7 @@ const PhotoBlock: React.FC = () => {
             </Control>
           </>
         )}
+        <PreviewPoints />
       </PhotoWrapper>
       {isLoading ? <LoadingPreviewPhotos /> : <PreviewStack />}
     </Container>
@@ -56,6 +58,15 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: 332px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding-top: 24px;
+    row-gap: 12px;
+  }
 `;
 
 const Container = styled.div`
@@ -68,7 +79,8 @@ const Container = styled.div`
     padding-top: 0;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    display: none;
+    padding-top: 16px;
+    margin-bottom: 32px;
   }
 `;
 

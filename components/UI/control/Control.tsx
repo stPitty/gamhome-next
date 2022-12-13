@@ -65,6 +65,9 @@ const Body = styled.div<{ orientation: "right" | "left" }>`
     min-width: 48px;
     height: 48px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    display: none;
+  }
 `;
 
 export default memo(Control);

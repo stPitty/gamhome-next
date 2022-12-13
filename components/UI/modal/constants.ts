@@ -52,7 +52,7 @@ const sixIntsErrorMessage = "Укажите 6 цифр";
 const serviceModal: Omit<ModalBody, "header"> = {
   modalType: "withInput",
   subDesc:
-    "Отправляя заявку вы подтверждаете, что согласны с Политикой конфиденциальности и условиями Оферты",
+    "Отправляя заявку вы подтверждаете, что согласны с Политикой конфиденциальности и условиями Оферты",
   buttonText: "Оставить заявку",
   nextStateBtnAction: thanksForOrder,
   clearAction: clearServiceData,
@@ -177,7 +177,7 @@ const modalData: ModalBodyData = {
     validationPattern: emailValidationRegexp,
   },
   [ModalState.DOCS_SENT]: {
-    header: "Документы отправлены на почту",
+    header: "Документы отправлены на почту",
     modalType: "lastMessage",
     image: "/images/man-sends-message.webp",
   },
@@ -204,18 +204,18 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OBJ_INPUT_EMAIL]: {
     header: "Проверить объект",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
+    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
-    buttonText: "Перейти к оплате 799 ₽",
+    buttonText: "Перейти к оплате 799 ₽",
     nextStateBtnAction: informationSent,
   },
   [ModalState.INFORMATION_SENT]: {
-    header: "Информация отправлена на проверку",
+    header: "Информация отправлена на проверку",
     modalType: "lastMessage",
-    desc: "Результат проверки придёт на почту. Проверка занимает от 30 минут до 3 дней",
+    desc: "Результат проверки придёт на почту. Проверка занимает от 30 минут до 3 дней",
     image: "/images/perfect-candidate.webp",
   },
   [ModalState.CHECK_OWNER_INPUT_INFO]: {
@@ -278,7 +278,7 @@ const modalData: ModalBodyData = {
       {
         id: 6,
         name: "divCode",
-        placeHolder: "Код подразделения",
+        placeHolder: "Код подразделения",
         submitFailedMessage: sixIntsErrorMessage,
         validationPattern: passDivNumRegexp,
         errorMessage: sixIntsErrorMessage,
@@ -289,8 +289,8 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OWNER_INPUT_EMAIL]: {
     header: "Проверить собственника",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
-    buttonText: "Перейти к оплате 549 ₽",
+    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
+    buttonText: "Перейти к оплате 549 ₽",
     nextStateBtnAction: informationSent,
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
@@ -302,7 +302,7 @@ const modalData: ModalBodyData = {
     ...serviceModal,
   },
   [ModalState.AGENT_FOR_CONTRACT]: {
-    header: "Агент на договор",
+    header: "Агент на договор",
     ...serviceModal,
   },
   [ModalState.CONCIERGE_SERVICE]: {
@@ -310,12 +310,12 @@ const modalData: ModalBodyData = {
     ...serviceModal,
   },
   [ModalState.KEY_SEARCH]: {
-    header: "Поиск под ключ",
+    header: "Поиск под ключ",
     ...serviceModal,
   },
   [ModalState.THANKS_FOR_ORDER]: {
-    header: "Спасибо за заявку",
-    desc: "Мы свяжемся с вами в ближайшее время",
+    header: "Спасибо за заявку",
+    desc: "Мы свяжемся с вами в ближайшее время",
     modalType: "lastMessage",
     image: "/images/cozy-evening.webp",
   },

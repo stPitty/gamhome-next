@@ -85,6 +85,9 @@ const SubDescText = styled.p`
   color: ${BlackColor.BLACK_80};
   width: 478px;
   margin: 4px 0 22px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 335px;
+  }
 `;
 
 const ButtonContainer = styled.div<{ modalType: Modal }>`
@@ -100,7 +103,21 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
         margin-top: 10px;
       `;
     }
-  }}
+  }};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 100%;
+    ${({ modalType }) => {
+      if (modalType !== "withInput") {
+        return css`
+          margin-top: 20px;
+        `;
+      } else {
+        return css`
+          margin-top: 5px;
+        `;
+      }
+    }};
+  }
 `;
 
 const Image = styled.div<{ image: string }>`
@@ -118,6 +135,9 @@ const Container = styled.div<{ isLast: boolean }>`
   flex-direction: column;
   align-items: ${({ isLast }) => isLast && "center"};
   padding-right: 40px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding-right: 20px;
+  }
 `;
 
 const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
@@ -143,7 +163,11 @@ const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
         row-gap: 16px;
       `;
     }
-  }}
+  }};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 335px;
+    row-gap: 4px;
+  }
 `;
 
 const Header = styled.p`
@@ -152,9 +176,12 @@ const Header = styled.p`
   line-height: 40px;
   color: ${BlackColor.BLACK_SECONDARY};
   width: 430px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) and (min-width: 375px) {
     font-size: 28px;
     line-height: 36px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 335px;
   }
 `;
 

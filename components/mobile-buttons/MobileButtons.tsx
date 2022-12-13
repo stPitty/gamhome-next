@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import { WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
@@ -8,17 +8,23 @@ import {
   TCookiePopUp,
   TFlatState,
   TMobBtnView,
+  TWindowSize,
 } from "../../redux/slicers/types";
 import KeySVG from "../../public/assets/svg/KeySVG";
 import Link from "next/link";
 import { Hook } from "../../common/routes";
 import { handleShowNumberClick } from "../../common/helpers";
+import { WindowSize } from "../../redux/slicers/enums";
 
 const MobileButtons = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showNumber, setShowNumber] = useState<boolean>(false);
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
 
   const { isShown } = useAppSelector<TMobBtnView>((state) => state.mobBtnView);
 
@@ -33,15 +39,15 @@ const MobileButtons = () => {
         <ButtonsContainer>
           {showNumber ? (
             <StyledLink href={`tel:${flatData?.phone}`}>
-              <Button
+              <StyledButton
                 buttonType={ButtonType.OUTLINE}
                 buttonSize={ButtonSize.LARGE}
               >
                 {flatData?.phone}
-              </Button>
+              </StyledButton>
             </StyledLink>
           ) : (
-            <Button
+            <StyledButton
               buttonSize={ButtonSize.LARGE}
               loading={loading}
               onClick={handleShowNumberClick(
@@ -51,16 +57,18 @@ const MobileButtons = () => {
               )}
             >
               Показать телефон
-            </Button>
+            </StyledButton>
           )}
           <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
-            <Button
+            <StyledButton
               buttonSize={ButtonSize.LARGE}
               buttonType={ButtonType.PRIMARY_PURPLE}
             >
               <KeyIcon />
-              Подберите мне квартиру
-            </Button>
+              {windowSize === WindowSize.MD
+                ? "Подберите мне квартиру"
+                : "Подбор квартиры"}
+            </StyledButton>
           </StyledLink>
         </ButtonsContainer>
       </Container>
@@ -68,12 +76,25 @@ const MobileButtons = () => {
   );
 };
 
+const StyledButton = styled(Button)`
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 169.5px;
+    font-size: 13px;
+    line-height: 20px;
+    padding: 7px 15px;
+    height: 36px;
+  }
+`;
+
 const KeyIcon = styled(KeySVG)`
   margin-right: 7px;
 `;
 
 const StyledLink = styled(Link)`
   min-width: 338px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    min-width: 169.5px;
+  }
 `;
 
 const TopShadow = styled.div`
@@ -88,6 +109,10 @@ const ButtonsContainer = styled.div`
   width: 768px;
   padding: 24px 40px;
   column-gap: 12px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 375px;
+    padding: 13px 12px;
+  }
 `;
 
 const Container = styled.div<{ isCookieAccepted: boolean }>`
@@ -98,6 +123,9 @@ const Container = styled.div<{ isCookieAccepted: boolean }>`
   background-color: ${WhiteColor.WHITE};
   display: flex;
   justify-content: center;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    height: ${({ isCookieAccepted }) => (isCookieAccepted ? "81px" : "153px")};
+  }
 `;
 
 const Wrapper = styled.div<{ isShown: boolean }>`

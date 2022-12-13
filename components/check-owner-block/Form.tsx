@@ -86,6 +86,9 @@ const FormContainer = styled.div<{ withDesc: boolean }>`
   width: 480px;
   column-gap: 20px;
   margin-top: ${({ withDesc }) => (withDesc ? "20px" : "24px")};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 100%;
+  }
 `;
 
 const StyledInput = styled(Input)<{
@@ -98,6 +101,9 @@ const StyledInput = styled(Input)<{
     withoutInfo || isMultiInput ? "0" : lowMarginTop ? "16px" : "20px"};
   transition: none;
   width: ${({ halfWidth }) => (halfWidth ? "230px" : "100%")};
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 100%;
+  }
 `;
 
 export default Form;

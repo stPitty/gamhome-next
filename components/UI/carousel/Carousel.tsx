@@ -1,14 +1,19 @@
-import React, { MouseEventHandler, SyntheticEvent, useState } from "react";
+import React, { SyntheticEvent, useState } from "react";
 import styled, { css } from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
 import { Route } from "../../../common/routes";
-import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
+import {
+  TFlatState,
+  TPhotoPosition,
+  TWindowSize,
+} from "../../../redux/slicers/types";
 import { Url } from "../../../common/config_enums/url.enum";
 import {
   decrement,
   increment,
 } from "../../../redux/slicers/photoPositionSlicer";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 type Props = {
   isFullscreen: boolean;
@@ -16,11 +21,14 @@ type Props = {
 
 const Carousel: React.FC<Props> = ({ isFullscreen }) => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [listOffset, setListOffset] = useState<number | null>(null);
 
   const router = useRouter();
 
   const dispatch = useAppDispatch();
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
@@ -28,7 +36,11 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
     (state) => state.position
   );
   const handleImageClick = (index: number) => (e: SyntheticEvent) => {
-    if (!isFullscreen) {
+    if (
+      !isFullscreen &&
+      windowSize !== WindowSize.XS &&
+      windowSize !== WindowSize.SM
+    ) {
       const path = `${Url.CLIENT_PATH}/${router.pathname.split("/")[1]}/${
         router.query.id
       }${Route.PHOTOS}`;
@@ -36,22 +48,17 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
     }
   };
 
-  const handleMouseOver = (e: TouchEvent) => {
-    if (touchStart) {
-      setListOffset(touchStart! - e.changedTouches[0].clientX);
-    }
-  };
-
   const handleMouseUp = (e: TouchEvent) => {
-    if (Math.abs(listOffset!) > 150) {
-      if (listOffset! > 0) {
+    const minOffset = windowSize === WindowSize.SM ? 100 : 150;
+    const offset = touchStart! - e.changedTouches[0].clientX;
+    if (Math.abs(offset) > minOffset) {
+      if (offset! > 0) {
         dispatch(increment(flatData?.images.length));
       } else {
         dispatch(decrement());
       }
     }
     setTouchStart(null);
-    setListOffset(null);
   };
 
   const handleMouseDown = (e: TouchEvent) => {
@@ -60,8 +67,6 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
 
   return (
     <Container
-      touchOffset={listOffset}
-      onTouchMove={handleMouseOver as any}
       onTouchStart={handleMouseDown as any}
       onTouchEnd={handleMouseUp as any}
       isFullscreen={isFullscreen}
@@ -107,12 +112,16 @@ const Image = styled.div<{
     background-size: auto
       ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    min-width: 349px;
+    height: 284px;
+    background-size: auto 284px;
+  }
 `;
 
 const Container = styled.div<{
   count: number;
   isFullscreen: boolean;
-  touchOffset: number | null;
 }>`
   user-select: none;
   touch-action: pan-y;
@@ -123,12 +132,10 @@ const Container = styled.div<{
   height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   font-size: 0;
 
-  ${({ count, isFullscreen, touchOffset }) => {
+  ${({ count, isFullscreen }) => {
     return css`
       transform: translateX(
-        ${isFullscreen
-          ? `${-((touchOffset !== null ? touchOffset : 0) + count * 1088)}px`
-          : `${-((touchOffset !== null ? touchOffset : 0) + count * 792)}px`}
+        ${isFullscreen ? `${-(count * 1088)}px` : `${-(count * 792)}px`}
       );
     `;
   }};
@@ -136,25 +143,29 @@ const Container = styled.div<{
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
 
-    ${({ count, isFullscreen, touchOffset }) => {
+    ${({ count, isFullscreen }) => {
       return css`
         transform: translateX(
-          ${isFullscreen
-            ? `${-((touchOffset !== null ? touchOffset : 0) + count * 788)}px`
-            : `${-((touchOffset !== null ? touchOffset : 0) + count * 576)}px`}
+          ${isFullscreen ? `${-(count * 788)}px` : `${-(count * 576)}px`}
         );
       `;
     }};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
-    ${({ count, isFullscreen, touchOffset }) => {
+    ${({ count, isFullscreen }) => {
       return css`
         transform: translateX(
-          ${isFullscreen
-            ? `${-((touchOffset !== null ? touchOffset : 0) + count * 768)}px`
-            : `${-((touchOffset !== null ? touchOffset : 0) + count * 640)}px`}
+          ${isFullscreen ? `${-(count * 768)}px` : `${-(count * 640)}px`}
         );
+      `;
+    }};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    height: 284px;
+    ${({ count, isFullscreen }) => {
+      return css`
+        transform: translateX(${-(count * 349)}px);
       `;
     }};
   }

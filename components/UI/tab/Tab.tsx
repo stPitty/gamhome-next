@@ -3,7 +3,6 @@ import React, {
   memo,
   ReactNode,
   SetStateAction,
-  SyntheticEvent,
   useState,
 } from "react";
 import styled from "styled-components";
@@ -33,17 +32,15 @@ const Tab: React.FC<Props> = ({
   };
 
   const handleTouchEnd = (e: TouchEvent) => {
-    if (e.changedTouches[0].clientX > startX! - 150 && activeTab > 1) {
-      setActiveTab((prev) => prev - 1);
-      return;
+    const offset = startX! - e.changedTouches[0].clientX;
+    if (Math.abs(offset) > 150) {
+      if (offset! > 0) {
+        setActiveTab((prev) => prev + 1);
+      } else {
+        setActiveTab((prev) => prev - 1);
+      }
     }
-    if (
-      e.changedTouches[0].clientX < startX! - 150 &&
-      activeTab < tabsQuantity
-    ) {
-      setActiveTab((prev) => prev + 1);
-      return;
-    }
+    setStartX(null);
   };
 
   const handleSetActiveClick = (num: number) => () => {
@@ -121,6 +118,8 @@ const Container = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  user-select: none;
+  touch-action: pan-y;
 `;
 
 export default memo(Tab);

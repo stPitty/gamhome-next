@@ -82,6 +82,8 @@ const Container = styled.div<{
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     left: calc(50% + 125px);
+    bottom: ${({ isMenuShown, isCookieAccepted }) =>
+      isMenuShown ? "100px" : "32px"};
   }
 `;
 
