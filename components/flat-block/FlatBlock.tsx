@@ -61,6 +61,9 @@ const TelegramButtonContainer = styled.div`
   @media screen and (max-width: 767px) {
     display: flex;
   }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const LoadingBlock = styled.div`

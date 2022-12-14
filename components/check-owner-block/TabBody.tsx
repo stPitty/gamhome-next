@@ -37,7 +37,7 @@ const Container = styled.div`
     border-radius: 24px;
   }
   @media screen and (max-width: 374px) {
-    padding: 24px 13px;
+    padding: 24px 16px;
     border-radius: 24px;
   }
 `;

@@ -53,6 +53,7 @@ const Card: React.FC<Props> = ({ data }) => {
         </HeaderWrapper>
         <StyledDeployableWrapper
           minHeight={72}
+          smHeight={96}
           preventDefault={data.cardType === "cleaning"}
         >
           <DescText>{data.desc}</DescText>
@@ -90,11 +91,7 @@ const HeaderWrapper = styled.div`
     flex-direction: row;
     column-gap: 7px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    flex-direction: column;
-    column-gap: 7px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     column-gap: 7px;
   }
@@ -109,6 +106,9 @@ const StyledButton = styled(Button)<{ cardType: CardAbout }>`
   @media screen and (max-width: 767px) {
     width: 100%;
   }
+  @media screen and (max-width: 374px) {
+    padding: 0;
+  }
 `;
 
 const PromoCodeContainer = styled.div`
@@ -116,7 +116,7 @@ const PromoCodeContainer = styled.div`
   margin-left: 24px;
   column-gap: 4px;
   cursor: pointer;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     margin: 0;
   }
 `;
@@ -154,26 +154,26 @@ const ColumnImage = styled(Image)`
   background-size: 688px;
   background-position: ${({ cardType }) =>
     cardType !== "cleaning" && "left -40px"};
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     display: block;
+  }
+  @media screen and (max-width: 767px) {
+    height: ${({ cardType }) => (cardType === "cleaning" ? "234px" : "228px")};
+    border-radius: 16px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    height: ${({ cardType }) => (cardType === "cleaning" ? "234px" : "228px")};
-    border-radius: 16px;
     background-position: ${({ cardType }) =>
       cardType === "cleaning" ? "-20px" : "center"};
     background-size: ${({ cardType }) =>
       cardType === "cleaning" ? "390px" : "cover"};
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
-    height: ${({ cardType }) => (cardType === "cleaning" ? "234px" : "228px")};
-    border-radius: 16px;
+    width: 288px;
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-20px" : "center"};
+      cardType === "cleaning" ? "-30px -30px" : "center"};
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "390px" : "cover"};
+      cardType === "cleaning" ? "440px" : "cover"};
   }
 `;
 
@@ -193,13 +193,7 @@ const ButtonsContainer = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-top: 48px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 40px;
-    flex-direction: column;
-    width: 100%;
-    row-gap: 24px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     margin-top: 40px;
     flex-direction: column;
     width: 100%;
@@ -223,7 +217,9 @@ const Tag = styled.div`
     padding: 7px 11px;
   }
   @media screen and (max-width: 374px) {
-    padding: 7px 11px;
+    padding: 7px 7px;
+    font-size: 13px;
+    line-height: 20px;
   }
 `;
 
@@ -237,8 +233,8 @@ const TagsWrapper = styled.div`
     column-gap: 15px;
   }
   @media screen and (max-width: 374px) {
-    width: 308px;
-    column-gap: 15px;
+    width: 247px;
+    column-gap: 20px;
   }
 `;
 
@@ -248,16 +244,14 @@ const DescText = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     margin-bottom: 0;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 290px;
-    margin-bottom: 0;
   }
   @media screen and (max-width: 374px) {
-    width: 290px;
-    margin-bottom: 0;
+    width: 240px;
   }
 `;
 
@@ -267,11 +261,7 @@ const HeaderText = styled.p`
   line-height: 40px;
   margin: 0;
   color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
-    font-size: 28px;
-    line-height: 36px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 1023px) {
     font-size: 28px;
     line-height: 36px;
   }
@@ -298,8 +288,8 @@ const ContentWrapper = styled.div`
     width: 301px;
   }
   @media screen and (max-width: 374px) {
-    margin: 40px 23px;
-    width: 301px;
+    margin: 40px 24px;
+    width: 240px;
   }
 `;
 
@@ -312,13 +302,10 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 37px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    border-radius: 16px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     border-radius: 16px;
   }
 `;

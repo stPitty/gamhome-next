@@ -118,7 +118,7 @@ const ConditionText = styled.p`
     width: 288px;
   }
   @media screen and (max-width: 374px) {
-    width: 288px;
+    width: 238px;
   }
 `;
 
@@ -135,7 +135,7 @@ const TextContainer = styled.div`
     width: 318px;
   }
   @media screen and (max-width: 374px) {
-    width: 318px;
+    width: 255px;
   }
 `;
 
@@ -153,13 +153,13 @@ const ConditionsContainer = styled.div`
     column-gap: 20px;
     height: 152px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     flex-wrap: nowrap;
     height: fit-content;
   }
   @media screen and (max-width: 374px) {
-    flex-wrap: nowrap;
-    height: fit-content;
+    margin-left: 12px;
+    width: 264px;
   }
 `;
 
@@ -170,6 +170,9 @@ const Header = styled.p`
   line-height: 28px;
   margin: 0;
   color: ${BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 374px) {
+    margin-left: 12px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -189,7 +192,7 @@ const Wrapper = styled.div`
     width: 349px;
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
+    width: 288px;
   }
 `;
 
@@ -208,10 +211,7 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    row-gap: 32px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     row-gap: 32px;
   }
 `;

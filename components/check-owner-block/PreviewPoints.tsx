@@ -1,21 +1,31 @@
 import styled from "styled-components";
 import { BlackColor } from "../../common/enums";
 import { useAppSelector } from "../../redux/hooks";
-import { TFlatState, TPhotoPosition } from "../../redux/slicers/types";
+import {
+  TFlatState,
+  TPhotoPosition,
+  TWindowSize,
+} from "../../redux/slicers/types";
 import { useMemo } from "react";
+import { WindowSize } from "../../redux/slicers/enums";
 
 const PreviewPoints = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
 
   const { position } = useAppSelector<TPhotoPosition>(
     (state) => state.position
   );
 
   const offset = useMemo(() => {
+    const width = windowSize === WindowSize.SM ? 309 : 248;
     if (flatData) {
-      return Math.floor((309 / flatData?.images.length - 1) * position);
+      return Math.floor((width / flatData?.images.length - 1) * position);
     }
-  }, [position]);
+  }, [position, windowSize]);
 
   return (
     <Container>
@@ -37,8 +47,12 @@ const Container = styled.div`
   display: none;
   padding: 0 20px;
   width: 100%;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: flex;
+    position: relative;
+    bottom: 8px;
+    overflow: visible;
+    height: 0;
   }
 `;
 

@@ -6,6 +6,7 @@ import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 type Props = {
   children: ReactNode;
   minHeight: number;
+  smHeight: number;
   className?: string;
   preventDefault?: boolean;
 };
@@ -14,6 +15,7 @@ const DeployableWrapper: React.FC<Props> = ({
   children,
   className,
   minHeight,
+  smHeight,
   preventDefault = false,
 }) => {
   const [prevHeight, setPrevHeight] = useState<number | null>(null);
@@ -32,6 +34,7 @@ const DeployableWrapper: React.FC<Props> = ({
   return (
     <Wrapper isDeployed={isDeployed} className={className}>
       <ChildrenContainer
+        smHeight={smHeight}
         minHeight={minHeight}
         height={prevHeight}
         isDeployed={isDeployed}
@@ -57,14 +60,21 @@ const ChildrenContainer = styled.div<{
   isDeployed: boolean;
   height: number | null;
   minHeight: number;
+  smHeight: number;
 }>`
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     display: flex;
     flex-wrap: nowrap;
     overflow: hidden;
     transition: 0.2s linear;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     height: ${({ isDeployed, height, minHeight }) =>
       !isDeployed ? `${minHeight}px` : height ? `${height}px` : "auto"};
+  }
+  @media screen and (max-width: 374px) {
+    height: ${({ isDeployed, height, smHeight }) =>
+      !isDeployed ? `${smHeight}px` : height ? `${height}px` : "auto"};
   }
 `;
 
@@ -126,15 +136,15 @@ const DeployBtnContainer = styled.div<{ prevent: boolean }>`
 const Wrapper = styled.div<{ isDeployed: boolean }>`
   flex-direction: column;
   display: flex;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     flex-wrap: nowrap;
-    width: 349px;
     row-gap: 16px;
   }
-  @media screen and (max-width: 374px) {
-    flex-wrap: nowrap;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    row-gap: 16px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 

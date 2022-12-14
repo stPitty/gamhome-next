@@ -85,6 +85,11 @@ const Container = styled.div<{
     bottom: ${({ isMenuShown, isCookieAccepted }) =>
       isMenuShown ? "100px" : "32px"};
   }
+  @media screen and (max-width: 374px) {
+    left: calc(50% + 80px);
+    bottom: ${({ isMenuShown, isCookieAccepted }) =>
+      isMenuShown ? "100px" : "32px"};
+  }
 `;
 
 export default ScrollTopBtn;

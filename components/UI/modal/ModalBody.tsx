@@ -2,7 +2,7 @@ import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import styled, { css } from "styled-components";
 import { modalData } from "./constants";
 import { TModalState } from "../../../redux/slicers/types";
-import { BlackColor, Font } from "../../../common/enums";
+import { BlackColor, Font, WhiteColor } from "../../../common/enums";
 import ModalText from "./ModalText";
 import { useState } from "react";
 import Button from "../button/Button";
@@ -55,7 +55,7 @@ const ModalBody = () => {
           )}
           {modalData[currentState].buttonText && (
             <ButtonContainer modalType={modalData[currentState].modalType}>
-              <Button
+              <StyledButton
                 buttonSize={ButtonSize.MEDIUM}
                 onClick={handleChangeStateClick(
                   currentState,
@@ -69,7 +69,8 @@ const ModalBody = () => {
                 )}
               >
                 {modalData[currentState].buttonText}
-              </Button>
+              </StyledButton>
+              <WhiteBlock />
             </ButtonContainer>
           )}
         </Container>
@@ -77,6 +78,22 @@ const ModalBody = () => {
     </>
   );
 };
+
+const WhiteBlock = styled.div`
+  display: none;
+  width: 296px;
+  height: 24px;
+  background-color: ${WhiteColor.WHITE};
+  @media screen and (max-width: 374px) {
+    display: block;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  @media screen and (max-width: 374px) {
+    width: 296px;
+  }
+`;
 
 const SubDescText = styled.p`
   font-family: ${Font.ROBOTO_FLEX};
@@ -87,6 +104,9 @@ const SubDescText = styled.p`
   margin: 4px 0 22px;
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 280px;
   }
 `;
 
@@ -104,7 +124,7 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
       `;
     }
   }};
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
     ${({ modalType }) => {
       if (modalType !== "withInput") {
@@ -117,6 +137,15 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
         `;
       }
     }};
+  }
+  @media screen and (max-width: 374px) {
+    position: fixed;
+    flex-direction: column;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -135,7 +164,7 @@ const Container = styled.div<{ isLast: boolean }>`
   flex-direction: column;
   align-items: ${({ isLast }) => isLast && "center"};
   padding-right: 40px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     padding-right: 20px;
   }
 `;
@@ -164,9 +193,14 @@ const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
       `;
     }
   }};
+  @media screen and (max-width: 767px) {
+    row-gap: 4px;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;
-    row-gap: 4px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 280px;
   }
 `;
 
@@ -182,6 +216,9 @@ const Header = styled.p`
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 280px;
   }
 `;
 

@@ -58,23 +58,17 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
   }
+  @media screen and (max-width: 767px) {
+    max-height: 332px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    height: 332px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-top: 24px;
-    row-gap: 12px;
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
-    height: 332px;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding-top: 24px;
-    row-gap: 12px;
+    width: 288px;
   }
 `;
 
@@ -87,11 +81,7 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 0;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding-top: 16px;
-    margin-bottom: 32px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     padding-top: 16px;
     margin-bottom: 32px;
   }

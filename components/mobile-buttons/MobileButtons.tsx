@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
@@ -40,6 +40,7 @@ const MobileButtons = () => {
           {showNumber ? (
             <StyledLink href={`tel:${flatData?.phone}`}>
               <StyledButton
+                phone={true}
                 buttonType={ButtonType.OUTLINE}
                 buttonSize={ButtonSize.LARGE}
               >
@@ -76,7 +77,7 @@ const MobileButtons = () => {
   );
 };
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{ phone?: boolean }>`
   @media screen and (max-width: 767px) {
     font-size: 13px;
     line-height: 20px;
@@ -88,6 +89,22 @@ const StyledButton = styled(Button)`
   }
   @media screen and (max-width: 374px) {
     width: 142px;
+    padding: 0;
+    position: relative;
+    bottom: 7px;
+    ${({ phone }) =>
+      phone &&
+      css`
+        background-color: ${WhiteColor.WHITE};
+
+        &:hover {
+          background-color: #dcdff1;
+        }
+
+        &:active {
+          background-color: #d5daf1;
+        }
+      `}
   }
 `;
 
@@ -126,7 +143,7 @@ const ButtonsContainer = styled.div`
   }
   @media screen and (max-width: 374px) {
     width: 320px;
-    padding: 12px;
+    padding: 0 12px 32px;
   }
 `;
 
@@ -140,6 +157,9 @@ const Container = styled.div<{ isCookieAccepted: boolean }>`
   justify-content: center;
   @media screen and (max-width: 767px) and (min-width: 375px) {
     height: ${({ isCookieAccepted }) => (isCookieAccepted ? "81px" : "153px")};
+  }
+  @media screen and (max-width: 374px) {
+    height: ${({ isCookieAccepted }) => (isCookieAccepted ? "61px" : "133px")};
   }
 `;
 

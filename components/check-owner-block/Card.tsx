@@ -50,7 +50,7 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
     width: 302px;
   }
   @media screen and (max-width: 374px) {
-    width: 302px;
+    width: 240px;
   }
 `;
 
@@ -115,7 +115,7 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
     margin: 0;
   }
   @media screen and (max-width: 374px) {
-    width: 301px;
+    width: 240px;
     margin: 0;
   }
 `;
@@ -145,10 +145,7 @@ const ContentTextContainer = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    row-gap: 155px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     row-gap: 155px;
   }
 `;
@@ -186,9 +183,9 @@ const MainContentWrapper = styled.div<{
   }
   @media screen and (max-width: 374px) {
     padding: 24px;
-    width: 349px;
+    width: 288px;
     background-position: ${({ contentType }) =>
-      contentType === "checkObject" ? "center 200px" : "center 245px"};
+      contentType === "checkObject" ? "center 290px" : "center 285px"};
     background-size: 235px;
   }
 `;

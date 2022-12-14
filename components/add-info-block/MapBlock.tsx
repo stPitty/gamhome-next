@@ -86,15 +86,11 @@ const StyledButton = styled(Button)`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     height: 56px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     height: 36px;
     font-size: 13px;
     line-height: 20px;
-  }
-  @media screen and (max-width: 374px) {
-    height: 36px;
-    font-size: 13px;
-    line-height: 20px;
+    margin-top: 24px;
   }
 `;
 
@@ -102,6 +98,8 @@ const StyledCircleIcon = styled(CircleSVG)<{ color: string }>`
   & rect {
     fill: ${({ color }) => color};
   }
+  align-self: flex-start;
+  margin-top: 8px;
 `;
 
 const MetroContainer = styled.div`
@@ -131,10 +129,13 @@ const MetroNameText = styled.p`
 
 const MetroWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   width: 100%;
   column-gap: 4px;
+  @media screen and (max-width: 374px) {
+    flex-wrap: wrap;
+    width: 288px;
+  }
 `;
 
 const AddressText = styled.p`
@@ -144,6 +145,9 @@ const AddressText = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -161,10 +165,7 @@ const Container = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   margin: 48px 0 0 0;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 40px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     margin-top: 40px;
   }
 `;

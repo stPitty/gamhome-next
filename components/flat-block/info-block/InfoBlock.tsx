@@ -72,6 +72,9 @@ const FlatGenInfoContainer = styled.div`
   @media screen and (max-width: 1023px) {
     display: flex;
   }
+  @media screen and (max-width: 767px) {
+    margin-bottom: 16px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -101,7 +104,7 @@ const Container = styled.div`
     padding-top: 0;
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
+    width: 288px;
     padding-top: 0;
   }
 `;

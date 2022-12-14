@@ -49,7 +49,8 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
   };
 
   const handleMouseUp = (e: TouchEvent) => {
-    const minOffset = windowSize === WindowSize.SM ? 100 : 150;
+    const minOffset =
+      windowSize === WindowSize.SM || windowSize === WindowSize.XS ? 75 : 150;
     const offset = touchStart! - e.changedTouches[0].clientX;
     if (Math.abs(offset) > minOffset) {
       if (offset! > 0) {
@@ -112,15 +113,15 @@ const Image = styled.div<{
     background-size: auto
       ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
   }
+  @media screen and (max-width: 767px) {
+    height: 332px;
+    background-size: contain;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     min-width: 349px;
-    height: 284px;
-    background-size: auto 284px;
   }
   @media screen and (max-width: 374px) {
-    min-width: 349px;
-    height: 284px;
-    background-size: auto 284px;
+    min-width: 288px;
   }
 `;
 
@@ -136,7 +137,6 @@ const Container = styled.div<{
   padding: 0;
   height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   font-size: 0;
-
   ${({ count, isFullscreen }) => {
     return css`
       transform: translateX(
@@ -147,7 +147,6 @@ const Container = styled.div<{
 
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
-
     ${({ count, isFullscreen }) => {
       return css`
         transform: translateX(
@@ -156,6 +155,7 @@ const Container = styled.div<{
       `;
     }};
   }
+
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
     ${({ count, isFullscreen }) => {
@@ -166,21 +166,24 @@ const Container = styled.div<{
       `;
     }};
   }
+
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    height: 284px;
-    ${({ count, isFullscreen }) => {
+    height: 332px;
+    ${({ count }) => {
       return css`
         transform: translateX(${-(count * 349)}px);
       `;
-    }};
-    @media screen and (max-width: 374px) {
-      height: 284px;
-      ${({ count, isFullscreen }) => {
-        return css`
-          transform: translateX(${-(count * 349)}px);
-        `;
-      }};
+    }}
   }
+
+  @media screen and (max-width: 374px) {
+    height: 332px;
+    ${({ count }) => {
+      return css`
+        transform: translateX(${-(count * 288)}px);
+      `;
+    }};
+  } ;
 `;
 
 export default Carousel;

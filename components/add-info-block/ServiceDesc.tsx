@@ -48,6 +48,9 @@ const StyledButton = styled(Button)`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const DescText = styled.p<{
@@ -66,7 +69,7 @@ const DescText = styled.p<{
     width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
   }
   @media screen and (max-width: 374px) {
-    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
+    width: 288px;
   }
 `;
 
@@ -88,17 +91,16 @@ const InfoWrapper = styled.div<{
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 376px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
+  @media screen and (max-width: 767px) {
     height: 100%;
     row-gap: ${({ cardType }) =>
       cardType === "concierge" ? "156px" : "178px"};
   }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    height: 100%;
-    row-gap: ${({ cardType }) =>
-      cardType === "concierge" ? "156px" : "178px"};
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 
@@ -126,21 +128,18 @@ const Container = styled.div<{
     background-size: ${({ cardType }) =>
       cardType === "concierge" ? "296px" : "264px"};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
+  @media screen and (max-width: 767px) {
     background-size: ${({ cardType }) =>
       cardType === "concierge" ? "242px" : "202px"};
     height: ${({ cardType }) => (cardType === "concierge" ? "316px" : "370px")};
     background-position: ${({ cardType }) =>
       cardType === "concierge" ? "-20px 135px" : "left 180px"};
   }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    background-size: ${({ cardType }) =>
-      cardType === "concierge" ? "242px" : "202px"};
-    height: ${({ cardType }) => (cardType === "concierge" ? "316px" : "370px")};
-    background-position: ${({ cardType }) =>
-      cardType === "concierge" ? "-20px 135px" : "left 180px"};
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 

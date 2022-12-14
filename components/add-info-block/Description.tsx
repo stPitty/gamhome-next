@@ -19,7 +19,7 @@ const Description = () => {
       ) : (
         <>
           <HeaderText>Описание</HeaderText>
-          <DeployableWrapper minHeight={168}>
+          <DeployableWrapper minHeight={168} smHeight={142}>
             <Text>{flatData?.desc}</Text>
           </DeployableWrapper>
         </>

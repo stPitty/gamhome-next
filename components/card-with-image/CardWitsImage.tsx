@@ -23,28 +23,34 @@ const CardWitsImage = React.forwardRef((_, ref) => {
         <ColumnImage />
         <TextWrapper>
           <HeaderText>
-            Съезжаете <AdaptiveTextDivider sm={true} />с квартиры?
+            Съезжаете <AdaptiveTextDivider sm={true} xs={true} />с квартиры?
             <AdaptiveTextDivider md={true} />
             <MarkedText>Заплатим 10%</MarkedText>,{" "}
-            <AdaptiveTextDivider lg={true} sm={true} />
+            <AdaptiveTextDivider lg={true} sm={true} xs={true} />
             за рекомендацию нас собственнику
           </HeaderText>
           <Text>
             Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
           </Text>
-          <Button
+          <StyledButton
             onClick={handleButtonClick}
-            width={191}
             buttonSize={ButtonSize.LARGE}
           >
             Оставить заявку
-          </Button>
+          </StyledButton>
         </TextWrapper>
         <RowImage />
       </Container>
     </>
   );
 });
+
+const StyledButton = styled(Button)`
+  width: 192px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
+`;
 
 const ObservableComponent = styled.div`
   margin-top: 166px;
@@ -55,7 +61,8 @@ const ObservableComponent = styled.div`
     margin-top: 440px;
   }
   @media screen and (max-width: 374px) {
-    margin-top: 440px;
+    position: relative;
+    top: 230px;
   }
 `;
 
@@ -89,7 +96,7 @@ const ColumnImage = styled(Image)`
   background-size: cover;
   background: no-repeat url("/images/unboxing.webp") center;
   display: none;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     display: block;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
@@ -105,10 +112,11 @@ const ColumnImage = styled(Image)`
     background-position: -290px 0;
   }
   @media screen and (max-width: 374px) {
-    width: 375px;
-    height: 387px;
+    width: 320px;
+    height: 338px;
+    background-size: auto 480px;
     border-radius: 0;
-    background-position: -290px 0;
+    background-position: -298px 0;
   }
 `;
 
@@ -120,6 +128,9 @@ const Text = styled.div`
   margin-bottom: 32px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 430px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 280px;
   }
 `;
 
@@ -133,13 +144,12 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0 0 20px;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }
   @media screen and (max-width: 374px) {
-    font-size: 32px;
-    line-height: 40px;
+    font-weight: 500;
   }
 `;
 
@@ -155,7 +165,7 @@ const TextWrapper = styled.div`
     padding-bottom: 64px;
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
+    width: 288px;
     padding-bottom: 64px;
   }
 `;
@@ -184,21 +194,18 @@ const Container = styled.div`
     background-position: left 43px bottom 228px;
     background-size: 239px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     padding: 0;
     row-gap: 40px;
-    background-position: 7px 502px;
     background-size: 239px;
     border-radius: 24px;
   }
-  @media screen and (max-width: 374px) {
-    flex-direction: column;
-    padding: 0;
-    row-gap: 40px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     background-position: 7px 502px;
-    background-size: 239px;
-    border-radius: 24px;
+  }
+  @media screen and (max-width: 374px) {
+    background-position: 5px 453px;
   }
 `;
 

@@ -26,6 +26,7 @@ const Tab: React.FC<Props> = ({
   tabsQuantity,
 }) => {
   const [startX, setStartX] = useState<number | null>(null);
+  const [translate, setTranslate] = useState<boolean>(false);
 
   const handleTouchStart = (e: TouchEvent) => {
     setStartX(e.changedTouches[0].clientX);
@@ -34,9 +35,11 @@ const Tab: React.FC<Props> = ({
   const handleTouchEnd = (e: TouchEvent) => {
     const offset = startX! - e.changedTouches[0].clientX;
     if (Math.abs(offset) > 150) {
-      if (offset! > 0) {
+      if (offset! > 0 && activeTab < tabsQuantity) {
+        setTranslate(true);
         setActiveTab((prev) => prev + 1);
-      } else {
+      } else if (offset! < 0 && activeTab > 1) {
+        setTranslate(false);
         setActiveTab((prev) => prev - 1);
       }
     }
@@ -45,6 +48,11 @@ const Tab: React.FC<Props> = ({
 
   const handleSetActiveClick = (num: number) => () => {
     setActiveTab(num);
+    if (activeTab < tabsQuantity) {
+      setTranslate(true);
+    } else if (activeTab > 1) {
+      setTranslate(false);
+    }
   };
 
   return (
@@ -52,7 +60,7 @@ const Tab: React.FC<Props> = ({
       onTouchStart={handleTouchStart as any}
       onTouchEnd={handleTouchEnd as any}
     >
-      <HeaderContainer>
+      <HeaderContainer move={translate}>
         {title.map((el) => (
           <LabelContainer
             onClick={handleSetActiveClick(el.id)}
@@ -82,7 +90,7 @@ const TabLine = styled.div<{
     width: ${({ isActive }) => (isActive ? "calc(100% - 10px)" : "0")};
   }
   @media screen and (max-width: 374px) {
-    width: ${({ isActive }) => (isActive ? "calc(100% - 10px)" : "0")};
+    width: ${({ isActive }) => (isActive ? "100%" : "0")};
   }
 `;
 
@@ -100,20 +108,31 @@ const LabelText = styled.p<{ isActive: boolean }>`
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  @media screen and (max-width: 374px) {
+    white-space: nowrap;
+  }
 `;
 
 const LabelContainer = styled.div<{ isActive: boolean }>`
   display: flex;
   flex-direction: column;
   cursor: ${({ isActive }) => !isActive && "pointer"};
+  @media screen and (max-width: 374px) {
+    height: 52px
 `;
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ move: boolean }>`
   display: flex;
   width: 100%;
   align-items: center;
   justify-content: center;
   column-gap: 24px;
+  @media screen and (max-width: 374px) {
+    width: 320px;
+    overflow: visible;
+    transition: 0.3s linear;
+    transform: translateX(${({ move }) => (move ? "-40px" : "40px")});
+  }
 `;
 
 const Container = styled.div`

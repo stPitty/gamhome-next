@@ -35,7 +35,7 @@ const CloseIconContainer = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 16px;
     height: 16px;
   }
@@ -56,7 +56,7 @@ const Text = styled.p`
   color: rgba(36, 36, 36, 0.9);
   margin: 0;
   width: 200px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     font-size: 12px;
     line-height: 18px;
   }
@@ -79,7 +79,7 @@ const IconContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     min-width: 24px;
     height: 24px;
     border-radius: 9px;
@@ -91,7 +91,7 @@ const ChevronIcon = styled(ChevronDoneSVG)`
     fill: ${OtherColor.DARK_GREEN};
     fill-opacity: 100;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 12px;
     height: 12px;
   }
@@ -108,7 +108,7 @@ const Container = styled.div`
   animation: ${bounce} 0.2s linear;
   column-gap: 12px;
   align-items: center;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     padding: 6px;
     height: 32px;
     border-radius: 12px;

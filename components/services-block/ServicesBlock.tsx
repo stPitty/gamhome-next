@@ -17,7 +17,7 @@ const ServicesBlock = () => {
       <HeaderTextContainer>
         <HeaderText>
           Полезные
-          <AdaptiveTextDivider sm={true} /> документы
+          <AdaptiveTextDivider sm={true} xs={true} /> документы
         </HeaderText>
       </HeaderTextContainer>
       <CardsWrapper>
@@ -47,11 +47,7 @@ const CardsWrapper = styled.div`
   justify-content: space-between;
   align-items: flex-start;
   column-gap: 32px;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
-    flex-direction: column;
-    row-gap: 32px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
     row-gap: 32px;
   }
@@ -70,13 +66,15 @@ const HeaderText = styled.p`
   line-height: 48px;
   margin: 0 0 40px;
   color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     font-size: 32px;
     line-height: 40px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    margin-left: 13px;
+  }
   @media screen and (max-width: 374px) {
-    font-size: 32px;
-    line-height: 40px;
+    margin-left: 15px;
   }
 `;
 
@@ -89,10 +87,7 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding-top: 64px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     padding-top: 64px;
   }
 `;

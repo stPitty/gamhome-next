@@ -47,6 +47,11 @@ const Wrapper = styled.div`
     width: 196px;
     top: 70px;
   }
+  @media screen and (max-width: 374px) {
+    left: calc(50% - 42px);
+    width: 196px;
+    top: 64px;
+  }
 `;
 
 export default Notification;

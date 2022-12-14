@@ -14,7 +14,7 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Wrapper minHeight={168}>
+    <Wrapper minHeight={168} smHeight={148}>
       <Container paramsCount={subInfoData?.length}>
         {!isLoading &&
           subInfoData?.map((el: string, i: number) => {
@@ -32,12 +32,23 @@ const SubInfoBlock = () => {
   );
 };
 
+const ChevronDoneIcon = styled(ChevronDoneSVG)`
+  @media screen and (max-width: 374px) {
+    width: 20px;
+    height: 20px;
+  }
+`;
+
 const IconContainer = styled.div`
   display: flex;
   width: 24px;
   height: 24px;
   justify-content: center;
   align-items: center;
+  @media screen and (max-width: 374px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 const Text = styled.p`
@@ -47,6 +58,10 @@ const Text = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
+  @media screen and (max-width: 374px) {
+    font-size: 13px;
+    line-height: 20px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -94,13 +109,7 @@ const Container = styled.div<{ paramsCount: number | undefined }>`
       }
     }};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    column-gap: 0;
-    height: auto;
-    width: fit-content;
-    flex-wrap: nowrap;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     column-gap: 0;
     height: auto;
     width: fit-content;

@@ -30,11 +30,7 @@ const Container = styled.div`
     padding-top: 96px;
     margin-bottom: -96px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding-top: 64px;
-    margin-bottom: -24px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     padding-top: 64px;
     margin-bottom: -24px;
   }

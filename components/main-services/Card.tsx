@@ -140,15 +140,15 @@ const PointsContainer = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-bottom: 56px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     margin-bottom: 40px;
-    width: 301px;
     row-gap: 16px;
   }
-  @media screen and (max-width: 374px) {
-    margin-bottom: 40px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 301px;
-    row-gap: 16px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 240px;
   }
 `;
 
@@ -159,10 +159,7 @@ const DescText = styled.p<{ cardType: CardType }>`
   color: ${({ cardType }) =>
     cardType === CardType.UNFILLED ? BlackColor.BLACK_64 : WhiteColor.WHITE_80};
   margin: 0;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 12px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     margin-top: 12px;
   }
 `;
@@ -181,11 +178,7 @@ const CostText = styled.p<{ cardType: CardType }>`
     font-size: 40px;
     line-height: 48px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
-    font-size: 36px;
-    line-height: 44px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 1023px) {
     font-size: 36px;
     line-height: 44px;
   }
@@ -196,11 +189,7 @@ const HeaderWrapper = styled.div<{ cardId: number }>`
   flex-direction: column;
   row-gap: 12px;
   margin: 24px 0 40px;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
-    margin-top: ${({ cardId }) => cardId === 1 && "0"};
-    margin-bottom: 32px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 1023px) {
     margin-top: ${({ cardId }) => cardId === 1 && "0"};
     margin-bottom: 32px;
   }
@@ -219,13 +208,10 @@ const HeaderText = styled.p<{ cardType: CardType }>`
 
 const TagContainer = styled.div<{ cardId: number }>`
   height: 40px;
-  @media screen and (max-width: 1439px) and (min-width: 375px) {
+  @media screen and (max-width: 1439px) {
     height: 64px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
-    display: ${({ cardId }) => cardId === 1 && "none"};
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 1023px) {
     display: ${({ cardId }) => cardId === 1 && "none"};
   }
 `;
@@ -251,10 +237,7 @@ const Tag = styled.div<{ cardType: CardType }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     border-radius: 16px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    border-radius: 16px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     border-radius: 16px;
   }
 `;
@@ -279,17 +262,17 @@ const CardContainer = styled.div<{ cardType: CardType }>`
     width: 296px;
     height: 1172px;
   }
+  @media screen and (max-width: 1023px) {
+    height: auto;
+  }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 448px;
-    height: auto;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    height: auto;
   }
   @media screen and (max-width: 374px) {
-    width: 349px;
-    height: auto;
+    width: 288px;
   }
 `;
 
@@ -305,10 +288,7 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    row-gap: 32px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     row-gap: 32px;
   }
 `;

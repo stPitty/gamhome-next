@@ -66,6 +66,9 @@ const Text = styled.p`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;
   }
+  @media screen and (max-width: 374px) {
+    width: 280px;
+  }
 `;
 
 export default ModalText;

@@ -36,7 +36,7 @@ const WebinarBlock = React.forwardRef((_, ref) => {
 
 const StyledButton = styled(Button)`
   width: 206px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
   }
 `;
@@ -49,6 +49,10 @@ const ObservableComponent = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     margin-top: -1785px;
     height: 1785px;
+  }
+  @media screen and (max-width: 374px) {
+    margin-top: -1800px;
+    height: 1800px;
   }
 `;
 
@@ -129,21 +133,21 @@ const Container = styled.div`
     width: 768px;
     padding: 192px 40px 96px;
   }
+  @media screen and (max-width: 767px) {
+    border-radius: 24px;
+    background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     background-size: cover;
     width: 375px;
-    padding: 110px 13px 517px;
-    border-radius: 24px;
-    background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
-    background-position: center bottom 78px;
+    padding: 112px 13px 517px;
+    background-position: center bottom 70px;
   }
   @media screen and (max-width: 374px) {
-    background-size: cover;
-    width: 375px;
-    padding: 110px 13px 517px;
-    border-radius: 24px;
-    background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
-    background-position: center bottom 78px;
+    background-size: 300px auto;
+    width: 320px;
+    padding: 112px 16px 477px;
+    background-position: 17px 915px;
   }
 `;
 

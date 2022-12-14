@@ -18,7 +18,7 @@ const setIOForBottomMenu = (
   if (
     windowSize === WindowSize.MD ||
     windowSize === WindowSize.SM ||
-    windowSize === WindowSize.XL
+    windowSize === WindowSize.XS
   ) {
     if (!IOBottomMenuSingleton.isRefExisting()) {
       IOBottomMenuSingleton.setRefs(currentEl);

@@ -40,10 +40,13 @@ const StyledCloseIcon = styled(CloseSVG)`
   align-self: flex-end;
   cursor: pointer;
   margin: 18px 26px 0 0;
-  height: 16px;
-  width: 16px;
+  min-height: 16px;
+  min-width: 16px;
   & path {
     fill: ${BrandColor.BRAND};
+  }
+  @media screen and (max-width: 768px) {
+    margin-right: 18px;
   }
 `;
 
@@ -56,7 +59,7 @@ const Wrapper = styled.div`
   justify-content: center;
   z-index: 3;
   background-color: ${BlackColor.BLACK_80};
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     align-items: flex-end;
   }
 `;
@@ -68,10 +71,26 @@ const Container = styled.div`
   background: ${WhiteColor.WHITE};
   border-radius: 16px;
   width: fit-content;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding: 0 0 32px 20px;
-    width: 375px;
+  @media screen and (max-width: 767px) {
     border-radius: 16px 16px 0 0;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 375px;
+    padding: 0 0 32px 20px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 320px;
+    padding: 0 0 20px 20px;
+  }
+  @media screen and (max-width: 374px) {
+    max-height: 536px;
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+    padding-bottom: 68px;
   }
 `;
 

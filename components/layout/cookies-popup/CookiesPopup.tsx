@@ -54,7 +54,20 @@ const Container = styled.div`
   padding: 18px 64px;
   align-items: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    padding: 18px 36px;
     width: 1024px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding: 18px 40px;
+    width: 768px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    padding: 18px 13px;
+    width: 375px;
+  }
+  @media screen and (max-width: 374px) {
+    padding: 18px 16px;
+    width: 320px;
   }
 `;
 

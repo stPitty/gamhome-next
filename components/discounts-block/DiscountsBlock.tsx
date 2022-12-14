@@ -4,6 +4,7 @@ import { cardsData } from "./constants";
 import Card from "./Card";
 import { Hook } from "../../common/routes";
 import React from "react";
+import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
 
 const DiscountsBlock = React.forwardRef((_, ref) => {
   return (
@@ -13,7 +14,10 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
       </ObservableComponentWrapper>
       <Wrapper id={Hook.PARTNERS}>
         <Container>
-          <HeaderText>Скидки от партнёров</HeaderText>
+          <HeaderText>
+            Скидки
+            <AdaptiveTextDivider xs={true} /> от партнёров
+          </HeaderText>
           {cardsData.map((el) => (
             <Card data={el} key={el.id} />
           ))}
@@ -49,10 +53,7 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding-top: 64px;
-  }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     padding-top: 64px;
   }
 `;
@@ -73,7 +74,6 @@ const HeaderText = styled.p`
   }
   @media screen and (max-width: 374px) {
     margin: 0;
-    width: 330px;
   }
 `;
 
@@ -94,15 +94,15 @@ const Container = styled.div`
     padding: 56px 40px;
     margin-bottom: -80px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding: 40px 13px 38px;
+  @media screen and (max-width: 767px) {
     margin-bottom: -48px;
     border-radius: 24px;
   }
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 40px 13px 38px;
-    margin-bottom: -48px;
-    border-radius: 24px;
+  }
+  @media screen and (max-width: 374px) {
+    padding: 40px 16px;
   }
 `;
 
