@@ -138,7 +138,6 @@ const Container = styled.div`
     background: ${BrandColor.BRAND} no-repeat url("/images/mobile-webinar.webp");
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    background-size: cover;
     width: 375px;
     padding: 112px 13px 517px;
     background-position: center bottom 70px;
