@@ -29,22 +29,20 @@ const ErrorPage: React.FC<Props> = ({ header, desc, setHasNoError }) => {
       <LogoIcon />
       <DescContainer>
         <HeaderText>{header}</HeaderText>
-        <SecondaryDescContainer>
-          <DescText>{desc}</DescText>
-          <ButtonsContainer>
-            <div>
-              <StyledButton onClick={handleRouteMainClick}>
-                Перейти на Главную
-              </StyledButton>
-            </div>
-            <div>
-              <StyledButton buttonType={ButtonType.FLAT}>
-                Перейти в Telegram Bot
-              </StyledButton>
-            </div>
-          </ButtonsContainer>
-        </SecondaryDescContainer>
+        <DescText>{desc}</DescText>
       </DescContainer>
+      <ButtonsContainer>
+        <div>
+          <StyledButton onClick={handleRouteMainClick}>
+            Перейти на Главную
+          </StyledButton>
+        </div>
+        <div>
+          <StyledButton buttonType={ButtonType.FLAT}>
+            Перейти в Telegram Bot
+          </StyledButton>
+        </div>
+      </ButtonsContainer>
     </PageWrapper>
   );
 };
@@ -53,12 +51,31 @@ const StyledButton = styled(Button)`
   font-size: 13px;
   line-height: 20px;
   padding: 7px 12px 9px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 332px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 24px;
+  margin-top: 24px;
+  @media screen and (max-width: 1023px) {
+    margin-top: 0;
+    padding-bottom: 20px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-bottom: 32px;
+    flex-direction: column;
+    row-gap: 24px;
+  }
 `;
 
 const DescText = styled.p`
@@ -68,12 +85,9 @@ const DescText = styled.p`
   line-height: 24px;
   text-align: center;
   color: ${BlackColor.BLACK_80};
-`;
-
-const SecondaryDescContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
+  @media screen and (max-width: 767px) {
+    width: 250px;
+  }
 `;
 
 const HeaderText = styled.p`
@@ -84,13 +98,28 @@ const HeaderText = styled.p`
   text-align: center;
   color: ${BlackColor.BLACK_80};
   margin: 0;
+  @media screen and (max-width: 767px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 const DescContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   row-gap: 16px;
   width: 472px;
+  margin-top: 148px;
+  @media screen and (max-width: 1023px) {
+    margin-top: 0;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+  }
 `;
 
 const LogoIcon = styled(LogoSVG)`
@@ -98,10 +127,15 @@ const LogoIcon = styled(LogoSVG)`
 `;
 
 const PageWrapper = styled.div`
+  position: absolute;
   display: flex;
   align-items: center;
   flex-direction: column;
-  row-gap: 148px;
+  height: 100%;
+  width: 100%;
+  @media screen and (max-width: 1023px) {
+    justify-content: space-between;
+  }
 `;
 
 export default memo(ErrorPage);
