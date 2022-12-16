@@ -2,13 +2,18 @@ import styled from "styled-components";
 import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
 import React, { memo } from "react";
 import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
+import { TCookiePopUp } from "../../redux/slicers/types";
 
 const CardWitsImage = React.forwardRef((_, ref) => {
   const dispatch = useAppDispatch();
+
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
 
   const handleButtonClick = () => {
     dispatch(wantToLendFlat());
@@ -17,7 +22,10 @@ const CardWitsImage = React.forwardRef((_, ref) => {
   return (
     <>
       <ObservableComponentWrapper>
-        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+        <ObservableComponent
+          isCookieAccepted={isCookieAccepted}
+          ref={ref as React.RefObject<HTMLDivElement>}
+        />
       </ObservableComponentWrapper>
       <Container>
         <ColumnImage />
@@ -52,17 +60,20 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ObservableComponent = styled.div`
-  margin-top: 166px;
+const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
+  margin-top: ${({ isCookieAccepted }) =>
+    isCookieAccepted ? "166px" : "238px"};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: 154px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "154px" : "226px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 440px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "440px" : "512px"};
   }
   @media screen and (max-width: 374px) {
     position: relative;
-    top: 230px;
+    top: ${({ isCookieAccepted }) => (isCookieAccepted ? "230px" : "230px")};
   }
 `;
 

@@ -5,12 +5,21 @@ import Card from "./Card";
 import { Hook } from "../../common/routes";
 import React from "react";
 import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
+import { useAppSelector } from "../../redux/hooks";
+import { TCookiePopUp } from "../../redux/slicers/types";
 
 const DiscountsBlock = React.forwardRef((_, ref) => {
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
+
   return (
     <>
       <ObservableComponentWrapper>
-        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+        <ObservableComponent
+          isCookieAccepted={isCookieAccepted}
+          ref={ref as React.RefObject<HTMLDivElement>}
+        />
       </ObservableComponentWrapper>
       <Wrapper id={Hook.PARTNERS}>
         <Container>
@@ -27,16 +36,16 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableComponent = styled.div`
-  margin-top: 166px;
+const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
+  margin-top: ${({ isCookieAccepted }) =>
+    isCookieAccepted ? "166px" : "238px"};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: 154px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "154px" : "226px"};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 120px;
-  }
-  @media screen and (max-width: 374px) {
-    margin-top: 120px;
+  @media screen and (max-width: 767px) {
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "120px" : "192px"};
   }
 `;
 

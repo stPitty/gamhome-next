@@ -4,12 +4,21 @@ import Button from "../UI/button/Button";
 import { ButtonSize, ButtonType } from "../UI/button/enums";
 import { Hook } from "../../common/routes";
 import React from "react";
+import { useAppSelector } from "../../redux/hooks";
+import { TCookiePopUp } from "../../redux/slicers/types";
 
 const WebinarBlock = React.forwardRef((_, ref) => {
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
+
   return (
     <>
       <ObservableComponentWrapper>
-        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+        <ObservableComponent
+          isCookieAccepted={isCookieAccepted}
+          ref={ref as React.RefObject<HTMLDivElement>}
+        />
       </ObservableComponentWrapper>
       <Container id={Hook.WEBINAR}>
         <ContentContainer>
@@ -41,18 +50,24 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ObservableComponent = styled.div`
-  margin-top: 150px;
+const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
+  margin-top: ${({ isCookieAccepted }) =>
+    isCookieAccepted ? "150px" : "222px"};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: 136px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "120px" : "192px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: -1785px;
-    height: 1785px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "-1785px" : "-1713px"};
+    height: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "1785px" : "1713px"};
   }
   @media screen and (max-width: 374px) {
-    margin-top: -1800px;
-    height: 1800px;
+    margin-top: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "-1800px" : "-1728px"};
+    height: ${({ isCookieAccepted }) =>
+      isCookieAccepted ? "1800px" : "1728px"};
   }
 `;
 

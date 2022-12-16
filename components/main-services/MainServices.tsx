@@ -4,15 +4,21 @@ import { cardsData } from "./constants";
 import Cards from "./Card";
 import { Hook } from "../../common/routes";
 import React from "react";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { TCookiePopUp } from "../../redux/slicers/types";
 
 const MainServices = React.forwardRef((_, ref) => {
-  const dispatch = useAppDispatch();
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
 
   return (
     <>
       <ObservableComponentWrapper>
-        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+        <ObservableComponent
+          isCookieAccepted={isCookieAccepted}
+          ref={ref as React.RefObject<HTMLDivElement>}
+        />
       </ObservableComponentWrapper>
       <Container id={Hook.SERVICES}>
         <HeaderText>Услуги</HeaderText>
@@ -22,8 +28,9 @@ const MainServices = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableComponent = styled.div`
-  margin-top: 54px;
+const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
+  margin-top: ${({ isCookieAccepted }) =>
+    isCookieAccepted ? "54px" : "126px"};
 `;
 
 const ObservableComponentWrapper = styled.div`
