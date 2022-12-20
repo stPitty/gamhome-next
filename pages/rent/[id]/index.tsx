@@ -18,7 +18,7 @@ import { TFlatState, TWindowSize } from "../../../redux/slicers/types";
 import { handleGetFlatData } from "../../../common/helpers";
 import { setWindowSize } from "../../../redux/slicers/windowSizeSlicer";
 import MobileButtons from "../../../components/mobile-buttons/MobileButtons";
-
+//
 import {
   setIOForBottomMenu,
   setIOForScrollBtn,
