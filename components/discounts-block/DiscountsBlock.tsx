@@ -47,6 +47,7 @@ const ObservableComponent = styled.div<{ isAccepted: boolean }>`
   //@media screen and (max-width: 374px) {
   //  margin-top: 120px;
   //}
+  //
 `;
 
 const ObservableComponentWrapper = styled.div`
