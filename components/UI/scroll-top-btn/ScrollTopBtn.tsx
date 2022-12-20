@@ -41,11 +41,6 @@ const ChevronIcon = styled(ChevronSVG)<{ isLightTheme: boolean }>`
   & path {
     fill: ${({ isLightTheme }) => !isLightTheme && BlackColor.BLACK_SECONDARY};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    left: calc(50% + 132px);
-    width: 19px;
-    height: 19px;
-  }
 `;
 
 const Container = styled.div<{
@@ -58,8 +53,7 @@ const Container = styled.div<{
   align-items: center;
   display: flex;
   position: fixed;
-  bottom: ${({ isMenuShown, isCookieAccepted }) =>
-    isMenuShown ? "150px" : "32px"};
+  bottom: ${({ isMenuShown }) => (isMenuShown ? "150px" : "32px")};
   margin-bottom: ${({ isCookieAccepted }) => (isCookieAccepted ? "0" : "72px")};
   left: calc(50% + 640px);
   width: 48px;
@@ -80,15 +74,8 @@ const Container = styled.div<{
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     left: calc(50% + 304px);
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    left: calc(50% + 125px);
-    bottom: ${({ isMenuShown, isCookieAccepted }) =>
-      isMenuShown ? "100px" : "32px"};
-  }
-  @media screen and (max-width: 374px) {
-    left: calc(50% + 80px);
-    bottom: ${({ isMenuShown, isCookieAccepted }) =>
-      isMenuShown ? "100px" : "32px"};
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 

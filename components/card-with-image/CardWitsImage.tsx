@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { BlackColor, BrandColor, Font, WhiteColor } from "../../common/enums";
 import Button from "../UI/button/Button";
 import { ButtonSize } from "../UI/button/enums";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { wantToLendFlat } from "../../redux/slicers/modalStateSlicer";
 import React, { memo } from "react";
 import AdaptiveTextDivider from "../UI/adaptive-text-divider/AdaptiveTextDivider";
+import { TCookiePopUp } from "../../redux/slicers/types";
 
 const CardWitsImage = React.forwardRef((_, ref) => {
   const dispatch = useAppDispatch();
@@ -14,10 +15,17 @@ const CardWitsImage = React.forwardRef((_, ref) => {
     dispatch(wantToLendFlat());
   };
 
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
+
   return (
     <>
       <ObservableComponentWrapper>
-        <ObservableComponent ref={ref as React.RefObject<HTMLDivElement>} />
+        <ObservableComponent
+          isAccepted={isCookieAccepted}
+          ref={ref as React.RefObject<HTMLDivElement>}
+        />
       </ObservableComponentWrapper>
       <Container>
         <ColumnImage />
@@ -52,18 +60,18 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ObservableComponent = styled.div`
-  margin-top: 166px;
+const ObservableComponent = styled.div<{ isAccepted: boolean }>`
+  margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: 154px;
+    margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: 440px;
-  }
-  @media screen and (max-width: 374px) {
-    position: relative;
-    top: 230px;
-  }
+  //@media screen and (max-width: 767px) and (min-width: 375px) {
+  //  margin-top: 440px;
+  //}
+  //@media screen and (max-width: 374px) {
+  //  position: relative;
+  //  top: 230px;
+  //}
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -71,6 +79,9 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Image = styled.div`
