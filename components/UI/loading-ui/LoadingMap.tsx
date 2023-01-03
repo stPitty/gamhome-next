@@ -12,15 +12,30 @@ const LoadingMap = () => {
         <DescElement />
       </DescWrapper>
       <Map />
+      <Button />
     </Wrapper>
   );
 };
+
+const Button = styled.div`
+  display: none;
+  width: 100%;
+  height: 56px;
+  background: ${LightBlueColor.LB_100};
+  border-radius: 16px;
+  @media screen and (max-width: 1023px) {
+    display: block;
+  }
+`;
 
 const Map = styled.div`
   width: 100%;
   height: 448px;
   background: ${LightBlueColor.LB_100};
   border-radius: 16px;
+  @media screen and (max-width: 767px) {
+    height: 416px;
+  }
 `;
 
 const DescElement = styled.div`
@@ -28,6 +43,9 @@ const DescElement = styled.div`
   height: 24px;
   background: ${LightBlueColor.LB_400};
   border-radius: 16px;
+  @media screen and (max-width: 375px) {
+    width: 240px;
+  }
 `;
 
 const DescWrapper = styled.div`

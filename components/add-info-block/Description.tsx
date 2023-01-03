@@ -33,6 +33,9 @@ const LoadingDescBlock = styled.div`
   height: 360px;
   background: ${LightBlueColor.LB_400};
   border-radius: 16px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    height: 385px;
+  }
 `;
 
 const LoadingHeader = styled.div`

@@ -74,14 +74,8 @@ const LoadingBlock = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 624px;
   }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: 688px;
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
-  }
-  @media screen and (max-width: 374px) {
-    width: 288px;
+  @media screen and (max-width: 1023px) {
+    display: none;
   }
 `;
 

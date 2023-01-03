@@ -20,7 +20,7 @@ const PhotoBlock: React.FC = () => {
     <Container>
       <PhotoWrapper isLoading={isLoading}>
         {isLoading ? (
-          <ImageLoadingSVG />
+          <LoadingImageIcon />
         ) : (
           <>
             <Control length={flatData?.images.length} orientation="left">
@@ -32,12 +32,20 @@ const PhotoBlock: React.FC = () => {
             </Control>
           </>
         )}
-        <PreviewPoints />
+        {!isLoading && <PreviewPoints />}
       </PhotoWrapper>
       {isLoading ? <LoadingPreviewPhotos /> : <PreviewStack />}
     </Container>
   );
 };
+
+const LoadingImageIcon = styled(ImageLoadingSVG)`
+  @media screen and (max-width: 1439px) {
+    height: 26px;
+    width: 32px;
+    align-self: center;
+  }
+`;
 
 const PhotoWrapper = styled.div<{ isLoading: boolean }>`
   display: flex;
@@ -62,7 +70,7 @@ const PhotoWrapper = styled.div<{ isLoading: boolean }>`
     max-height: 332px;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: flex-start;
+    justify-content: center;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
