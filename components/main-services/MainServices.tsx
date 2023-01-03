@@ -16,7 +16,7 @@ const MainServices = React.forwardRef((_, ref) => {
     <>
       <ObservableComponentWrapper>
         <ObservableComponent
-          isCookieAccepted={isCookieAccepted}
+          isAccepted={isCookieAccepted}
           ref={ref as React.RefObject<HTMLDivElement>}
         />
       </ObservableComponentWrapper>
@@ -28,9 +28,8 @@ const MainServices = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
-  margin-top: ${({ isCookieAccepted }) =>
-    isCookieAccepted ? "54px" : "126px"};
+const ObservableComponent = styled.div<{ isAccepted: boolean }>`
+  margin-top: ${({ isAccepted }) => (isAccepted ? "54px" : "126px")};
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -38,6 +37,9 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const HeaderText = styled.p`

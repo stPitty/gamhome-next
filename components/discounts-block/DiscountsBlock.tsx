@@ -17,7 +17,7 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
     <>
       <ObservableComponentWrapper>
         <ObservableComponent
-          isCookieAccepted={isCookieAccepted}
+          isAccepted={isCookieAccepted}
           ref={ref as React.RefObject<HTMLDivElement>}
         />
       </ObservableComponentWrapper>
@@ -36,17 +36,18 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
   );
 });
 
-const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
-  margin-top: ${({ isCookieAccepted }) =>
-    isCookieAccepted ? "166px" : "238px"};
+const ObservableComponent = styled.div<{ isAccepted: boolean }>`
+  margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "154px" : "226px"};
+    margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
   }
-  @media screen and (max-width: 767px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "120px" : "192px"};
-  }
+  //@media screen and (max-width: 767px) and (min-width: 375px) {
+  //  margin-top: 120px;
+  //}
+  //@media screen and (max-width: 374px) {
+  //  margin-top: 120px;
+  //}
+  //
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -54,6 +55,9 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Wrapper = styled.div`

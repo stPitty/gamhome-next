@@ -51,19 +51,14 @@ const Card: React.FC<Props> = ({ data }) => {
           <HeaderText>{data.header}</HeaderText>
           <SubHeader>{data.subHeader}</SubHeader>
         </HeaderWrapper>
-        <StyledDeployableWrapper
-          minHeight={72}
-          smHeight={96}
-          preventDefault={data.cardType === "cleaning"}
-        >
-          <DescText>{data.desc}</DescText>
+        <DescText cardType={data.cardType}>{data.desc}</DescText>
+        <StyledDeployableWrapper minHeight={32} smHeight={32}>
+          <TagsWrapper cardType={data.cardType}>
+            {sortedTagsForWindowSize.map((el) => (
+              <Tag key={el.id}>{el.text}</Tag>
+            ))}
+          </TagsWrapper>
         </StyledDeployableWrapper>
-
-        <TagsWrapper>
-          {sortedTagsForWindowSize.map((el) => (
-            <Tag key={el.id}>{el.text}</Tag>
-          ))}
-        </TagsWrapper>
         <ButtonsContainer>
           <StyledButton cardType={data.cardType} buttonSize={ButtonSize.LARGE}>
             {data.primaryButtonText}
@@ -81,12 +76,18 @@ const Card: React.FC<Props> = ({ data }) => {
 };
 
 const StyledDeployableWrapper = styled(DeployableWrapper)`
-  margin: 16px 0 32px;
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 100%;
+  }
+  @media screen and (max-width: 374px) {
+    width: 256px;
+  }
 `;
 
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  margin-bottom: 16px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     flex-direction: row;
     column-gap: 7px;
@@ -100,8 +101,8 @@ const HeaderWrapper = styled.div`
 const StyledButton = styled(Button)<{ cardType: CardAbout }>`
   width: ${({ cardType }) => (cardType === "cleaning" ? "189px" : "257px")};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    min-width: ${({ cardType }) => cardType === "delivery" && "237px"};
-    padding: 15px 22px;
+    min-width: ${({ cardType }) => cardType === "delivery" && "213px"};
+    padding: 0;
   }
   @media screen and (max-width: 767px) {
     width: 100%;
@@ -116,6 +117,9 @@ const PromoCodeContainer = styled.div`
   margin-left: 24px;
   column-gap: 4px;
   cursor: pointer;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    margin-left: 16px;
+  }
   @media screen and (max-width: 767px) {
     margin: 0;
   }
@@ -123,23 +127,24 @@ const PromoCodeContainer = styled.div`
 
 const Image = styled.div<{ image: string; cardType: CardAbout }>`
   width: 656px;
-  height: 512px;
+  height: ${({ cardType }) => (cardType === "cleaning" ? "512px" : "564px")};
   border-radius: 24px;
   background-repeat: no-repeat;
 `;
 
 const RowImage = styled(Image)`
   background-image: url(${({ image }) => image});
-  background-size: ${({ cardType }) => cardType === "cleaning" && "auto 570px"};
+  background-size: ${({ cardType }) =>
+    cardType === "cleaning" ? "auto 570px" : "cover"};
   background-position: ${({ cardType }) =>
-    cardType === "cleaning" ? "-70px -50px" : "center"};
+    cardType === "cleaning" ? "-70px -50px" : "-300px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "auto 575px" : "cover"};
+      cardType === "cleaning" ? "auto 570px" : "cover"};
     width: 460px;
-    height: ${({ cardType }) => (cardType === "cleaning" ? "512px" : "608px")};
+    height: ${({ cardType }) => (cardType === "cleaning" ? "478px" : "586px")};
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" && "-75px bottom"};
+      cardType === "cleaning" ? "-70px -55px" : "-560px"};
   }
   @media screen and (max-width: 1023px) {
     display: none;
@@ -164,16 +169,16 @@ const ColumnImage = styled(Image)`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-20px" : "center"};
+      cardType === "cleaning" ? "-20px" : "-40px"};
     background-size: ${({ cardType }) =>
       cardType === "cleaning" ? "390px" : "cover"};
   }
   @media screen and (max-width: 374px) {
     width: 288px;
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-30px -30px" : "center"};
+      cardType === "cleaning" ? "-30px -30px" : "-100px"};
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "440px" : "cover"};
+      cardType === "cleaning" ? "440px" : "400px"};
   }
 `;
 
@@ -184,13 +189,14 @@ const PromoText = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
+  white-space: nowrap;
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   margin-top: 54px;
   align-items: center;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     margin-top: 48px;
   }
   @media screen and (max-width: 767px) {
@@ -205,7 +211,7 @@ const Tag = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 7px 16px;
+  padding: 7px 15px;
   border: 1px solid ${LightBlueColor.LB_200};
   border-radius: 100px;
   font-family: ${Font.ROBOTO};
@@ -213,42 +219,51 @@ const Tag = styled.div`
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    padding: 7px 11px;
-  }
-  @media screen and (max-width: 374px) {
-    padding: 7px 7px;
+  @media screen and (max-width: 1439px) {
     font-size: 13px;
     line-height: 20px;
+    padding: 5px 11px;
   }
 `;
 
-const TagsWrapper = styled.div`
+const TagsWrapper = styled.div<{ cardType: CardAbout }>`
   display: flex;
-  width: 100%;
   flex-wrap: wrap;
   gap: 12px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 308px;
-    column-gap: 15px;
+  width: ${({ cardType }) => cardType === "cleaning" && "500px"};
+  @media screen and (max-width: 1439px) {
+    gap: 8px;
+    row-gap: 10px;
   }
-  @media screen and (max-width: 374px) {
-    width: 247px;
-    column-gap: 20px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 450px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: ${({ cardType }) => (cardType === "cleaning" ? "462px" : "611px")};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 317px !important;
+  }
+  @media screen and (max-width: 767px) {
+    width: 256px;
   }
 `;
 
-const DescText = styled.p`
+const DescText = styled.p<{ cardType: CardAbout }>`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
-  margin: 0;
-  @media screen and (max-width: 1023px) {
-    margin-bottom: 0;
+  margin: 0 0 32px;
+  width: ${({ cardType }) => (cardType === "cleaning" ? "402px" : "576px")};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ cardType }) => (cardType === "cleaning" ? "402px" : "400px")};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: ${({ cardType }) => (cardType === "cleaning" ? "551px" : "608px")};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 290px;
+    width: 100%;
   }
   @media screen and (max-width: 374px) {
     width: 240px;
@@ -275,7 +290,7 @@ const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin: 40px 0 40px 40px;
-  width: 576px;
+  width: 577px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 415px;
   }
@@ -283,12 +298,13 @@ const ContentWrapper = styled.div`
     margin: 40px;
     width: 608px;
   }
+  @media screen and (max-width: 767px) {
+    margin: 40px 16px;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin: 40px 23px;
-    width: 301px;
+    width: 317px;
   }
   @media screen and (max-width: 374px) {
-    margin: 40px 24px;
     width: 240px;
   }
 `;

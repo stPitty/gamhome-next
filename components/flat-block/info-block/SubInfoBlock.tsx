@@ -14,21 +14,25 @@ const SubInfoBlock = () => {
     : null;
 
   return (
-    <Wrapper minHeight={168} smHeight={148}>
-      <Container paramsCount={subInfoData?.length}>
-        {!isLoading &&
-          subInfoData?.map((el: string, i: number) => {
-            return (
-              <TextWrapper key={el + i}>
-                <IconContainer>
-                  <ChevronDoneSVG />
-                </IconContainer>
-                <Text>{el}</Text>
-              </TextWrapper>
-            );
-          })}
-      </Container>
-    </Wrapper>
+    <>
+      {!!subInfoData?.length && (
+        <Wrapper minHeight={168} smHeight={148}>
+          <Container paramsCount={subInfoData?.length}>
+            {!isLoading &&
+              subInfoData?.map((el: string, i: number) => {
+                return (
+                  <TextWrapper key={el + i}>
+                    <IconContainer>
+                      <ChevronDoneSVG />
+                    </IconContainer>
+                    <Text>{el}</Text>
+                  </TextWrapper>
+                );
+              })}
+          </Container>
+        </Wrapper>
+      )}
+    </>
   );
 };
 

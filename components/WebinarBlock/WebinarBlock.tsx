@@ -16,7 +16,7 @@ const WebinarBlock = React.forwardRef((_, ref) => {
     <>
       <ObservableComponentWrapper>
         <ObservableComponent
-          isCookieAccepted={isCookieAccepted}
+          isAccepted={isCookieAccepted}
           ref={ref as React.RefObject<HTMLDivElement>}
         />
       </ObservableComponentWrapper>
@@ -50,25 +50,10 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
-  margin-top: ${({ isCookieAccepted }) =>
-    isCookieAccepted ? "150px" : "222px"};
+const ObservableComponent = styled.div<{ isAccepted: boolean }>`
+  margin-top: ${({ isAccepted }) => (isAccepted ? "150px" : "222px")};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "120px" : "192px"};
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "-1785px" : "-1713px"};
-    height: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "1785px" : "1713px"};
-  }
-  @media screen and (max-width: 374px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "-1800px" : "-1728px"};
-    height: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "1800px" : "1728px"};
-  }
+    margin-top: ${({ isAccepted }) => (isAccepted ? "136px" : "208px")};
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -76,6 +61,9 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Text = styled.p`

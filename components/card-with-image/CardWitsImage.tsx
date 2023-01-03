@@ -11,19 +11,19 @@ import { TCookiePopUp } from "../../redux/slicers/types";
 const CardWitsImage = React.forwardRef((_, ref) => {
   const dispatch = useAppDispatch();
 
-  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
-    (state) => state.cookiePopUp
-  );
-
   const handleButtonClick = () => {
     dispatch(wantToLendFlat());
   };
+
+  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
+    (state) => state.cookiePopUp
+  );
 
   return (
     <>
       <ObservableComponentWrapper>
         <ObservableComponent
-          isCookieAccepted={isCookieAccepted}
+          isAccepted={isCookieAccepted}
           ref={ref as React.RefObject<HTMLDivElement>}
         />
       </ObservableComponentWrapper>
@@ -60,21 +60,10 @@ const StyledButton = styled(Button)`
   }
 `;
 
-const ObservableComponent = styled.div<{ isCookieAccepted: boolean }>`
-  margin-top: ${({ isCookieAccepted }) =>
-    isCookieAccepted ? "166px" : "238px"};
+const ObservableComponent = styled.div<{ isAccepted: boolean }>`
+  margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "154px" : "226px"};
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-top: ${({ isCookieAccepted }) =>
-      isCookieAccepted ? "440px" : "512px"};
-  }
-  @media screen and (max-width: 374px) {
-    position: relative;
-    top: ${({ isCookieAccepted }) => (isCookieAccepted ? "230px" : "230px")};
-  }
+    margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -82,6 +71,9 @@ const ObservableComponentWrapper = styled.div`
   top: 0;
   max-width: 0;
   max-height: 0;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Image = styled.div`

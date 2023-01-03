@@ -27,7 +27,7 @@ type Color =
   | "none";
 
 type AdaptiveLayoutPriority = Record<
-  "xlPriority" | "lgPriority" | "mdPriority" | "smPriority",
+  "xlPriority" | "lgPriority" | "mdPriority" | "smPriority" | "xsPriority",
   number
 >;
 
