@@ -96,7 +96,11 @@ const sortMainFlatParams = (arr: FlatData["parameters"] | undefined) => () => {
     }
 
     newArr = newArr
-      .filter((el) => !/этажей в доме/gi.test(el.parameter.name))
+      .filter((el) => {
+        return !(
+          el.parameterId !== 16 && /этажей в доме/gi.test(el.parameter.name)
+        );
+      })
       .sort((a, b) => (a.priority as number) - (b.priority as number));
 
     return newArr;

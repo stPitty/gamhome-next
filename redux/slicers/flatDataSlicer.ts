@@ -38,7 +38,7 @@ const flatDataSlicer = createSlice({
         state.isLoading = true;
       })
       .addCase(fetchFlatData.fulfilled, (state, action) => {
-        state.isLoading = false;
+        state.isLoading = true;
         const data = action.payload.data;
         state.flatData = data;
         state.flatData.phone = handlePhoneFormatter(data.phone);

@@ -91,8 +91,12 @@ const HeaderText = styled.p`
   line-height: 40px;
   color: ${BlackColor.BLACK_PRIMARY};
   margin: 0;
+  width: 864px;
   @media screen and (max-width: 1023px) {
     display: none;
+  }
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 624px;
   }
 `;
 
