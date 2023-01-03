@@ -139,8 +139,11 @@ const SortByPriority = (windowSize: WindowSize | null, arr: any[]) => () => {
   if (windowSize === WindowSize.MD) {
     return arr.sort((a, b) => a.mdPriority - b.mdPriority);
   }
-  if (windowSize === WindowSize.SM || windowSize === WindowSize.XS) {
+  if (windowSize === WindowSize.SM) {
     return arr.sort((a, b) => a.smPriority - b.smPriority);
+  }
+  if (windowSize === WindowSize.XS) {
+    return arr.sort((a, b) => a.xsPriority - b.xsPriority);
   }
   return arr;
 };

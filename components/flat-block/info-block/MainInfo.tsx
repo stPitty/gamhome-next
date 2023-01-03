@@ -63,7 +63,7 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
   flex-wrap: wrap;
   height: ${({ paramsCount }) => {
     if (paramsCount) {
-      return `${(paramsCount / 3) * 32}px`;
+      return `${Math.floor(paramsCount / 2 + 1) * 32}px`;
     }
   }};
   row-gap: 8px;
@@ -72,13 +72,6 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
-  }
-  @media screen and (max-width: 1439px) and (min-width: 768px) {
-    height: ${({ paramsCount }) => {
-      if (paramsCount) {
-        return `${(paramsCount / 2) * 32}px`;
-      }
-    }};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
