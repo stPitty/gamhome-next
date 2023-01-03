@@ -17,19 +17,21 @@ const LoadingFlatParameters = () => {
         <Parameter />
         <Parameter />
       </ParametersWrapper>
-      <SecondDescBlock />
+      <SubInfo />
     </Container>
   );
 };
 
-const SecondDescBlock = styled.div`
-  display: none;
+const SubInfo = styled.div`
   width: 100%;
-  height: 264px;
-  background: ${LightBlueColor.LB_400};
+  height: 216px;
+  background: #f5f7f9;
   border-radius: 24px;
-  @media screen and (max-width: 767px) {
-    display: block;
+  @media screen and (max-width: 1439px) and (max-width: 768px) {
+    height: 264px;
+  }
+  @media screen and (max-width: 375px) {
+    height: 264px;
   }
 `;
 

@@ -1,4 +1,4 @@
-import ErrorPage from "../../components/error-page/ErrorPage";
+import ErrorPage from "../../components/rent_page/error-page/ErrorPage";
 import React from "react";
 
 const RequestErrorPage = () => {

@@ -12,7 +12,7 @@ import { AppWithPageLayout } from "../common/types";
 import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
 import { ThemeProvider } from "styled-components";
-import ErrorBoundary from "../components/error-boundary/ErrorBoundary";
+import ErrorBoundary from "../components/rent_page/error-boundary/ErrorBoundary";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   return (

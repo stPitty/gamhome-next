@@ -8,7 +8,7 @@ import { useState } from "react";
 import Button from "../button/Button";
 import { ButtonSize } from "../button/enums";
 import { Modal } from "./types";
-import Form from "../../check-owner-block/Form";
+import Form from "../../rent_page/check-owner-block/Form";
 import { handleChangeStateClick } from "./helpers";
 
 const ModalBody = () => {
