@@ -7,8 +7,7 @@ import { fetchFlatData } from "../../redux/slicers/flatDataSlicer";
 import { WindowSize } from "../../redux/slicers/enums";
 import { Dispatch, RefObject, SetStateAction } from "react";
 import { ObservableRefAttrs } from "../types";
-import { Hook } from "../routes";
-import { setScrollBtnTheme } from "../../redux/slicers/scrollTopBtnSlicer";
+import { Route } from "../routes";
 
 const handleRedirClick = (router: NextRouter, path: string) => () => {
   router.push(path);
@@ -32,15 +31,20 @@ const handleSwapImageClick =
   };
 
 const handleMoneyDataFormatter = (num: number | undefined | string): string => {
-  if (num)
+  if (num) {
     return String(num)
       .split("")
-      .reduce((previousValue, currentValue, currentIndex) => {
-        if ((currentIndex + 1) % 3 === 0) {
-          currentValue = " " + currentValue;
+      .reduce((previousValue, currentValue, currentIndex, array) => {
+        if (array.length > 3) {
+          currentValue =
+            currentIndex === (array.length - 1) % 3 ||
+            currentIndex === (array.length - 4) % 6
+              ? (currentValue += " ")
+              : currentValue;
         }
         return previousValue + currentValue;
       }, "");
+  }
   return "";
 };
 
@@ -121,14 +125,19 @@ const handleGetFlatData = (
 const handleGetSubHeader =
   (
     price: number | string | undefined,
+    squarePrice: string | undefined,
     fee: boolean | undefined,
-    feeAmount: number | string | undefined
+    feeAmount: number | string | undefined,
+    pathName: Route | null
   ) =>
   () => {
-    if (price) {
+    if (pathName === Route.RENT && price) {
       return `Залог ${price} ₽, ${
         fee && "комиссия " + feeAmount + " ₽,"
       } предоплата за 1 месяц, от года`;
+    }
+    if (pathName === Route.BUY && squarePrice) {
+      return `${squarePrice} ₽/м²`;
     }
     return "";
   };
@@ -194,6 +203,22 @@ const getRefsArr = (
   ];
 };
 
+const getSquarePrice = (genPrice: number | string, params: Parameter[]) => {
+  const value = params.find(
+    (el) =>
+      el.parameterId === 15 ||
+      el.parameterId === 42 ||
+      el.parameterId === 4 ||
+      el.parameterId === 12
+  );
+  if (value?.value && typeof genPrice === "string") {
+    return handleMoneyDataFormatter(
+      Math.floor(Number.parseInt(genPrice) / Number.parseInt(value.value))
+    );
+  }
+  return "";
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -206,4 +231,5 @@ export {
   SortByPriority,
   handleShowNumberClick,
   getRefsArr,
+  getSquarePrice,
 };

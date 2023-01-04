@@ -11,10 +11,35 @@ import { Global } from "../common";
 import { AppWithPageLayout } from "../common/types";
 import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
-import { ThemeProvider } from "styled-components";
-import ErrorBoundary from "../components/rent_page/error-boundary/ErrorBoundary";
+import ErrorBoundary from "../components/rent_page/error_boundary/ErrorBoundary";
+import { setWindowSize } from "../redux/slicers/windowSizeSlicer";
+import { useAppDispatch } from "../redux/hooks";
+import { useEffect } from "react";
+import { Route } from "../common/routes";
+import { useRouter } from "next/router";
+import { changePathName } from "../redux/slicers/pathNameSlicer";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
+  const router = useRouter();
+
+  const dispatch = useAppDispatch();
+
+  const handleResizeWindow = () => {
+    dispatch(setWindowSize(window.innerWidth));
+  };
+
+  useEffect(() => {
+    dispatch(changePathName(router.pathname));
+  }, [router]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      handleResizeWindow();
+    }
+    window.addEventListener("resize", handleResizeWindow);
+    return () => window.removeEventListener("resize", handleResizeWindow);
+  }, []);
+
   return (
     <ErrorBoundary>
       <Global />

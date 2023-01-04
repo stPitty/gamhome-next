@@ -11,12 +11,12 @@ import { Route } from "../../common/routes";
 import Button from "../UI/button/Button";
 import CloseSVG from "../../public/assets/svg/CloseSVG";
 import Carousel from "../UI/carousel/Carousel";
-import PreviewList from "../UI/preview-list/PreviewList";
+import PreviewList from "../UI/preview_list/PreviewList";
 import styled from "styled-components";
 import ChevronSVG from "../../public/assets/svg/ChevronSVG";
 import { BlackColor, Font, WhiteColor } from "../../common/enums";
 import { WindowSize } from "../../redux/slicers/enums";
-import FullScreenHeader from "../UI/fullscreen-header/FullScreenHeader";
+import FullScreenHeader from "../UI/fullscreen_header/FullScreenHeader";
 
 const Photos: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -220,13 +220,9 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    height: 100%;
-  }
 `;
 
 export default Photos;

@@ -1,4 +1,5 @@
 import { ModalState, WindowSize } from "./enums";
+import { Route } from "../../common/routes";
 
 type TPhotoPosition = {
   position: number;
@@ -21,6 +22,7 @@ type Parameter = {
 };
 
 type FlatData = {
+  squarePrice: string;
   feeAmount: number | string;
   deposit: number | string;
   fee: boolean;
@@ -142,6 +144,10 @@ type TScrollTopBtn = {
   isLightTheme: boolean;
 };
 
+type TPathName = {
+  pathName: Route | null;
+};
+
 export type {
   TPhotoPosition,
   TModalState,
@@ -158,4 +164,5 @@ export type {
   TMobBtnView,
   TCookiePopUp,
   TScrollTopBtn,
+  TPathName,
 };

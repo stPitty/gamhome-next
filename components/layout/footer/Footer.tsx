@@ -3,7 +3,7 @@ import Body from "../Body";
 import { BlackColor, Font, OtherColor } from "../../../common/enums";
 import MenuItems from "../header/MenuItems";
 import React from "react";
-import AdaptiveTextDivider from "../../UI/adaptive-text-divider/AdaptiveTextDivider";
+import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const Footer: React.FC = () => {
   return (

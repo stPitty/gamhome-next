@@ -1,5 +1,5 @@
 import React from "react";
-import ErrorPage from "../components/rent_page/error-page/ErrorPage";
+import ErrorPage from "../components/rent_page/error_page/ErrorPage";
 
 const ServerErrorPage = () => {
   const errHeader = "Похоже, что-то сломалось...";

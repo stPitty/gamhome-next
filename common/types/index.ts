@@ -1,5 +1,5 @@
 import { AppProps } from "next/app";
-import React, { MutableRefObject, RefObject } from "react";
+import React, { MutableRefObject, ReactNode, RefObject } from "react";
 import {
   BlackColor,
   BrandColor,
@@ -50,4 +50,8 @@ export type {
   AdaptiveLayoutPriority,
   ObservableRefAttrs,
   ObservableElementsNames,
+};
+
+export type ChildProp = {
+  children: ReactNode;
 };

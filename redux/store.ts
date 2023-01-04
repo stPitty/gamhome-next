@@ -11,6 +11,7 @@ import sideMenuReducer from "./slicers/sideMenuSlicer";
 import mobBtnViewReducer from "./slicers/mobBtnViewSlicer";
 import cookiePopUpReducer from "./slicers/cookiePopUpSlicer";
 import scrollTopBtnReducer from "./slicers/scrollTopBtnSlicer";
+import pathNameReducer from "./slicers/pathNameSlicer";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
@@ -24,6 +25,7 @@ const combinedReducer = combineReducers({
   mobBtnView: mobBtnViewReducer,
   cookiePopUp: cookiePopUpReducer,
   scrollTopBtn: scrollTopBtnReducer,
+  pathName: pathNameReducer,
 });
 
 const reducer = (

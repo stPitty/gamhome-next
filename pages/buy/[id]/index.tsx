@@ -3,12 +3,12 @@ import PageLayout from "../../../components/layout";
 import dynamic from "next/dynamic";
 import Spinner from "../../../components/UI/spinner/Spinner";
 
-const Rent = dynamic(() => import("../../../components/rent_page/RentPage"), {
+const Buy = dynamic(() => import("../../../components/buy_page/Buy"), {
   loading: () => <Spinner />,
 });
 
 const RentPage: ComponentWithLayout = () => {
-  return <Rent />;
+  return <Buy />;
 };
 
 RentPage.PageLayout = PageLayout;

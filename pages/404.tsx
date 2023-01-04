@@ -1,4 +1,4 @@
-import ErrorPage from "../components/rent_page/error-page/ErrorPage";
+import ErrorPage from "../components/rent_page/error_page/ErrorPage";
 
 const ErrNotFound = () => {
   const header = "Похоже, мы не можем найти то, что вы искали";

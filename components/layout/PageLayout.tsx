@@ -6,10 +6,10 @@ import Modal from "../UI/modal/Modal";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { TModalState } from "../../redux/slicers/types";
 import CookiesPopup from "./cookies-popup/CookiesPopup";
-import SideMenu from "../UI/side-menu/SideMenu";
-import ScrollTopBtn from "../UI/scroll-top-btn/ScrollTopBtn";
+import SideMenu from "../UI/side_menu/SideMenu";
+import ScrollTopBtn from "../UI/scroll_top_btn/ScrollTopBtn";
 import { setAcceptedCookie } from "../../redux/slicers/cookiePopUpSlicer";
-import MobileMenu from "../UI/mobile-menu/MobileMenu";
+import MobileMenu from "../UI/mobile_menu/MobileMenu";
 
 type Props = {
   children: ReactNode;

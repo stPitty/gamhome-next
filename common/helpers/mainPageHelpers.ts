@@ -12,7 +12,7 @@ const changeVisibility =
 
 const setIOForBottomMenu = (
   windowSize: WindowSize | null,
-  currentEl: React.MutableRefObject<null>["current"],
+  currentEl: any,
   dispatch: AppDispatch
 ) => {
   if (

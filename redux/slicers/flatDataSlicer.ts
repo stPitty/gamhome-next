@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { FlatData, TFlatState } from "./types";
 import { axiosInstance } from "../../common/axios";
 import {
+  getSquarePrice,
   handleMoneyDataFormatter,
   handlePhoneFormatter,
 } from "../../common/helpers";
@@ -41,6 +42,10 @@ const flatDataSlicer = createSlice({
         state.isLoading = false;
         const data = action.payload.data;
         state.flatData = data;
+        state.flatData.squarePrice = getSquarePrice(
+          data?.price,
+          data?.parameters
+        );
         state.flatData.phone = handlePhoneFormatter(data.phone);
         state.flatData.price = handleMoneyDataFormatter(data?.price);
         state.flatData.feeAmount = handleMoneyDataFormatter(data?.feeAmount);
