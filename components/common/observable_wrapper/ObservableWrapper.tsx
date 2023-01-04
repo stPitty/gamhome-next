@@ -18,4 +18,6 @@ const ObservingWrapper = styled.div`
   align-content: center;
 `;
 
+ObservableWrapper.displayName = "ObservableWrapper";
+
 export default ObservableWrapper;

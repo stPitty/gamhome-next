@@ -25,6 +25,9 @@ import {
 } from "../../common/helpers/IOSingleton";
 import CheckOwnerBlock from "../common/check_owner_block";
 import Mortgage from "./mortgage/Mortgage";
+import PropertyValuation from "./roperty_valuation/PropertyValuation";
+import Insurance from "./insurance/Insurance";
+import ServicesBlock from "../common/services_block";
 
 const Buy = () => {
   const router = useRouter();
@@ -83,6 +86,9 @@ const Buy = () => {
       </RowWrapper>
       <ObservableWrapper ref={observingWrapperRef}>
         <Mortgage />
+        <PropertyValuation />
+        <Insurance />
+        <ServicesBlock />
         <CheckOwnerBlock />
         <MainServices ref={mainServicesLightRef} />
         <DiscountsBlock ref={discountPartnersDarkRef} />

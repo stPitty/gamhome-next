@@ -3,7 +3,7 @@ import { BlackColor, Font } from "../../../../common/enums";
 import MainInfo from "./MainInfo";
 import SubInfoBlock from "./SubInfoBlock";
 import { useAppSelector } from "../../../../redux/hooks";
-import { TFlatState } from "../../../../redux/slicers/types";
+import { TFlatState, TPathName } from "../../../../redux/slicers/types";
 import LoadingFlatParameters from "../../../UI/loading_ui/LoadingFlatParameters";
 import { useMemo } from "react";
 import { handleGetSubHeader } from "../../../../common/helpers";
@@ -13,8 +13,16 @@ const InfoBlock: React.FC = () => {
     (state) => state.flatData
   );
 
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   const subHeader = useMemo(
-    handleGetSubHeader(flatData?.price, flatData?.fee, flatData?.feeAmount),
+    handleGetSubHeader(
+      flatData?.price,
+      flatData?.squarePrice,
+      flatData?.fee,
+      flatData?.feeAmount,
+      pathName
+    ),
     [flatData]
   );
 

@@ -16,7 +16,7 @@ import { Route } from "../../common/routes";
 import FlatBlock from "../common/flat_block";
 import AddInfoBlock from "./add_info_block";
 import PriceBlock from "./price_block";
-import ServicesBlock from "./services_block";
+import ServicesBlock from "../common/services_block";
 import CheckOwnerBlock from "../common/check_owner_block";
 import CardWitsImage from "./card_with_image/CardWitsImage";
 import MainServices from "../common/main_services";
