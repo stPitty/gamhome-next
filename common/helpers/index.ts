@@ -30,7 +30,9 @@ const handleSwapImageClick =
     }
   };
 
-const handleMoneyDataFormatter = (num: number | undefined | string): string => {
+const handleMoneyDataFormatter = (
+  num: number | undefined | string | null
+): string => {
   if (num) {
     return String(num)
       .split("")
@@ -219,6 +221,29 @@ const getSquarePrice = (genPrice: number | string, params: Parameter[]) => {
   return "";
 };
 
+const handleFormatValue = (
+  value: string,
+  minNum: number | undefined,
+  maxNum: number | undefined,
+  prevValue: number | null
+) => {
+  const regexp = /^\d+$/;
+
+  const newValue = value.replaceAll(" ", "");
+
+  if (regexp.test(newValue)) {
+    const numValue = Number.parseInt(newValue);
+    if (minNum && numValue < minNum) {
+      return minNum;
+    }
+    if (maxNum && numValue > maxNum) {
+      return maxNum;
+    }
+    return numValue;
+  }
+  return prevValue;
+};
+
 export {
   handleRedirClick,
   handleSwapImageClick,
@@ -232,4 +257,5 @@ export {
   handleShowNumberClick,
   getRefsArr,
   getSquarePrice,
+  handleFormatValue,
 };

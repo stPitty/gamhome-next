@@ -42,6 +42,7 @@ const flatDataSlicer = createSlice({
         state.isLoading = false;
         const data = action.payload.data;
         state.flatData = data;
+        state.flatData.nonFormattedPrice = data.price as number;
         state.flatData.squarePrice = getSquarePrice(
           data?.price,
           data?.parameters

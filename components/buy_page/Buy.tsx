@@ -15,14 +15,8 @@ import { TFlatState, TWindowSize } from "../../redux/slicers/types";
 import { useRouter } from "next/router";
 import { handleGetFlatData } from "../../common/helpers";
 import { Route } from "../../common/routes";
-import {
-  setIOForBottomMenu,
-  setIOForScrollBtn,
-} from "../../common/helpers/mainPageHelpers";
-import {
-  IOBottomMenuSingleton,
-  IOScrollButtonSingleton,
-} from "../../common/helpers/IOSingleton";
+import { setIOForBottomMenu } from "../../common/helpers/mainPageHelpers";
+import { IOBottomMenuSingleton } from "../../common/helpers/IOSingleton";
 import CheckOwnerBlock from "../common/check_owner_block";
 import Mortgage from "./mortgage/Mortgage";
 import PropertyValuation from "./roperty_valuation/PropertyValuation";

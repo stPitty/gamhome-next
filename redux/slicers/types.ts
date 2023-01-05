@@ -22,6 +22,7 @@ type Parameter = {
 };
 
 type FlatData = {
+  nonFormattedPrice: number;
   squarePrice: string;
   feeAmount: number | string;
   deposit: number | string;

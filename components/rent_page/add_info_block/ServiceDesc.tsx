@@ -3,15 +3,15 @@ import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import { BlackColor, Font } from "../../../common/enums";
 import React, { memo } from "react";
-import { Concierge, Owner } from "./enums";
+import { Concierge, Owner, SafetyDeal } from "./enums";
 import { Hook } from "../../../common/routes";
 import Link from "next/link";
 
 type Props = {
-  headerText: Concierge | Owner;
-  desc: Concierge | Owner;
-  image: Concierge | Owner;
-  cardType: "concierge" | "owner";
+  headerText: Concierge | Owner | SafetyDeal;
+  desc: Concierge | Owner | SafetyDeal;
+  image: Concierge | Owner | SafetyDeal;
+  cardType: "concierge" | "owner" | "safetyDeal";
   btnLink: Hook;
 };
 
@@ -54,7 +54,7 @@ const StyledButton = styled(Button)`
 `;
 
 const DescText = styled.p<{
-  cardType: "concierge" | "owner";
+  cardType: "concierge" | "owner" | "safetyDeal";
 }>`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
@@ -79,10 +79,11 @@ const HeaderText = styled.p`
   line-height: 32px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
+  white-space: pre-wrap;
 `;
 
 const InfoWrapper = styled.div<{
-  cardType: "concierge" | "owner";
+  cardType: "concierge" | "owner" | "safetyDeal";
 }>`
   display: flex;
   flex-direction: column;
@@ -105,8 +106,8 @@ const InfoWrapper = styled.div<{
 `;
 
 const Container = styled.div<{
-  image: Concierge | Owner;
-  cardType: "concierge" | "owner";
+  image: Concierge | Owner | SafetyDeal;
+  cardType: "concierge" | "owner" | "safetyDeal";
 }>`
   display: flex;
   width: 864px;

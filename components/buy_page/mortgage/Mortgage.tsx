@@ -4,8 +4,31 @@ import Slider from "../../UI/slider/Slider";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import BankCarousel from "./BankCarousel";
+import { useAppSelector } from "../../../redux/hooks";
+import { TFlatState } from "../../../redux/slicers/types";
+import { useMemo } from "react";
 
 const Mortgage = () => {
+  const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const minContribution = useMemo(() => {
+    if (flatData?.nonFormattedPrice) {
+      return Math.floor(flatData.nonFormattedPrice * 0.1);
+    }
+  }, [flatData?.nonFormattedPrice]);
+
+  const maxContribution = useMemo(() => {
+    if (flatData?.nonFormattedPrice) {
+      return Math.floor(flatData.nonFormattedPrice * 0.9);
+    }
+  }, [flatData?.nonFormattedPrice]);
+
+  const defContribution = useMemo(() => {
+    if (flatData?.nonFormattedPrice) {
+      return Math.floor(flatData.nonFormattedPrice * 0.2);
+    }
+  }, [flatData?.nonFormattedPrice]);
+
   return (
     <Wrapper>
       <Container>
@@ -19,17 +42,17 @@ const Mortgage = () => {
         <SliderContainer>
           <Slider
             title="Стоимость жилья"
-            min={0}
-            max={99_999_999}
-            defaultValue={65_500_500}
+            min={500_000}
+            max={100_000_000}
+            defaultValue={flatData?.nonFormattedPrice}
           />
           <Slider
             title="Первоначальный взнос"
-            min={0}
-            max={99_999_999}
-            defaultValue={5_500_500}
+            min={minContribution}
+            max={maxContribution}
+            defaultValue={defContribution}
           />
-          <Slider title="Срок ипотеки" min={0} max={50} defaultValue={20} />
+          <Slider title="Срок ипотеки" min={1} max={30} defaultValue={20} />
           <StyledButton buttonSize={ButtonSize.LARGE}>
             Связаться с менеджером
           </StyledButton>

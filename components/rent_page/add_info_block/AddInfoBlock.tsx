@@ -1,11 +1,15 @@
 import Divider from "../../UI/divider/Divider";
 import Description from "./Description";
 import ServiceDesc from "./ServiceDesc";
-import { Concierge, Owner } from "./enums";
+import { Concierge, Owner, SafetyDeal } from "./enums";
 import MapBlock from "./MapBlock";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
+import { useAppSelector } from "../../../redux/hooks";
+import { TPathName } from "../../../redux/slicers/types";
 
 const AddInfoBlock = () => {
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   return (
     <>
       <ServiceDesc
@@ -18,13 +22,23 @@ const AddInfoBlock = () => {
       <Divider />
       <Description />
       <Divider />
-      <ServiceDesc
-        cardType={Owner.CARD_TYPE}
-        desc={Owner.DESC}
-        image={Owner.IMAGE}
-        headerText={Owner.HEADER}
-        btnLink={Hook.USEFUL_DOCS}
-      />
+      {pathName === Route.RENT ? (
+        <ServiceDesc
+          cardType={Owner.CARD_TYPE}
+          desc={Owner.DESC}
+          image={Owner.IMAGE}
+          headerText={Owner.HEADER}
+          btnLink={Hook.USEFUL_DOCS}
+        />
+      ) : (
+        <ServiceDesc
+          cardType={SafetyDeal.CARD_TYPE}
+          desc={SafetyDeal.DESC}
+          image={SafetyDeal.IMAGE}
+          headerText={SafetyDeal.HEADER}
+          btnLink={Hook.WEBINAR}
+        />
+      )}
       <Divider />
       <MapBlock />
     </>
