@@ -1,5 +1,5 @@
-import { TabBodyData } from "./types";
-import React, { useMemo } from "react";
+import { TabBodyData, TabContentType } from "./types";
+import React, { memo, useEffect, useMemo } from "react";
 import styled from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import DoneSVG from "../../../public/assets/svg/DoneSVG";
@@ -22,7 +22,7 @@ const Conditions: React.FC<Props> = ({ data }) => {
 
   const sortedConditions = useMemo(
     SortByPriority(windowSize, data.additionalInfo.points),
-    [windowSize]
+    [windowSize, data]
   );
 
   const handleOrderClick = () => {
@@ -31,17 +31,19 @@ const Conditions: React.FC<Props> = ({ data }) => {
 
   return (
     <Container>
-      <Wrapper>
+      <Wrapper contentType={data.contentType}>
         <Header>{data.additionalInfo.header}</Header>
-        <ConditionsContainer>
+        <ConditionsContainer contentType={data.contentType}>
           {sortedConditions.map((el, i) => {
             return (
-              <TextContainer key={el.id}>
+              <TextContainer key={el.id} contentType={data.contentType}>
                 <IconContainer>
                   <DoneSVG />
                 </IconContainer>
 
-                <ConditionText>{el.text}</ConditionText>
+                <ConditionText contentType={data.contentType}>
+                  {el.text}
+                </ConditionText>
               </TextContainer>
             );
           })}
@@ -103,14 +105,15 @@ const IconContainer = styled.div`
   height: 24px;
 `;
 
-const ConditionText = styled.p`
+const ConditionText = styled.p<{ contentType: TabContentType }>`
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   margin: 0;
   color: ${BlackColor.BLACK_64};
-  width: 274px;
+  width: ${({ contentType }) =>
+    contentType === "jurAnalysis" ? "293px" : "274px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 265px;
   }
@@ -122,12 +125,13 @@ const ConditionText = styled.p`
   }
 `;
 
-const TextContainer = styled.div`
+const TextContainer = styled.div<{ contentType: TabContentType }>`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: 303px;
   column-gap: 6px;
+  width: ${({ contentType }) =>
+    contentType === "jurAnalysis" ? "323px" : "303px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 295px;
   }
@@ -139,16 +143,15 @@ const TextContainer = styled.div`
   }
 `;
 
-const ConditionsContainer = styled.div`
+const ConditionsContainer = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: flex-start;
-  justify-content: flex-start;
   flex-wrap: wrap;
   row-gap: 16px;
   column-gap: 8px;
-  height: 112px;
+  height: ${({ contentType }) =>
+    contentType === "jurAnalysis" ? "136px" : "112px"};
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 20px;
     height: 152px;
@@ -175,13 +178,14 @@ const Header = styled.p`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   row-gap: 24px;
-  width: 909px;
+  width: ${({ contentType }) =>
+    contentType === "jurAnalysis" ? "988px" : "909px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 610px;
   }
@@ -216,4 +220,4 @@ const Container = styled.div`
   }
 `;
 
-export default Conditions;
+export default memo(Conditions);

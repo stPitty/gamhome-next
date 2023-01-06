@@ -5,13 +5,28 @@ import {
   checkOwnerInputInfo,
 } from "../../../redux/slicers/modalStateSlicer";
 
-const tabTitle: TabTitle[] = [
+const rentTabTitle: TabTitle[] = [
   {
     id: 1,
     title: "Проверить объект",
   },
   {
     id: 2,
+    title: "Проверить собственника",
+  },
+];
+
+const buyTabTitle = [
+  {
+    id: 1,
+    title: "Правовое заключение",
+  },
+  {
+    id: 2,
+    title: "Проверить объект",
+  },
+  {
+    id: 3,
     title: "Проверить собственника",
   },
 ];
@@ -146,6 +161,93 @@ const ownerData: TabBodyData = {
   btnAction: checkOwnerInputInfo,
 };
 
-const tabsData: [TabBodyData, TabBodyData] = [objData, ownerData];
+const jurData: TabBodyData = {
+  name: "Юридический анализ с письменным заключением",
+  desc: "Получите правовое заключение с детальным анализом истории объекта недвижимости и собственников. Юристы составят письменные рекомендации, как избежать до 20 основных рисков утраты права собственности",
+  points: [
+    {
+      id: 1,
+      header: "Сбор информации об объекте и собственнике",
+      desc: "Скажем какие дополнительные документы нужно запросить у продавца, чтобы снизить риски утраты жилья",
+    },
+    {
+      id: 2,
+      header: "Юридическая проверка",
+      desc: "Анализ по предоставленной информации и документам, а также закажем сведения по объекту и собственникам объекта из баз данных и реестров",
+    },
+    {
+      id: 3,
+      header: "Консультация юриста",
+      desc: "Консультация с юристом в чате в течение трёх дней после проверки",
+    },
+    {
+      id: 4,
+      header: "Подарок договор купли-продажи",
+      desc: "Подготовка договора купли-продажи недвижимости сделки с расширенными гарантиями",
+      gift: true,
+    },
+  ],
+  additionalInfo: {
+    header: "Какие риски исключаете",
+    points: [
+      {
+        id: 1,
+        text: "Приватизация и право пожизненного проживания",
+        xlPriority: 1,
+        lgPriority: 1,
+        mdPriority: 1,
+      },
+      {
+        id: 2,
+        text: "Признание продавца квартиры недееспособным или ограниченно дееспособным",
+        xlPriority: 2,
+        lgPriority: 2,
+        mdPriority: 2,
+      },
+      {
+        id: 3,
+        text: "Материнский капитал без наделения долями",
+        xlPriority: 3,
+        mdPriority: 3,
+      },
+      {
+        id: 4,
+        text: "Нарушение прав несовершеннолетних или лиц находящихся под опекой и попечительством",
+        xlPriority: 4,
+        lgPriority: 5,
+        mdPriority: 5,
+      },
+      {
+        id: 5,
+        text: "Продажа без согласия супруги/супруга",
+        xlPriority: 5,
+        lgPriority: 4,
+        mdPriority: 4,
+      },
+      {
+        id: 6,
+        text: "Неучтенные наследники",
+        xlPriority: 6,
+        lgPriority: 4,
+        mdPriority: 4,
+      },
+      {
+        id: 7,
+        text: "Незаконная перепланировка",
+        xlPriority: 7,
+        lgPriority: 4,
+        mdPriority: 4,
+      },
+    ],
+    cost: "24 990",
+  },
+  image: "/images/perfect-candidate-big.png",
+  contentType: "jurAnalysis",
+  btnAction: checkOwnerInputInfo,
+};
 
-export { tabTitle, tabsData };
+const rentTabsData: TabBodyData[] = [objData, ownerData];
+
+const buyTabsData: TabBodyData[] = [jurData, objData, ownerData];
+
+export { rentTabTitle, buyTabTitle, rentTabsData, buyTabsData };

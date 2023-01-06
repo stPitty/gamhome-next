@@ -8,7 +8,6 @@ import React, {
 import styled from "styled-components";
 import { TabTitle } from "./types";
 import { BlackColor, BrandColor, Font } from "../../../common/enums";
-import { sides } from "./constants";
 
 type Props = {
   title: TabTitle[];
@@ -68,7 +67,10 @@ const Tab: React.FC<Props> = ({
             key={el.id}
           >
             <LabelText isActive={el.id === activeTab}>{el.title}</LabelText>
-            <TabLine side={sides[el.id]} isActive={el.id === activeTab} />
+            <TabLineContainer>
+              <TabLine side="start" isActive={el.id === activeTab} />
+              <TabLine side="end" isActive={el.id === activeTab} />
+            </TabLineContainer>
           </LabelContainer>
         ))}
       </HeaderContainer>
@@ -76,6 +78,11 @@ const Tab: React.FC<Props> = ({
     </Container>
   );
 };
+
+const TabLineContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
 
 const TabLine = styled.div<{
   isActive: boolean;

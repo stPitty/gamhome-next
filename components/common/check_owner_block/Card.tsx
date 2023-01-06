@@ -18,7 +18,9 @@ const Card: React.FC<Props> = ({ data }) => {
       <ContentTextContainer>
         <HeaderContainer contentType={data.contentType}>
           <HeaderText>{data.name}</HeaderText>
-          <DescText>{data.desc}</DescText>
+          <DescText isHeader={true} contentType={data.contentType}>
+            {data.desc}
+          </DescText>
         </HeaderContainer>
         <PointsContainer contentType={data.contentType}>
           {data.points.map((el) => {
@@ -27,7 +29,7 @@ const Card: React.FC<Props> = ({ data }) => {
                 <PointNum>{el.id}</PointNum>
                 <PointTextContainer>
                   <PointHeader>{el.header}</PointHeader>
-                  <DescText>{el.desc}</DescText>
+                  <DescText contentType={data.contentType}>{el.desc}</DescText>
                 </PointTextContainer>
               </PointWrapper>
             );
@@ -125,12 +127,18 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
   }
 `;
 
-const DescText = styled.p`
+const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
+  width: ${({ contentType, isHeader }) => {
+    if (contentType === "jurAnalysis") {
+      if (isHeader) return "704px";
+      return "468px";
+    }
+  }};
 `;
 
 const HeaderText = styled.p`
@@ -167,7 +175,10 @@ const MainContentWrapper = styled.div<{
   column-gap: 24px;
   width: 1312px;
   background-image: url(${({ background }) => background});
-  background-size: 648px;
+  background-size: ${({ contentType }) =>
+    contentType === "jurAnalysis" ? "555px" : "648px"};
+  background-position: ${({ contentType }) =>
+    contentType === "jurAnalysis" && "672px 259px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     background-size: 436px;
     width: 952px;

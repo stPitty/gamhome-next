@@ -1,6 +1,6 @@
 import { AdaptiveLayoutPriority } from "../../../common/types";
 
-export type TabContentType = "checkOwner" | "checkObject";
+export type TabContentType = "checkOwner" | "checkObject" | "jurAnalysis";
 
 export type TabBodyData = {
   name: string;
@@ -9,6 +9,7 @@ export type TabBodyData = {
     id: number;
     header: string;
     desc?: string;
+    gift?: boolean;
   }[];
   image: string;
   additionalInfo: {
@@ -17,7 +18,7 @@ export type TabBodyData = {
       id: number;
       text: string;
     } & Partial<AdaptiveLayoutPriority>)[];
-    cost: number;
+    cost: number | string;
   };
   contentType: TabContentType;
   btnAction: Function;

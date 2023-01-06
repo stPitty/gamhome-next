@@ -1,29 +1,47 @@
 import styled from "styled-components";
 import Tab from "../../UI/tab/Tab";
-import { tabsData, tabTitle } from "./constants";
+import {
+  buyTabsData,
+  buyTabTitle,
+  rentTabsData,
+  rentTabTitle,
+} from "./constants";
 import { useState } from "react";
 import TabBody from "./TabBody";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
+import { useAppSelector } from "../../../redux/hooks";
+import { TPathName } from "../../../redux/slicers/types";
 
 const CheckOwnerBlock = () => {
   const [activeTab, setActiveTab] = useState<number>(1);
+
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   return (
-    <Container id={Hook.CHECK_OBJ}>
+    <Container id={Hook.CHECK_OBJ} isRent={pathName === Route.RENT}>
       <Tab
-        tabsQuantity={tabsData.length}
+        tabsQuantity={
+          pathName === Route.RENT ? rentTabsData.length : buyTabsData.length
+        }
         activeTab={activeTab}
         setActiveTab={setActiveTab}
-        title={tabTitle}
+        title={pathName === Route.RENT ? rentTabTitle : buyTabTitle}
       >
-        <TabBody data={tabsData[activeTab - 1]} />
+        <TabBody
+          data={
+            pathName === Route.RENT
+              ? rentTabsData[activeTab - 1]
+              : buyTabsData[activeTab - 1]
+          }
+        />
       </Tab>
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isRent: boolean }>`
   display: flex;
-  margin-bottom: -112px;
+  margin-bottom: ${({ isRent }) => isRent && "-112px"};
   z-index: 1;
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {

@@ -276,6 +276,14 @@ const BankItem = styled.div`
   border-radius: 8px;
   padding: 16px 0 16px 16px;
   row-gap: 24px;
+  transition: 0.1s linear;
+  cursor: pointer;
+  &:hover {
+    background-color: ${LightBlueColor.LB_200};
+  }
+  &:active {
+    background-color: ${LightBlueColor.LB_300};
+  }
 `;
 
 const BankContainer = styled.div`

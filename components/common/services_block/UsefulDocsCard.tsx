@@ -1,6 +1,12 @@
 import React, { memo } from "react";
 import styled, { css } from "styled-components";
-import { CardType, PrimaryContent, SecondaryContent } from "./enums";
+import {
+  CardType,
+  ExmDeal,
+  MakeDeal,
+  PrimaryContent,
+  SecondaryContent,
+} from "./enums";
 import StarSVG from "../../../public/assets/svg/StarSVG";
 import { useAppDispatch } from "../../../redux/hooks";
 import { ButtonSize, ButtonType } from "../../UI/button/enums";
@@ -13,14 +19,19 @@ import {
 } from "../../../common/enums";
 import DocumentSVG from "../../../public/assets/svg/DocumentSVG";
 import Button from "../../UI/button/Button";
+import { DescText as DescTextType } from "../../UI/modal/types";
+import List from "../../UI/list/List";
 
 type Props = {
   cardType: CardType;
-  headerText: PrimaryContent | SecondaryContent;
-  descText: PrimaryContent | SecondaryContent;
-  buttonText: PrimaryContent | SecondaryContent;
-  primaryBtnAction: () => void;
-  secondaryBtnAction: () => void;
+  headerText: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
+  descText?: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
+  buttonText: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
+  descArr?: DescTextType[];
+  primaryBtnAction?: () => void;
+  secondaryBtnAction?: () => void;
+  withoutAddBtn?: boolean;
+  contentType?: "rent" | "buy";
 };
 
 const UsefulDocsCard: React.FC<Props> = ({
@@ -30,6 +41,9 @@ const UsefulDocsCard: React.FC<Props> = ({
   buttonText,
   primaryBtnAction,
   secondaryBtnAction,
+  withoutAddBtn,
+  descArr,
+  contentType = "rent",
 }) => {
   const dispatch = useAppDispatch();
 
@@ -45,13 +59,27 @@ const UsefulDocsCard: React.FC<Props> = ({
   };
 
   return (
-    <Container cardType={cardType}>
+    <Container cardType={cardType} contentType={contentType}>
       <Body>
         <ColumnIconWrapper cardType={cardType}>
           {cardType === CardType.PRIMARY ? <StarSVG /> : <DocumentSVG />}
         </ColumnIconWrapper>
-        <HeaderText cardType={cardType}>{headerText}</HeaderText>
-        <DescText cardType={cardType}>{descText}</DescText>
+        <InfoWrapper>
+          <HeaderText cardType={cardType}>{headerText}</HeaderText>
+          {descText && <DescText cardType={cardType}>{descText}</DescText>}
+          {descArr && (
+            <StyledUl>
+              {descArr.map((el) => {
+                return (
+                  <StyledLI key={el.id}>
+                    <ListMarker cardType={cardType} />
+                    <Text cardType={cardType}>{el.text}</Text>
+                  </StyledLI>
+                );
+              })}
+            </StyledUl>
+          )}
+        </InfoWrapper>
         <ButtonsContainer>
           <StyledBtnPrim
             cardType={cardType}
@@ -61,13 +89,15 @@ const UsefulDocsCard: React.FC<Props> = ({
           >
             {buttonText}
           </StyledBtnPrim>
-          <Button
-            buttonType={moreBtnType}
-            buttonSize={ButtonSize.MEDIUM}
-            onClick={handleOpenModal(secondaryBtnAction)}
-          >
-            Подробнее
-          </Button>
+          {!withoutAddBtn && (
+            <Button
+              buttonType={moreBtnType}
+              buttonSize={ButtonSize.MEDIUM}
+              onClick={handleOpenModal(secondaryBtnAction)}
+            >
+              Подробнее
+            </Button>
+          )}
         </ButtonsContainer>
       </Body>
       <RowIconWrapper cardType={cardType}>
@@ -77,10 +107,48 @@ const UsefulDocsCard: React.FC<Props> = ({
   );
 };
 
+const InfoWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 16px;
+`;
+
+const Text = styled.div<{ cardType: CardType }>`
+  font-family: ${Font.ROBOTO};
+  font-size: 16px;
+  line-height: 24px;
+  color: ${({ cardType }) =>
+    cardType === CardType.PRIMARY ? WhiteColor.WHITE_80 : BlackColor.BLACK_80};
+`;
+
+const ListMarker = styled.div<{ cardType: CardType }>`
+  margin: 10px 10px;
+  min-height: 4px;
+  min-width: 4px;
+  border-radius: 4px;
+  align-self: flex-start;
+  background-color: ${({ cardType }) =>
+    cardType === CardType.PRIMARY ? WhiteColor.WHITE_80 : BlackColor.BLACK_80};
+`;
+
+const StyledLI = styled.li`
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+`;
+
+const StyledUl = styled.ul`
+  margin: 0;
+  padding: 0;
+`;
+
 const StyledBtnPrim = styled(Button)<{ cardType: CardType }>`
-  min-width: ${({ cardType }) =>
-    cardType === CardType.PRIMARY ? "160px" : "203px"};
+  width: fit-content;
+  white-space: nowrap;
   height: 44px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const IconWrapper = styled.div<{ cardType: CardType }>`
@@ -114,6 +182,7 @@ const ButtonsContainer = styled.div`
   align-items: flex-start;
   column-gap: 6px;
   margin-top: 32px;
+  width: fit-content;
   @media screen and (max-width: 767px) {
     flex-direction: column;
     width: 100%;
@@ -130,11 +199,10 @@ const DescText = styled.p<{ cardType: CardType }>`
     cardType === CardType.PRIMARY ? WhiteColor.WHITE_80 : BlackColor.BLACK_80};
 `;
 
-const HeaderText = styled.p<{ cardType: CardType }>`
+const HeaderText = styled.div<{ cardType: CardType }>`
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
-  margin: 0 0 16px;
   color: ${({ cardType }) =>
     cardType === CardType.PRIMARY
       ? WhiteColor.WHITE
@@ -145,8 +213,8 @@ const Body = styled.div`
   width: 480px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: space-between;
+  height: 100%;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 300px;
     height: 252px;
@@ -162,7 +230,11 @@ const Body = styled.div`
   }
 `;
 
-const Container = styled.div<{ cardType: CardType }>`
+const Container = styled.div<{
+  cardType: CardType;
+  contentType: "rent" | "buy";
+}>`
+  height: ${({ contentType }) => contentType === "buy" && "308px"};
   display: flex;
   justify-content: space-between;
   align-items: flex-start;

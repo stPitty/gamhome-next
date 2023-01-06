@@ -1,7 +1,13 @@
 import styled from "styled-components";
 import UsefulDocsCard from "./UsefulDocsCard";
-import { CardType, PrimaryContent, SecondaryContent } from "./enums";
-import { Hook } from "../../../common/routes";
+import {
+  CardType,
+  ExmDeal,
+  MakeDeal,
+  PrimaryContent,
+  SecondaryContent,
+} from "./enums";
+import { Hook, Route } from "../../../common/routes";
 import {
   openBuyCheckListInformation,
   openBuyCheckListWithEmail,
@@ -10,8 +16,13 @@ import {
 } from "../../../redux/slicers/modalStateSlicer";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import { BlackColor } from "../../../common/enums";
+import { useAppSelector } from "../../../redux/hooks";
+import { TPathName } from "../../../redux/slicers/types";
+import { exmDealDesc, makeDealDesc } from "./constants";
 
 const ServicesBlock = () => {
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   return (
     <Container id={Hook.USEFUL_DOCS}>
       <HeaderTextContainer>
@@ -21,22 +32,48 @@ const ServicesBlock = () => {
         </HeaderText>
       </HeaderTextContainer>
       <CardsWrapper>
-        <UsefulDocsCard
-          cardType={CardType.PRIMARY}
-          headerText={PrimaryContent.HEADER}
-          descText={PrimaryContent.DESC}
-          buttonText={PrimaryContent.BUTTON_TEXT}
-          primaryBtnAction={openBuyCheckListWithEmail}
-          secondaryBtnAction={openBuyCheckListInformation}
-        />
-        <UsefulDocsCard
-          cardType={CardType.SECONDARY}
-          headerText={SecondaryContent.HEADER}
-          descText={SecondaryContent.DESC}
-          buttonText={SecondaryContent.BUTTON_TEXT}
-          primaryBtnAction={openFreeDocsWithEmail}
-          secondaryBtnAction={openFreeDocsInformation}
-        />
+        {pathName === Route.RENT ? (
+          <>
+            <UsefulDocsCard
+              cardType={CardType.PRIMARY}
+              headerText={PrimaryContent.HEADER}
+              descText={PrimaryContent.DESC}
+              buttonText={PrimaryContent.BUTTON_TEXT}
+              primaryBtnAction={openBuyCheckListWithEmail}
+              secondaryBtnAction={openBuyCheckListInformation}
+            />
+            <UsefulDocsCard
+              cardType={CardType.SECONDARY}
+              headerText={SecondaryContent.HEADER}
+              descText={SecondaryContent.DESC}
+              buttonText={SecondaryContent.BUTTON_TEXT}
+              primaryBtnAction={openFreeDocsWithEmail}
+              secondaryBtnAction={openFreeDocsInformation}
+            />
+          </>
+        ) : (
+          <>
+            <UsefulDocsCard
+              cardType={CardType.PRIMARY}
+              headerText={MakeDeal.HEADER}
+              buttonText={MakeDeal.BUTTON_TEXT}
+              descArr={makeDealDesc}
+              primaryBtnAction={openBuyCheckListWithEmail}
+              secondaryBtnAction={openBuyCheckListInformation}
+              contentType="buy"
+            />
+            <UsefulDocsCard
+              cardType={CardType.SECONDARY}
+              headerText={ExmDeal.HEADER}
+              buttonText={ExmDeal.BUTTON_TEXT}
+              descArr={exmDealDesc}
+              primaryBtnAction={openFreeDocsWithEmail}
+              secondaryBtnAction={openFreeDocsInformation}
+              withoutAddBtn={true}
+              contentType="buy"
+            />
+          </>
+        )}
       </CardsWrapper>
     </Container>
   );
