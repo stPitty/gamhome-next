@@ -14,5 +14,6 @@ export type CardData = {
     text: string;
   }[];
   tagText?: string;
+  violetTag?: boolean;
   plusService?: string;
 };

@@ -9,13 +9,16 @@ import {
   LightBlueColor,
   LinerColor,
   OtherColor,
+  PurpleColor,
   WhiteColor,
 } from "../../../common/enums";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import VectorArrowSVG from "../../../public/assets/svg/VectorArrowSVG";
 import ChevronDoneBoltSVG from "../../../public/assets/svg/ChevronDoneBoltSVG";
 import Button from "../../UI/button/Button";
 import { CardType } from "./enums";
+import { TPathName } from "../../../redux/slicers/types";
+import { Route } from "../../../common/routes";
 
 type Props = {
   data: CardData[];
@@ -23,6 +26,8 @@ type Props = {
 
 const Cards: React.FC<Props> = ({ data }) => {
   const dispatch = useAppDispatch();
+
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
 
   const handleButtonClick = (buttonAction: Function) => () => {
     dispatch(buttonAction());
@@ -32,9 +37,17 @@ const Cards: React.FC<Props> = ({ data }) => {
     <Container>
       {data.map((el) => {
         return (
-          <CardContainer key={el.id} cardType={el.cardType}>
+          <CardContainer
+            isRent={pathName === Route.RENT}
+            key={el.id}
+            cardType={el.cardType}
+          >
             <TagContainer cardId={el.id}>
-              {el.tagText && <Tag cardType={el.cardType}>{el.tagText}</Tag>}
+              {el.tagText && (
+                <Tag isViolet={!!el.violetTag} cardType={el.cardType}>
+                  {el.tagText}
+                </Tag>
+              )}
             </TagContainer>
             <HeaderWrapper cardId={el.id}>
               <HeaderText cardType={el.cardType}>{el.headerText}</HeaderText>
@@ -216,22 +229,30 @@ const TagContainer = styled.div<{ cardId: number }>`
   }
 `;
 
-const Tag = styled.div<{ cardType: CardType }>`
+const Tag = styled.div<{ cardType: CardType; isViolet: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 8px 16px;
-  border: ${({ cardType }) =>
-    cardType === CardType.UNFILLED && `1px solid ${OtherColor.DARK_GREEN}`};
+  padding: 8px 14px;
+  border: ${({ cardType, isViolet }) => {
+    if (cardType === CardType.UNFILLED) {
+      if (isViolet) return `1px solid ${PurpleColor.PURPLE_ACTIVE}`;
+      return `1px solid ${OtherColor.DARK_GREEN}`;
+    }
+  }};
   border-radius: 100px;
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
-  color: ${({ cardType }) =>
-    cardType === CardType.UNFILLED
-      ? OtherColor.DARK_GREEN
-      : BlackColor.BLACK_SECONDARY};
+  color: ${({ cardType, isViolet }) => {
+    if (cardType === CardType.UNFILLED) {
+      if (isViolet) return PurpleColor.PURPLE_ACTIVE;
+      return OtherColor.DARK_GREEN;
+    } else {
+      return BlackColor.BLACK_SECONDARY;
+    }
+  }};
   background-color: ${({ cardType }) =>
     cardType === CardType.FILLED && LinerColor.LINER_YELLOW_1};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
@@ -242,14 +263,14 @@ const Tag = styled.div<{ cardType: CardType }>`
   }
 `;
 
-const CardContainer = styled.div<{ cardType: CardType }>`
+const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   padding: 24px;
   width: 416px;
-  height: 916px;
+  height: ${({ isRent }) => (isRent ? "916px" : "1276px")};
   background: ${WhiteColor.WHITE};
   border-top: 2px solid ${BrandColor.BRAND};
   border-bottom: 2px solid ${BrandColor.BRAND};

@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import { cardsData } from "./constants";
 import Cards from "./Card";
 import React from "react";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
 import { BlackColor } from "../../../common/enums";
 import { useAppSelector } from "../../../redux/hooks";
-import { TCookiePopUp } from "../../../redux/slicers/types";
+import { TCookiePopUp, TPathName } from "../../../redux/slicers/types";
+import { rentCardsData, buyCardsData } from "./constants";
 
 const MainServices = React.forwardRef((_, ref) => {
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
     (state) => state.cookiePopUp
   );
@@ -22,7 +24,7 @@ const MainServices = React.forwardRef((_, ref) => {
       </ObservableComponentWrapper>
       <Container id={Hook.SERVICES}>
         <HeaderText>Услуги</HeaderText>
-        <Cards data={cardsData} />
+        <Cards data={pathName === Route.RENT ? rentCardsData : buyCardsData} />
       </Container>
     </>
   );
