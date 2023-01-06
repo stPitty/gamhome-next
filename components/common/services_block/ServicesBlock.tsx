@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import UsefulDocsCard from "./UsefulDocsCard";
 import {
   CardType,
   ExmDeal,
@@ -15,26 +14,26 @@ import {
   openFreeDocsWithEmail,
 } from "../../../redux/slicers/modalStateSlicer";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
-import { BlackColor } from "../../../common/enums";
 import { useAppSelector } from "../../../redux/hooks";
 import { TPathName } from "../../../redux/slicers/types";
 import { exmDealDesc, makeDealDesc } from "./constants";
+import UsefulServiceCard from "../../UI/useful_service_card/UsefulServiceCard";
+import UsefulServicesHeader from "../useful_services_header/UsefulServicesHeader";
+import CardsWrapper from "../../UI/cards_wrapper/CardsWrapper";
 
 const ServicesBlock = () => {
   const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
 
   return (
     <Container id={Hook.USEFUL_DOCS}>
-      <HeaderTextContainer>
-        <HeaderText>
-          Полезные
-          <AdaptiveTextDivider sm={true} xs={true} /> документы
-        </HeaderText>
-      </HeaderTextContainer>
+      <UsefulServicesHeader>
+        Полезные
+        <AdaptiveTextDivider sm={true} xs={true} /> документы
+      </UsefulServicesHeader>
       <CardsWrapper>
         {pathName === Route.RENT ? (
           <>
-            <UsefulDocsCard
+            <UsefulServiceCard
               cardType={CardType.PRIMARY}
               headerText={PrimaryContent.HEADER}
               descText={PrimaryContent.DESC}
@@ -42,7 +41,7 @@ const ServicesBlock = () => {
               primaryBtnAction={openBuyCheckListWithEmail}
               secondaryBtnAction={openBuyCheckListInformation}
             />
-            <UsefulDocsCard
+            <UsefulServiceCard
               cardType={CardType.SECONDARY}
               headerText={SecondaryContent.HEADER}
               descText={SecondaryContent.DESC}
@@ -53,7 +52,7 @@ const ServicesBlock = () => {
           </>
         ) : (
           <>
-            <UsefulDocsCard
+            <UsefulServiceCard
               cardType={CardType.PRIMARY}
               headerText={MakeDeal.HEADER}
               buttonText={MakeDeal.BUTTON_TEXT}
@@ -62,7 +61,7 @@ const ServicesBlock = () => {
               secondaryBtnAction={openBuyCheckListInformation}
               contentType="buy"
             />
-            <UsefulDocsCard
+            <UsefulServiceCard
               cardType={CardType.SECONDARY}
               headerText={ExmDeal.HEADER}
               buttonText={ExmDeal.BUTTON_TEXT}
@@ -78,42 +77,6 @@ const ServicesBlock = () => {
     </Container>
   );
 };
-
-const CardsWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  column-gap: 32px;
-  @media screen and (max-width: 1023px) {
-    flex-direction: column;
-    row-gap: 32px;
-  }
-`;
-
-const HeaderTextContainer = styled.div`
-  display: flex;
-  width: 100%;
-  justify-items: flex-start;
-  justify-content: flex-start;
-`;
-
-const HeaderText = styled.p`
-  font-weight: 600;
-  font-size: 40px;
-  line-height: 48px;
-  margin: 0 0 40px;
-  color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 767px) {
-    font-size: 32px;
-    line-height: 40px;
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    margin-left: 13px;
-  }
-  @media screen and (max-width: 374px) {
-    margin-left: 15px;
-  }
-`;
 
 const Container = styled.div`
   padding-top: 112px;

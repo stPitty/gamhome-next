@@ -1,15 +1,18 @@
-import React, { memo } from "react";
-import styled, { css } from "styled-components";
 import {
   CardType,
   ExmDeal,
   MakeDeal,
   PrimaryContent,
   SecondaryContent,
-} from "./enums";
-import StarSVG from "../../../public/assets/svg/StarSVG";
+} from "../../common/services_block/enums";
+import { DescText as DescTextType } from "../modal/types";
+import React, { memo } from "react";
 import { useAppDispatch } from "../../../redux/hooks";
-import { ButtonSize, ButtonType } from "../../UI/button/enums";
+import { ButtonSize, ButtonType } from "../button/enums";
+import StarSVG from "../../../public/assets/svg/StarSVG";
+import DocumentSVG from "../../../public/assets/svg/DocumentSVG";
+import Button from "../button/Button";
+import styled, { css } from "styled-components";
 import {
   BlackColor,
   BrandColor,
@@ -17,24 +20,39 @@ import {
   LightBlueColor,
   WhiteColor,
 } from "../../../common/enums";
-import DocumentSVG from "../../../public/assets/svg/DocumentSVG";
-import Button from "../../UI/button/Button";
-import { DescText as DescTextType } from "../../UI/modal/types";
-import List from "../../UI/list/List";
+import { Consult, Declaration } from "../../buy_page/tax_help/enums";
 
 type Props = {
   cardType: CardType;
-  headerText: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
-  descText?: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
-  buttonText: PrimaryContent | SecondaryContent | MakeDeal | ExmDeal;
+  headerText:
+    | PrimaryContent
+    | SecondaryContent
+    | MakeDeal
+    | ExmDeal
+    | Consult
+    | Declaration;
+  descText?:
+    | PrimaryContent
+    | SecondaryContent
+    | MakeDeal
+    | ExmDeal
+    | Consult
+    | Declaration;
+  buttonText:
+    | PrimaryContent
+    | SecondaryContent
+    | MakeDeal
+    | ExmDeal
+    | Consult
+    | Declaration;
   descArr?: DescTextType[];
   primaryBtnAction?: () => void;
   secondaryBtnAction?: () => void;
   withoutAddBtn?: boolean;
-  contentType?: "rent" | "buy";
+  contentType?: "rent" | "buy" | "tax";
 };
 
-const UsefulDocsCard: React.FC<Props> = ({
+const UsefulServiceCard: React.FC<Props> = ({
   cardType,
   headerText,
   descText,
@@ -232,9 +250,12 @@ const Body = styled.div`
 
 const Container = styled.div<{
   cardType: CardType;
-  contentType: "rent" | "buy";
+  contentType: "rent" | "buy" | "tax";
 }>`
-  height: ${({ contentType }) => contentType === "buy" && "308px"};
+  height: ${({ contentType }) => {
+    if (contentType === "buy") return "308px";
+    if (contentType === "tax") return "348px";
+  }};
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -268,4 +289,4 @@ const Container = styled.div<{
   }
 `;
 
-export default memo(UsefulDocsCard);
+export default memo(UsefulServiceCard);

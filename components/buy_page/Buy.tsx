@@ -22,6 +22,7 @@ import Mortgage from "./mortgage/Mortgage";
 import PropertyValuation from "./roperty_valuation/PropertyValuation";
 import Insurance from "./insurance/Insurance";
 import ServicesBlock from "../common/services_block";
+import TaxHelp from "./tax_help/TaxHelp";
 
 const Buy = () => {
   const router = useRouter();
@@ -85,6 +86,7 @@ const Buy = () => {
         <ServicesBlock />
         <CheckOwnerBlock />
         <MainServices ref={mainServicesLightRef} />
+        <TaxHelp />
         <DiscountsBlock ref={discountPartnersDarkRef} />
         <WebinarBlock ref={webinarLightRef} />
         <MobileButtons />
