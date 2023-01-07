@@ -40,19 +40,21 @@ const Mortgage = () => {
           </SubHeader>
         </HeaderContainer>
         <SliderContainer>
-          <Slider
-            title="Стоимость жилья"
-            min={500_000}
-            max={100_000_000}
-            defaultValue={flatData?.nonFormattedPrice}
-          />
-          <Slider
-            title="Первоначальный взнос"
-            min={minContribution}
-            max={maxContribution}
-            defaultValue={defContribution}
-          />
-          <Slider title="Срок ипотеки" min={1} max={30} defaultValue={20} />
+          <SliderWrapper>
+            <Slider
+              title="Стоимость жилья"
+              min={500_000}
+              max={100_000_000}
+              defaultValue={flatData?.nonFormattedPrice}
+            />
+            <Slider
+              title="Первоначальный взнос"
+              min={minContribution}
+              max={maxContribution}
+              defaultValue={defContribution}
+            />
+            <Slider title="Срок ипотеки" min={1} max={30} defaultValue={20} />
+          </SliderWrapper>
           <StyledButton buttonSize={ButtonSize.LARGE}>
             Связаться с менеджером
           </StyledButton>
@@ -63,9 +65,19 @@ const Mortgage = () => {
   );
 };
 
+const SliderWrapper = styled.div`
+  display: flex;
+  column-gap: 20px;
+`;
+
 const StyledButton = styled(Button)`
   width: 260px;
   height: 64px;
+  white-space: nowrap;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 236px;
+    height: 44px;
+  }
 `;
 
 const SliderContainer = styled.div`
@@ -73,6 +85,8 @@ const SliderContainer = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-top: 8px;
+  column-gap: 32px;
+  align-items: center;
 `;
 
 const SubHeader = styled.div`
@@ -102,6 +116,9 @@ const Container = styled.div`
   flex-direction: column;
   width: 1312px;
   row-gap: 40px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 952px;
+  }
 `;
 
 const Wrapper = styled.div`

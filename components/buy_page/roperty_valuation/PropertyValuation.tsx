@@ -24,10 +24,10 @@ const PropertyValuation = () => {
           </StyledButton>
         </InfoBlock>
         <ImagesContainer>
-          <Image size={1} image="/images/buy_flat_1.png" />
-          <Image size={2} image="/images/buy_flat_2.png" />
-          <Image size={3} image="/images/buy_flat_3.png" />
-          <Image size={4} image="/images/buy_flat_4.png" />
+          <Image size={1} image="/images/buy_flat_1.webp" />
+          <Image size={2} image="/images/buy_flat_2.webp" />
+          <Image size={3} image="/images/buy_flat_3.webp" />
+          <Image size={4} image="/images/buy_flat_4.webp" />
         </ImagesContainer>
       </Container>
     </Wrapper>
@@ -41,6 +41,10 @@ const ImagesContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   overflow: hidden;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 443px;
+    height: 365px;
+  }
 `;
 
 const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
@@ -76,12 +80,49 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
           bottom: 190px;
         `;
     }
-  }}
+  }};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    ${({ size }) => {
+      switch (size) {
+        case 1:
+          return css`
+            width: 176px;
+            height: 227px;
+          `;
+        case 2:
+          return css`
+            width: 252px;
+            height: 184px;
+          `;
+        case 3:
+          return css`
+            width: 246px;
+            height: 181px;
+            position: relative;
+            left: 42px;
+            bottom: 90px;
+          `;
+        case 4:
+          return css`
+            width: 148px;
+            height: 191px;
+            position: relative;
+            right: 31px;
+            bottom: 54px;
+          `;
+      }
+    }}
+  }
 `;
 
 const StyledButton = styled(Button)`
   width: 214px;
   height: 56px;
+  white-space: nowrap;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 190px;
+    height: 44px;
+  }
 `;
 
 const DescText = styled.div`
@@ -96,6 +137,9 @@ const TextContainer = styled.div`
   flex-direction: column;
   row-gap: 16px;
   width: 527px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 377px;
+  }
 `;
 
 const Header = styled.div`
@@ -117,6 +161,9 @@ const Container = styled.div`
   display: flex;
   width: 1247px;
   justify-content: space-between;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 951px;
+  }
 `;
 
 const Wrapper = styled.div`

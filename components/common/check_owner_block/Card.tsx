@@ -7,6 +7,7 @@ import {
   WhiteColor,
 } from "../../../common/enums";
 import { TabBodyData, TabContentType } from "./types";
+import GiftSVG from "../../../public/assets/svg/GiftSVG";
 
 type Props = {
   data: TabBodyData;
@@ -25,8 +26,8 @@ const Card: React.FC<Props> = ({ data }) => {
         <PointsContainer contentType={data.contentType}>
           {data.points.map((el) => {
             return (
-              <PointWrapper key={el.id}>
-                <PointNum>{el.id}</PointNum>
+              <PointWrapper contentType={data.contentType} key={el.id}>
+                <PointNum>{el.gift ? <GiftSVG /> : el.id}</PointNum>
                 <PointTextContainer>
                   <PointHeader>{el.header}</PointHeader>
                   <DescText contentType={data.contentType}>{el.desc}</DescText>
@@ -47,8 +48,16 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   justify-content: flex-start;
   width: 592px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: ${({ contentType }) =>
-      contentType === "checkOwner" ? "593px" : "444px"};
+    width: ${({ contentType }) => {
+      switch (contentType) {
+        case "checkOwner":
+          return "593px";
+        case "jurAnalysis":
+          return "704px";
+        default:
+          return "444px";
+      }
+    }};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 400px;
@@ -82,7 +91,6 @@ const PointNum = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 4px 8px;
   min-width: 32px;
   height: 32px;
   border: 2px solid ${BrandColor.BRAND};
@@ -94,12 +102,15 @@ const PointNum = styled.div`
   color: ${BrandColor.BRAND};
 `;
 
-const PointWrapper = styled.div`
+const PointWrapper = styled.div<{ contentType: TabContentType }>`
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
   column-gap: 12px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ contentType }) => contentType === "jurAnalysis" && "423px"};
+  }
 `;
 
 const PointsContainer = styled.div<{ contentType: TabContentType }>`
@@ -110,8 +121,11 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
   margin-top: 32px;
   width: 485px;
   row-gap: 24px;
+  flex-wrap: wrap;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: ${({ contentType }) => contentType === "checkObject" && "444px"};
+    height: ${({ contentType }) => contentType === "jurAnalysis" && "266px"};
+    column-gap: ${({ contentType }) => contentType === "jurAnalysis" && "32px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: ${({ contentType }) =>
@@ -139,6 +153,14 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
       return "468px";
     }
   }};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ contentType, isHeader }) => {
+      if (contentType === "jurAnalysis") {
+        if (isHeader) return "704px";
+        return "340px";
+      }
+    }};
+  }
 `;
 
 const HeaderText = styled.p`
@@ -180,8 +202,12 @@ const MainContentWrapper = styled.div<{
   background-position: ${({ contentType }) =>
     contentType === "jurAnalysis" && "672px 259px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    background-size: 436px;
+    background-size: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "368px" : "436px"};
     width: 952px;
+    height: ${({ contentType }) => contentType === "jurAnalysis" && "846px"};
+    background-position: ${({ contentType }) =>
+      contentType === "jurAnalysis" && "center 554px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     background-size: ${({ contentType }) =>

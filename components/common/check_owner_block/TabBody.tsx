@@ -1,4 +1,4 @@
-import { TabBodyData } from "./types";
+import { TabBodyData, TabContentType } from "./types";
 import React, { memo } from "react";
 import styled from "styled-components";
 import { LightBlueColor } from "../../../common/enums";
@@ -11,14 +11,14 @@ type Props = {
 
 const TabBody: React.FC<Props> = ({ data }) => {
   return (
-    <Container>
+    <Container contentType={data.contentType}>
       <Card data={data} />
       <Conditions data={data} />
     </Container>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,6 +27,7 @@ const Container = styled.div`
   border-radius: 48px;
   padding: 64px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    height: ${({ contentType }) => contentType === "jurAnalysis" && "1262px"};
     padding: 40px 36px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {

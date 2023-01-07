@@ -21,6 +21,8 @@ import {
   WhiteColor,
 } from "../../../common/enums";
 import { Consult, Declaration } from "../../buy_page/tax_help/enums";
+import HomeSVG from "../../../public/assets/svg/HomeSVG";
+import FolderSVG from "../../../public/assets/svg/FolderSVG";
 
 type Props = {
   cardType: CardType;
@@ -78,27 +80,42 @@ const UsefulServiceCard: React.FC<Props> = ({
 
   return (
     <Container cardType={cardType} contentType={contentType}>
-      <Body>
-        <ColumnIconWrapper cardType={cardType}>
-          {cardType === CardType.PRIMARY ? <StarSVG /> : <DocumentSVG />}
-        </ColumnIconWrapper>
-        <InfoWrapper>
-          <HeaderText cardType={cardType}>{headerText}</HeaderText>
-          {descText && <DescText cardType={cardType}>{descText}</DescText>}
-          {descArr && (
-            <StyledUl>
-              {descArr.map((el) => {
-                return (
-                  <StyledLI key={el.id}>
-                    <ListMarker cardType={cardType} />
-                    <Text cardType={cardType}>{el.text}</Text>
-                  </StyledLI>
-                );
-              })}
-            </StyledUl>
-          )}
-        </InfoWrapper>
-        <ButtonsContainer>
+      <Body contentType={contentType}>
+        <InfoContainer contentType={contentType}>
+          <ColumnIconWrapper contentType={contentType} cardType={cardType}>
+            {cardType === CardType.PRIMARY ? (
+              contentType === "tax" ? (
+                <HomeSVG />
+              ) : (
+                <StarSVG />
+              )
+            ) : contentType === "buy" ? (
+              <FolderSVG />
+            ) : (
+              <DocumentSVG />
+            )}
+          </ColumnIconWrapper>
+          <InfoWrapper>
+            <HeaderText contentType={contentType} cardType={cardType}>
+              {headerText}
+            </HeaderText>
+            {descText && <DescText cardType={cardType}>{descText}</DescText>}
+            {descArr && (
+              <StyledUl>
+                {descArr.map((el) => {
+                  return (
+                    <StyledLI key={el.id}>
+                      <ListMarker cardType={cardType} />
+                      <Text cardType={cardType}>{el.text}</Text>
+                    </StyledLI>
+                  );
+                })}
+              </StyledUl>
+            )}
+          </InfoWrapper>
+        </InfoContainer>
+
+        <ButtonsContainer contentType={contentType}>
           <StyledBtnPrim
             cardType={cardType}
             buttonSize={ButtonSize.MEDIUM}
@@ -118,12 +135,32 @@ const UsefulServiceCard: React.FC<Props> = ({
           )}
         </ButtonsContainer>
       </Body>
-      <RowIconWrapper cardType={cardType}>
-        {cardType === CardType.PRIMARY ? <StarSVG /> : <DocumentSVG />}
+      <RowIconWrapper contentType={contentType} cardType={cardType}>
+        {cardType === CardType.PRIMARY ? (
+          contentType === "tax" ? (
+            <HomeSVG />
+          ) : (
+            <StarSVG />
+          )
+        ) : contentType === "buy" ? (
+          <FolderSVG />
+        ) : (
+          <DocumentSVG />
+        )}
       </RowIconWrapper>
     </Container>
   );
 };
+
+const InfoContainer = styled.div<{
+  contentType: "rent" | "buy" | "tax";
+}>`
+  display: flex;
+  flex-direction: column;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ contentType }) => contentType === "tax" && "396px"};
+  }
+`;
 
 const InfoWrapper = styled.div`
   display: flex;
@@ -140,7 +177,7 @@ const Text = styled.div<{ cardType: CardType }>`
 `;
 
 const ListMarker = styled.div<{ cardType: CardType }>`
-  margin: 10px 10px;
+  margin: 10px 5px 10px 0;
   min-height: 4px;
   min-width: 4px;
   border-radius: 4px;
@@ -180,26 +217,40 @@ const IconWrapper = styled.div<{ cardType: CardType }>`
     cardType === CardType.PRIMARY ? WhiteColor.WHITE : LightBlueColor.LB_100};
 `;
 
-const RowIconWrapper = styled(IconWrapper)`
+const RowIconWrapper = styled(IconWrapper)<{
+  contentType: "rent" | "buy" | "tax";
+}>`
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: ${({ contentType }) =>
+      (contentType === "buy" || contentType === "tax") && "none"};
+  }
   @media screen and (max-width: 767px) {
     display: none;
   }
 `;
 
-const ColumnIconWrapper = styled(IconWrapper)`
+const ColumnIconWrapper = styled(IconWrapper)<{
+  contentType: "rent" | "buy" | "tax";
+}>`
   display: none;
+  margin-bottom: 16px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: ${({ contentType }) =>
+      (contentType === "buy" || contentType === "tax") && "flex"};
+  }
   @media screen and (max-width: 767px) {
     display: flex;
-    margin-bottom: 16px;
   }
 `;
 
-const ButtonsContainer = styled.div`
+const ButtonsContainer = styled.div<{
+  contentType: "rent" | "buy" | "tax";
+}>`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   column-gap: 6px;
-  margin-top: 32px;
+  margin-top: ${({ contentType }) => contentType !== "tax" && "32px"};
   width: fit-content;
   @media screen and (max-width: 767px) {
     flex-direction: column;
@@ -217,7 +268,10 @@ const DescText = styled.p<{ cardType: CardType }>`
     cardType === CardType.PRIMARY ? WhiteColor.WHITE_80 : BlackColor.BLACK_80};
 `;
 
-const HeaderText = styled.div<{ cardType: CardType }>`
+const HeaderText = styled.div<{
+  cardType: CardType;
+  contentType: "rent" | "buy" | "tax";
+}>`
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
@@ -225,17 +279,26 @@ const HeaderText = styled.div<{ cardType: CardType }>`
     cardType === CardType.PRIMARY
       ? WhiteColor.WHITE
       : BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ contentType, cardType }) => {
+      if (contentType === "tax") {
+        if (cardType === CardType.PRIMARY) return "370px";
+        return "340px";
+      }
+    }}
 `;
 
-const Body = styled.div`
+const Body = styled.div<{
+  contentType: "rent" | "buy" | "tax";
+}>`
   width: 480px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 300px;
-    height: 252px;
+    width: ${({ contentType }) => (contentType === "buy" ? "396px" : "300px")};
+    height: 100%;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 528px;
@@ -271,7 +334,11 @@ const Container = styled.div<{
     `};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 460px;
-    height: 316px;
+    height: ${({ contentType }) => {
+      if (contentType === "buy") return "412px";
+      if (contentType === "tax") return "436px";
+      return "316px";
+    }};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;

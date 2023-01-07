@@ -50,7 +50,13 @@ const Cards: React.FC<Props> = ({ data }) => {
               )}
             </TagContainer>
             <HeaderWrapper cardId={el.id}>
-              <HeaderText cardType={el.cardType}>{el.headerText}</HeaderText>
+              <HeaderText
+                cardId={el.id}
+                isBuy={pathName !== Route.RENT}
+                cardType={el.cardType}
+              >
+                {el.headerText}
+              </HeaderText>
               <CostText cardType={el.cardType}>{el.cost}</CostText>
               <DescText cardType={el.cardType}>{el.descText}</DescText>
             </HeaderWrapper>
@@ -208,7 +214,11 @@ const HeaderWrapper = styled.div<{ cardId: number }>`
   }
 `;
 
-const HeaderText = styled.p<{ cardType: CardType }>`
+const HeaderText = styled.p<{
+  cardType: CardType;
+  cardId: number;
+  isBuy: boolean;
+}>`
   font-weight: 600;
   font-size: 24px;
   line-height: 32px;
@@ -217,6 +227,10 @@ const HeaderText = styled.p<{ cardType: CardType }>`
       ? BlackColor.BLACK_SECONDARY
       : WhiteColor.WHITE};
   margin: 0;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: ${({ cardId, isBuy }) =>
+      isBuy && (cardId === 2 || cardId === 3) && "125px"};
+  }
 `;
 
 const TagContainer = styled.div<{ cardId: number }>`
@@ -282,6 +296,7 @@ const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 296px;
     height: 1172px;
+    height: ${({ isRent }) => (isRent ? "1172px" : "1692px")};
   }
   @media screen and (max-width: 1023px) {
     height: auto;

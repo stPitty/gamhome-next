@@ -12,15 +12,18 @@ const Insurance = () => {
     <Wrapper>
       <Container>
         <ImagesContainer>
-          <BankImage image="/assets/icons/absolute_bank_grey.png" />
-          <BankImage image="/assets/icons/soglasye_bank_grey.png" />
-          <BankImage image="/assets/icons/strahovaya_companya_grey.png" />
-          <BankImage image="/assets/icons/vsk_grey.png" />
-          <BankImage image="/assets/icons/renessans_grey.png" />
-          <BankImage image="/assets/icons/max_grey.png" />
-          <BankImage image="/assets/icons/alfa_grey.png" />
-          <BankImage image="/assets/icons/sogaz_grey.png" />
-          <BankImage image="/assets/icons/zetta_grey.png" />
+          <BankImage image="/assets/icons/absolute_bank_grey.webp" />
+          <BankImage image="/assets/icons/soglasye_bank_grey.webp" />
+          <BankImage image="/assets/icons/strahovaya_companya_grey.webp" />
+          <BankImage image="/assets/icons/vsk_grey.webp" />
+          <BankImage image="/assets/icons/renessans_grey.webp" />
+          <BankImage image="/assets/icons/max_grey.webp" />
+          <BankImage image="/assets/icons/alfa_grey.webp" />
+          <BankImage image="/assets/icons/sogaz_grey.webp" />
+          <BankImage
+            image="/assets/icons/zetta_grey.webp"
+            lgVisibility={true}
+          />
         </ImagesContainer>
         <InfoBlock>
           <InfoContainer>
@@ -135,13 +138,22 @@ const InfoBlock = styled.div`
   row-gap: 40px;
   width: 528px;
   height: 404px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    min-width: 459px;
+    height: 452px;
+  }
 `;
 
-const BankImage = styled.div<{ image: string }>`
+const BankImage = styled.div<{ image: string; lgVisibility?: boolean }>`
   width: 183px;
   height: 47px;
   background-image: url(${({ image }) => image});
   background-size: cover;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    display: ${({ lgVisibility }) => lgVisibility && "none"};
+    width: 166px;
+    height: 35px;
+  }
 `;
 
 const ImagesContainer = styled.div`
@@ -150,6 +162,10 @@ const ImagesContainer = styled.div`
   gap: 31px;
   width: 611px;
   justify-content: center;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    row-gap: 32px;
+    column-gap: 28px;
+  }
 `;
 
 const Container = styled.div`
@@ -157,6 +173,9 @@ const Container = styled.div`
   width: 1247px;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 952px;
+  }
 `;
 
 const Wrapper = styled.div`

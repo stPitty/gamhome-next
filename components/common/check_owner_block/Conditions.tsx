@@ -1,6 +1,6 @@
 import { TabBodyData, TabContentType } from "./types";
 import React, { memo, useEffect, useMemo } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import DoneSVG from "../../../public/assets/svg/DoneSVG";
 import Button from "../../UI/button/Button";
@@ -30,7 +30,7 @@ const Conditions: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <Container>
+    <Container contentType={data.contentType}>
       <Wrapper contentType={data.contentType}>
         <Header>{data.additionalInfo.header}</Header>
         <ConditionsContainer contentType={data.contentType}>
@@ -49,7 +49,7 @@ const Conditions: React.FC<Props> = ({ data }) => {
           })}
         </ConditionsContainer>
       </Wrapper>
-      <ButtonGroupContainer>
+      <ButtonGroupContainer contentType={data.contentType}>
         <StyledButton onClick={handleOrderClick} buttonSize={ButtonSize.MEDIUM}>
           Заказать за {data.additionalInfo.cost} ₽
         </StyledButton>
@@ -65,21 +65,27 @@ const Conditions: React.FC<Props> = ({ data }) => {
 };
 
 const StyledButton = styled(Button)`
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    height: 44px;
-  }
-  @media screen and (max-width: 374px) {
-    height: 44px;
-  }
+  height: 44px;
 `;
 
-const ButtonGroupContainer = styled.div`
+const ButtonGroupContainer = styled.div<{ contentType: TabContentType }>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   width: 218px;
   row-gap: 12px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    ${({ contentType }) => {
+      if (contentType === "jurAnalysis") {
+        return css`
+          flex-direction: row;
+          width: 448px;
+          column-gap: 12px;
+        `;
+      }
+    }}
+  }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     flex-direction: row;
     width: 100%;
@@ -115,7 +121,8 @@ const ConditionText = styled.p<{ contentType: TabContentType }>`
   width: ${({ contentType }) =>
     contentType === "jurAnalysis" ? "293px" : "274px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 265px;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "394px" : "265px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
     width: 288px;
@@ -133,7 +140,8 @@ const TextContainer = styled.div<{ contentType: TabContentType }>`
   width: ${({ contentType }) =>
     contentType === "jurAnalysis" ? "323px" : "303px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 295px;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "424px" : "295px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
     width: 318px;
@@ -153,8 +161,10 @@ const ConditionsContainer = styled.div<{ contentType: TabContentType }>`
   height: ${({ contentType }) =>
     contentType === "jurAnalysis" ? "136px" : "112px"};
   @media screen and (max-width: 1439px) and (min-width: 768px) {
-    column-gap: 20px;
-    height: 152px;
+    column-gap: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "32px" : "20px"};
+    height: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "168px" : "152px"};
   }
   @media screen and (max-width: 767px) {
     flex-wrap: nowrap;
@@ -187,7 +197,8 @@ const Wrapper = styled.div<{ contentType: TabContentType }>`
   width: ${({ contentType }) =>
     contentType === "jurAnalysis" ? "988px" : "909px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 610px;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "880px" : "610px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 656px;
@@ -200,7 +211,7 @@ const Wrapper = styled.div<{ contentType: TabContentType }>`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ contentType: TabContentType }>`
   display: flex;
   align-items: center;
   justify-items: center;
@@ -208,6 +219,15 @@ const Container = styled.div`
   margin-top: 32px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 24px;
+    ${({ contentType }) => {
+      if (contentType === "jurAnalysis") {
+        return css`
+          flex-direction: column;
+          height: 304px;
+          justify-content: space-between;
+        `;
+      }
+    }}
   }
   @media screen and (max-width: 1023px) {
     flex-direction: column;

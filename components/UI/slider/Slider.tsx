@@ -147,6 +147,9 @@ const Container = styled.div`
   border-width: 1px 1px 0 1px;
   border-style: solid;
   border-color: ${BlackColor.BLACK_32};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 215px;
+  }
 `;
 
 export default memo(Slider);

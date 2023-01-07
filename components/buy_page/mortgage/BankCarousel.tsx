@@ -3,10 +3,8 @@ import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
 import { useEffect, useRef, useState } from "react";
 import { WindowSize } from "../../../redux/slicers/enums";
-import {
-  decrement,
-  increment,
-} from "../../../redux/slicers/photoPositionSlicer";
+import { useAppSelector } from "../../../redux/hooks";
+import { TWindowSize } from "../../../redux/slicers/types";
 
 const BankCarousel = () => {
   const [translate, setTranslate] = useState<number>(0);
@@ -14,38 +12,72 @@ const BankCarousel = () => {
 
   const containerRef = useRef(null);
 
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
   const handleContainerWheel = (e: any) => {
     e.preventDefault();
+    let quantifier: number;
+    let width: number;
+    if (windowSize === WindowSize.XL) {
+      quantifier = 246;
+      width = 1348;
+    }
+    if (windowSize === WindowSize.LG) {
+      quantifier = 218;
+      width = 1409;
+    }
     setTranslate((prev) => {
-      if (e.deltaY > 0 && prev < 1348) {
-        return prev + 246;
+      if (e.deltaY > 0 && prev < width) {
+        return prev + quantifier;
       }
       if (e.deltaY < 0 && prev > 0) {
-        return prev - 246;
+        return prev - quantifier;
       }
       return prev;
     });
+
+    // if (windowSize === WindowSize.LG) {
+    //   setTranslate((prev) => {
+    //     if (e.deltaY > 0 && prev < 1348) {
+    //       return prev + 218;
+    //     }
+    //     if (e.deltaY < 0 && prev > 0) {
+    //       return prev - 218;
+    //     }
+    //     return prev;
+    //   });
+    // }
   };
 
   useEffect(() => {
-    (containerRef.current! as HTMLDivElement).addEventListener(
+    (containerRef.current! as HTMLDivElement)?.removeEventListener(
+      "wheel",
+      handleContainerWheel
+    );
+    setTranslate(0);
+    (containerRef.current! as HTMLDivElement)?.addEventListener(
       "wheel",
       handleContainerWheel
     );
 
     return () =>
-      (containerRef.current! as HTMLDivElement).removeEventListener(
+      (containerRef.current! as HTMLDivElement)?.removeEventListener(
         "wheel",
         handleContainerWheel
       );
-  }, []);
+  }, [windowSize]);
 
   const handleControlClick = (type: "left" | "right") => () => {
+    let quantifier: number;
+    if (windowSize === WindowSize.XL) quantifier = 246;
+    if (windowSize === WindowSize.LG) quantifier = 218;
     if (type === "left" && translate > 0) {
-      setTranslate((prev) => prev - 246);
+      setTranslate((prev) => prev - quantifier);
     }
     if (type === "right" && translate < 1348) {
-      setTranslate((prev) => prev + 246);
+      setTranslate((prev) => prev + quantifier);
     }
   };
 
@@ -79,147 +111,147 @@ const BankCarousel = () => {
           onTouchEnd={handleMouseUp as any}
         >
           <BankItem>
-            <BankImage image="/assets/icons/fora_bank.png" />
+            <BankImage image="/assets/icons/fora_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/raifaizen_bank.png" />
+            <BankImage image="/assets/icons/raifaizen_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/unicredit_bank.png" />
+            <BankImage image="/assets/icons/unicredit_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/dom_bank.png" />
+            <BankImage image="/assets/icons/dom_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/absolut_bank.png" />
+            <BankImage image="/assets/icons/absolut_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/zenit_bank.png" />
+            <BankImage image="/assets/icons/zenit_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/mkb_bank.png" />
+            <BankImage image="/assets/icons/mkb_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/metall_bank.png" />
+            <BankImage image="/assets/icons/metall_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/atb_bank.png" />
+            <BankImage image="/assets/icons/atb_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/bspb_bank.png" />
+            <BankImage image="/assets/icons/bspb_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/smp_bank.png" />
+            <BankImage image="/assets/icons/smp_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/otkrytye_bank.png" />
+            <BankImage image="/assets/icons/otkrytye_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/sber_bank.png" />
+            <BankImage image="/assets/icons/sber_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/alfa_bank.png" />
+            <BankImage image="/assets/icons/alfa_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/gazprom_bank.png" />
+            <BankImage image="/assets/icons/gazprom_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/vtb_bank.png" />
+            <BankImage image="/assets/icons/vtb_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/rosbank_bank.png" />
+            <BankImage image="/assets/icons/rosbank_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/tkb_bank.png" />
+            <BankImage image="/assets/icons/tkb_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/bjf_bank.png" />
+            <BankImage image="/assets/icons/bjf_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/rh_bank.png" />
+            <BankImage image="/assets/icons/rh_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
             </CostContainer>
           </BankItem>
           <BankItem>
-            <BankImage image="/assets/icons/ps_bank.png" />
+            <BankImage image="/assets/icons/ps_bank.webp" />
             <CostContainer>
               <Percent>10,8%</Percent>
               <Price>97 543 ₽</Price>
@@ -237,6 +269,9 @@ const BankCarousel = () => {
 const BankWrapper = styled.div`
   width: 1216px;
   overflow-x: hidden;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 856px;
+  }
 `;
 
 const Price = styled.div`
@@ -265,6 +300,10 @@ const BankImage = styled.div<{ image: string }>`
   height: 50px;
   background-image: url(${({ image }) => image});
   background-size: cover;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 160px;
+    height: 40px;
+  }
 `;
 
 const BankItem = styled.div`
@@ -284,6 +323,10 @@ const BankItem = styled.div`
   &:active {
     background-color: ${LightBlueColor.LB_300};
   }
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 202px;
+    height: 152px;
+  }
 `;
 
 const BankContainer = styled.div`
@@ -293,6 +336,9 @@ const BankContainer = styled.div`
   width: 2696px;
   transition: 0.15s linear;
   touch-action: pan-x;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    width: 2382px;
+  }
 `;
 
 const ChevronIcon = styled(ChevronSVG)<{ type: "left" | "right" }>`
