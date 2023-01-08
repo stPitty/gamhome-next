@@ -16,7 +16,7 @@ type Props = {
 const Card: React.FC<Props> = ({ data }) => {
   return (
     <MainContentWrapper background={data.image} contentType={data.contentType}>
-      <ContentTextContainer>
+      <ContentTextContainer contentType={data.contentType}>
         <HeaderContainer contentType={data.contentType}>
           <HeaderText>{data.name}</HeaderText>
           <DescText isHeader={true} contentType={data.contentType}>
@@ -176,6 +176,14 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
       }
     }};
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: ${({ contentType, isHeader }) => {
+      if (contentType === "jurAnalysis") {
+        if (isHeader) return "301px";
+        return "250px";
+      }
+    }};
+  }
 `;
 
 const HeaderText = styled.p`
@@ -190,13 +198,16 @@ const HeaderText = styled.p`
   }
 `;
 
-const ContentTextContainer = styled.div`
+const ContentTextContainer = styled.div<{
+  contentType: TabContentType;
+}>`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
   @media screen and (max-width: 767px) {
-    row-gap: 155px;
+    row-gap: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "180px" : "155px"};
   }
 `;
 
@@ -250,9 +261,21 @@ const MainContentWrapper = styled.div<{
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 24px;
     width: 349px;
-    background-position: ${({ contentType }) =>
-      contentType === "checkObject" ? "center 200px" : "center 245px"};
-    background-size: 235px;
+    background-position: ${({ contentType }) => {
+      if (contentType === "checkObject") {
+        return "center 200px";
+      }
+      if (contentType === "jurAnalysis") {
+        return "center 384px";
+      }
+      return "center 245px";
+    }};
+    background-size: ${({ contentType }) => {
+      if (contentType === "jurAnalysis") {
+        return "195px";
+      }
+      return "235px";
+    }};
   }
   @media screen and (max-width: 374px) {
     padding: 24px;

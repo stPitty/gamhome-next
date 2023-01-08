@@ -7,7 +7,7 @@ import PeopleSVG from "../../../public/assets/svg/PeopleSVG";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import InfiniteLooper from "../../UI/infinite_looper/InfiniteLooper";
-import BanlBlock from "../mortgage/BanlBlock";
+import BanlBlock from "../mortgage/BankBlock";
 
 const Insurance = () => {
   return (
@@ -63,6 +63,7 @@ const Insurance = () => {
                 </LIText>
               </LIContainer>
             </ListContainer>
+            <MobileBankBlock />
           </InfoContainer>
           <StyledButton buttonSize={ButtonSize.LARGE}>
             Оставить заявку
@@ -73,8 +74,16 @@ const Insurance = () => {
   );
 };
 
+const MobileBankBlock = styled(BanlBlock)`
+  display: none;
+  margin-top: 18px;
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
+
 const StyledBankBlock = styled(BanlBlock)`
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: none;
   }
 `;
@@ -93,6 +102,9 @@ const StyledButton = styled(Button)`
   width: 167px;
   height: 44px;
   padding: 0;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const LIText = styled.div`
@@ -157,6 +169,11 @@ const InfoBlock = styled.div`
     width: 568px;
     height: 380px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: fit-content;
+    row-gap: 48px;
+  }
 `;
 
 const Container = styled.div`
@@ -173,6 +190,10 @@ const Container = styled.div`
     align-items: flex-start;
     row-gap: 42px;
   }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    width: 349px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -182,6 +203,9 @@ const Wrapper = styled.div`
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 64px;
   }
 `;
 

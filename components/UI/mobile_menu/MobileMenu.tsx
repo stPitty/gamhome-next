@@ -175,7 +175,7 @@ const Wrapper = styled.div<{
     return "0";
   }};
   width: 100%;
-  z-index: 5;
+  z-index: 6;
   background-color: ${WhiteColor.WHITE};
   padding: ${({ isOpen }) => isOpen && "16px 13px 32px"};
   @media screen and (max-width: 767px) {

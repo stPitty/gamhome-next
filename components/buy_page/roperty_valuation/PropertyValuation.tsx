@@ -29,10 +29,21 @@ const PropertyValuation = () => {
           <Image size={3} image="/images/buy_flat_3.webp" />
           <Image size={4} image="/images/buy_flat_4.webp" />
         </ImagesContainer>
+        <BottomBtn>Заказать от 2 500 ₽</BottomBtn>
       </Container>
     </Wrapper>
   );
 };
+
+const BottomBtn = styled(Button)`
+  display: none;
+  height: 44px;
+  margin-top: 8px;
+  width: 100%;
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
 
 const ImagesContainer = styled.div`
   display: flex;
@@ -48,6 +59,10 @@ const ImagesContainer = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 277px;
     height: 278px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    height: 288px;
   }
 `;
 
@@ -158,6 +173,39 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
       }
     }}
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    border-radius: 13px;
+    ${({ size }) => {
+      switch (size) {
+        case 1:
+          return css`
+            width: 138px;
+            height: 179px;
+          `;
+        case 2:
+          return css`
+            width: 198px;
+            height: 145px;
+          `;
+        case 3:
+          return css`
+            width: 193px;
+            height: 142px;
+            position: relative;
+            left: 35px;
+            bottom: 68px;
+          `;
+        case 4:
+          return css`
+            width: 116px;
+            height: 151px;
+            position: relative;
+            bottom: 42px;
+            right: 24px;
+          `;
+      }
+    }}
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -167,6 +215,9 @@ const StyledButton = styled(Button)`
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 190px;
     height: 44px;
+  }
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 
@@ -188,6 +239,9 @@ const TextContainer = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 360px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
 `;
 
 const Header = styled.div`
@@ -195,7 +249,7 @@ const Header = styled.div`
   font-size: 40px;
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -207,6 +261,9 @@ const InfoBlock = styled.div`
   height: 100%;
   justify-content: center;
   row-gap: 40px;
+  @media screen and (max-width: 767px) {
+    height: fit-content;
+  }
 `;
 
 const Container = styled.div`
@@ -220,6 +277,11 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    flex-direction: column;
+    row-gap: 40px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -229,6 +291,9 @@ const Wrapper = styled.div`
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 64px;
   }
 `;
 

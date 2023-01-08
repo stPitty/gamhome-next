@@ -196,6 +196,7 @@ const jurData: TabBodyData = {
         xlPriority: 1,
         lgPriority: 1,
         mdPriority: 1,
+        smPriority: 1,
       },
       {
         id: 2,
@@ -203,6 +204,7 @@ const jurData: TabBodyData = {
         xlPriority: 2,
         lgPriority: 2,
         mdPriority: 2,
+        smPriority: 2,
       },
       {
         id: 3,
@@ -210,6 +212,7 @@ const jurData: TabBodyData = {
         xlPriority: 3,
         lgPriority: 5,
         mdPriority: 4,
+        smPriority: 4,
       },
       {
         id: 4,
@@ -217,6 +220,7 @@ const jurData: TabBodyData = {
         xlPriority: 4,
         lgPriority: 6,
         mdPriority: 5,
+        smPriority: 5,
       },
       {
         id: 5,
@@ -224,6 +228,7 @@ const jurData: TabBodyData = {
         xlPriority: 5,
         lgPriority: 7,
         mdPriority: 3,
+        smPriority: 3,
       },
       {
         id: 6,
@@ -231,6 +236,7 @@ const jurData: TabBodyData = {
         xlPriority: 6,
         lgPriority: 4,
         mdPriority: 7,
+        smPriority: 7,
       },
       {
         id: 7,
@@ -238,6 +244,7 @@ const jurData: TabBodyData = {
         xlPriority: 7,
         lgPriority: 3,
         mdPriority: 6,
+        smPriority: 6,
       },
     ],
     cost: "24 990",

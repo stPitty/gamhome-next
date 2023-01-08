@@ -36,6 +36,7 @@ const Container = styled.div<{ contentType: TabContentType }>`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 24px 13px;
     border-radius: 24px;
+    height: ${({ contentType }) => contentType === "jurAnalysis" && "1871px"};
   }
   @media screen and (max-width: 374px) {
     padding: 24px 16px;

@@ -20,6 +20,12 @@ const carouselHandler = (windowSize: WindowSize | null) => {
       width: 1424,
     };
   }
+  if (windowSize === WindowSize.SM) {
+    return {
+      quantifier: 208,
+      width: 3952,
+    };
+  }
 };
 
 const handleControlClick =

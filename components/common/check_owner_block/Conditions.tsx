@@ -124,9 +124,13 @@ const ConditionText = styled.p<{ contentType: TabContentType }>`
     width: ${({ contentType }) =>
       contentType === "jurAnalysis" ? "394px" : "265px"};
   }
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
     min-width: ${({ contentType }) =>
       contentType === "jurAnalysis" ? "293px" : "288px"};
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    min-width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "319px" : "288px"};
   }
   @media screen and (max-width: 374px) {
     width: 238px;

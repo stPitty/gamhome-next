@@ -259,6 +259,10 @@ const BankWrapper = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 592px;
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    overflow: visible;
+  }
 `;
 
 const Price = styled.div`
@@ -287,7 +291,7 @@ const BankImage = styled.div<{ image: string }>`
   height: 50px;
   background-image: url(${({ image }) => image});
   background-size: cover;
-  @media screen and (max-width: 1439px) and (min-width: 768px) {
+  @media screen and (max-width: 1439px) {
     width: 160px;
     height: 40px;
   }
@@ -310,13 +314,17 @@ const BankItem = styled.div`
   &:active {
     background-color: ${LightBlueColor.LB_300};
   }
+  @media screen and (max-width: 1439px) {
+    height: 152px;
+  }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 202px;
-    height: 152px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 187px;
-    height: 152px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 200px;
   }
 `;
 
@@ -334,7 +342,8 @@ const BankContainer = styled.div`
     width: 2233px;
   }
   @media screen and (max-width: 767px) {
-    height: 152px;
+    gap: 8px;
+    width: 4360px;
   }
 `;
 

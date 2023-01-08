@@ -302,14 +302,16 @@ const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
     height: auto;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: 448px;
     width: ${({ isRent }) => (isRent ? "448px" : "600px")};
+    padding: ${({ isRent }) => !isRent && "32px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
+    padding: ${({ isRent }) => !isRent && "20px"};
   }
   @media screen and (max-width: 374px) {
     width: 288px;
+    padding: ${({ isRent }) => !isRent && "16px"};
   }
 `;
 
