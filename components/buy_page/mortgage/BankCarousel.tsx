@@ -333,6 +333,9 @@ const BankContainer = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 2233px;
   }
+  @media screen and (max-width: 767px) {
+    height: 152px;
+  }
 `;
 
 const ChevronIcon = styled(ChevronSVG)<{ type: "left" | "right" }>`
@@ -351,6 +354,9 @@ const ControlContainer = styled.div`
   width: 36px;
   height: 36px;
   cursor: pointer;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Container = styled.div`

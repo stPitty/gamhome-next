@@ -4,8 +4,10 @@ import { ButtonSize } from "../../UI/button/enums";
 import { BlackColor, Font } from "../../../common/enums";
 import React, { memo } from "react";
 import { Concierge, Owner, SafetyDeal } from "./enums";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
 import Link from "next/link";
+import { useAppSelector } from "../../../redux/hooks";
+import { TPathName } from "../../../redux/slicers/types";
 
 type Props = {
   headerText: Concierge | Owner | SafetyDeal;
@@ -22,12 +24,20 @@ const ServiceDesc: React.FC<Props> = ({
   cardType,
   btnLink,
 }) => {
+  const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
   return (
-    <Container cardType={cardType} image={image}>
-      <InfoWrapper cardType={cardType}>
+    <Container
+      cardType={cardType}
+      image={image}
+      isRent={pathName === Route.RENT}
+    >
+      <InfoWrapper isRent={pathName === Route.RENT} cardType={cardType}>
         <TextWrapper>
           <HeaderText>{headerText}</HeaderText>
-          <DescText cardType={cardType}>{desc}</DescText>
+          <DescText isRent={pathName === Route.RENT} cardType={cardType}>
+            {desc}
+          </DescText>
         </TextWrapper>
         <Link href={"#" + btnLink} scroll={false}>
           <StyledButton buttonSize={ButtonSize.MEDIUM}>Подробнее</StyledButton>
@@ -55,18 +65,32 @@ const StyledButton = styled(Button)`
 
 const DescText = styled.p<{
   cardType: "concierge" | "owner" | "safetyDeal";
+  isRent: boolean;
 }>`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
-  width: 448px;
+  width: ${({ cardType, isRent }) =>
+    !isRent && cardType === "concierge" ? "430px" : "448px"};
   margin: 0;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
-    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "370px")};
+    width: ${({ cardType, isRent }) => {
+      if (cardType === "concierge") {
+        if (!isRent) return "350px";
+        return "330px";
+      }
+      return "370px";
+    }};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: ${({ cardType }) => (cardType === "concierge" ? "330px" : "349px")};
+    width: ${({ cardType, isRent }) => {
+      if (cardType === "concierge") {
+        if (!isRent) return "349px";
+        return "330px";
+      }
+      return "349px";
+    }};
   }
   @media screen and (max-width: 374px) {
     width: 288px;
@@ -80,10 +104,14 @@ const HeaderText = styled.p`
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
   white-space: pre-wrap;
+  @media screen and (max-width: 767px) {
+    white-space: unset;
+  }
 `;
 
 const InfoWrapper = styled.div<{
   cardType: "concierge" | "owner" | "safetyDeal";
+  isRent: boolean;
 }>`
   display: flex;
   flex-direction: column;
@@ -94,8 +122,14 @@ const InfoWrapper = styled.div<{
   }
   @media screen and (max-width: 767px) {
     height: 100%;
-    row-gap: ${({ cardType }) =>
-      cardType === "concierge" ? "156px" : "178px"};
+    row-gap: ${({ cardType, isRent }) => {
+      if (cardType === "concierge") {
+        if (!isRent) return "210px";
+        return "156px";
+      }
+      if (!isRent) return "215px";
+      return "178px";
+    }};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
@@ -108,6 +142,7 @@ const InfoWrapper = styled.div<{
 const Container = styled.div<{
   image: Concierge | Owner | SafetyDeal;
   cardType: "concierge" | "owner" | "safetyDeal";
+  isRent: boolean;
 }>`
   display: flex;
   width: 864px;
@@ -130,11 +165,37 @@ const Container = styled.div<{
       cardType === "concierge" ? "296px" : "264px"};
   }
   @media screen and (max-width: 767px) {
-    background-size: ${({ cardType }) =>
-      cardType === "concierge" ? "242px" : "202px"};
-    height: ${({ cardType }) => (cardType === "concierge" ? "316px" : "370px")};
-    background-position: ${({ cardType }) =>
-      cardType === "concierge" ? "-20px 135px" : "left 180px"};
+    background: url(${({ image, cardType, isRent }) => {
+      if (!isRent) {
+        if (cardType === "concierge") return "/images/man-sits-buy.webp";
+        return "/images/man-stands-buy.webp";
+      }
+      return image;
+    }})
+      right no-repeat;
+
+    background-size: ${({ cardType, isRent }) => {
+      if (!isRent) return "349px";
+      if (cardType === "concierge") return "242px";
+      return "202px";
+    }};
+
+    height: ${({ cardType, isRent }) => {
+      if (cardType === "concierge") {
+        if (!isRent) return "370px";
+        return "316px";
+      }
+      if (!isRent) return "407px";
+      return "370px";
+    }};
+    background-position: ${({ cardType, isRent }) => {
+      if (cardType === "concierge") {
+        if (!isRent) return "center 128px";
+        return "-20px 135px";
+      }
+      if (!isRent) return "center 160px";
+      return "left 180px";
+    }}};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;

@@ -5,8 +5,8 @@ import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 
 type Props = {
   children: ReactNode;
-  minHeight: number;
-  smHeight: number;
+  minHeight: number | null;
+  smHeight: number | null;
   className?: string;
   preventDefault?: boolean;
 };
@@ -59,8 +59,8 @@ const ChildrenWrapper = styled.div`
 const ChildrenContainer = styled.div<{
   isDeployed: boolean;
   height: number | null;
-  minHeight: number;
-  smHeight: number;
+  minHeight: number | null;
+  smHeight: number | null;
 }>`
   @media screen and (max-width: 767px) {
     display: flex;

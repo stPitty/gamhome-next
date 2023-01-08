@@ -67,6 +67,10 @@ const Mortgage = () => {
 const SliderWrapper = styled.div`
   display: flex;
   column-gap: 20px;
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    row-gap: 20px;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -80,15 +84,20 @@ const StyledButton = styled(Button)`
 `;
 
 const TopBtn = styled(StyledButton)`
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: none;
   }
 `;
 
 const BottomBtn = styled(StyledButton)`
   display: none;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     display: flex;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    height: 44px;
+    margin-top: 16px;
   }
 `;
 
@@ -99,6 +108,9 @@ const SliderContainer = styled.div`
   margin-top: 8px;
   column-gap: 32px;
   align-items: center;
+  @media screen and (max-width: 767px) {
+    margin: 0;
+  }
 `;
 
 const SubHeader = styled.div`
@@ -111,6 +123,9 @@ const SubHeader = styled.div`
     width: 511px;
     text-align: center;
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const HeaderText = styled.div`
@@ -118,7 +133,7 @@ const HeaderText = styled.div`
   font-size: 40px;
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }
@@ -129,7 +144,7 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   width: 640px;
   row-gap: 16px;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
+  @media screen and (max-width: 1023px) {
     width: 100%;
     align-items: center;
   }
@@ -147,6 +162,10 @@ const Container = styled.div`
     width: 688px;
     align-items: center;
   }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+    row-gap: 32px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -156,6 +175,9 @@ const Wrapper = styled.div`
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 64px;
   }
 `;
 

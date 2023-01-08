@@ -15,9 +15,10 @@ import ErrorBoundary from "../components/rent_page/error_boundary/ErrorBoundary"
 import { setWindowSize } from "../redux/slicers/windowSizeSlicer";
 import { useAppDispatch } from "../redux/hooks";
 import { useEffect } from "react";
-import { Route } from "../common/routes";
 import { useRouter } from "next/router";
 import { changePathName } from "../redux/slicers/pathNameSlicer";
+import { ContextProvider } from "../common/context/AppContext";
+import "mapbox-gl/dist/mapbox-gl.css";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   const router = useRouter();
@@ -44,13 +45,15 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
     <ErrorBoundary>
       <Global />
       <YMaps>
-        {Component.PageLayout ? (
-          <Component.PageLayout>
+        <ContextProvider>
+          {Component.PageLayout ? (
+            <Component.PageLayout>
+              <Component {...pageProps} />
+            </Component.PageLayout>
+          ) : (
             <Component {...pageProps} />
-          </Component.PageLayout>
-        ) : (
-          <Component {...pageProps} />
-        )}
+          )}
+        </ContextProvider>
       </YMaps>
     </ErrorBoundary>
   );

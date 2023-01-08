@@ -14,7 +14,7 @@ const AddInfoBlock = () => {
     <>
       <ServiceDesc
         cardType={Concierge.CARD_TYPE}
-        desc={Concierge.DESC}
+        desc={pathName === Route.RENT ? Concierge.DESC : Concierge.BUY_DESC}
         image={Concierge.IMAGE}
         headerText={Concierge.HEADER}
         btnLink={Hook.SERVICES}

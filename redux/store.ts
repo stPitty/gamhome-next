@@ -12,9 +12,15 @@ import mobBtnViewReducer from "./slicers/mobBtnViewSlicer";
 import cookiePopUpReducer from "./slicers/cookiePopUpSlicer";
 import scrollTopBtnReducer from "./slicers/scrollTopBtnSlicer";
 import pathNameReducer from "./slicers/pathNameSlicer";
+import formDataReducer from "./slicers/formDataSlicer";
+import disableSelectsReducer from "./slicers/disableSelectsSlicer";
+import { parametersApi } from "./APIs/parametersApi";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
+  [parametersApi.reducerPath]: parametersApi.reducer,
+  formData: formDataReducer,
+  disableSelects: disableSelectsReducer,
   position: photoPositionReducer,
   modalState: modalStateReducer,
   flatData: flatDataReducer,
@@ -49,7 +55,7 @@ export const makeStore = () =>
     middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<any>) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }),
+      }).concat(parametersApi.middleware),
   } as any);
 
 export const wrapper = createWrapper(makeStore, { debug: true });

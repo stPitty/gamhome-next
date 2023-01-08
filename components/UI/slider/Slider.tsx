@@ -94,6 +94,7 @@ const Range = styled.input`
   width: 100.6%;
   position: relative;
   top: 5px;
+  right: 1px;
   -webkit-appearance: none;
   appearance: none;
   cursor: pointer;
@@ -152,6 +153,9 @@ const Container = styled.div`
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 216px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 349px;
   }
 `;
 

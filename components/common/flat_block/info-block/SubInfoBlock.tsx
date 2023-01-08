@@ -18,8 +18,8 @@ const SubInfoBlock = () => {
     <>
       {!!subInfoData?.length && (
         <Wrapper
-          minHeight={168}
-          smHeight={148}
+          minHeight={subInfoData.length > 4 ? 168 : null}
+          smHeight={subInfoData.length > 4 ? 148 : null}
           preventDefault={subInfoData.length <= 4}
         >
           <Container paramsCount={subInfoData?.length}>
