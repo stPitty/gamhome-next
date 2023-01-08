@@ -16,6 +16,7 @@ const ObservingWrapper = styled.div`
   width: 100%;
   align-items: center;
   align-content: center;
+  overflow-x: hidden;
 `;
 
 ObservableWrapper.displayName = "ObservableWrapper";

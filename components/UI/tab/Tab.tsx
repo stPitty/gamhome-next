@@ -237,6 +237,11 @@ const Container = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   touch-action: pan-y;
 `;
 

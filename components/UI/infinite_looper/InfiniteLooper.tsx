@@ -36,7 +36,7 @@ const InfiniteLooper: FC<Props> = ({ speed, direction, children }) => {
     const instanceWidth = width / innerRef.current.children.length;
     if (widthDeficit) {
       setLooperInstances(
-        looperInstances + Math.ceil(widthDeficit / instanceWidth) + 1
+        looperInstances + Math.ceil(widthDeficit / instanceWidth) + 2
       );
     }
 

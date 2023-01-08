@@ -334,6 +334,12 @@ const BankContainer = styled.div`
   gap: 16px;
   width: 2696px;
   transition: 0.2s linear;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
   touch-action: pan-x;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 2382px;

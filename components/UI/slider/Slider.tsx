@@ -66,7 +66,7 @@ const Slider: FC<Props> = ({ title, min, max, defaultValue }) => {
       <Input value={inputValue} onChange={handleChangeInputValue} />
       <Range
         style={{
-          backgroundSize: `${inputBackground}%`,
+          backgroundSize: `${inputBackground}% auto`,
         }}
         ref={rangeRef}
         type="range"

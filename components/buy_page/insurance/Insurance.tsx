@@ -15,7 +15,7 @@ const Insurance = () => {
       <Container>
         <StyledBankBlock />
         <AnimationContainer>
-          <InfiniteLooper speed={15} direction={"left"}>
+          <InfiniteLooper speed={30} direction={"left"}>
             <BanlBlock />
           </InfiniteLooper>
         </AnimationContainer>
