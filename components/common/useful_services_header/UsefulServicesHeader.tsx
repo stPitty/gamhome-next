@@ -28,7 +28,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   margin: 0 0 40px;
   color: ${BlackColor.BLACK_SECONDARY};
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }

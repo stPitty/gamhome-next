@@ -60,7 +60,14 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
     }};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: 400px;
+    width: ${({ contentType }) => {
+      switch (contentType) {
+        case "jurAnalysis":
+          return "370px";
+        default:
+          return "400px";
+      }
+    }};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 302px;
@@ -161,6 +168,14 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
       }
     }};
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: ${({ contentType, isHeader }) => {
+      if (contentType === "jurAnalysis") {
+        if (isHeader) return "390px";
+        return "548px";
+      }
+    }};
+  }
 `;
 
 const HeaderText = styled.p`
@@ -210,11 +225,27 @@ const MainContentWrapper = styled.div<{
       contentType === "jurAnalysis" && "center 554px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    background-size: ${({ contentType }) =>
-      contentType === "checkObject" ? "240px" : "220px"};
+    background-size: ${({ contentType }) => {
+      switch (contentType) {
+        case "checkOwner":
+          return "240px";
+        case "jurAnalysis":
+          return "195px";
+        default:
+          return "220px";
+      }
+    }};
     width: 688px;
-    background-position: right
-      ${({ contentType }) => (contentType === "checkObject" ? "46px" : "67px")};
+    background-position: ${({ contentType }) => {
+      switch (contentType) {
+        case "checkOwner":
+          return "right 46px";
+        case "jurAnalysis":
+          return "453px 56px";
+        default:
+          return "right 67px";
+      }
+    }};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 24px;

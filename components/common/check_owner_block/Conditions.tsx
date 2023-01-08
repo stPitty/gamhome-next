@@ -125,7 +125,8 @@ const ConditionText = styled.p<{ contentType: TabContentType }>`
       contentType === "jurAnalysis" ? "394px" : "265px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
-    width: 288px;
+    min-width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "293px" : "288px"};
   }
   @media screen and (max-width: 374px) {
     width: 238px;
@@ -144,7 +145,8 @@ const TextContainer = styled.div<{ contentType: TabContentType }>`
       contentType === "jurAnalysis" ? "424px" : "295px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 375px) {
-    width: 318px;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "320px" : "318px"};
   }
   @media screen and (max-width: 374px) {
     width: 255px;
@@ -165,6 +167,10 @@ const ConditionsContainer = styled.div<{ contentType: TabContentType }>`
       contentType === "jurAnalysis" ? "32px" : "20px"};
     height: ${({ contentType }) =>
       contentType === "jurAnalysis" ? "168px" : "152px"};
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    height: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "216px" : "152px"};
   }
   @media screen and (max-width: 767px) {
     flex-wrap: nowrap;
@@ -201,7 +207,8 @@ const Wrapper = styled.div<{ contentType: TabContentType }>`
       contentType === "jurAnalysis" ? "880px" : "610px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: 656px;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "672px" : "656px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
@@ -231,6 +238,14 @@ const Container = styled.div<{ contentType: TabContentType }>`
   }
   @media screen and (max-width: 1023px) {
     flex-direction: column;
+    ${({ contentType }) => {
+      if (contentType === "jurAnalysis") {
+        return css`
+          height: 352px;
+          justify-content: space-between;
+        `;
+      }
+    }}
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     row-gap: 40px;

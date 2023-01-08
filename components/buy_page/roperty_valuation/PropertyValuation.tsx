@@ -45,6 +45,10 @@ const ImagesContainer = styled.div`
     width: 443px;
     height: 365px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 277px;
+    height: 278px;
+  }
 `;
 
 const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
@@ -113,13 +117,54 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
       }
     }}
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    ${({ size }) => {
+      switch (size) {
+        case 1:
+          return css`
+            width: 119px;
+            height: 153px;
+            position: relative;
+            top: 26px;
+            z-index: 1;
+          `;
+        case 2:
+          return css`
+            width: 170px;
+            height: 125px;
+            position: relative;
+            bottom: 152px;
+            left: 100px;
+            z-index: 0;
+          `;
+        case 3:
+          return css`
+            width: 181px;
+            height: 133px;
+            position: relative;
+            left: 29px;
+            bottom: 165px;
+            z-index: 2;
+          `;
+        case 4:
+          return css`
+            width: 100px;
+            height: 130px;
+            position: relative;
+            left: 177px;
+            bottom: 263px;
+            z-index: 3;
+          `;
+      }
+    }}
+  }
 `;
 
 const StyledButton = styled(Button)`
   width: 214px;
   height: 56px;
   white-space: nowrap;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 190px;
     height: 44px;
   }
@@ -140,6 +185,9 @@ const TextContainer = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 377px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 360px;
+  }
 `;
 
 const Header = styled.div`
@@ -147,6 +195,10 @@ const Header = styled.div`
   font-size: 40px;
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const InfoBlock = styled.div`
@@ -161,8 +213,12 @@ const Container = styled.div`
   display: flex;
   width: 1247px;
   justify-content: space-between;
+  align-items: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 951px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
   }
 `;
 
@@ -171,6 +227,9 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: center;
   padding-top: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 export default PropertyValuation;

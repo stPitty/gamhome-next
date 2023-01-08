@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
-import { useEffect, useRef, useState } from "react";
-import { WindowSize } from "../../../redux/slicers/enums";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../../redux/hooks";
 import { TWindowSize } from "../../../redux/slicers/types";
+import { carouselHandler, handleControlClick } from "./helpers";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 const BankCarousel = () => {
   const [translate, setTranslate] = useState<number>(0);
@@ -18,37 +19,18 @@ const BankCarousel = () => {
 
   const handleContainerWheel = (e: any) => {
     e.preventDefault();
-    let quantifier: number;
-    let width: number;
-    if (windowSize === WindowSize.XL) {
-      quantifier = 246;
-      width = 1348;
+    const values = carouselHandler(windowSize);
+    if (values) {
+      setTranslate((prev) => {
+        if (e.deltaY > 0 && prev < values.width) {
+          return prev + values.quantifier;
+        }
+        if (e.deltaY < 0 && prev > 0) {
+          return prev - values.quantifier;
+        }
+        return prev;
+      });
     }
-    if (windowSize === WindowSize.LG) {
-      quantifier = 218;
-      width = 1409;
-    }
-    setTranslate((prev) => {
-      if (e.deltaY > 0 && prev < width) {
-        return prev + quantifier;
-      }
-      if (e.deltaY < 0 && prev > 0) {
-        return prev - quantifier;
-      }
-      return prev;
-    });
-
-    // if (windowSize === WindowSize.LG) {
-    //   setTranslate((prev) => {
-    //     if (e.deltaY > 0 && prev < 1348) {
-    //       return prev + 218;
-    //     }
-    //     if (e.deltaY < 0 && prev > 0) {
-    //       return prev - 218;
-    //     }
-    //     return prev;
-    //   });
-    // }
   };
 
   useEffect(() => {
@@ -69,26 +51,14 @@ const BankCarousel = () => {
       );
   }, [windowSize]);
 
-  const handleControlClick = (type: "left" | "right") => () => {
-    let quantifier: number;
-    if (windowSize === WindowSize.XL) quantifier = 246;
-    if (windowSize === WindowSize.LG) quantifier = 218;
-    if (type === "left" && translate > 0) {
-      setTranslate((prev) => prev - quantifier);
-    }
-    if (type === "right" && translate < 1348) {
-      setTranslate((prev) => prev + quantifier);
-    }
-  };
-
   const handleMouseUp = (e: TouchEvent) => {
     if (touchStart) {
       const value = touchStart - e.changedTouches[0].clientX;
       if (value > 0 && value > value - 100) {
-        handleControlClick("right")();
+        handleControlClick("right", translate, setTranslate, windowSize)();
       }
       if (value < 0 && Math.abs(value) > Math.abs(value) - 100) {
-        handleControlClick("left")();
+        handleControlClick("left", translate, setTranslate, windowSize)();
       }
     }
     setTouchStart(null);
@@ -100,7 +70,14 @@ const BankCarousel = () => {
 
   return (
     <Container>
-      <ControlContainer onClick={handleControlClick("left")}>
+      <ControlContainer
+        onClick={handleControlClick(
+          "left",
+          translate,
+          setTranslate,
+          windowSize
+        )}
+      >
         <ChevronIcon type="left" />
       </ControlContainer>
       <BankWrapper>
@@ -259,7 +236,14 @@ const BankCarousel = () => {
           </BankItem>
         </BankContainer>
       </BankWrapper>
-      <ControlContainer onClick={handleControlClick("right")}>
+      <ControlContainer
+        onClick={handleControlClick(
+          "right",
+          translate,
+          setTranslate,
+          windowSize
+        )}
+      >
         <ChevronIcon type="right" />
       </ControlContainer>
     </Container>
@@ -271,6 +255,9 @@ const BankWrapper = styled.div`
   overflow-x: hidden;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 856px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 592px;
   }
 `;
 
@@ -300,7 +287,7 @@ const BankImage = styled.div<{ image: string }>`
   height: 50px;
   background-image: url(${({ image }) => image});
   background-size: cover;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 160px;
     height: 40px;
   }
@@ -327,6 +314,10 @@ const BankItem = styled.div`
     width: 202px;
     height: 152px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 187px;
+    height: 152px;
+  }
 `;
 
 const BankContainer = styled.div`
@@ -334,10 +325,13 @@ const BankContainer = styled.div`
   flex-wrap: wrap;
   gap: 16px;
   width: 2696px;
-  transition: 0.15s linear;
+  transition: 0.2s linear;
   touch-action: pan-x;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 2382px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 2233px;
   }
 `;
 

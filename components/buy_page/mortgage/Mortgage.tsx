@@ -55,11 +55,10 @@ const Mortgage = () => {
             />
             <Slider title="Срок ипотеки" min={1} max={30} defaultValue={20} />
           </SliderWrapper>
-          <StyledButton buttonSize={ButtonSize.LARGE}>
-            Связаться с менеджером
-          </StyledButton>
+          <TopBtn buttonSize={ButtonSize.LARGE}>Связаться с менеджером</TopBtn>
         </SliderContainer>
         <BankCarousel />
+        <BottomBtn>Связаться с менеджером</BottomBtn>
       </Container>
     </Wrapper>
   );
@@ -74,9 +73,22 @@ const StyledButton = styled(Button)`
   width: 260px;
   height: 64px;
   white-space: nowrap;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 236px;
     height: 44px;
+  }
+`;
+
+const TopBtn = styled(StyledButton)`
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const BottomBtn = styled(StyledButton)`
+  display: none;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: flex;
   }
 `;
 
@@ -95,6 +107,10 @@ const SubHeader = styled.div`
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
   width: 525px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 511px;
+    text-align: center;
+  }
 `;
 
 const HeaderText = styled.div`
@@ -102,6 +118,10 @@ const HeaderText = styled.div`
   font-size: 40px;
   line-height: 48px;
   color: ${BlackColor.BLACK_SECONDARY};
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -109,6 +129,10 @@ const HeaderContainer = styled.div`
   flex-direction: column;
   width: 640px;
   row-gap: 16px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const Container = styled.div`
@@ -119,6 +143,10 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 952px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+    align-items: center;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -126,6 +154,9 @@ const Wrapper = styled.div`
   justify-content: center;
   width: 100%;
   padding-top: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 export default Mortgage;

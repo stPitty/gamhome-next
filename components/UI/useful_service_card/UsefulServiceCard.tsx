@@ -21,8 +21,8 @@ import {
   WhiteColor,
 } from "../../../common/enums";
 import { Consult, Declaration } from "../../buy_page/tax_help/enums";
-import HomeSVG from "../../../public/assets/svg/HomeSVG";
 import FolderSVG from "../../../public/assets/svg/FolderSVG";
+import HomeSVG from "../../../public/assets/svg/HomeSVG";
 
 type Props = {
   cardType: CardType;
@@ -302,6 +302,7 @@ const Body = styled.div<{
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 528px;
+    row-gap: ${({ contentType }) => contentType === "tax" && "32px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 334px;
@@ -342,7 +343,10 @@ const Container = styled.div<{
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
-    height: 236px;
+    height: ${({ contentType }) => {
+      if (contentType === "buy" || contentType === "tax") return "auto";
+      return "236";
+    }};
   }
   @media screen and (max-width: 767px) {
     flex-direction: column;

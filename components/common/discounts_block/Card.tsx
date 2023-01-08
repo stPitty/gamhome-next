@@ -239,7 +239,8 @@ const TagsWrapper = styled.div<{ cardType: CardAbout }>`
     width: 450px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: ${({ cardType }) => (cardType === "cleaning" ? "462px" : "611px")};
+    min-width: ${({ cardType }) =>
+      cardType === "cleaning" ? "462px" : "611px"};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 317px !important;

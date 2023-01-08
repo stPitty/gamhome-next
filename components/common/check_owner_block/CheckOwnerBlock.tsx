@@ -46,11 +46,11 @@ const Container = styled.div<{ isRent: boolean }>`
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
-    margin-bottom: -96px;
+    margin-bottom: ${({ isRent }) => isRent && "-96px"};
   }
   @media screen and (max-width: 767px) {
     padding-top: 64px;
-    margin-bottom: -24px;
+    margin-bottom: ${({ isRent }) => isRent && "-24px"};
   }
 `;
 

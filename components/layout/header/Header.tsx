@@ -53,7 +53,7 @@ const Container = styled.div`
   width: 100%;
   position: fixed;
   top: 0;
-  z-index: 2;
+  z-index: 5;
 `;
 
 export default Header;

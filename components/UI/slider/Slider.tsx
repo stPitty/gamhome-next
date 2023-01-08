@@ -150,6 +150,9 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 215px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 216px;
+  }
 `;
 
 export default memo(Slider);

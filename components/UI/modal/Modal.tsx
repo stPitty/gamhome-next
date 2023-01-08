@@ -57,7 +57,7 @@ const Wrapper = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  z-index: 3;
+  z-index: 7;
   background-color: ${BlackColor.BLACK_80};
   @media screen and (max-width: 767px) {
     align-items: flex-end;

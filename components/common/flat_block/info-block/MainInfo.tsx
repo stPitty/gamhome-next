@@ -31,7 +31,7 @@ const MainInfo = () => {
 const TextWrapper = styled.div`
   display: flex;
   column-gap: 8px;
-  margin-right: 40px;
+  //margin-right: 40px;
   @media screen and (max-width: 767px) {
     margin-right: 0;
   }
@@ -45,8 +45,11 @@ const FieldValueText = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
-  @media screen and (max-width: 1439px) and (min-width: 768px) {
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
     max-width: 160px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    max-width: 185px;
   }
   @media screen and (max-width: 767px) {
     max-width: unset;
@@ -74,6 +77,7 @@ const MainInfoWrapper = styled.div<{ paramsCount: number }>`
     }
   }};
   row-gap: 8px;
+  column-gap: 40px;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     width: 624px;
     height: ${({ paramsCount }) => {

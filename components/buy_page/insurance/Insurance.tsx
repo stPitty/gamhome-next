@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import UsersSVG from "../../../public/assets/svg/UsersSVG";
 import PriceSVG from "../../../public/assets/svg/PriceSVG";
@@ -6,25 +6,20 @@ import MoneySVG from "../../../public/assets/svg/MoneySVG";
 import PeopleSVG from "../../../public/assets/svg/PeopleSVG";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
+import InfiniteLooper from "../../UI/infinite_looper/InfiniteLooper";
+import BanlBlock from "../mortgage/BanlBlock";
 
 const Insurance = () => {
   return (
     <Wrapper>
       <Container>
-        <ImagesContainer>
-          <BankImage image="/assets/icons/absolute_bank_grey.webp" />
-          <BankImage image="/assets/icons/soglasye_bank_grey.webp" />
-          <BankImage image="/assets/icons/strahovaya_companya_grey.webp" />
-          <BankImage image="/assets/icons/vsk_grey.webp" />
-          <BankImage image="/assets/icons/renessans_grey.webp" />
-          <BankImage image="/assets/icons/max_grey.webp" />
-          <BankImage image="/assets/icons/alfa_grey.webp" />
-          <BankImage image="/assets/icons/sogaz_grey.webp" />
-          <BankImage
-            image="/assets/icons/zetta_grey.webp"
-            lgVisibility={true}
-          />
-        </ImagesContainer>
+        <StyledBankBlock />
+        <AnimationContainer>
+          <InfiniteLooper speed={15} direction={"left"}>
+            <BanlBlock />
+          </InfiniteLooper>
+        </AnimationContainer>
+
         <InfoBlock>
           <InfoContainer>
             <Header>Ипотечное страхование</Header>
@@ -77,6 +72,22 @@ const Insurance = () => {
     </Wrapper>
   );
 };
+
+const StyledBankBlock = styled(BanlBlock)`
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: none;
+  }
+`;
+
+const AnimationContainer = styled.div`
+  display: none;
+  position: relative;
+  overflow: hidden;
+  left: -162px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    display: block;
+  }
+`;
 
 const StyledButton = styled(Button)`
   width: 167px;
@@ -142,29 +153,9 @@ const InfoBlock = styled.div`
     min-width: 459px;
     height: 452px;
   }
-`;
-
-const BankImage = styled.div<{ image: string; lgVisibility?: boolean }>`
-  width: 183px;
-  height: 47px;
-  background-image: url(${({ image }) => image});
-  background-size: cover;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    display: ${({ lgVisibility }) => lgVisibility && "none"};
-    width: 166px;
-    height: 35px;
-  }
-`;
-
-const ImagesContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 31px;
-  width: 611px;
-  justify-content: center;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    row-gap: 32px;
-    column-gap: 28px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 568px;
+    height: 380px;
   }
 `;
 
@@ -176,6 +167,12 @@ const Container = styled.div`
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 952px;
   }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 688px;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 42px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -183,6 +180,9 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: center;
   padding-top: 112px;
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    padding-top: 96px;
+  }
 `;
 
 export default Insurance;

@@ -42,14 +42,14 @@ const Cards: React.FC<Props> = ({ data }) => {
             key={el.id}
             cardType={el.cardType}
           >
-            <TagContainer cardId={el.id}>
+            <TagContainer isRent={pathName === Route.RENT} cardId={el.id}>
               {el.tagText && (
                 <Tag isViolet={!!el.violetTag} cardType={el.cardType}>
                   {el.tagText}
                 </Tag>
               )}
             </TagContainer>
-            <HeaderWrapper cardId={el.id}>
+            <HeaderWrapper cardId={el.id} isRent={pathName === Route.RENT}>
               <HeaderText
                 cardId={el.id}
                 isBuy={pathName !== Route.RENT}
@@ -203,13 +203,13 @@ const CostText = styled.p<{ cardType: CardType }>`
   }
 `;
 
-const HeaderWrapper = styled.div<{ cardId: number }>`
+const HeaderWrapper = styled.div<{ cardId: number; isRent: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
   margin: 24px 0 40px;
   @media screen and (max-width: 1023px) {
-    margin-top: ${({ cardId }) => cardId === 1 && "0"};
+    margin-top: ${({ cardId, isRent }) => cardId === 1 && isRent && "0"};
     margin-bottom: 32px;
   }
 `;
@@ -233,13 +233,14 @@ const HeaderText = styled.p<{
   }
 `;
 
-const TagContainer = styled.div<{ cardId: number }>`
+const TagContainer = styled.div<{ cardId: number; isRent: boolean }>`
   height: 40px;
   @media screen and (max-width: 1439px) {
     height: 64px;
   }
   @media screen and (max-width: 1023px) {
-    display: ${({ cardId }) => cardId === 1 && "none"};
+    display: ${({ cardId, isRent }) => cardId === 1 && isRent && "none"};
+    height: ${({ cardId, isRent }) => !isRent && "auto"};
   }
 `;
 
@@ -295,7 +296,6 @@ const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
     cardType === CardType.FILLED && BrandColor.BRAND};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 296px;
-    height: 1172px;
     height: ${({ isRent }) => (isRent ? "1172px" : "1692px")};
   }
   @media screen and (max-width: 1023px) {
@@ -303,6 +303,7 @@ const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 448px;
+    width: ${({ isRent }) => (isRent ? "448px" : "600px")};
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
@@ -322,7 +323,7 @@ const Container = styled.div`
     flex-direction: column;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    row-gap: 40px;
+    row-gap: 32px;
   }
   @media screen and (max-width: 767px) {
     row-gap: 32px;

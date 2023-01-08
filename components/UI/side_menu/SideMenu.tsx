@@ -178,7 +178,7 @@ const Wrapper = styled.div<{ isOpen: boolean; willBeClosed: boolean }>`
   position: fixed;
   height: 100%;
   width: 100%;
-  z-index: 5;
+  z-index: 6;
   background-color: ${BlackColor.BLACK_80};
   animation: 0.22s linear
     ${({ willBeClosed }) =>
