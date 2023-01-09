@@ -62,6 +62,12 @@ const Tab: React.FC<Props> = ({
               setTranslate((prevState) => prevState - 107);
             }
           }
+
+          if (windowSize === WindowSize.XS) {
+            if (activeTab + 1 - prevTab === 1) {
+              setTranslate((prevState) => prevState - 136);
+            }
+          }
         }
 
         if (pathName === Route.RENT) {
@@ -81,6 +87,12 @@ const Tab: React.FC<Props> = ({
           if (windowSize === WindowSize.SM) {
             if (activeTab - 1 - prevTab === -1) {
               setTranslate((prevState) => prevState + 107);
+            }
+          }
+
+          if (windowSize === WindowSize.XS) {
+            if (activeTab + 1 - prevTab === 1) {
+              setTranslate((prevState) => prevState + 136);
             }
           }
         }
@@ -116,6 +128,21 @@ const Tab: React.FC<Props> = ({
         }
         if (num - prevTab === -2) {
           setTranslate((prevState) => prevState + 214);
+        }
+      }
+
+      if (windowSize === WindowSize.XS) {
+        if (num - prevTab === 1) {
+          setTranslate((prevState) => prevState - 136);
+        }
+        if (num - prevTab === 2) {
+          setTranslate((prevState) => prevState - 272);
+        }
+        if (num - prevTab === -1) {
+          setTranslate((prevState) => prevState + 136);
+        }
+        if (num - prevTab === -2) {
+          setTranslate((prevState) => prevState + 272);
         }
       }
     }
@@ -227,7 +254,7 @@ const HeaderContainer = styled.div<{ isRent: boolean }>`
   @media screen and (max-width: 374px) {
     width: 320px;
     position: relative;
-    left: 40px;
+    left: ${({ isRent }) => (isRent ? "40px" : "136px")};
   }
 `;
 

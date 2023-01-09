@@ -7,7 +7,8 @@ import PeopleSVG from "../../../public/assets/svg/PeopleSVG";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import InfiniteLooper from "../../UI/infinite_looper/InfiniteLooper";
-import BanlBlock from "../mortgage/BankBlock";
+import BankBlock from "../mortgage/BankBlock";
+import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const Insurance = () => {
   return (
@@ -16,7 +17,7 @@ const Insurance = () => {
         <StyledBankBlock />
         <AnimationContainer>
           <InfiniteLooper speed={30} direction={"left"}>
-            <BanlBlock />
+            <BankBlock />
           </InfiniteLooper>
         </AnimationContainer>
 
@@ -41,8 +42,9 @@ const Insurance = () => {
                   <PriceSVG />
                 </LIIconContainer>
                 <LIText>
-                  Полисы по ценам страховых компаний или ещё дешевле за счёт
-                  наших скидок
+                  Полисы по ценам страховых компаний или ещё дешевле
+                  <AdaptiveTextDivider xs={true} />
+                  за счёт наших скидок
                 </LIText>
               </LIContainer>
               <LIContainer>
@@ -58,8 +60,8 @@ const Insurance = () => {
                   <PeopleSVG />
                 </LIIconContainer>
                 <LIText>
-                  Наши партнеры — крупные страховые компании с действующими
-                  лицензиями
+                  Наши партнеры — крупные страховые компании{" "}
+                  <AdaptiveTextDivider xs={true} />с действующими лицензиями
                 </LIText>
               </LIContainer>
             </ListContainer>
@@ -74,7 +76,7 @@ const Insurance = () => {
   );
 };
 
-const MobileBankBlock = styled(BanlBlock)`
+const MobileBankBlock = styled(BankBlock)`
   display: none;
   margin-top: 18px;
   @media screen and (max-width: 767px) {
@@ -82,7 +84,7 @@ const MobileBankBlock = styled(BanlBlock)`
   }
 `;
 
-const StyledBankBlock = styled(BanlBlock)`
+const StyledBankBlock = styled(BankBlock)`
   @media screen and (max-width: 1023px) {
     display: none;
   }
@@ -169,10 +171,15 @@ const InfoBlock = styled.div`
     width: 568px;
     height: 380px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
+  @media screen and (max-width: 767px) {
     height: fit-content;
     row-gap: 48px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 
@@ -192,7 +199,12 @@ const Container = styled.div`
   }
   @media screen and (max-width: 767px) {
     flex-direction: column;
+  }
+  @media screen and (max-width: 767px) {
     width: 349px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 288px;
   }
 `;
 

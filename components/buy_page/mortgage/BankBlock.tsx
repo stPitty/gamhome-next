@@ -26,6 +26,7 @@ const BankImage = styled.div<{ image: string; adaptVisibility?: boolean }>`
   height: 47px;
   background-image: url(${({ image }) => image});
   background-size: cover;
+  background-position: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     display: ${({ adaptVisibility }) => adaptVisibility && "none"};
     width: 166px;
@@ -38,6 +39,11 @@ const BankImage = styled.div<{ image: string; adaptVisibility?: boolean }>`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 160px;
     height: 43px;
+    display: ${({ adaptVisibility }) => adaptVisibility && "none"};
+  }
+  @media screen and (max-width: 374px) {
+    width: 140px;
+    height: 35px;
     display: ${({ adaptVisibility }) => adaptVisibility && "none"};
   }
 `;
@@ -63,6 +69,14 @@ const ImagesContainer = styled.div`
     column-gap: 28px;
     row-gap: 18px;
     justify-content: space-between;
+  }
+  @media screen and (max-width: 375px) {
+    width: 303px;
+    height: 186px;
+    column-gap: 23px;
+    row-gap: 15px;
+    justify-content: space-between;
+    overflow-x: visible;
   }
 `;
 

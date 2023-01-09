@@ -74,6 +74,7 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
   }
   @media screen and (max-width: 374px) {
     width: 240px;
+    padding: 0 8px;
   }
 `;
 
@@ -184,6 +185,14 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
       }
     }};
   }
+  @media screen and (max-width: 374px) {
+    width: ${({ contentType, isHeader }) => {
+      if (contentType === "jurAnalysis") {
+        if (isHeader) return "240px";
+        return "212px";
+      }
+    }};
+  }
 `;
 
 const HeaderText = styled.p`
@@ -258,6 +267,16 @@ const MainContentWrapper = styled.div<{
       }
     }};
   }
+
+  @media screen and (max-width: 767px) {
+    background-size: ${({ contentType }) => {
+      if (contentType === "jurAnalysis") {
+        return "195px";
+      }
+      return "235px";
+    }};
+  }
+
   @media screen and (max-width: 767px) and (min-width: 375px) {
     padding: 24px;
     width: 349px;
@@ -270,19 +289,20 @@ const MainContentWrapper = styled.div<{
       }
       return "center 245px";
     }};
-    background-size: ${({ contentType }) => {
-      if (contentType === "jurAnalysis") {
-        return "195px";
-      }
-      return "235px";
-    }};
   }
   @media screen and (max-width: 374px) {
-    padding: 24px;
+    padding: 24px 16px;
     width: 288px;
-    background-position: ${({ contentType }) =>
-      contentType === "checkObject" ? "center 290px" : "center 285px"};
-    background-size: 235px;
+
+    background-position: ${({ contentType }) => {
+      if (contentType === "checkObject") {
+        return "center 290px";
+      }
+      if (contentType === "jurAnalysis") {
+        return "center 432px";
+      }
+      return "center 285px";
+    }};
   }
 `;
 

@@ -7,6 +7,7 @@ import BankCarousel from "./BankCarousel";
 import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
 import { useMemo } from "react";
+import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const Mortgage = () => {
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -33,10 +34,15 @@ const Mortgage = () => {
     <Wrapper>
       <Container>
         <HeaderContainer>
-          <HeaderText>Ипотека со скидкой до 0,7%</HeaderText>
+          <HeaderText>
+            Ипотека <AdaptiveTextDivider xs={true} /> со скидкой{" "}
+            <AdaptiveTextDivider xs={true} />
+            до 0,7%
+          </HeaderText>
           <SubHeader>
-            Сниженная ипотечная ставка для наших клиентов, рассчитайте
-            ежемесячный платёж сразу в нескольких банках
+            Сниженная ипотечная ставка <AdaptiveTextDivider xs={true} />
+            для наших клиентов, рассчитайте ежемесячный платёж сразу{" "}
+            <AdaptiveTextDivider xs={true} />в нескольких банках
           </SubHeader>
         </HeaderContainer>
         <SliderContainer>
@@ -156,6 +162,9 @@ const HeaderContainer = styled.div`
     width: 100%;
     align-items: center;
   }
+  @media screen and (max-width: 375px) {
+    align-items: flex-start;
+  }
 `;
 
 const Container = styled.div`
@@ -170,9 +179,14 @@ const Container = styled.div`
     width: 688px;
     align-items: center;
   }
+  @media screen and (max-width: 767px) {
+    row-gap: 32px;
+  }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
-    row-gap: 32px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 

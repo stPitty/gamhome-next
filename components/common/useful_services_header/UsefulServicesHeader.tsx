@@ -37,6 +37,7 @@ const HeaderText = styled.p`
   }
   @media screen and (max-width: 374px) {
     margin-left: 15px;
+    max-width: 288px;
   }
 `;
 

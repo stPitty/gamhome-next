@@ -135,7 +135,7 @@ const InfoWrapper = styled.div<{
     width: 349px;
   }
   @media screen and (max-width: 374px) {
-    width: 288px;
+    width: ${({ cardType }) => (cardType === "safetyDeal" ? "260px" : "288px")};
   }
 `;
 
@@ -202,6 +202,19 @@ const Container = styled.div<{
   }
   @media screen and (max-width: 374px) {
     width: 288px;
+    height: ${({ cardType, isRent }) => {
+      if (!isRent) {
+        if (cardType === "concierge") return "394px";
+        if (cardType === "safetyDeal") return "463px";
+      }
+    }};
+    background-size: ${({ cardType, isRent }) => !isRent && "330px"};
+    background-position: ${({ cardType, isRent }) => {
+      if (!isRent) {
+        if (cardType === "concierge") return "center 152px";
+        if (cardType === "safetyDeal") return "center 219px";
+      }
+    }};
   }
 `;
 

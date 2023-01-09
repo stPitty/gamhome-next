@@ -44,6 +44,13 @@ const Slider: FC<Props> = ({ title, min, max, defaultValue, type }) => {
   };
 
   useEffect(() => {
+    if (inputFocus) {
+      const inputValueArr = inputValue.split(" ");
+      const formattedValue = inputValueArr
+        .slice(0, inputValueArr.length - 1)
+        .join(" ");
+      setInputValue(formattedValue);
+    }
     if (!inputFocus && !!sliderValue) {
       const addValue = type === "years" ? handleGetYears(inputValue) : value;
 
@@ -198,6 +205,9 @@ const Container = styled.div`
     width: 349px;
     border-width: 1px 1px 1px 1px;
     height: 56px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 288px;
   }
 `;
 

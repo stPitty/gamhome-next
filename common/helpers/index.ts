@@ -224,12 +224,10 @@ const handleFormatValue = (
   minNum: number | undefined,
   maxNum: number | undefined
 ): number | string | null => {
-  // console.log(value);
   const newValue = value
     .split("")
     .filter((el) => el !== " " && !/^\D$/gi.test(el))
     .join("");
-  // console.log(newValue);
   const numValue = newValue === "" ? 0 : Number.parseInt(newValue);
   if (minNum && numValue < minNum) {
     return minNum;

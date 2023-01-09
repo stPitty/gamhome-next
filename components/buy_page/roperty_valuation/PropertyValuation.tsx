@@ -2,6 +2,7 @@ import styled, { css } from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
+import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const PropertyValuation = () => {
   return (
@@ -11,12 +12,15 @@ const PropertyValuation = () => {
           <TextContainer>
             <Header>Оценка недвижимости</Header>
             <DescText>
-              Подготовим отчёт от аккредитованных банками компаний. Персональный
-              менеджер ответит на все вопросы и запросит необходимую информацию
+              Подготовим отчёт <AdaptiveTextDivider xs={true} /> от
+              аккредитованных банками компаний. Персональный менеджер ответит на
+              все вопросы и запросит необходимую информацию{" "}
+              <AdaptiveTextDivider xs={true} />
               для оценки. Готовый отчёт вышлем на почту и загрузим в личный
               кабинет банка. <br />
               <br /> Эта информация предоставляется банку, чтобы купить в
-              ипотеку или застраховать недвижимость.
+              ипотеку <AdaptiveTextDivider xs={true} />
+              или застраховать недвижимость.
             </DescText>
           </TextContainer>
           <StyledButton buttonSize={ButtonSize.LARGE}>
@@ -63,6 +67,10 @@ const ImagesContainer = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
     height: 288px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 288px;
+    height: 238px;
   }
 `;
 
@@ -206,6 +214,39 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
       }
     }}
   }
+  @media screen and (max-width: 375px) {
+    border-radius: 10px;
+    ${({ size }) => {
+      switch (size) {
+        case 1:
+          return css`
+            width: 114px;
+            height: 147px;
+          `;
+        case 2:
+          return css`
+            width: 164px;
+            height: 120px;
+          `;
+        case 3:
+          return css`
+            width: 160px;
+            height: 117px;
+            position: relative;
+            left: 28px;
+            bottom: 60px;
+          `;
+        case 4:
+          return css`
+            width: 96px;
+            height: 124px;
+            position: relative;
+            bottom: 33px;
+            right: 21px;
+          `;
+      }
+    }}
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -242,6 +283,9 @@ const TextContainer = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
   }
+  @media screen and (max-width: 375px) {
+    width: 288px;
+  }
 `;
 
 const Header = styled.div`
@@ -277,10 +321,15 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
+  @media screen and (max-width: 767px) {
     flex-direction: column;
     row-gap: 40px;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    width: 349px;
+  }
+  @media screen and (max-width: 375px) {
+    width: 288px;
   }
 `;
 
