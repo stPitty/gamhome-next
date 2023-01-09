@@ -164,7 +164,7 @@ const InfoBlock = styled.div`
   width: 528px;
   height: 404px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    min-width: 459px;
+    width: 459px;
     height: 452px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
@@ -190,6 +190,7 @@ const Container = styled.div`
   align-items: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 952px;
+    padding-left: 60px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: 688px;

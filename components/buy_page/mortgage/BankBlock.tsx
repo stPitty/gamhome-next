@@ -22,7 +22,7 @@ const BankBlock: FC<Props> = ({ className }) => {
 };
 
 const BankImage = styled.div<{ image: string; adaptVisibility?: boolean }>`
-  width: 183px;
+  width: 188px;
   height: 47px;
   background-image: url(${({ image }) => image});
   background-size: cover;
@@ -33,12 +33,13 @@ const BankImage = styled.div<{ image: string; adaptVisibility?: boolean }>`
     height: 35px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
-    width: 133px;
+    width: 140px;
     height: 34px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 160px;
+    width: 172px;
     height: 43px;
+    background-position: unset;
     display: ${({ adaptVisibility }) => adaptVisibility && "none"};
   }
   @media screen and (max-width: 374px) {
@@ -51,12 +52,12 @@ const BankImage = styled.div<{ image: string; adaptVisibility?: boolean }>`
 const ImagesContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 31px;
+  row-gap: 31px;
+  justify-content: space-between;
   width: 611px;
-  justify-content: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     row-gap: 32px;
-    column-gap: 28px;
+    width: 360px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: max-content;
@@ -64,16 +65,14 @@ const ImagesContainer = styled.div`
     column-gap: 23px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 349px;
+    width: 362px;
     height: 225px;
-    column-gap: 28px;
     row-gap: 18px;
     justify-content: space-between;
   }
   @media screen and (max-width: 375px) {
     width: 303px;
     height: 186px;
-    column-gap: 23px;
     row-gap: 15px;
     justify-content: space-between;
     overflow-x: visible;
