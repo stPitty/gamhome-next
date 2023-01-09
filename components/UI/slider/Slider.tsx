@@ -1,24 +1,32 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { BlackColor, BrandColor, Font } from "../../../common/enums";
-import { FC, memo, SyntheticEvent, useEffect, useRef, useState } from "react";
+import { FC, memo, useEffect, useRef, useState } from "react";
 import {
-  handleMoneyDataFormatter,
   handleFormatValue,
+  handleGetYears,
+  handleMoneyDataFormatter,
 } from "../../../common/helpers";
+import { useAppSelector } from "../../../redux/hooks";
+import { TWindowSize } from "../../../redux/slicers/types";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 type Props = {
   title: string;
   min: number | undefined;
   max: number | undefined;
   defaultValue: number | undefined;
+  type: "money" | "years";
 };
 
-const Slider: FC<Props> = ({ title, min, max, defaultValue }) => {
+const Slider: FC<Props> = ({ title, min, max, defaultValue, type }) => {
   const [inputValue, setInputValue] = useState<string>("");
   const [sliderValue, setSliderValue] = useState<number>(0);
   const [inputBackground, setInputBackground] = useState<number>(0);
+  const [inputFocus, setInputFocus] = useState<boolean>(false);
 
-  const rangeRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const value = type === "money" ? " ₽" : " лет";
 
   const handleSetPercents = (value: number | undefined) => {
     if (max && min && value) {
@@ -27,12 +35,48 @@ const Slider: FC<Props> = ({ title, min, max, defaultValue }) => {
     }
   };
 
+  const handleInputFocus = () => {
+    setInputFocus(true);
+  };
+
+  const handleInputBlur = () => {
+    setInputFocus(false);
+  };
+
+  useEffect(() => {
+    if (!inputFocus && !!sliderValue) {
+      const addValue = type === "years" ? handleGetYears(inputValue) : value;
+
+      let formattedSliderValue = handleFormatValue(inputValue, min, max);
+
+      handleSetPercents(formattedSliderValue as number);
+
+      const formattedInputValue = handleMoneyDataFormatter(
+        formattedSliderValue as number
+      );
+      setInputValue(formattedInputValue + addValue);
+      setSliderValue(formattedSliderValue as number);
+    }
+  }, [inputFocus]);
+
+  useEffect(() => {
+    inputRef?.current?.addEventListener("focus", handleInputFocus);
+    return () =>
+      inputRef?.current?.removeEventListener("focus", handleInputFocus);
+  }, []);
+
+  useEffect(() => {
+    inputRef?.current?.addEventListener("blur", handleInputBlur);
+    return () =>
+      inputRef?.current?.removeEventListener("blur", handleInputBlur);
+  }, []);
+
   useEffect(() => {
     handleSetPercents(defaultValue);
     if (defaultValue) {
       setSliderValue(defaultValue);
       const formattedDefValue = handleMoneyDataFormatter(defaultValue);
-      setInputValue(formattedDefValue);
+      setInputValue(formattedDefValue + value);
     }
   }, [defaultValue]);
 
@@ -40,35 +84,28 @@ const Slider: FC<Props> = ({ title, min, max, defaultValue }) => {
     const formattedValue = handleMoneyDataFormatter(e.target.value);
     handleSetPercents(e.target.value);
     setSliderValue(e.target.value);
-    setInputValue(formattedValue);
+    const addValue = type === "years" ? handleGetYears(e.target.value) : value;
+    setInputValue(formattedValue + addValue);
   };
 
   const handleChangeInputValue = (e: any) => {
-    const formattedSliderValue = handleFormatValue(
-      e.target.value,
-      min,
-      max,
-      sliderValue
-    );
-
-    if (formattedSliderValue && formattedSliderValue !== sliderValue) {
-      handleSetPercents(formattedSliderValue);
-      const formattedInputValue =
-        handleMoneyDataFormatter(formattedSliderValue);
-      setInputValue(formattedInputValue);
-      setSliderValue(formattedSliderValue);
-    }
+    const formattedValue = handleFormatValue(e.target.value, 0, max);
+    const formattedInputValue = handleMoneyDataFormatter(formattedValue!);
+    setInputValue(formattedInputValue);
   };
 
   return (
     <Container>
       <Title>{title}</Title>
-      <Input value={inputValue} onChange={handleChangeInputValue} />
+      <Input
+        ref={inputRef}
+        value={inputValue}
+        onChange={handleChangeInputValue}
+      />
       <Range
         style={{
           backgroundSize: `${inputBackground}% auto`,
         }}
-        ref={rangeRef}
         type="range"
         min={min}
         max={max}
@@ -128,6 +165,9 @@ const Range = styled.input`
     height: 16px;
     border-radius: 16px;
   }
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const Title = styled.div`
@@ -156,6 +196,8 @@ const Container = styled.div`
   }
   @media screen and (max-width: 767px) {
     width: 349px;
+    border-width: 1px 1px 1px 1px;
+    height: 56px;
   }
 `;
 

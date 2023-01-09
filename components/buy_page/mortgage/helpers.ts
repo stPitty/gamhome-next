@@ -23,7 +23,7 @@ const carouselHandler = (windowSize: WindowSize | null) => {
   if (windowSize === WindowSize.SM) {
     return {
       quantifier: 208,
-      width: 3952,
+      width: 4160,
     };
   }
 };

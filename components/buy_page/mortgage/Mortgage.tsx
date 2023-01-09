@@ -46,14 +46,22 @@ const Mortgage = () => {
               min={500_000}
               max={100_000_000}
               defaultValue={flatData?.nonFormattedPrice}
+              type="money"
             />
             <Slider
               title="Первоначальный взнос"
               min={minContribution}
               max={maxContribution}
               defaultValue={defContribution}
+              type="money"
             />
-            <Slider title="Срок ипотеки" min={1} max={30} defaultValue={20} />
+            <Slider
+              title="Срок ипотеки"
+              min={1}
+              max={30}
+              defaultValue={20}
+              type="years"
+            />
           </SliderWrapper>
           <TopBtn buttonSize={ButtonSize.LARGE}>Связаться с менеджером</TopBtn>
         </SliderContainer>

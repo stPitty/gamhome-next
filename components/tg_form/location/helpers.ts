@@ -8,7 +8,6 @@ const openModal =
     isDisabled: boolean
   ) =>
   () => {
-    console.log(setStateAction && !isDisabled);
     if (setStateAction && !isDisabled) {
       setStateAction(true);
     }

@@ -30,9 +30,7 @@ const handleSwapImageClick =
     }
   };
 
-const handleMoneyDataFormatter = (
-  num: number | undefined | string | null
-): string => {
+const handleMoneyDataFormatter = (num: string | number): string => {
   if (num) {
     return String(num)
       .split("")
@@ -224,24 +222,39 @@ const getSquarePrice = (genPrice: number | string, params: Parameter[]) => {
 const handleFormatValue = (
   value: string,
   minNum: number | undefined,
-  maxNum: number | undefined,
-  prevValue: number | null
-) => {
-  const regexp = /^\d+$/;
-
-  const newValue = value.replaceAll(" ", "");
-
-  if (regexp.test(newValue)) {
-    const numValue = Number.parseInt(newValue);
-    if (minNum && numValue < minNum) {
-      return minNum;
-    }
-    if (maxNum && numValue > maxNum) {
-      return maxNum;
-    }
-    return numValue;
+  maxNum: number | undefined
+): number | string | null => {
+  // console.log(value);
+  const newValue = value
+    .split("")
+    .filter((el) => el !== " " && !/^\D$/gi.test(el))
+    .join("");
+  // console.log(newValue);
+  const numValue = newValue === "" ? 0 : Number.parseInt(newValue);
+  if (minNum && numValue < minNum) {
+    return minNum;
   }
-  return prevValue;
+  if (maxNum && numValue > maxNum) {
+    return maxNum;
+  }
+  return numValue;
+};
+
+const handleGetYears = (num: string) => {
+  if (num === "1" || num === "21" || num === "") {
+    return " год";
+  }
+  if (
+    num === "2" ||
+    num === "3" ||
+    num === "4" ||
+    num === "22" ||
+    num === "23" ||
+    num === "24"
+  ) {
+    return " года";
+  }
+  return " лет";
 };
 
 export {
@@ -258,4 +271,5 @@ export {
   getRefsArr,
   getSquarePrice,
   handleFormatValue,
+  handleGetYears,
 };
