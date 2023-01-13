@@ -16,6 +16,7 @@ import { RefType } from "../../common/form_utils/enums";
 import {
   authorValues,
   categoryValues,
+  typeOfPartValues,
   typeValues,
 } from "../../common/form_utils/constants";
 import {
@@ -37,6 +38,8 @@ import Parameters from "./simple_sections/Parameters";
 import Map from "./location/Map";
 
 const TgForm = () => {
+  const [showType, setShowType] = useState<boolean>(false);
+
   const { data, citiesData, isLoading, isError } = useAppSelector<TFormData>(
     (state) => state.formData
   );
@@ -71,6 +74,7 @@ const TgForm = () => {
   const categoryRefsArr = useGetRefs(categoryValues, RefType.CATEGORY);
   const typeArr = useGetRefs(typeValues, RefType.TYPE);
   const authorArr = useGetRefs(authorValues, RefType.AUTHOR);
+  const typeOfPartArr = useGetRefs(typeOfPartValues, RefType.TYPE_OF_PART);
 
   useEffect(() => {
     if (!data.city.id) {
@@ -81,9 +85,19 @@ const TgForm = () => {
 
   useEffect(() => {
     setActiveParams(categoryRefsArr.refs, data.category);
+  }, [data.category]);
+
+  useEffect(() => {
     setActiveParams(typeArr.refs, data.type);
+  }, [data.type]);
+
+  useEffect(() => {
     setActiveParams(authorArr.refs, data.author);
-  }, [data]);
+  }, [data.author]);
+
+  useEffect(() => {
+    setActiveParams(typeOfPartArr.refs, data.typeOfPart);
+  }, [data.typeOfPart]);
 
   useEffect(() => {
     dispatch(fetchCitiesData());
@@ -103,16 +117,43 @@ const TgForm = () => {
     }
   }, [isLoading, isError]);
 
+  useEffect(() => {
+    if (data.type === 1 && data.category === 2) {
+      setShowType(true);
+    } else {
+      setShowType(false);
+      dispatch(setPrimitiveField({ name: "typeOfPart", value: "" }));
+    }
+  }, [data.type, data.category]);
+
   return (
     <>
       <GeneralWrapper>
         <HeaderContainer>Настроить параметры поиска</HeaderContainer>
         <Divider />
-        <TagsSection refs={categoryRefsArr} header="Тип жилья" />
+        <TagsSection
+          isRequired={true}
+          refs={categoryRefsArr}
+          header="Тип жилья"
+        />
         <Divider />
-        <TagsSection refs={typeArr} header="Тип услуги" />
+        <TagsSection isRequired={true} refs={typeArr} header="Тип услуги" />
         <Divider />
-        <TagsSection refs={authorArr} header="Автор объявления" />
+        {showType && (
+          <>
+            <TagsSection
+              nullable={true}
+              refs={typeOfPartArr}
+              header="Тип участия"
+            />
+            <Divider />
+          </>
+        )}
+        <TagsSection
+          nullable={true}
+          refs={authorArr}
+          header="Автор объявления"
+        />
         <Divider />
         <SimpleForm
           header="Стоимость ₽"
@@ -120,16 +161,16 @@ const TgForm = () => {
           maxType="maxPrice"
         />
         <Divider />
-        <RadioButton header="Без комиссии" label="Да" fieldType="fee" />
-        <Divider />
-        <RadioButton
-          header="Являетесь агентом?"
-          label="Да"
-          fieldType="isAgent"
+        <SimpleForm
+          header="Год постройки"
+          minType="minYear"
+          maxType="maxYear"
         />
         <Divider />
+        <RadioButton header="Без комиссии" label="Да" fieldType="fee" />
+        <Divider />
         <SimpleForm
-          header="Расстояние до метро, км."
+          header="Расстояние до метро в минутах"
           minType="minKmMetro"
           maxType="maxKmMetro"
         />

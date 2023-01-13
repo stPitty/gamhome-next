@@ -70,7 +70,7 @@ const ImagesContainer = styled.div`
     row-gap: 18px;
     justify-content: space-between;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     width: 303px;
     height: 186px;
     row-gap: 15px;

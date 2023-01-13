@@ -12,6 +12,7 @@ import BadgesGroup from "../../tg_form_ui/badge_ui/BadgesGroup";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import SectionHeader from "../../tg_form_ui/section_header_ui/SectionHeader";
 import { ChevronRight } from "@styled-icons/fluentui-system-filled";
+import { Asterisk } from "@styled-icons/fa-solid/Asterisk";
 
 const Location = () => {
   const { data } = useAppSelector<TFormData>((state) => state.formData);
@@ -49,7 +50,9 @@ const Location = () => {
           disabled={isCitiesDisabled}
           onClick={openModal(setIsCityOpen, isCitiesDisabled)}
         >
-          <Text>Выбрать город</Text>
+          <Text>
+            Выбрать город <AsteriskIcon />
+          </Text>
           <ChevronIcon />
         </ChoseBtn>
         {data?.city?.id && (
@@ -97,9 +100,17 @@ const Location = () => {
   );
 };
 
+const AsteriskIcon = styled(Asterisk)`
+  width: 9px;
+  height: 9px;
+  color: #be0000;
+  margin-left: 2px;
+`;
+
 const Text = styled.div`
   color: #676a71;
   font-size: 14px;
+  display: flex;
 `;
 
 const ChevronIcon = styled(ChevronRight)`

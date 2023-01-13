@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Link from "next/link";
 import { TFlatState, TPathName } from "../../../redux/slicers/types";
 import { Hook, Route } from "../../../common/routes";
@@ -49,7 +49,9 @@ const PriceBlock: React.FC = () => {
           <LoadingBlock />
         ) : (
           <>
-            <HeaderText>{flatData?.price}₽ в мес</HeaderText>
+            <HeaderText>
+              {flatData?.price}₽{pathName === Route.RENT ? " в мес" : ""}
+            </HeaderText>
             <SubHeaderText>{subHeader}</SubHeaderText>
           </>
         )}

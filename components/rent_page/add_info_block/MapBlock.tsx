@@ -10,6 +10,7 @@ import Button from "../../UI/button/Button";
 import { ButtonSize, ButtonType } from "../../UI/button/enums";
 import LoadingMap from "../../UI/loading_ui/LoadingMap";
 import { handleResizeMap } from "./helpers";
+import Link from "next/link";
 
 const MapBlock = () => {
   const [mapWidth, setMapWidth] = useState<number | undefined>();
@@ -65,12 +66,18 @@ const MapBlock = () => {
               <Placemark defaultGeometry={[flatData.lat, flatData.lng]} />
             </Map>
           )}
-          <StyledButton
-            buttonSize={ButtonSize.LARGE}
-            buttonType={ButtonType.FLAT}
+          <Link
+            href={flatData?.sourceUrl ? new URL(flatData?.sourceUrl) : "/"}
+            style={{ width: "100%" }}
+            target="_blank"
           >
-            Перейти на страницу объявления
-          </StyledButton>
+            <StyledButton
+              buttonSize={ButtonSize.LARGE}
+              buttonType={ButtonType.FLAT}
+            >
+              Перейти на страницу объявления
+            </StyledButton>
+          </Link>
         </>
       )}
     </Container>
@@ -168,6 +175,9 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     margin-top: 40px;
   }
+  //@media screen and (max-width: 767px) {
+  //  width: 349px; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+  //}
 `;
 
 export default MapBlock;

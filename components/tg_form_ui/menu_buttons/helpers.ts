@@ -13,7 +13,7 @@ const formatComplexData = (arr: Params[]) => {
       currentValue
     ) => {
       previousValue.push({
-        id: Number.parseInt(currentValue.id),
+        id: Number(currentValue.id),
       });
       return previousValue;
     },
@@ -22,7 +22,10 @@ const formatComplexData = (arr: Params[]) => {
 };
 
 const reduceSpaces = (data: string) => {
-  return Number.parseInt(data.replaceAll(" ", ""));
+  if (data !== "") {
+    return Number.parseInt(data.replaceAll(" ", ""));
+  }
+  return null;
 };
 
 const formatParameters = (
@@ -33,10 +36,12 @@ const formatParameters = (
   let isHouseTypeExist = false;
   for (let i = 0; i < parametersKeys.length; i++) {
     if (
-      (parametersKeys[i].name === "repair" ||
-        parametersKeys[i].name === "houseType" ||
-        parametersKeys[i].name === "wallMaterial") &&
-      !!params[parametersKeys[i].name as AddParameters]
+      parametersKeys[i].name === "repair" ||
+      parametersKeys[i].name === "houseType" ||
+      parametersKeys[i].name === "wallMaterial" ||
+      parametersKeys[i].name === "roomsQuantity" ||
+      parametersKeys[i].name === "roomsInFlatQuantity" ||
+      parametersKeys[i].name === "floorParam"
     ) {
       let tagParam: Parameter;
       switch (parametersKeys[i].name) {
@@ -60,9 +65,14 @@ const formatParameters = (
       continue;
     }
 
-    const value = params[`max${parametersKeys[i].name}` as AddParameters];
-    const minValue = params[`min${parametersKeys[i].name}` as AddParameters];
-
+    const value =
+      params[`max${parametersKeys[i].name}` as AddParameters] === ""
+        ? "9999"
+        : params[`max${parametersKeys[i].name}` as AddParameters];
+    const minValue =
+      params[`min${parametersKeys[i].name}` as AddParameters] === ""
+        ? "0"
+        : params[`min${parametersKeys[i].name}` as AddParameters];
     if ((!!value || !!minValue) && category === parametersKeys[i].categoryId) {
       const inputParam: Parameter = {
         parameterId: parametersKeys[i].id,
@@ -78,17 +88,16 @@ const formatParameters = (
 
 type WindowTg = Window & typeof globalThis & { Telegram: any };
 
-const handlePushClick = (data: TFormData["data"]) => () => {
+const handlePushClick = (data: TFormData["data"]) => {
   const newData: PostData = {
-    isAgent: data.isAgent,
     category: {
       id: data.category,
     },
     type: {
       id: data.type,
     },
-    minPrice: reduceSpaces(data.minPrice),
-    maxPrice: reduceSpaces(data.maxPrice),
+    minPrice: reduceSpaces(data.minPrice) ?? 0,
+    maxPrice: reduceSpaces(data.maxPrice) ?? 999_999_999,
     city: {
       id: data.city.id,
     },
@@ -97,13 +106,19 @@ const handlePushClick = (data: TFormData["data"]) => () => {
     author: {
       id: data.author,
     },
-    minKmMetro: reduceSpaces(data.minKmMetro),
-    maxKmMetro: reduceSpaces(data.maxKmMetro),
+    minKmMetro: reduceSpaces(data.minKmMetro)
+      ? Math.round((reduceSpaces(data.minKmMetro) as number) / 10)
+      : 0,
+    maxKmMetro: reduceSpaces(data.maxKmMetro)
+      ? Math.round((reduceSpaces(data.maxKmMetro) as number) / 10)
+      : 100,
     fee: data.fee,
     parameters: formatParameters(data.params, data.category),
     polygons: data.polygon ?? "",
+    typeOfPart: data.typeOfPart,
+    minYear: reduceSpaces(data.minYear) ?? 0,
+    maxYear: reduceSpaces(data.maxYear) ?? 3000,
   };
-
   localStorage.setItem("formData", JSON.stringify(data));
 
   if (typeof (window as WindowTg)?.Telegram !== "undefined") {

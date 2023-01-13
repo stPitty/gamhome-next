@@ -162,7 +162,7 @@ const HeaderContainer = styled.div`
     width: 100%;
     align-items: center;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     align-items: flex-start;
   }
 `;

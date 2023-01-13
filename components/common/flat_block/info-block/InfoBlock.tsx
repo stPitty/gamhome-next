@@ -7,6 +7,7 @@ import { TFlatState, TPathName } from "../../../../redux/slicers/types";
 import LoadingFlatParameters from "../../../UI/loading_ui/LoadingFlatParameters";
 import { useMemo } from "react";
 import { handleGetSubHeader } from "../../../../common/helpers";
+import { Route } from "../../../../common/routes";
 
 const InfoBlock: React.FC = () => {
   const { isLoading, flatData } = useAppSelector<TFlatState>(
@@ -34,7 +35,9 @@ const InfoBlock: React.FC = () => {
         <>
           <FlatGenInfoContainer>
             <FlatTitleText>{flatData?.title}</FlatTitleText>
-            <FlatPriceText>{flatData?.price} ₽ в мес</FlatPriceText>
+            <FlatPriceText>
+              {flatData?.price} ₽{pathName === Route.RENT ? " в мес" : ""}
+            </FlatPriceText>
             <SubHeaderText>{subHeader}</SubHeaderText>
           </FlatGenInfoContainer>
           <HeaderText>Общая информация</HeaderText>

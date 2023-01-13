@@ -3,8 +3,11 @@ import { TFormData } from "../../../redux/slicers/types";
 import { clearFormData } from "../../../redux/slicers/formDataSlicer";
 import { handlePushClick } from "./helpers";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useEffect, useState } from "react";
 
 const SaveButton = () => {
+  const [disabled, setDisabled] = useState<boolean>(true);
+
   const { data } = useAppSelector<TFormData>((state) => state.formData);
 
   const dispatch = useAppDispatch();
@@ -13,11 +16,26 @@ const SaveButton = () => {
     dispatch(clearFormData());
   };
 
+  const handleSendClick = () => {
+    if (disabled) return;
+    handlePushClick(data);
+  };
+
+  useEffect(() => {
+    if (!data.type || !data.category || !data.city.id) {
+      setDisabled(true);
+    } else {
+      setDisabled(false);
+    }
+  }, [data.type, data.category, data.city]);
+
   return (
     <Container>
       <ShadowContainer />
       <BtnContainer>
-        <SendBtn onClick={handlePushClick(data)}>Отправить</SendBtn>
+        <SendBtn isDisabled={disabled} onClick={handleSendClick}>
+          Отправить
+        </SendBtn>
         <ClearBtn onClick={handleClearClick}>Сбросить</ClearBtn>
       </BtnContainer>
     </Container>
@@ -51,8 +69,10 @@ const Button = styled.div`
   justify-content: center;
 `;
 
-const SendBtn = styled(Button)`
-  background-color: #bd52ff;
+const SendBtn = styled(Button)<{ isDisabled: boolean }>`
+  background-color: ${({ isDisabled }) =>
+    isDisabled ? "rgba(189,82,255,0.5)" : "#bd52ff"};
+  cursor: ${({ isDisabled }) => isDisabled && "default"};
 `;
 
 const ClearBtn = styled(Button)`

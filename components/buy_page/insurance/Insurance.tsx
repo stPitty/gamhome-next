@@ -204,7 +204,7 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     width: 349px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     width: 288px;
   }
 `;

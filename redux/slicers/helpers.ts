@@ -57,8 +57,8 @@ const handleSetPrimitiveField = (state: any, action: FieldAction) => {
       maxKitchenSquare: "",
       minSquare: "",
       maxSquare: "",
-      minRoomsQuantity: "",
-      maxRoomsQuantity: "",
+      // minRoomsQuantity: "",
+      roomsQuantity: null,
       minFloor: "",
       maxFloor: "",
       minLivingSquare: "",
@@ -69,10 +69,11 @@ const handleSetPrimitiveField = (state: any, action: FieldAction) => {
       maxHouseSquare: "",
       minLandSquare: "",
       maxLandSquare: "",
-      minRoomsInFlatQuantity: "",
-      maxRoomsInFlatQuantity: "",
+      // minRoomsInFlatQuantity: "",
+      roomsInFlatQuantity: "",
       minRoomSquare: "",
       maxRoomSquare: "",
+      floorParam: null,
     };
   }
 
@@ -89,6 +90,11 @@ const handleSetPrimitiveField = (state: any, action: FieldAction) => {
     action.payload.name === "maxKmMetro"
   ) {
     handleNumFormat(state, action, 50, "50");
+    return;
+  }
+
+  if (action.payload.name === "minYear" || action.payload.name === "maxYear") {
+    handleNumFormat(state, action, 3000, "3000", false, true);
     return;
   }
 
@@ -149,6 +155,9 @@ const handleSetParamInput = (state: any, action: FieldAction) => {
 
 const handleClearData = (state: any) => {
   state.data = {
+    maxYear: "",
+    minYear: "",
+    typeOfPart: "",
     city: {
       name: "",
       id: null,
@@ -175,8 +184,8 @@ const handleClearData = (state: any) => {
       maxKitchenSquare: "",
       minSquare: "",
       maxSquare: "",
-      minRoomsQuantity: "",
-      maxRoomsQuantity: "",
+      // minRoomsQuantity: "",
+      roomsQuantity: null,
       minFloor: "",
       maxFloor: "",
       minLivingSquare: "",
@@ -187,10 +196,11 @@ const handleClearData = (state: any) => {
       maxHouseSquare: "",
       minLandSquare: "",
       maxLandSquare: "",
-      minRoomsInFlatQuantity: "",
-      maxRoomsInFlatQuantity: "",
+      // minRoomsInFlatQuantity: "",
+      roomsInFlatQuantity: null,
       minRoomSquare: "",
       maxRoomSquare: "",
+      floorParam: null,
     },
   };
 };

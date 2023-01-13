@@ -5,7 +5,6 @@ type Parameter = {
 };
 
 type PostData = {
-  isAgent: boolean;
   category: {
     id: number | null;
   };
@@ -31,6 +30,9 @@ type PostData = {
   maxKmMetro: number;
   fee: boolean;
   polygons: any;
+  typeOfPart: string;
+  minYear: number;
+  maxYear: number;
 };
 
 export type { PostData, Parameter };

@@ -68,7 +68,7 @@ const ImagesContainer = styled.div`
     width: 349px;
     height: 288px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     width: 288px;
     height: 238px;
   }
@@ -214,7 +214,7 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
       }
     }}
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     border-radius: 10px;
     ${({ size }) => {
       switch (size) {
@@ -283,7 +283,7 @@ const TextContainer = styled.div`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
   }
-  @media screen and (max-width: 375px) {
+  @media screen and (max-width: 374px) {
     width: 288px;
   }
 `;

@@ -1,9 +1,13 @@
 import {
   Author,
   CategoryType,
+  FloorsInHouse,
   HouseMaterialType,
   Repair,
+  RoomsInFlatQuantity,
+  RoomsQuantity,
   Type,
+  TypeOfPArt,
   WallMaterial,
 } from "./enums";
 import { AddParameters } from "./types";
@@ -55,6 +59,21 @@ const typeValues = [
   {
     value: 1,
     children: Type.BUY,
+  },
+];
+
+const typeOfPartValues = [
+  {
+    value: TypeOfPArt.DDU,
+    children: TypeOfPArt.DDU,
+  },
+  {
+    value: TypeOfPArt.OTHER,
+    children: TypeOfPArt.OTHER,
+  },
+  {
+    value: TypeOfPArt.JSK,
+    children: TypeOfPArt.JSK,
   },
 ];
 
@@ -127,6 +146,71 @@ const wallMaterialValues = [
   },
 ];
 
+const roomsQuantityValues = [
+  {
+    value: RoomsQuantity.STUDIO,
+    children: "Студия",
+  },
+  {
+    value: RoomsQuantity.ONE,
+    children: RoomsQuantity.ONE,
+  },
+  {
+    value: RoomsQuantity.TWO,
+    children: RoomsQuantity.TWO,
+  },
+  {
+    value: RoomsQuantity.THREE,
+    children: RoomsQuantity.THREE,
+  },
+  {
+    value: RoomsQuantity.FOURTH,
+    children: RoomsQuantity.FOURTH,
+  },
+  {
+    value: RoomsQuantity.FIVE_PLUS,
+    children: RoomsQuantity.FIVE_PLUS,
+  },
+];
+
+const roomsInFlatQuantityValues = [
+  {
+    value: RoomsInFlatQuantity.ONE,
+    children: RoomsInFlatQuantity.ONE,
+  },
+  {
+    value: RoomsInFlatQuantity.TWO,
+    children: RoomsInFlatQuantity.TWO,
+  },
+  {
+    value: RoomsInFlatQuantity.THREE,
+    children: RoomsInFlatQuantity.THREE,
+  },
+  {
+    value: RoomsInFlatQuantity.FOURTH,
+    children: RoomsInFlatQuantity.FOURTH,
+  },
+  {
+    value: RoomsInFlatQuantity.FIVE_PLUS,
+    children: RoomsInFlatQuantity.FIVE_PLUS,
+  },
+];
+
+const floorsInHouseValues = [
+  {
+    value: FloorsInHouse.NOT_FIRST,
+    children: FloorsInHouse.NOT_FIRST,
+  },
+  {
+    value: FloorsInHouse.NOT_LAST,
+    children: FloorsInHouse.NOT_LAST,
+  },
+  {
+    value: FloorsInHouse.LAST,
+    children: FloorsInHouse.LAST,
+  },
+];
+
 const parametersKeys: {
   id: number;
   name: AddParameters | Param;
@@ -154,7 +238,7 @@ const parametersKeys: {
   },
   {
     id: 5,
-    name: "RoomsQuantity",
+    name: "roomsQuantity",
     categoryId: 2,
   },
   {
@@ -194,7 +278,7 @@ const parametersKeys: {
   },
   {
     id: 13,
-    name: "RoomsInFlatQuantity",
+    name: "roomsInFlatQuantity",
     categoryId: 3,
   },
   {
@@ -222,6 +306,16 @@ const parametersKeys: {
     name: "wallMaterial",
     categoryId: 4,
   },
+  {
+    id: 19,
+    name: "floorParam",
+    categoryId: 2,
+  },
+  {
+    id: 20,
+    name: "floorParam",
+    categoryId: 3,
+  },
 ];
 
 export {
@@ -229,7 +323,11 @@ export {
   categoryValues,
   typeValues,
   authorValues,
+  typeOfPartValues,
   repairValues,
   wallMaterialValues,
   parametersKeys,
+  roomsQuantityValues,
+  roomsInFlatQuantityValues,
+  floorsInHouseValues,
 };

@@ -4,7 +4,7 @@ export default function Document() {
   return (
     <Html>
       <Head>
-        <title>Gamhome web form</title>
+        <title>GamHome</title>
         <script
           async
           src="https://telegram.org/js/telegram-web-app.js"

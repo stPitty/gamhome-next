@@ -2,11 +2,11 @@ type Param =
   | "FloorsInHouse"
   | "KitchenSquare"
   | "Square"
-  | "RoomsQuantity"
+  // | "RoomsQuantity"
   | "Floor"
   | "LivingSquare"
   | "RoomSquare"
-  | "RoomsInFlatQuantity"
+  // | "RoomsInFlatQuantity"
   | "HouseSquare"
   | "LandSquare"
   | "DeliveryTime";

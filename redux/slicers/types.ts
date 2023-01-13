@@ -164,6 +164,9 @@ type FieldName =
   | "districts"
   | "params"
   | "fee"
+  | "typeOfPart"
+  | "maxYear"
+  | "minYear"
   | "polygon";
 
 type Params = {
@@ -202,8 +205,8 @@ type City = Params & {
 type ParametersObj = Partial<Record<AddParameters, string | null>>;
 
 type Data = {
+  typeOfPart: string;
   polygon: any;
-  isAgent: boolean;
   category: 2 | 3 | 4 | null;
   type: 1 | 2 | null;
   minPrice: string;
@@ -216,6 +219,8 @@ type Data = {
   minKmMetro: string;
   maxKmMetro: string;
   fee: boolean;
+  minYear: string;
+  maxYear: string;
 };
 
 type TFormData = {

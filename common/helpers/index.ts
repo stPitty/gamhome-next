@@ -133,7 +133,7 @@ const handleGetSubHeader =
   () => {
     if (pathName === Route.RENT && price) {
       return `Залог ${price} ₽, ${
-        fee && "комиссия " + feeAmount + " ₽,"
+        fee ? "комиссия " + feeAmount + " ₽," : ""
       } предоплата за 1 месяц, от года`;
     }
     if (pathName === Route.BUY && squarePrice) {
