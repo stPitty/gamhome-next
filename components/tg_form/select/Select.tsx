@@ -21,6 +21,7 @@ import BadgesGroup from "../../tg_form_ui/badge_ui/BadgesGroup";
 import ModalWrapper from "../../tg_form_ui/wrapper_ui/ModalWrapper";
 import SectionHeader from "../../tg_form_ui/section_header_ui/SectionHeader";
 import Input from "../../tg_form_ui/input_ui/Input";
+import { Done } from "@styled-icons/material/Done";
 
 type Props = {
   data: City[] | MetroLines[] | Params[] | null;
@@ -58,7 +59,9 @@ const Select: FC<Props> = ({
       <ModalContainer>
         <HeaderContainer>
           <StyledHeader>{header}</StyledHeader>
-          <CloseIcon onClick={handleClickClose(setIsOpen)} />
+          <CloseContainer onClick={handleClickClose(setIsOpen)}>
+            Готово <DoneIcon />
+          </CloseContainer>
         </HeaderContainer>
         <Input
           placeholder={placeholder}
@@ -123,9 +126,24 @@ const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-const CloseIcon = styled(CloseOutline)`
-  height: 28px;
+const CloseContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 2px solid rgba(0, 128, 0, 0.5);
+  border-radius: 5px;
   cursor: pointer;
+  height: 24px;
+  width: 82px;
+  font-size: 14px;
+  line-height: 18px;
+  color: green;
+  font-weight: 700;
+  padding: 3px;
+`;
+
+const DoneIcon = styled(Done)`
+  color: green;
 `;
 
 const Wrapper = styled.div`
