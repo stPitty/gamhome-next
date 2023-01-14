@@ -120,7 +120,7 @@ const handlePushClick = (data: TFormData["data"]) => {
     maxYear: reduceSpaces(data.maxYear) ?? 3000,
   };
   localStorage.setItem("formData", JSON.stringify(data));
-
+  console.log(newData);
   if (typeof (window as WindowTg)?.Telegram !== "undefined") {
     try {
       (window as WindowTg)?.Telegram.WebApp.sendData(JSON.stringify(newData));

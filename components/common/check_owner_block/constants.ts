@@ -3,6 +3,7 @@ import { TabBodyData } from "./types";
 import {
   checkObjInputNum,
   checkOwnerInputInfo,
+  law,
 } from "../../../redux/slicers/modalStateSlicer";
 
 const rentTabTitle: TabTitle[] = [
@@ -258,7 +259,7 @@ const jurData: TabBodyData = {
   },
   image: "/images/perfect-candidate-big.webp",
   contentType: "jurAnalysis",
-  btnAction: checkOwnerInputInfo,
+  btnAction: law,
 };
 
 const rentTabsData: TabBodyData[] = [objData, ownerData];

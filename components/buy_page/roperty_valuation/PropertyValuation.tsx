@@ -3,8 +3,16 @@ import { BlackColor, Font } from "../../../common/enums";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import { useAppDispatch } from "../../../redux/hooks";
+import { propertyEval } from "../../../redux/slicers/modalStateSlicer";
 
 const PropertyValuation = () => {
+  const dispatch = useAppDispatch();
+
+  const handleButtonClick = () => {
+    dispatch(propertyEval());
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -23,7 +31,10 @@ const PropertyValuation = () => {
               или застраховать недвижимость.
             </DescText>
           </TextContainer>
-          <StyledButton buttonSize={ButtonSize.LARGE}>
+          <StyledButton
+            onClick={handleButtonClick}
+            buttonSize={ButtonSize.LARGE}
+          >
             Заказать от 2 500 ₽
           </StyledButton>
         </InfoBlock>
@@ -33,7 +44,7 @@ const PropertyValuation = () => {
           <Image size={3} image="/images/buy_flat_3.webp" />
           <Image size={4} image="/images/buy_flat_4.webp" />
         </ImagesContainer>
-        <BottomBtn>Заказать от 2 500 ₽</BottomBtn>
+        <BottomBtn onClick={handleButtonClick}>Заказать от 2 500 ₽</BottomBtn>
       </Container>
     </Wrapper>
   );

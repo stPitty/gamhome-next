@@ -4,13 +4,20 @@ import Slider from "../../UI/slider/Slider";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
 import BankCarousel from "./BankCarousel";
-import { useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import { contactManager } from "../../../redux/slicers/modalStateSlicer";
 
 const Mortgage = () => {
+  const [cost, setCost] = useState<string>("");
+  const [firstPay, setFirstPay] = useState<string>("");
+  const [time, setTime] = useState<string>("");
+
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
+
+  const dispatch = useAppDispatch();
 
   const minContribution = useMemo(() => {
     if (flatData?.nonFormattedPrice) {
@@ -30,6 +37,10 @@ const Mortgage = () => {
     }
   }, [flatData?.nonFormattedPrice]);
 
+  const handleContactClick = () => {
+    dispatch(contactManager());
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -48,6 +59,8 @@ const Mortgage = () => {
         <SliderContainer>
           <SliderWrapper>
             <Slider
+              inputValue={cost}
+              setInputValue={setCost}
               title="Стоимость жилья"
               min={500_000}
               max={100_000_000}
@@ -55,6 +68,8 @@ const Mortgage = () => {
               type="money"
             />
             <Slider
+              inputValue={firstPay}
+              setInputValue={setFirstPay}
               title="Первоначальный взнос"
               min={minContribution}
               max={maxContribution}
@@ -62,6 +77,8 @@ const Mortgage = () => {
               type="money"
             />
             <Slider
+              inputValue={time}
+              setInputValue={setTime}
               title="Срок ипотеки"
               min={1}
               max={30}
@@ -69,10 +86,14 @@ const Mortgage = () => {
               type="years"
             />
           </SliderWrapper>
-          <TopBtn buttonSize={ButtonSize.LARGE}>Связаться с менеджером</TopBtn>
+          <TopBtn onClick={handleContactClick} buttonSize={ButtonSize.LARGE}>
+            Связаться с менеджером
+          </TopBtn>
         </SliderContainer>
-        <BankCarousel />
-        <BottomBtn>Связаться с менеджером</BottomBtn>
+        <BankCarousel cost={cost} firstPay={firstPay} time={time} />
+        <BottomBtn onClick={handleContactClick}>
+          Связаться с менеджером
+        </BottomBtn>
       </Container>
     </Wrapper>
   );

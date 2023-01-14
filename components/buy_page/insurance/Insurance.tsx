@@ -9,8 +9,16 @@ import { ButtonSize } from "../../UI/button/enums";
 import InfiniteLooper from "../../UI/infinite_looper/InfiniteLooper";
 import BankBlock from "../mortgage/BankBlock";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import { useAppDispatch } from "../../../redux/hooks";
+import { insurance } from "../../../redux/slicers/modalStateSlicer";
 
 const Insurance = () => {
+  const dispatch = useAppDispatch();
+
+  const handleButtonClick = () => {
+    dispatch(insurance());
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -67,7 +75,10 @@ const Insurance = () => {
             </ListContainer>
             <MobileBankBlock />
           </InfoContainer>
-          <StyledButton buttonSize={ButtonSize.LARGE}>
+          <StyledButton
+            onClick={handleButtonClick}
+            buttonSize={ButtonSize.LARGE}
+          >
             Оставить заявку
           </StyledButton>
         </InfoBlock>

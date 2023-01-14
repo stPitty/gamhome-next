@@ -6,10 +6,12 @@ import {
   closeModal,
   docsSent,
   informationSent,
+  makeDeal,
   openBuyCheckListWithEmail,
   openFreeDocsWithEmail,
   thanksForBuy,
   thanksForOrder,
+  thanksForOrder2,
 } from "../../../redux/slicers/modalStateSlicer";
 import {
   clearOwnerData,
@@ -318,6 +320,88 @@ const modalData: ModalBodyData = {
     desc: "Мы свяжемся с вами в ближайшее время",
     modalType: "lastMessage",
     image: "/images/cozy-evening.webp",
+  },
+  [ModalState.THANKS_FOR_ORDER_2]: {
+    header: "Спасибо за заявку",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    modalType: "lastMessage",
+    image: "/images/man-sends-message.webp",
+  },
+  [ModalState.CONTACT_MANAGER]: {
+    ...serviceModal,
+    header: "Расчёт ипотеки",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.PROPERTY_EVAL]: {
+    ...serviceModal,
+    header: "Оценка недвижимости",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.INSURANCE]: {
+    ...serviceModal,
+    header: "Ипотечное страхование",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.TYPE_DEAL]: {
+    header: "Типовые договора",
+    desc: "Файл с документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности",
+    buttonText: "Отправить",
+    modalType: "withInput",
+    nextStateBtnAction: docsSent,
+    placeHolder: "email",
+    errorMessage: "Введите корректный Email",
+    submitFailedMessage: "Укажите Email",
+    validationPattern: emailValidationRegexp,
+  },
+  [ModalState.LAW]: {
+    ...serviceModal,
+    header: "Правовое заключение",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.DEAL_FOLLOWING]: {
+    ...serviceModal,
+    header: "Сопровождение сделки",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.MAKE_DECLARATION]: {
+    ...serviceModal,
+    header: "Составление деклараций 3-НДФЛ",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.MAKE_DEAL_INFO]: {
+    header: "Составление договоров",
+    modalType: "withInfo",
+    desc:
+      "Включает в себя:\n" +
+      "Подготовка договора с учётом особенностей сделки и интересов клиента — продавца или покупателя.\n" +
+      "Консультирование по подготовленному договору,\n" +
+      "корректировка договора после ознакомления сторонами сделки.\n" +
+      "Итоговая корректировка договора при проведении сделки.\n" +
+      "\n" +
+      "Договор купли-продажи включает:\n" +
+      "Передаточный акт с учётом интересов клиента.\n" +
+      "Шаблон расписки о получении денежных средств\n" +
+      "\n" +
+      "Стоимость услуги может быть увеличена, при множественности объектов, для коммерческих объектов, при нестандартном/не типовом виде договора и тд.",
+    buttonText: "Заказать от 1 500 ₽",
+    nextStateBtnAction: makeDeal,
+  },
+  [ModalState.MAKE_DEAL]: {
+    ...serviceModal,
+    header: "Составление договоров",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.TAX_CONSULT]: {
+    ...serviceModal,
+    header: "Консультация по налогообложению",
+    desc: "Мы свяжемся с вами в ближайшее время",
+    nextStateBtnAction: thanksForOrder2,
   },
 };
 

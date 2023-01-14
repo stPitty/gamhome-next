@@ -4,23 +4,29 @@ import styled from "styled-components";
 import { BlackColor, Font, WhiteColor } from "../../../common/enums";
 
 type Props = {
-  data: DescText[];
+  data: DescText[] | string;
 };
 
 const List: FC<Props> = ({ data }) => {
   return (
-    <StyledUL>
-      {data?.map((el) => {
-        return (
-          <StyledLI key={el.id}>
-            <ListItemWrapper>
-              <ListMarker />
-              <Text>{el.text}</Text>
-            </ListItemWrapper>
-          </StyledLI>
-        );
-      })}
-    </StyledUL>
+    <>
+      {typeof data === "object" ? (
+        <StyledUL>
+          {data?.map((el) => {
+            return (
+              <StyledLI key={el.id}>
+                <ListItemWrapper>
+                  <ListMarker />
+                  <Text>{el.text}</Text>
+                </ListItemWrapper>
+              </StyledLI>
+            );
+          })}
+        </StyledUL>
+      ) : (
+        <Text notList={true}>{data}</Text>
+      )}
+    </>
   );
 };
 
@@ -49,19 +55,20 @@ const StyledLI = styled.li`
   list-style-type: none;
 `;
 
-const Text = styled.p`
+const Text = styled.p<{ notList?: boolean }>`
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   margin: 0;
-  width: 430px;
+  width: ${({ notList }) => (notList ? "100%" : "430px")};
   transition: none;
+  white-space: pre-wrap;
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 335px;
+    width: ${({ notList }) => (notList ? "100%" : "335px")};
   }
   @media screen and (max-width: 374px) {
-    width: 280px;
+    width: ${({ notList }) => (notList ? "100%" : "280px")};
   }
 `;
 

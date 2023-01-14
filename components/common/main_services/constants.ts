@@ -3,6 +3,7 @@ import { CardType } from "./enums";
 import {
   agentForContract,
   conciergeService,
+  dealFollowing,
   keySearch,
 } from "../../../redux/slicers/modalStateSlicer";
 import { ButtonType } from "../../UI/button/enums";
@@ -129,7 +130,7 @@ const buyCardsData: CardData[] = [
     cost: "79 890 ₽",
     descText:
       "Нашли объект самостоятельно? Поможем провести сделку и оформить все документы",
-    buttonAction: agentForContract,
+    buttonAction: dealFollowing,
     points: [
       {
         id: 1,

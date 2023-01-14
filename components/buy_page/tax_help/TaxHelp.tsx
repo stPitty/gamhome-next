@@ -5,8 +5,10 @@ import CardsWrapper from "../../UI/cards_wrapper/CardsWrapper";
 import UsefulServiceCard from "../../UI/useful_service_card/UsefulServiceCard";
 import { CardType } from "../../common/services_block/enums";
 import {
+  makeDeclarations,
   openBuyCheckListWithEmail,
   openFreeDocsWithEmail,
+  taxConsult,
 } from "../../../redux/slicers/modalStateSlicer";
 import { Consult, Declaration } from "./enums";
 import { consultDesc, declarationDesc } from "./constants";
@@ -22,7 +24,7 @@ const TaxHelp = () => {
           buttonText={Consult.BUTTON_TEXT}
           descArr={consultDesc}
           withoutAddBtn={true}
-          primaryBtnAction={openBuyCheckListWithEmail}
+          primaryBtnAction={taxConsult}
           contentType="tax"
         />
         <UsefulServiceCard
@@ -31,7 +33,7 @@ const TaxHelp = () => {
           buttonText={Declaration.BUTTON_TEXT}
           descArr={declarationDesc}
           withoutAddBtn={true}
-          primaryBtnAction={openFreeDocsWithEmail}
+          primaryBtnAction={makeDeclarations}
           contentType="tax"
         />
       </CardsWrapper>

@@ -63,4 +63,15 @@ export type ModalBodyData = {
   [ModalState.CONCIERGE_SERVICE]: ModalBody;
   [ModalState.KEY_SEARCH]: ModalBody;
   [ModalState.THANKS_FOR_ORDER]: ModalBody;
+  [ModalState.CONTACT_MANAGER]: ModalBody;
+  [ModalState.THANKS_FOR_ORDER_2]: ModalBody;
+  [ModalState.PROPERTY_EVAL]: ModalBody;
+  [ModalState.INSURANCE]: ModalBody;
+  [ModalState.TYPE_DEAL]: ModalBody;
+  [ModalState.LAW]: ModalBody;
+  [ModalState.DEAL_FOLLOWING]: ModalBody;
+  [ModalState.MAKE_DECLARATION]: ModalBody;
+  [ModalState.MAKE_DEAL_INFO]: ModalBody;
+  [ModalState.MAKE_DEAL]: ModalBody;
+  [ModalState.TAX_CONSULT]: ModalBody;
 };

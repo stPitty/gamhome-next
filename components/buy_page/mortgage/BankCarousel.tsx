@@ -1,21 +1,35 @@
 import styled from "styled-components";
 import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
 import { BlackColor, Font, LightBlueColor } from "../../../common/enums";
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { FC, memo, useEffect, useRef, useState } from "react";
 import { useAppSelector } from "../../../redux/hooks";
 import { TWindowSize } from "../../../redux/slicers/types";
 import { carouselHandler, handleControlClick } from "./helpers";
-import { WindowSize } from "../../../redux/slicers/enums";
+import BankModal from "./BankModal";
 
-const BankCarousel = () => {
+type Props = {
+  cost: string;
+  firstPay: string;
+  time: string;
+};
+
+const BankCarousel: FC<Props> = ({ cost, firstPay, time }) => {
   const [translate, setTranslate] = useState<number>(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
+
+  const [bankName, setBankName] = useState<string | null>(null);
 
   const containerRef = useRef(null);
 
   const { windowSize } = useAppSelector<TWindowSize>(
     (state) => state.windowSize
   );
+
+  const handleOpenModal = (name: string) => () => {
+    setModalOpen(true);
+    setBankName(name);
+  };
 
   const handleContainerWheel = (e: any) => {
     e.preventDefault();
@@ -69,184 +83,195 @@ const BankCarousel = () => {
   };
 
   return (
-    <Container>
-      <ControlContainer
-        onClick={handleControlClick(
-          "left",
-          translate,
-          setTranslate,
-          windowSize
-        )}
-      >
-        <ChevronIcon type="left" />
-      </ControlContainer>
-      <BankWrapper>
-        <BankContainer
-          ref={containerRef}
-          style={{ transform: `translateX(-${translate}px)` }}
-          onTouchStart={handleMouseDown as any}
-          onTouchEnd={handleMouseUp as any}
+    <>
+      <Container>
+        <ControlContainer
+          onClick={handleControlClick(
+            "left",
+            translate,
+            setTranslate,
+            windowSize
+          )}
         >
-          <BankItem>
-            <BankImage image="/assets/icons/fora_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/raifaizen_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/unicredit_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/dom_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/absolut_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/zenit_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/mkb_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/metall_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/atb_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/bspb_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/smp_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/otkrytye_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/sber_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/alfa_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/gazprom_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/vtb_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/rosbank_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/tkb_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/bjf_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/rh_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-          <BankItem>
-            <BankImage image="/assets/icons/ps_bank.webp" />
-            <CostContainer>
-              <Percent>10,8%</Percent>
-              <Price>97 543 ₽</Price>
-            </CostContainer>
-          </BankItem>
-        </BankContainer>
-      </BankWrapper>
-      <ControlContainer
-        onClick={handleControlClick(
-          "right",
-          translate,
-          setTranslate,
-          windowSize
-        )}
-      >
-        <ChevronIcon type="right" />
-      </ControlContainer>
-    </Container>
+          <ChevronIcon type="left" />
+        </ControlContainer>
+        <BankWrapper>
+          <BankContainer
+            ref={containerRef}
+            style={{ transform: `translateX(-${translate}px)` }}
+            onTouchStart={handleMouseDown as any}
+            onTouchEnd={handleMouseUp as any}
+          >
+            <BankItem onClick={handleOpenModal("Форабанк")}>
+              <BankImage image="/assets/icons/fora_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Райффайзен")}>
+              <BankImage image="/assets/icons/raifaizen_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("ЮниКредит")}>
+              <BankImage image="/assets/icons/unicredit_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("ДОМ")}>
+              <BankImage image="/assets/icons/dom_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Абсолют")}>
+              <BankImage image="/assets/icons/absolut_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Зенит")}>
+              <BankImage image="/assets/icons/zenit_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("МКБ")}>
+              <BankImage image="/assets/icons/mkb_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Металлинвестбанк")}>
+              <BankImage image="/assets/icons/metall_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("АТБ")}>
+              <BankImage image="/assets/icons/atb_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("БСПБ")}>
+              <BankImage image="/assets/icons/bspb_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("СМП")}>
+              <BankImage image="/assets/icons/smp_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Открытие")}>
+              <BankImage image="/assets/icons/otkrytye_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Сбер Банк")}>
+              <BankImage image="/assets/icons/sber_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Альфа Банк")}>
+              <BankImage image="/assets/icons/alfa_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Газпромбанк")}>
+              <BankImage image="/assets/icons/gazprom_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("ВТБ")}>
+              <BankImage image="/assets/icons/vtb_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Росбанк")}>
+              <BankImage image="/assets/icons/rosbank_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("ТКБ")}>
+              <BankImage image="/assets/icons/tkb_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("БЖФ Банк")}>
+              <BankImage image="/assets/icons/bjf_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("Россельхозбанк")}>
+              <BankImage image="/assets/icons/rh_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+            <BankItem onClick={handleOpenModal("примСоцБанк")}>
+              <BankImage image="/assets/icons/ps_bank.webp" />
+              <CostContainer>
+                <Percent>10,8%</Percent>
+                <Price>97 543 ₽</Price>
+              </CostContainer>
+            </BankItem>
+          </BankContainer>
+        </BankWrapper>
+        <ControlContainer
+          onClick={handleControlClick(
+            "right",
+            translate,
+            setTranslate,
+            windowSize
+          )}
+        >
+          <ChevronIcon type="right" />
+        </ControlContainer>
+      </Container>
+      <BankModal
+        percents="10,8%"
+        isOpen={modalOpen}
+        setIsOpen={setModalOpen}
+        bankName={bankName}
+        cost={cost}
+        firsPay={firstPay}
+        time={time}
+      />
+    </>
   );
 };
 
@@ -381,4 +406,4 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export default BankCarousel;
+export default memo(BankCarousel);

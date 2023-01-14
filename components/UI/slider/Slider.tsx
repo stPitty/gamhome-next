@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import { BlackColor, BrandColor, Font } from "../../../common/enums";
-import { FC, memo, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  memo,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   handleFormatValue,
   handleGetYears,
   handleMoneyDataFormatter,
 } from "../../../common/helpers";
-import { useAppSelector } from "../../../redux/hooks";
-import { TWindowSize } from "../../../redux/slicers/types";
-import { WindowSize } from "../../../redux/slicers/enums";
 
 type Props = {
   title: string;
@@ -16,10 +21,20 @@ type Props = {
   max: number | undefined;
   defaultValue: number | undefined;
   type: "money" | "years";
+  inputValue: string;
+  setInputValue: Dispatch<SetStateAction<string>>;
 };
 
-const Slider: FC<Props> = ({ title, min, max, defaultValue, type }) => {
-  const [inputValue, setInputValue] = useState<string>("");
+const Slider: FC<Props> = ({
+  title,
+  min,
+  max,
+  defaultValue,
+  type,
+  inputValue,
+  setInputValue,
+}) => {
+  // const [inputValue, setInputValue] = useState<string>("");
   const [sliderValue, setSliderValue] = useState<number>(0);
   const [inputBackground, setInputBackground] = useState<number>(0);
   const [inputFocus, setInputFocus] = useState<boolean>(false);

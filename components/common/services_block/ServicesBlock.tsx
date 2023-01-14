@@ -8,10 +8,13 @@ import {
 } from "./enums";
 import { Hook, Route } from "../../../common/routes";
 import {
+  makeDeal,
+  makeDealInfo,
   openBuyCheckListInformation,
   openBuyCheckListWithEmail,
   openFreeDocsInformation,
   openFreeDocsWithEmail,
+  typeDeal,
 } from "../../../redux/slicers/modalStateSlicer";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import { useAppSelector } from "../../../redux/hooks";
@@ -57,8 +60,8 @@ const ServicesBlock = () => {
               headerText={MakeDeal.HEADER}
               buttonText={MakeDeal.BUTTON_TEXT}
               descArr={makeDealDesc}
-              primaryBtnAction={openBuyCheckListWithEmail}
-              secondaryBtnAction={openBuyCheckListInformation}
+              primaryBtnAction={makeDeal}
+              secondaryBtnAction={makeDealInfo}
               contentType="buy"
             />
             <UsefulServiceCard
@@ -66,8 +69,7 @@ const ServicesBlock = () => {
               headerText={ExmDeal.HEADER}
               buttonText={ExmDeal.BUTTON_TEXT}
               descArr={exmDealDesc}
-              primaryBtnAction={openFreeDocsWithEmail}
-              secondaryBtnAction={openFreeDocsInformation}
+              primaryBtnAction={typeDeal}
               withoutAddBtn={true}
               contentType="buy"
             />

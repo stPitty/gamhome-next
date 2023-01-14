@@ -69,8 +69,51 @@ const modalStateSlicer = createSlice({
     thanksForOrder(state) {
       state.currentState = ModalState.THANKS_FOR_ORDER;
     },
+    thanksForOrder2(state) {
+      state.currentState = ModalState.THANKS_FOR_ORDER_2;
+    },
     informationSent(state) {
       state.currentState = ModalState.INFORMATION_SENT;
+    },
+    contactManager(state) {
+      state.currentState = ModalState.CONTACT_MANAGER;
+      state.isOpened = true;
+    },
+    propertyEval(state) {
+      state.currentState = ModalState.PROPERTY_EVAL;
+      state.isOpened = true;
+    },
+    insurance(state) {
+      state.currentState = ModalState.INSURANCE;
+      state.isOpened = true;
+    },
+    typeDeal(state) {
+      state.currentState = ModalState.TYPE_DEAL;
+      state.isOpened = true;
+    },
+    law(state) {
+      state.currentState = ModalState.LAW;
+      state.isOpened = true;
+    },
+    dealFollowing(state) {
+      state.currentState = ModalState.DEAL_FOLLOWING;
+      state.isOpened = true;
+    },
+    makeDeclarations(state) {
+      state.currentState = ModalState.MAKE_DECLARATION;
+      state.isOpened = true;
+    },
+    makeDealInfo(state) {
+      state.currentState = ModalState.MAKE_DEAL_INFO;
+      state.isOpened = true;
+    },
+    taxConsult(state) {
+      state.currentState = ModalState.TAX_CONSULT;
+      state.isOpened = true;
+    },
+    makeDeal(state) {
+      state.currentState = ModalState.MAKE_DEAL;
+      if (!state.isOpened) state.isOpened = true;
     },
     closeModal(state) {
       state.currentState = null;
@@ -98,6 +141,17 @@ export const {
   conciergeService,
   keySearch,
   thanksForOrder,
+  contactManager,
+  thanksForOrder2,
+  propertyEval,
+  insurance,
+  typeDeal,
+  law,
+  dealFollowing,
+  makeDeclarations,
+  makeDealInfo,
+  makeDeal,
+  taxConsult,
 } = modalStateSlicer.actions;
 
 export default modalStateSlicer.reducer;
