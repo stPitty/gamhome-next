@@ -151,7 +151,6 @@ type TPathName = {
 };
 
 type FieldName =
-  | "isAgent"
   | "category"
   | "type"
   | "minPrice"

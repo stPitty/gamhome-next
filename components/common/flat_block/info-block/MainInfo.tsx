@@ -31,29 +31,25 @@ const MainInfo = () => {
 const TextWrapper = styled.div`
   display: flex;
   column-gap: 8px;
-  //margin-right: 40px;
+  max-width: 410px;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    max-width: 292px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 767px) {
+    max-width: 323px;
+  }
   @media screen and (max-width: 767px) {
     margin-right: 0;
   }
 `;
 
 const FieldValueText = styled.p`
-  max-width: 264px;
   font-family: ${Font.ROBOTO};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
   color: ${BlackColor.BLACK_SECONDARY};
   margin: 0;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    max-width: 160px;
-  }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    max-width: 185px;
-  }
-  @media screen and (max-width: 767px) {
-    max-width: unset;
-  }
 `;
 
 const FieldNameText = styled.p`
