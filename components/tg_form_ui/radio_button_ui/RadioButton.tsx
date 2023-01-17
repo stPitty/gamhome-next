@@ -20,7 +20,7 @@ const RadioButton: React.FC<Props> = ({ label, header, fieldType }) => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    setActiveCheckbox(data[fieldType] as boolean);
+    setActiveCheckbox((data as any)[fieldType] as boolean);
   }, [data]);
 
   const handleSetActiveClick = () => {

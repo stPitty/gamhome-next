@@ -156,7 +156,6 @@ type FieldName =
   | "minPrice"
   | "maxPrice"
   | "city"
-  // | "author"
   | "minKmMetro"
   | "maxKmMetro"
   | "metros"

@@ -47,10 +47,10 @@ const getInputValue = (
 ) => {
   if (type === "min") {
     if (isParam) return data.params[minType as AddParameters];
-    return data[minType as FieldName];
+    return (data as any)[minType as FieldName];
   } else {
     if (isParam) return data.params[maxType as AddParameters];
-    return data[maxType as FieldName];
+    return (data as any)[maxType as FieldName];
   }
 };
 

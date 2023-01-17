@@ -87,7 +87,6 @@ export enum RefType {
   PARAMS = "params",
   CATEGORY = "category",
   TYPE = "type",
-  AUTHOR = "author",
   FEE = "fee",
   LAST_FLOORS = "lastFloor",
 }
