@@ -156,7 +156,7 @@ type FieldName =
   | "minPrice"
   | "maxPrice"
   | "city"
-  | "author"
+  // | "author"
   | "minKmMetro"
   | "maxKmMetro"
   | "metros"
@@ -204,7 +204,7 @@ type City = Params & {
 type ParametersObj = Partial<Record<AddParameters, string | null>>;
 
 type Data = {
-  typeOfPart: string;
+  lastFloor: "Не первый" | "Не последний" | "Только последний" | null;
   polygon: any;
   category: 2 | 3 | 4 | null;
   type: 1 | 2 | null;
@@ -213,7 +213,7 @@ type Data = {
   city: Params;
   metros: Params[];
   districts: Params[];
-  author: 2 | 3 | null;
+  // author: 2 | 3 | null;
   params: ParametersObj;
   minKmMetro: string;
   maxKmMetro: string;

@@ -64,16 +64,27 @@ const typeValues = [
 
 const typeOfPartValues = [
   {
-    value: TypeOfPArt.DDU,
-    children: TypeOfPArt.DDU,
+    value: TypeOfPArt.FREE,
+    children: TypeOfPArt.FREE,
   },
   {
-    value: TypeOfPArt.OTHER,
-    children: TypeOfPArt.OTHER,
+    value: TypeOfPArt.ALTER,
+    children: TypeOfPArt.ALTER,
   },
   {
-    value: TypeOfPArt.JSK,
-    children: TypeOfPArt.JSK,
+    value: TypeOfPArt.DEAL,
+    children: TypeOfPArt.DEAL,
+  },
+  {
+    value: TypeOfPArt.OVER,
+    children: TypeOfPArt.OVER,
+  },
+];
+
+const feeValues = [
+  {
+    value: true,
+    children: "Без комиссии",
   },
 ];
 
@@ -211,6 +222,43 @@ const floorsInHouseValues = [
   },
 ];
 
+const dealTypeValues = [
+  {
+    value: true,
+    children: "Возможна ипотека",
+  },
+];
+
+const objTypeValues = [
+  {
+    value: "Вторичка",
+    children: "Вторичка",
+  },
+  {
+    value: "Новостройка",
+    children: "Новостройка",
+  },
+];
+
+const objTypeHomeValues = [
+  {
+    value: "Дом",
+    children: "Дом",
+  },
+  {
+    value: "Таунхаус",
+    children: "Таунхаус",
+  },
+  {
+    value: "Дача",
+    children: "Дача",
+  },
+  {
+    value: "Коттедж",
+    children: "Коттедж",
+  },
+];
+
 const parametersKeys: {
   id: number;
   name: AddParameters | Param;
@@ -308,13 +356,23 @@ const parametersKeys: {
   },
   {
     id: 19,
-    name: "floorParam",
+    name: "partType",
     categoryId: 2,
   },
   {
-    id: 20,
-    name: "floorParam",
-    categoryId: 3,
+    id: 21,
+    name: "dealType",
+    categoryId: 2,
+  },
+  {
+    id: 22,
+    name: "objType",
+    categoryId: 2,
+  },
+  {
+    id: 23,
+    name: "objType",
+    categoryId: 4,
   },
 ];
 
@@ -330,4 +388,8 @@ export {
   roomsQuantityValues,
   roomsInFlatQuantityValues,
   floorsInHouseValues,
+  feeValues,
+  dealTypeValues,
+  objTypeValues,
+  objTypeHomeValues,
 };

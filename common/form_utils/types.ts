@@ -17,14 +17,15 @@ type FlatParamName =
   | "minSquare"
   | "maxSquare"
   | "roomsQuantity"
-  // | "maxRoomsQuantity"
   | "minFloor"
   | "maxFloor"
   | "minLivingSquare"
   | "maxLivingSquare"
   | "houseType"
   | "minDeliveryTime"
-  | "floorParam"
+  | "partType"
+  | "dealType"
+  | "objType"
   | "maxDeliveryTime";
 
 type RoomParamName =
@@ -35,8 +36,6 @@ type RoomParamName =
   | "minRoomSquare"
   | "maxRoomSquare"
   | "roomsInFlatQuantity"
-  // | "maxRoomsInFlatQuantity"
-  | "floorParam"
   | "houseType";
 
 type HouseParamName =
@@ -46,6 +45,7 @@ type HouseParamName =
   | "maxFloorsInHouse"
   | "minLandSquare"
   | "maxLandSquare"
+  | "objType"
   | "wallMaterial";
 
 type AddParameters = FlatParamName | RoomParamName | HouseParamName;

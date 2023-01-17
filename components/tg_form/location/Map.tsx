@@ -6,6 +6,7 @@ import { AppContext } from "../../../common/context/AppContext";
 import { useMapBox } from "../../../common/custom_hooks/useMapBox";
 import ModalWrapper from "../../tg_form_ui/wrapper_ui/ModalWrapper";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import DoneSVG from "../../../public/assets/svg/DoneSVG";
 
 const Map = () => {
   const [mounted, setMounted] = useState<boolean>(false);
@@ -45,12 +46,18 @@ const Map = () => {
       <ModalWrapper isOpen={isMapOpen as boolean}>
         <MapContainer id="map" />
         <ReturnButton onClick={handleReturnClick}>
-          <ArrowIcon />
+          <DoneIcon />
         </ReturnButton>
       </ModalWrapper>
     </>
   );
 };
+
+const DoneIcon = styled(DoneSVG)`
+  & path {
+    fill: green;
+  }
+`;
 
 const ArrowIcon = styled(ArrowIosBackOutline)`
   height: 25px;

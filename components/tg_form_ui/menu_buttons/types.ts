@@ -5,34 +5,35 @@ type Parameter = {
 };
 
 type PostData = {
-  category: {
+  category?: {
     id: number | null;
   };
-  type: {
+  type?: {
     id: number | null;
   };
-  minPrice: number;
-  maxPrice: number;
-  city: {
+  minPrice?: number;
+  maxPrice?: number;
+  city?: {
     id: number | null;
   };
-  metros: {
+  metros?: {
     id: number;
   }[];
-  districts: {
+  districts?: {
     id: number;
   }[];
-  author: {
-    id: number | null;
-  };
-  parameters: Parameter[];
-  minKmMetro: number;
-  maxKmMetro: number;
-  fee: boolean;
-  polygons: any;
-  typeOfPart: string;
-  minYear: number;
-  maxYear: number;
+  // author: {
+  //   id: number | null;
+  // };
+  parameters?: Parameter[];
+  minKmMetro?: number;
+  maxKmMetro?: number;
+  fee?: boolean;
+  polygons?: any;
+  typeOfPart?: string;
+  minYear?: number;
+  maxYear?: number;
+  lastFloor?: boolean;
 };
 
 export type { PostData, Parameter };

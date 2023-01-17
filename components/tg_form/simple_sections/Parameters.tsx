@@ -7,31 +7,27 @@ import { AddParameters, Refs } from "../../../common/form_utils/types";
 import { setActiveParams } from "../../../common/form_utils/helpers";
 import TagsSection from "./TagsSection";
 import { useGetRefs } from "../../../common/custom_hooks/useGetRefs";
+import { ParamType, RefType } from "../../../common/form_utils/enums";
 import {
-  ParamType,
-  RefType,
-  RoomsInFlatQuantity,
-} from "../../../common/form_utils/enums";
-import {
+  dealTypeValues,
   floorsInHouseValues,
   houseTypeValues,
+  objTypeHomeValues,
+  objTypeValues,
   repairValues,
   roomsInFlatQuantityValues,
   roomsQuantityValues,
+  typeOfPartValues,
   wallMaterialValues,
 } from "../../../common/form_utils/constants";
 import { useAppSelector } from "../../../redux/hooks";
 
 const Parameters = () => {
   const {
-    data: { category },
+    data: { params, type, category, lastFloor },
   } = useAppSelector<TFormData>((state) => state.formData);
 
   const { data } = useGetParametersByIdQuery(category);
-
-  const {
-    data: { params },
-  } = useAppSelector<TFormData>((state) => state.formData);
 
   const repairRefsArr = useGetRefs(
     repairValues,
@@ -62,10 +58,30 @@ const Parameters = () => {
     ParamType.ROOMS_QUANTITY
   );
 
-  const floorParamArr = useGetRefs(
-    floorsInHouseValues,
+  const floorParamArr = useGetRefs(floorsInHouseValues, RefType.LAST_FLOORS);
+
+  const typeOfPartArr = useGetRefs(
+    typeOfPartValues,
     RefType.PARAMS,
-    ParamType.FLOOR_PARAM
+    ParamType.PART_TYPE
+  );
+
+  const dealTypeArr = useGetRefs(
+    dealTypeValues,
+    RefType.PARAMS,
+    ParamType.DEAL_TYPE
+  );
+
+  const objTypeArr = useGetRefs(
+    objTypeValues,
+    RefType.PARAMS,
+    ParamType.OBJ_TYPE
+  );
+
+  const objHomeTypeArr = useGetRefs(
+    objTypeHomeValues,
+    RefType.PARAMS,
+    ParamType.OBJ_TYPE
   );
 
   const currentTagParams = (id: number): Refs | undefined => {
@@ -75,43 +91,51 @@ const Parameters = () => {
     if (id === 5) return roomsQuantityArr;
     if (id === 14) return houseTypeRefsArr;
     if (id === 18) return wallMaterialRefsArr;
+    if (id === 19) return typeOfPartArr;
+    if (id === 21) return dealTypeArr;
+    if (id === 22) return objTypeArr;
+    if (id === 23) return objHomeTypeArr;
   };
 
   useEffect(() => {
-    if (params?.repair) {
-      setActiveParams(repairRefsArr.refs, params?.repair);
-    }
+    setActiveParams(repairRefsArr.refs, params?.repair);
   }, [params?.repair, data]);
 
   useEffect(() => {
-    if (params?.houseType) {
-      setActiveParams(houseTypeRefsArr.refs, params?.houseType);
-    }
+    setActiveParams(houseTypeRefsArr.refs, params?.houseType);
   }, [params?.houseType, data]);
 
   useEffect(() => {
-    if (params?.wallMaterial) {
-      setActiveParams(wallMaterialRefsArr.refs, params?.wallMaterial);
-    }
+    setActiveParams(wallMaterialRefsArr.refs, params?.wallMaterial);
   }, [params?.wallMaterial, data]);
 
   useEffect(() => {
-    if (params?.roomsInFlatQuantity) {
-      setActiveParams(roomsInFlatQuantityArr.refs, params?.roomsInFlatQuantity);
-    }
+    setActiveParams(roomsInFlatQuantityArr.refs, params?.roomsInFlatQuantity);
   }, [params?.roomsInFlatQuantity, data]);
 
   useEffect(() => {
-    if (params?.roomsQuantity) {
-      setActiveParams(roomsQuantityArr.refs, params?.roomsQuantity);
-    }
+    setActiveParams(roomsQuantityArr.refs, params?.roomsQuantity);
   }, [params?.roomsQuantity, data]);
 
   useEffect(() => {
-    // if (params?.floorParam) {
-    setActiveParams(floorParamArr.refs, params?.floorParam);
-    // }
-  }, [params?.floorParam, data]);
+    setActiveParams(floorParamArr.refs, lastFloor);
+  }, [lastFloor]);
+
+  useEffect(() => {
+    setActiveParams(typeOfPartArr.refs, params?.partType);
+  }, [params?.partType, data]);
+
+  useEffect(() => {
+    setActiveParams(dealTypeArr.refs, params?.dealType);
+  }, [params?.dealType, data]);
+
+  useEffect(() => {
+    setActiveParams(objTypeArr.refs, params?.objType);
+  }, [params?.objType, data]);
+
+  useEffect(() => {
+    setActiveParams(objHomeTypeArr.refs, params?.objType);
+  }, [params?.objType, data]);
 
   return (
     <ParametersContainer>
@@ -135,7 +159,15 @@ const Parameters = () => {
                 )}
               </>
             ) : (
-              <StyledTags refs={currentTagParams(el.id)} header={el.name} />
+              ((el.id !== 19 && el.id !== 21 && el.id !== 22) ||
+                ((el.id === 19 || el.id === 21 || el.id === 22) &&
+                  type === 1)) && (
+                <StyledTags
+                  nullable={true}
+                  refs={currentTagParams(el.id)}
+                  header={el.name}
+                />
+              )
             )}
           </div>
         );
@@ -147,11 +179,11 @@ const Parameters = () => {
 const ParametersContainer = styled.div`
   display: flex;
   flex-direction: column;
-  row-gap: 15px;
   padding: 20px 20px 10px;
 `;
 
 const StyledTags = styled(TagsSection)`
+  margin-top: 15px;
   & > div {
     padding: 0;
   }
@@ -159,6 +191,7 @@ const StyledTags = styled(TagsSection)`
 `;
 
 const StyledForm = styled(SimpleForm)`
+  margin-top: 15px;
   & > div {
     padding: 0;
   }

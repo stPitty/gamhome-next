@@ -14,9 +14,8 @@ import SaveButton from "../tg_form_ui/menu_buttons/SaveButton";
 import { useGetRefs } from "../../common/custom_hooks/useGetRefs";
 import { RefType } from "../../common/form_utils/enums";
 import {
-  authorValues,
   categoryValues,
-  typeOfPartValues,
+  feeValues,
   typeValues,
 } from "../../common/form_utils/constants";
 import {
@@ -73,8 +72,11 @@ const TgForm = () => {
 
   const categoryRefsArr = useGetRefs(categoryValues, RefType.CATEGORY);
   const typeArr = useGetRefs(typeValues, RefType.TYPE);
-  const authorArr = useGetRefs(authorValues, RefType.AUTHOR);
-  const typeOfPartArr = useGetRefs(typeOfPartValues, RefType.TYPE_OF_PART);
+  const feeArr = useGetRefs(feeValues, RefType.FEE);
+
+  useEffect(() => {
+    setActiveParams(feeArr.refs, data.fee);
+  }, [data.fee]);
 
   useEffect(() => {
     if (!data.city.id) {
@@ -89,15 +91,18 @@ const TgForm = () => {
 
   useEffect(() => {
     setActiveParams(typeArr.refs, data.type);
+    if (data.type === 2) {
+      dispatch(
+        setPrimitiveField({ name: "params", value: "", addType: "partType" })
+      );
+      dispatch(
+        setPrimitiveField({ name: "params", value: "", addType: "dealType" })
+      );
+      dispatch(
+        setPrimitiveField({ name: "params", value: "", addType: "objType" })
+      );
+    }
   }, [data.type]);
-
-  useEffect(() => {
-    setActiveParams(authorArr.refs, data.author);
-  }, [data.author]);
-
-  useEffect(() => {
-    setActiveParams(typeOfPartArr.refs, data.typeOfPart);
-  }, [data.typeOfPart]);
 
   useEffect(() => {
     dispatch(fetchCitiesData());
@@ -139,22 +144,6 @@ const TgForm = () => {
         <Divider />
         <TagsSection isRequired={true} refs={typeArr} header="Тип услуги" />
         <Divider />
-        {showType && (
-          <>
-            <TagsSection
-              nullable={true}
-              refs={typeOfPartArr}
-              header="Тип участия"
-            />
-            <Divider />
-          </>
-        )}
-        <TagsSection
-          nullable={true}
-          refs={authorArr}
-          header="Автор объявления"
-        />
-        <Divider />
         <SimpleForm
           header="Стоимость ₽"
           minType="minPrice"
@@ -167,7 +156,8 @@ const TgForm = () => {
           maxType="maxYear"
         />
         <Divider />
-        <RadioButton header="Без комиссии" label="Да" fieldType="fee" />
+        {/*<RadioButton header="Без комиссии" label="Да" fieldType="fee" />*/}
+        <TagsSection refs={feeArr} header="Комиссия" nullable={true} />
         <Divider />
         <SimpleForm
           header="Расстояние до метро в минутах"

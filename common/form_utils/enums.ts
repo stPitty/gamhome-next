@@ -23,9 +23,10 @@ export enum Author {
 }
 
 export enum TypeOfPArt {
-  DDU = "ДДУ по ФЗ 214",
-  OTHER = "Другое",
-  JSK = "ЖСК",
+  FREE = "Свободная",
+  ALTER = "Альтернативная",
+  DEAL = "Договор долевого участия",
+  OVER = "Переуступка",
 }
 
 export enum Repair {
@@ -77,6 +78,9 @@ export enum ParamType {
   ROOMS_IN_FLAT = "roomsInFlatQuantity",
   ROOMS_QUANTITY = "roomsQuantity",
   FLOOR_PARAM = "floorParam",
+  PART_TYPE = "partType",
+  DEAL_TYPE = "dealType",
+  OBJ_TYPE = "objType",
 }
 
 export enum RefType {
@@ -84,5 +88,6 @@ export enum RefType {
   CATEGORY = "category",
   TYPE = "type",
   AUTHOR = "author",
-  TYPE_OF_PART = "typeOfPart",
+  FEE = "fee",
+  LAST_FLOORS = "lastFloor",
 }

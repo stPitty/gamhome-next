@@ -57,7 +57,6 @@ const handleSetPrimitiveField = (state: any, action: FieldAction) => {
       maxKitchenSquare: "",
       minSquare: "",
       maxSquare: "",
-      // minRoomsQuantity: "",
       roomsQuantity: null,
       minFloor: "",
       maxFloor: "",
@@ -69,11 +68,11 @@ const handleSetPrimitiveField = (state: any, action: FieldAction) => {
       maxHouseSquare: "",
       minLandSquare: "",
       maxLandSquare: "",
-      // minRoomsInFlatQuantity: "",
       roomsInFlatQuantity: "",
       minRoomSquare: "",
       maxRoomSquare: "",
-      floorParam: null,
+      dealType: "",
+      objType: "",
     };
   }
 
@@ -155,9 +154,9 @@ const handleSetParamInput = (state: any, action: FieldAction) => {
 
 const handleClearData = (state: any) => {
   state.data = {
+    lastFloor: null,
     maxYear: "",
     minYear: "",
-    typeOfPart: "",
     city: {
       name: "",
       id: null,
@@ -184,7 +183,6 @@ const handleClearData = (state: any) => {
       maxKitchenSquare: "",
       minSquare: "",
       maxSquare: "",
-      // minRoomsQuantity: "",
       roomsQuantity: null,
       minFloor: "",
       maxFloor: "",
@@ -196,11 +194,11 @@ const handleClearData = (state: any) => {
       maxHouseSquare: "",
       minLandSquare: "",
       maxLandSquare: "",
-      // minRoomsInFlatQuantity: "",
       roomsInFlatQuantity: null,
       minRoomSquare: "",
       maxRoomSquare: "",
-      floorParam: null,
+      dealType: "",
+      objType: "",
     },
   };
 };
