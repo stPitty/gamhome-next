@@ -203,6 +203,7 @@ type City = Params & {
 type ParametersObj = Partial<Record<AddParameters, string | null>>;
 
 type Data = {
+  vars: string;
   lastFloor: "Не первый" | "Не последний" | "Только последний" | null;
   polygon: any;
   category: 2 | 3 | 4 | null;
@@ -219,6 +220,9 @@ type Data = {
   fee: boolean;
   minYear: string;
   maxYear: string;
+  roomsInFlatQuantity: string;
+  roomsQuantity: string;
+  repair: string;
 };
 
 type TFormData = {

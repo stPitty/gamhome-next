@@ -37,7 +37,7 @@ export enum Repair {
 }
 
 export enum RoomsQuantity {
-  STUDIO = "studio",
+  STUDIO = "Студия",
   ONE = "1",
   TWO = "2",
   THREE = "3",
@@ -89,4 +89,8 @@ export enum RefType {
   TYPE = "type",
   FEE = "fee",
   LAST_FLOORS = "lastFloor",
+  VARS = "vars",
+  ROOMS_IN_FLAT = "roomsInFlatQuantity",
+  ROOMS_QUANTITY = "roomsQuantity",
+  REPAIR = "repair",
 }

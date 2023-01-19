@@ -17,6 +17,13 @@ const Container = styled.div`
   max-width: 500px;
   height: 100vh;
   overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const Wrapper = styled.div`

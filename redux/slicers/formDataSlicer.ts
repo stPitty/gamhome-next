@@ -3,7 +3,6 @@ import { City, FieldAction, TFormData } from "./types";
 import {
   handleClearData,
   handleErrorFetch,
-  handleNumFormat,
   handlePendingFetch,
   handleSetComplexField,
   handleSetParamInput,
@@ -25,6 +24,10 @@ export const fetchCitiesData = createAsyncThunk<{ data: City[] }>(
 const initialState: TFormData = {
   citiesData: null,
   data: {
+    vars: "",
+    repair: "",
+    roomsInFlatQuantity: "",
+    roomsQuantity: "",
     lastFloor: null,
     minYear: "",
     maxYear: "",
@@ -37,8 +40,8 @@ const initialState: TFormData = {
     polygon: null,
     category: 2,
     type: 2,
-    minPrice: "10 000 000",
-    maxPrice: "15 000 000",
+    minPrice: "",
+    maxPrice: "",
     minKmMetro: "1",
     maxKmMetro: "5",
     fee: true,

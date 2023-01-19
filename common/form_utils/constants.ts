@@ -99,6 +99,20 @@ const authorValues = [
   },
 ];
 
+const varsValues = [
+  {
+    value: "Новостройки",
+    children: "Новостройки",
+  },
+  {
+    value: "Вторичка",
+    children: "Вторичка",
+  },
+  {
+    value: "Все варианты",
+    children: "Все варианты",
+  },
+];
 const repairValues = [
   {
     value: Repair.NEEDING,
@@ -392,4 +406,5 @@ export {
   dealTypeValues,
   objTypeValues,
   objTypeHomeValues,
+  varsValues,
 };

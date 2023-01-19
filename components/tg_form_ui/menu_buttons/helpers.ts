@@ -71,7 +71,7 @@ const formatParams = (
       if (data?.roomsQuantity) {
         newArr.push({
           parameterId: 5,
-          value: data.roomsQuantity,
+          value: data.roomsQuantity === "5+" ? "9999" : data.roomsQuantity,
           minValue: "",
         });
       }
@@ -190,7 +190,10 @@ const formatParams = (
       if (data?.roomsInFlatQuantity) {
         newArr.push({
           parameterId: 13,
-          value: data.roomsInFlatQuantity,
+          value:
+            data.roomsInFlatQuantity === "5+"
+              ? "9999"
+              : data.roomsInFlatQuantity,
           minValue: "",
         });
       }
@@ -278,6 +281,22 @@ const handlePushClick = (data: TFormData["data"]) => {
     };
   }
 
+  if (data?.vars) {
+    formattedData.vars = data.vars;
+  }
+
+  if (data?.roomsQuantity) {
+    formattedData.roomsQuantity = data.roomsQuantity;
+  }
+
+  if (data?.roomsInFlatQuantity) {
+    formattedData.roomsInFlatQuantity = data.roomsInFlatQuantity;
+  }
+
+  if (data?.repair) {
+    formattedData.repair = data.repair;
+  }
+
   if (data?.minPrice.length !== 0 || data?.maxPrice?.length !== 0) {
     formattedData.minPrice =
       data?.minPrice.length !== 0 ? reduceSpaces(data.minPrice) : 0;
@@ -338,8 +357,6 @@ const handlePushClick = (data: TFormData["data"]) => {
   if (params.length !== 0) {
     formattedData.parameters = params;
   }
-
-  console.log(formattedData);
 
   localStorage.setItem("formData", JSON.stringify(data));
 

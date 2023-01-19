@@ -154,6 +154,10 @@ const handleSetParamInput = (state: any, action: FieldAction) => {
 
 const handleClearData = (state: any) => {
   state.data = {
+    vars: "",
+    repair: "",
+    roomsInFlatQuantity: "",
+    roomsQuantity: "",
     lastFloor: null,
     maxYear: "",
     minYear: "",

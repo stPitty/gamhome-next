@@ -29,28 +29,20 @@ const Global = createGlobalStyle`
       border-radius: 10px;
       background-color: ${BrandColor.BRAND};
     }
-
     ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px ${WhiteColor.WHITE_16};
       border-radius: 10px;
       background-color: ${LightBlueColor.LB_200};
     }
+
     @media screen and (max-width: 767px) {
-      ::-webkit-scrollbar {
-        width: 5px;
-      }
-
-      ::-webkit-scrollbar-thumb {
-        border-radius: 5px;
-      }
-
-      ::-webkit-scrollbar-track {
-        -webkit-box-shadow: inset 0 0 4px ${WhiteColor.WHITE_16};
-        border-radius: 5px;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
   }
-  
 `;
 
 export default Global;

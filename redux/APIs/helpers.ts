@@ -5,12 +5,12 @@ const getFormattedParams = (
 ): FormattedParametersData => {
   return params.reduce((previousValue: any[], currentValue) => {
     if (
-      currentValue.id === 1 ||
+      // currentValue.id === 1 ||
       currentValue.id === 8 ||
       currentValue.id === 14 ||
       currentValue.id === 18 ||
-      currentValue.id === 5 ||
-      currentValue.id === 13 ||
+      // currentValue.id === 5 ||
+      // currentValue.id === 13 ||
       currentValue.id === 19 ||
       currentValue.id === 21 ||
       currentValue.id === 22 ||
@@ -37,7 +37,13 @@ const getFormattedParams = (
     if (currentValue.id === 12) currentValue.paramType = "RoomSquare";
     if (currentValue.id === 15) currentValue.paramType = "HouseSquare";
     if (currentValue.id === 17) currentValue.paramType = "LandSquare";
-    if (currentValue.id === 20) return previousValue;
+    if (
+      currentValue.id === 20 ||
+      currentValue.id === 1 ||
+      currentValue.id === 5 ||
+      currentValue.id === 13
+    )
+      return previousValue;
     previousValue.push(currentValue);
     return previousValue;
   }, []);

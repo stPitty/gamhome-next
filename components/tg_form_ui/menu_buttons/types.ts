@@ -34,6 +34,10 @@ type PostData = {
   minYear?: number;
   maxYear?: number;
   lastFloor?: boolean;
+  vars?: string;
+  roomsInFlatQuantity?: string;
+  roomsQuantity?: string;
+  repair?: string;
 };
 
 export type { PostData, Parameter };

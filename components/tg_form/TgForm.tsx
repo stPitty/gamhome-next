@@ -12,11 +12,15 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import SaveButton from "../tg_form_ui/menu_buttons/SaveButton";
 import { useGetRefs } from "../../common/custom_hooks/useGetRefs";
-import { RefType } from "../../common/form_utils/enums";
+import { ParamType, RefType } from "../../common/form_utils/enums";
 import {
   categoryValues,
   feeValues,
+  repairValues,
+  roomsInFlatQuantityValues,
+  roomsQuantityValues,
   typeValues,
+  varsValues,
 } from "../../common/form_utils/constants";
 import {
   fetchCitiesData,
@@ -35,10 +39,9 @@ import RadioButton from "../tg_form_ui/radio_button_ui/RadioButton";
 import Location from "./location/Location";
 import Parameters from "./simple_sections/Parameters";
 import Map from "./location/Map";
+import styled from "styled-components";
 
 const TgForm = () => {
-  const [showType, setShowType] = useState<boolean>(false);
-
   const { data, citiesData, isLoading, isError } = useAppSelector<TFormData>(
     (state) => state.formData
   );
@@ -73,6 +76,19 @@ const TgForm = () => {
   const categoryRefsArr = useGetRefs(categoryValues, RefType.CATEGORY);
   const typeArr = useGetRefs(typeValues, RefType.TYPE);
   const feeArr = useGetRefs(feeValues, RefType.FEE);
+  const varsArr = useGetRefs(varsValues, RefType.VARS);
+
+  const roomsInFlatQuantityArr = useGetRefs(
+    roomsInFlatQuantityValues,
+    RefType.ROOMS_IN_FLAT
+  );
+
+  const roomsQuantityArr = useGetRefs(
+    roomsQuantityValues,
+    RefType.ROOMS_QUANTITY
+  );
+
+  const repairRefsArr = useGetRefs(repairValues, RefType.REPAIR);
 
   useEffect(() => {
     setActiveParams(feeArr.refs, data.fee);
@@ -123,13 +139,47 @@ const TgForm = () => {
   }, [isLoading, isError]);
 
   useEffect(() => {
-    if (data.type === 1 && data.category === 2) {
-      setShowType(true);
-    } else {
-      setShowType(false);
+    if (data.type !== 1 && data.category !== 2) {
       dispatch(setPrimitiveField({ name: "typeOfPart", value: "" }));
     }
+    if (data.type === 1) {
+      dispatch(setPrimitiveField({ name: "fee", value: "" }));
+    }
+    if (data.category !== 2) {
+      dispatch(
+        setPrimitiveField({
+          name: "params",
+          value: "",
+          addType: "roomsQuantity",
+        })
+      );
+    }
+    if (data.category !== 3) {
+      dispatch(
+        setPrimitiveField({
+          name: "params",
+          value: "",
+          addType: "roomsInFlatQuantity",
+        })
+      );
+    }
   }, [data.type, data.category]);
+
+  useEffect(() => {
+    setActiveParams(varsArr.refs, data?.vars);
+  }, [data?.vars]);
+
+  useEffect(() => {
+    setActiveParams(repairRefsArr.refs, data?.repair);
+  }, [data?.repair]);
+
+  useEffect(() => {
+    setActiveParams(roomsInFlatQuantityArr.refs, data?.roomsInFlatQuantity);
+  }, [data?.roomsInFlatQuantity]);
+
+  useEffect(() => {
+    setActiveParams(roomsQuantityArr.refs, data?.roomsQuantity);
+  }, [data?.roomsQuantity]);
 
   return (
     <>
@@ -144,30 +194,61 @@ const TgForm = () => {
         <Divider />
         <TagsSection isRequired={true} refs={typeArr} header="Тип услуги" />
         <Divider />
-        <SimpleForm
+        <TagsSection
+          nullable={true}
+          refs={varsArr}
+          header="Какие варианты рассматриваешь?"
+        />
+        <Divider />
+        {data?.category === 3 && (
+          <>
+            <TagsSection
+              nullable={true}
+              refs={roomsInFlatQuantityArr}
+              header="Количество комнат в квартире"
+            />
+            <Divider />
+          </>
+        )}
+
+        {data?.category === 2 && (
+          <>
+            <TagsSection
+              nullable={true}
+              refs={roomsQuantityArr}
+              header="Количество комнат"
+            />
+            <Divider />
+          </>
+        )}
+        <TagsSection nullable={true} refs={repairRefsArr} header="Ремонт" />
+        <Divider />
+        {data.type === 2 && (
+          <>
+            <RadioButton header="Без комиссии" label="Да" fieldType="fee" />
+            <Divider />
+          </>
+        )}
+        {/*<TagsSection refs={feeArr} header="Комиссия" nullable={true} />*/}
+
+        <Location />
+        <Divider />
+        {data?.category && <Parameters />}
+        <StyledForm
           header="Стоимость ₽"
           minType="minPrice"
           maxType="maxPrice"
         />
-        <Divider />
-        <SimpleForm
+        <StyledForm
           header="Год постройки"
           minType="minYear"
           maxType="maxYear"
         />
-        <Divider />
-        {/*<RadioButton header="Без комиссии" label="Да" fieldType="fee" />*/}
-        <TagsSection refs={feeArr} header="Комиссия" nullable={true} />
-        <Divider />
-        <SimpleForm
+        <StyledForm
           header="Расстояние до метро в минутах"
           minType="minKmMetro"
           maxType="maxKmMetro"
         />
-        <Divider />
-        <Location />
-        <Divider />
-        {data?.category && <Parameters />}
       </GeneralWrapper>
       <Select
         data={citiesData}
@@ -206,5 +287,13 @@ const TgForm = () => {
     </>
   );
 };
+
+const StyledForm = styled(SimpleForm)`
+  margin: 15px 20px 0;
+  & > div {
+    padding: 0;
+  }
+  row-gap: 10px;
+`;
 
 export default TgForm;
