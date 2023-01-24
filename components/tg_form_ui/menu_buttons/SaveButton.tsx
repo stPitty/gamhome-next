@@ -3,10 +3,17 @@ import { TFormData } from "../../../redux/slicers/types";
 import { clearFormData } from "../../../redux/slicers/formDataSlicer";
 import { handlePushClick } from "./helpers";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AppContext } from "../../../common/context/AppContext";
 
 const SaveButton = () => {
   const [disabled, setDisabled] = useState<boolean>(true);
+
+  const { isCityOpen, isDistrictOpen, isMetroOpen, isMapOpen } =
+    useContext(AppContext);
+
+  const isModalOpened =
+    isCityOpen || isDistrictOpen || isMetroOpen || isMapOpen;
 
   const { data } = useAppSelector<TFormData>((state) => state.formData);
 
@@ -30,15 +37,22 @@ const SaveButton = () => {
   }, [data.type, data.category, data.city]);
 
   return (
-    <Container>
-      <ShadowContainer />
-      <BtnContainer>
-        <SendBtn isDisabled={disabled} onClick={handleSendClick}>
-          Отправить
-        </SendBtn>
-        <ClearBtn onClick={handleClearClick}>Сбросить</ClearBtn>
-      </BtnContainer>
-    </Container>
+    <Wrapper
+      style={{
+        maxHeight: isModalOpened ? "0" : "",
+      }}
+      isModalOpened={!!isModalOpened}
+    >
+      <Container>
+        <ShadowContainer />
+        <BtnContainer>
+          <SendBtn isDisabled={disabled} onClick={handleSendClick}>
+            Отправить
+          </SendBtn>
+          <ClearBtn onClick={handleClearClick}>Сбросить</ClearBtn>
+        </BtnContainer>
+      </Container>
+    </Wrapper>
   );
 };
 
@@ -59,7 +73,7 @@ const BtnContainer = styled.div`
 
 const Button = styled.div`
   display: flex;
-  width: 100%;
+  flex-grow: 1;
   height: 44px;
   border-radius: 100px;
   font-size: 15px;
@@ -80,13 +94,22 @@ const ClearBtn = styled(Button)`
 `;
 
 const Container = styled.div`
-  position: fixed;
-  bottom: 0;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  width: 500px;
   display: flex;
   flex-direction: column;
+  background: white;
+`;
+
+const Wrapper = styled.div<{ isModalOpened: boolean }>`
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
 `;
 
 export default SaveButton;

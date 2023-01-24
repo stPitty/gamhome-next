@@ -42,8 +42,8 @@ const initialState: TFormData = {
     type: 2,
     minPrice: "",
     maxPrice: "",
-    minKmMetro: "1",
-    maxKmMetro: "5",
+    minKmMetro: "",
+    maxKmMetro: "",
     fee: true,
     params: {
       repair: null,

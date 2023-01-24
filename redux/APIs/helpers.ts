@@ -13,7 +13,6 @@ const getFormattedParams = (
       // currentValue.id === 13 ||
       currentValue.id === 19 ||
       currentValue.id === 21 ||
-      currentValue.id === 22 ||
       currentValue.id === 23
     ) {
       currentValue.type = "tag";
@@ -41,7 +40,8 @@ const getFormattedParams = (
       currentValue.id === 20 ||
       currentValue.id === 1 ||
       currentValue.id === 5 ||
-      currentValue.id === 13
+      currentValue.id === 13 ||
+      currentValue.id === 22
     )
       return previousValue;
     previousValue.push(currentValue);

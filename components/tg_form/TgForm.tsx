@@ -230,15 +230,15 @@ const TgForm = () => {
           </>
         )}
         {/*<TagsSection refs={feeArr} header="Комиссия" nullable={true} />*/}
-
-        <Location />
-        <Divider />
-        {data?.category && <Parameters />}
-        <StyledForm
+        <SimpleForm
           header="Стоимость ₽"
           minType="minPrice"
           maxType="maxPrice"
         />
+        <Divider />
+        <Location />
+        <Divider />
+        {data?.category && <Parameters />}
         <StyledForm
           header="Год постройки"
           minType="minYear"
@@ -282,8 +282,8 @@ const TgForm = () => {
         placeholder="Введите название станции метро"
         mode="multi"
       />
-      <SaveButton />
       <Map />
+      <SaveButton />
     </>
   );
 };

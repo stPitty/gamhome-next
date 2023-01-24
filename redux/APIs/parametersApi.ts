@@ -15,9 +15,12 @@ export const parametersApi = createApi({
       transformResponse: (
         baseQueryReturnValue: ParametersData
       ): FormattedParametersData => {
-        return getFormattedParams(baseQueryReturnValue).sort((a, b) =>
-          b.type.localeCompare(a.type)
-        );
+        return getFormattedParams(baseQueryReturnValue).sort((a, b) => {
+          if (a.type === "tag" && b.type === "tag") {
+            return 10;
+          }
+          return b.name.localeCompare(a.name) - 10;
+        });
       },
     }),
   }),

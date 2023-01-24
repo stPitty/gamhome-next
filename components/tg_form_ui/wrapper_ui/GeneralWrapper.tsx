@@ -1,22 +1,35 @@
 import { ChildrenProp } from "../../../common/form_utils/types";
 import styled from "styled-components";
+import { useContext } from "react";
+import { AppContext } from "../../../common/context/AppContext";
 
 const GeneralWrapper: React.FC<ChildrenProp> = ({ children }) => {
+  const { isCityOpen, isDistrictOpen, isMetroOpen, isMapOpen } =
+    useContext(AppContext);
+
+  const isModalOpened =
+    isCityOpen || isDistrictOpen || isMetroOpen || isMapOpen;
+
   return (
     <Wrapper>
-      <Container>{children}</Container>
+      <Container
+        style={{
+          paddingBottom: !isModalOpened ? "68px" : "0",
+          height: isModalOpened ? "0" : "100vh",
+        }}
+        isModalOpened={!!isModalOpened}
+      >
+        {children}
+      </Container>
     </Wrapper>
   );
 };
 
-const Container = styled.div`
+const Container = styled.div<{ isModalOpened: boolean }>`
   display: flex;
   flex-direction: column;
-  padding-bottom: 60px;
   background-color: white;
   max-width: 500px;
-  height: 100vh;
-  overflow: auto;
   overflow-x: hidden;
   overflow-y: auto;
   -ms-overflow-style: none;

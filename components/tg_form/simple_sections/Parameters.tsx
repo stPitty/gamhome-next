@@ -14,9 +14,6 @@ import {
   houseTypeValues,
   objTypeHomeValues,
   objTypeValues,
-  repairValues,
-  roomsInFlatQuantityValues,
-  roomsQuantityValues,
   typeOfPartValues,
   wallMaterialValues,
 } from "../../../common/form_utils/constants";
@@ -29,11 +26,6 @@ const Parameters = () => {
 
   const { data } = useGetParametersByIdQuery(category);
 
-  // const repairRefsArr = useGetRefs(
-  //   repairValues,
-  //   RefType.PARAMS,
-  //   ParamType.REPAIR
-  // );
   const houseTypeRefsArr = useGetRefs(
     houseTypeValues,
     RefType.PARAMS,
@@ -45,18 +37,6 @@ const Parameters = () => {
     RefType.PARAMS,
     ParamType.WALL_MATERIAL
   );
-
-  // const roomsInFlatQuantityArr = useGetRefs(
-  //   roomsInFlatQuantityValues,
-  //   RefType.PARAMS,
-  //   ParamType.ROOMS_IN_FLAT
-  // );
-  //
-  // const roomsQuantityArr = useGetRefs(
-  //   roomsQuantityValues,
-  //   RefType.PARAMS,
-  //   ParamType.ROOMS_QUANTITY
-  // );
 
   const floorParamArr = useGetRefs(floorsInHouseValues, RefType.LAST_FLOORS);
 
@@ -85,10 +65,7 @@ const Parameters = () => {
   );
 
   const currentTagParams = (id: number): Refs | undefined => {
-    // if (id === 1) return repairRefsArr;
-    // if (id === 13) return roomsInFlatQuantityArr;
     if (id === 8) return houseTypeRefsArr;
-    // if (id === 5) return roomsQuantityArr;
     if (id === 14) return houseTypeRefsArr;
     if (id === 18) return wallMaterialRefsArr;
     if (id === 19) return typeOfPartArr;
@@ -97,10 +74,6 @@ const Parameters = () => {
     if (id === 23) return objHomeTypeArr;
   };
 
-  // useEffect(() => {
-  //   setActiveParams(repairRefsArr.refs, params?.repair);
-  // }, [params?.repair, data]);
-
   useEffect(() => {
     setActiveParams(houseTypeRefsArr.refs, params?.houseType);
   }, [params?.houseType, data]);
@@ -108,14 +81,6 @@ const Parameters = () => {
   useEffect(() => {
     setActiveParams(wallMaterialRefsArr.refs, params?.wallMaterial);
   }, [params?.wallMaterial, data]);
-  //
-  // useEffect(() => {
-  //   setActiveParams(roomsInFlatQuantityArr.refs, params?.roomsInFlatQuantity);
-  // }, [params?.roomsInFlatQuantity, data]);
-  //
-  // useEffect(() => {
-  //   setActiveParams(roomsQuantityArr.refs, params?.roomsQuantity);
-  // }, [params?.roomsQuantity, data]);
 
   useEffect(() => {
     setActiveParams(floorParamArr.refs, lastFloor);
@@ -159,9 +124,8 @@ const Parameters = () => {
                 )}
               </>
             ) : (
-              ((el.id !== 19 && el.id !== 21 && el.id !== 22) ||
-                ((el.id === 19 || el.id === 21 || el.id === 22) &&
-                  type === 1)) && (
+              ((el.id !== 19 && el.id !== 21) ||
+                ((el.id === 19 || el.id === 21) && type === 1)) && (
                 <StyledTags
                   nullable={true}
                   refs={currentTagParams(el.id)}
