@@ -24,124 +24,137 @@ const reduceSpaces = (data: string) => {
 };
 
 const formatParams = (
-  data: TFormData["data"]["params"],
-  categoryId: number | null,
+  {
+    category,
+    params,
+    repair,
+    vars,
+    roomsInFlatQuantity,
+    roomsQuantity,
+  }: TFormData["data"],
   notFirstFloor: boolean
 ) => {
   const newArr: Parameter[] = [];
 
-  switch (categoryId) {
+  switch (category) {
     case 2:
-      if (data?.repair) {
+      if (repair) {
         newArr.push({
           parameterId: 1,
-          value: data.repair,
+          value: repair,
           minValue: "",
         });
       }
 
-      if (data.minFloorsInHouse || data.maxFloorsInHouse) {
+      if (params.minFloorsInHouse || params.maxFloorsInHouse) {
         newArr.push({
           parameterId: 2,
-          value: data.maxFloorsInHouse ?? "50",
-          minValue: data.minFloorsInHouse ?? "0",
+          value: params.maxFloorsInHouse ?? "50",
+          minValue: params.minFloorsInHouse ?? "0",
         });
       }
 
-      if (data.minKitchenSquare || data.maxKitchenSquare) {
+      if (params.minKitchenSquare || params.maxKitchenSquare) {
         newArr.push({
           parameterId: 3,
-          value: data.maxKitchenSquare
-            ? String(reduceSpaces(data.maxKitchenSquare))
+          value: params.maxKitchenSquare
+            ? String(reduceSpaces(params.maxKitchenSquare))
             : "9999",
-          minValue: data.minKitchenSquare
-            ? String(reduceSpaces(data.minKitchenSquare))
+          minValue: params.minKitchenSquare
+            ? String(reduceSpaces(params.minKitchenSquare))
             : "0",
         });
       }
 
-      if (data.minSquare || data.maxSquare) {
+      if (params.minSquare || params.maxSquare) {
         newArr.push({
           parameterId: 4,
-          value: data.maxSquare ? String(reduceSpaces(data.maxSquare)) : "9999",
-          minValue: data.minSquare ? String(reduceSpaces(data.minSquare)) : "0",
+          value: params.maxSquare
+            ? String(reduceSpaces(params.maxSquare))
+            : "9999",
+          minValue: params.minSquare
+            ? String(reduceSpaces(params.minSquare))
+            : "0",
         });
       }
 
-      if (data?.roomsQuantity) {
+      if (roomsQuantity) {
         newArr.push({
           parameterId: 5,
-          value: data.roomsQuantity === "5+" ? "9999" : data.roomsQuantity,
+          value: roomsQuantity === "5+" ? "9999" : roomsQuantity,
           minValue: "",
         });
       }
 
-      if (data.minFloor || data.maxFloor || notFirstFloor) {
+      if (params.minFloor || params.maxFloor || notFirstFloor) {
         newArr.push({
           parameterId: 6,
-          value: data.maxFloor ? String(reduceSpaces(data.maxFloor)) : "100",
-          minValue: data.minFloor
-            ? notFirstFloor && (data.minFloor === "1" || data.minFloor === "0")
+          value: params.maxFloor
+            ? String(reduceSpaces(params.maxFloor))
+            : "100",
+          minValue: params.minFloor
+            ? notFirstFloor &&
+              (params.minFloor === "1" || params.minFloor === "0")
               ? "2"
-              : String(reduceSpaces(data.minFloor))
+              : String(reduceSpaces(params.minFloor))
             : notFirstFloor
             ? "2"
             : "1",
         });
       }
 
-      if (data.minLivingSquare || data.maxLivingSquare) {
+      if (params.minLivingSquare || params.maxLivingSquare) {
         newArr.push({
           parameterId: 7,
-          value: data.maxLivingSquare
-            ? String(reduceSpaces(data.maxLivingSquare))
+          value: params.maxLivingSquare
+            ? String(reduceSpaces(params.maxLivingSquare))
             : "9999",
-          minValue: data.minLivingSquare
-            ? String(reduceSpaces(data.minLivingSquare))
+          minValue: params.minLivingSquare
+            ? String(reduceSpaces(params.minLivingSquare))
             : "0",
         });
       }
 
-      if (data?.houseType) {
+      if (params?.houseType) {
         newArr.push({
           parameterId: 8,
-          value: data.houseType,
+          value: params.houseType,
           minValue: "",
         });
       }
 
-      if (data.minDeliveryTime || data.maxDeliveryTime) {
+      if (params.minDeliveryTime || params.maxDeliveryTime) {
         newArr.push({
           parameterId: 9,
-          value: data.maxDeliveryTime
-            ? String(reduceSpaces(data.maxDeliveryTime))
+          value: params.maxDeliveryTime
+            ? String(reduceSpaces(params.maxDeliveryTime))
             : "2050",
-          minValue: data.minDeliveryTime
-            ? String(reduceSpaces(data.minDeliveryTime))
+          minValue: params.minDeliveryTime
+            ? String(reduceSpaces(params.minDeliveryTime))
             : "0",
         });
       }
 
-      if (data?.partType) {
+      if (params?.partType) {
         newArr.push({
           parameterId: 19,
-          value: data.partType,
+          value: params.partType,
           minValue: "",
         });
       }
 
-      if (data?.dealType) {
+      if (params?.dealType) {
         newArr.push({
           parameterId: 21,
-          value: data.dealType,
+          value: params.dealType,
           minValue: "",
         });
       }
 
-      if (data?.objType) {
+      if (vars && vars !== "Всеи варианты") {
         newArr.push({
           parameterId: 22,
-          value: data.objType,
+          value: vars,
           minValue: "",
         });
       }
@@ -149,113 +162,113 @@ const formatParams = (
       break;
 
     case 3:
-      if (data.minFloor || data.maxFloor || notFirstFloor) {
+      if (params.minFloor || params.maxFloor || notFirstFloor) {
         newArr.push({
           parameterId: 10,
-          value: data.maxFloor ? String(reduceSpaces(data.maxFloor)) : "100",
-          minValue: data.minFloor
-            ? notFirstFloor && (data.minFloor === "1" || data.minFloor === "0")
+          value: params.maxFloor
+            ? String(reduceSpaces(params.maxFloor))
+            : "100",
+          minValue: params.minFloor
+            ? notFirstFloor &&
+              (params.minFloor === "1" || params.minFloor === "0")
               ? "2"
-              : String(reduceSpaces(data.minFloor))
+              : String(reduceSpaces(params.minFloor))
             : notFirstFloor
             ? "2"
             : "1",
         });
       }
 
-      if (data.minFloorsInHouse || data.maxFloorsInHouse) {
+      if (params.minFloorsInHouse || params.maxFloorsInHouse) {
         newArr.push({
           parameterId: 11,
-          value: data.maxFloorsInHouse
-            ? String(reduceSpaces(data.maxFloorsInHouse))
+          value: params.maxFloorsInHouse
+            ? String(reduceSpaces(params.maxFloorsInHouse))
             : "100",
-          minValue: data.minFloorsInHouse
-            ? String(reduceSpaces(data.minFloorsInHouse))
+          minValue: params.minFloorsInHouse
+            ? String(reduceSpaces(params.minFloorsInHouse))
             : "0",
         });
       }
 
-      if (data.minRoomSquare || data.maxRoomSquare) {
+      if (params.minRoomSquare || params.maxRoomSquare) {
         newArr.push({
           parameterId: 12,
-          value: data.maxRoomSquare
-            ? String(reduceSpaces(data.maxRoomSquare))
+          value: params.maxRoomSquare
+            ? String(reduceSpaces(params.maxRoomSquare))
             : "9999",
-          minValue: data.minRoomSquare
-            ? String(reduceSpaces(data.minRoomSquare))
+          minValue: params.minRoomSquare
+            ? String(reduceSpaces(params.minRoomSquare))
             : "0",
         });
       }
 
-      if (data?.roomsInFlatQuantity) {
+      if (roomsInFlatQuantity) {
         newArr.push({
           parameterId: 13,
-          value:
-            data.roomsInFlatQuantity === "5+"
-              ? "9999"
-              : data.roomsInFlatQuantity,
+          value: roomsInFlatQuantity === "5+" ? "9999" : roomsInFlatQuantity,
           minValue: "",
         });
       }
 
-      if (data?.houseType) {
+      if (params?.houseType) {
         newArr.push({
           parameterId: 14,
-          value: data.houseType,
+          value: params.houseType,
           minValue: "",
         });
       }
       break;
 
     case 4:
-      if (data.minHouseSquare || data.maxHouseSquare) {
+      if (params.minHouseSquare || params.maxHouseSquare) {
         newArr.push({
           parameterId: 15,
-          value: data.maxHouseSquare
-            ? String(reduceSpaces(data.maxHouseSquare))
+          value: params.maxHouseSquare
+            ? String(reduceSpaces(params.maxHouseSquare))
             : "9999",
-          minValue: data.minHouseSquare
-            ? String(reduceSpaces(data.minHouseSquare))
+          minValue: params.minHouseSquare
+            ? String(reduceSpaces(params.minHouseSquare))
             : "0",
         });
       }
 
-      if (data.minFloorsInHouse || data.maxFloorsInHouse) {
+      if (params.minFloorsInHouse || params.maxFloorsInHouse) {
         newArr.push({
           parameterId: 16,
-          value: data.maxFloorsInHouse
-            ? String(reduceSpaces(data.maxFloorsInHouse))
+          value: params.maxFloorsInHouse
+            ? String(reduceSpaces(params.maxFloorsInHouse))
             : "100",
-          minValue: data.minFloorsInHouse
-            ? String(reduceSpaces(data.minFloorsInHouse))
+          minValue: params.minFloorsInHouse
+            ? String(reduceSpaces(params.minFloorsInHouse))
             : "0",
         });
       }
 
-      if (data.minLandSquare || data.maxLandSquare) {
+      if (params.minLandSquare || params.maxLandSquare) {
         newArr.push({
           parameterId: 17,
-          value: data.maxLandSquare
-            ? String(reduceSpaces(data.maxLandSquare))
+          value: params.maxLandSquare
+            ? String(reduceSpaces(params.maxLandSquare))
             : "100",
-          minValue: data.minLandSquare
-            ? String(reduceSpaces(data.minLandSquare))
+          minValue: params.minLandSquare
+            ? String(reduceSpaces(params.minLandSquare))
             : "0",
         });
       }
 
-      if (data?.wallMaterial) {
+      if (params?.wallMaterial) {
         newArr.push({
           parameterId: 18,
-          value: data.wallMaterial,
+          value: params.wallMaterial,
           minValue: "",
         });
       }
 
-      if (data?.objType) {
+      if (params?.objType) {
         newArr.push({
           parameterId: 23,
-          value: data.objType,
+          value: params.objType,
           minValue: "",
         });
       }
@@ -279,22 +292,6 @@ const handlePushClick = (data: TFormData["data"]) => {
     formattedData.type = {
       id: data.type,
     };
-  }
-
-  if (data?.vars) {
-    formattedData.vars = data.vars;
-  }
-
-  if (data?.roomsQuantity) {
-    formattedData.roomsQuantity = data.roomsQuantity;
-  }
-
-  if (data?.roomsInFlatQuantity) {
-    formattedData.roomsInFlatQuantity = data.roomsInFlatQuantity;
-  }
-
-  if (data?.repair) {
-    formattedData.repair = data.repair;
   }
 
   if (data?.minPrice.length !== 0 || data?.maxPrice?.length !== 0) {
@@ -348,15 +345,17 @@ const handlePushClick = (data: TFormData["data"]) => {
     formattedData.lastFloor = true;
   }
 
-  const params = formatParams(
-    data.params,
-    data.category,
-    data.lastFloor === "Не первый"
-  );
+  if (data?.lastFloor === "Не последний") {
+    formattedData.lastFloor = false;
+  }
+
+  const params = formatParams(data, data.lastFloor === "Не первый");
 
   if (params.length !== 0) {
     formattedData.parameters = params;
   }
+
+  console.log(formattedData);
 
   localStorage.setItem("formData", JSON.stringify(data));
 

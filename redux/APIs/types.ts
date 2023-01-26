@@ -2,11 +2,9 @@ type Param =
   | "FloorsInHouse"
   | "KitchenSquare"
   | "Square"
-  // | "RoomsQuantity"
   | "Floor"
   | "LivingSquare"
   | "RoomSquare"
-  // | "RoomsInFlatQuantity"
   | "HouseSquare"
   | "LandSquare"
   | "DeliveryTime";
@@ -16,6 +14,7 @@ type Parameter = {
   name: string;
   type?: "input" | "tag";
   paramType?: Param;
+  index?: number;
 };
 
 type ParametersData = Parameter[];

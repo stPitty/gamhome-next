@@ -3,19 +3,17 @@ import { FormattedParametersData, ParametersData } from "./types";
 const getFormattedParams = (
   params: ParametersData
 ): FormattedParametersData => {
-  return params.reduce((previousValue: any[], currentValue) => {
+  return params.reduce((previousValue: any[], currentValue, currentIndex) => {
     if (
-      // currentValue.id === 1 ||
       currentValue.id === 8 ||
       currentValue.id === 14 ||
       currentValue.id === 18 ||
-      // currentValue.id === 5 ||
-      // currentValue.id === 13 ||
       currentValue.id === 19 ||
       currentValue.id === 21 ||
       currentValue.id === 23
     ) {
       currentValue.type = "tag";
+      currentValue.index = 1;
       previousValue.push(currentValue);
       return previousValue;
     }
@@ -44,6 +42,13 @@ const getFormattedParams = (
       currentValue.id === 22
     )
       return previousValue;
+
+    currentValue.index = 3;
+
+    if (currentValue.paramType && /square/gim.test(currentValue.paramType)) {
+      currentValue.index = 2;
+    }
+
     previousValue.push(currentValue);
     return previousValue;
   }, []);

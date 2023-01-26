@@ -151,6 +151,8 @@ type TPathName = {
 };
 
 type FieldName =
+  | "repair"
+  | "vars"
   | "category"
   | "type"
   | "minPrice"

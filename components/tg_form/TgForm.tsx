@@ -65,12 +65,12 @@ const TgForm = () => {
       "isDistrictsDisabled",
       dispatch
     ),
-    [data.city, citiesData]
+    [data?.city, citiesData]
   );
 
   const metros = useMemo(
     handleGetData(data, citiesData, "metroLines", "isMetrosDisabled", dispatch),
-    [data.city, citiesData]
+    [data?.city, citiesData]
   );
 
   const categoryRefsArr = useGetRefs(categoryValues, RefType.CATEGORY);
@@ -91,15 +91,15 @@ const TgForm = () => {
   const repairRefsArr = useGetRefs(repairValues, RefType.REPAIR);
 
   useEffect(() => {
-    setActiveParams(feeArr.refs, data.fee);
-  }, [data.fee]);
+    setActiveParams(feeArr.refs, data?.fee);
+  }, [data?.fee]);
 
   useEffect(() => {
-    if (!data.city.id) {
+    if (!data?.city.id) {
       dispatch(setPrimitiveField({ name: "districts", value: [] }));
       dispatch(setPrimitiveField({ name: "metros", value: [] }));
     }
-  }, [data.city]);
+  }, [data?.city]);
 
   useEffect(() => {
     setActiveParams(categoryRefsArr.refs, data.category);
@@ -142,6 +142,9 @@ const TgForm = () => {
     if (data.type !== 1 && data.category !== 2) {
       dispatch(setPrimitiveField({ name: "typeOfPart", value: "" }));
     }
+    if (data.type !== 1 || data.category !== 2) {
+      dispatch(setPrimitiveField({ name: "vars", value: "" }));
+    }
     if (data.type === 1) {
       dispatch(setPrimitiveField({ name: "fee", value: "" }));
     }
@@ -151,6 +154,12 @@ const TgForm = () => {
           name: "params",
           value: "",
           addType: "roomsQuantity",
+        })
+      );
+      dispatch(
+        setPrimitiveField({
+          name: "repair",
+          value: "",
         })
       );
     }
@@ -194,12 +203,16 @@ const TgForm = () => {
         <Divider />
         <TagsSection isRequired={true} refs={typeArr} header="Тип услуги" />
         <Divider />
-        <TagsSection
-          nullable={true}
-          refs={varsArr}
-          header="Какие варианты рассматриваешь?"
-        />
-        <Divider />
+        {data?.category === 2 && data?.type === 1 && (
+          <>
+            <TagsSection
+              nullable={true}
+              refs={varsArr}
+              header="Какие варианты рассматриваешь?"
+            />
+            <Divider />
+          </>
+        )}
         {data?.category === 3 && (
           <>
             <TagsSection
@@ -221,9 +234,13 @@ const TgForm = () => {
             <Divider />
           </>
         )}
-        <TagsSection nullable={true} refs={repairRefsArr} header="Ремонт" />
-        <Divider />
-        {data.type === 2 && (
+        {data?.category === 2 && (
+          <>
+            <TagsSection nullable={true} refs={repairRefsArr} header="Ремонт" />
+            <Divider />
+          </>
+        )}
+        {data?.type === 2 && (
           <>
             <RadioButton header="Без комиссии" label="Да" fieldType="fee" />
             <Divider />
@@ -253,7 +270,7 @@ const TgForm = () => {
       <Select
         data={citiesData}
         type="cities"
-        targetItem={data.city}
+        targetItem={data?.city}
         isOpen={isCityOpen}
         setIsOpen={setIsCityOpen}
         handleClearAction={handleClearSelect("city", dispatch)}
@@ -263,7 +280,7 @@ const TgForm = () => {
       <Select
         data={districts as Params[]}
         type="districts"
-        targetItem={data.districts}
+        targetItem={data?.districts}
         isOpen={isDistrictOpen}
         setIsOpen={setIsDistrictOpen}
         handleClearAction={handleClearSelect("districts", dispatch)}
@@ -274,7 +291,7 @@ const TgForm = () => {
       <Select
         data={metros as Params[]}
         type="metros"
-        targetItem={data.metros}
+        targetItem={data?.metros}
         isOpen={isMetroOpen}
         setIsOpen={setIsMetroOpen}
         handleClearAction={handleClearSelect("metros", dispatch)}
