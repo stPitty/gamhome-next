@@ -52,8 +52,8 @@ const Mortgage = () => {
           </HeaderText>
           <SubHeader>
             Сниженная ипотечная ставка <AdaptiveTextDivider xs={true} />
-            для наших клиентов, рассчитайте ежемесячный платёж сразу{" "}
-            <AdaptiveTextDivider xs={true} />в нескольких банках
+            для наших клиентов, рассчитайте ежемесячный платёж сразу
+            в&nbsp;нескольких банках
           </SubHeader>
         </HeaderContainer>
         <SliderContainer>

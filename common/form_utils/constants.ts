@@ -102,7 +102,7 @@ const authorValues = [
 const varsValues = [
   {
     value: "Новостройки",
-    children: "Новостройки",
+    children: "Новостройка",
   },
   {
     value: "Вторичка",

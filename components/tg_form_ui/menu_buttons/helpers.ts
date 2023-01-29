@@ -82,7 +82,7 @@ const formatParams = (
         newArr.push({
           parameterId: 5,
           value: roomsQuantity === "5+" ? "9999" : roomsQuantity,
-          minValue: "",
+          minValue: roomsQuantity === "5+" ? "0" : "",
         });
       }
 
@@ -151,7 +151,7 @@ const formatParams = (
         });
       }
 
-      if (vars && vars !== "Всеи варианты") {
+      if (vars && vars !== "Все варианты") {
         newArr.push({
           parameterId: 22,
           value: vars,
@@ -207,7 +207,7 @@ const formatParams = (
         newArr.push({
           parameterId: 13,
           value: roomsInFlatQuantity === "5+" ? "9999" : roomsInFlatQuantity,
-          minValue: "",
+          minValue: roomsInFlatQuantity === "5+" ? "0" : "",
         });
       }
 

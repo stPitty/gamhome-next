@@ -113,9 +113,10 @@ const BankModal: FC<Props> = ({
             </EvaluationContainer>
           </InfoContainer>
           <DescriptionText>
-            Менеджер уточнит дополнительные параметры кредита — они влияют на
-            количество предложений банков и ставку. <br />
-            Потребуются ваши данные и документы
+            Менеджер уточнит дополнительные параметры кредита&nbsp;&mdash; они
+            влияют на&nbsp;количество предложений банков и&nbsp;ставку.
+            <br />
+            Потребуются ваши данные и&nbsp;документы.
           </DescriptionText>
           <BtnContainer>
             <StyledButton

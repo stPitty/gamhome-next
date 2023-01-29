@@ -22,7 +22,7 @@ const FlatBlock: React.FC = () => {
         <ChevronIconContainer>
           <ChevronIcon />
         </ChevronIconContainer>
-        <TelegramBtnText>Назад в Telegram бот</TelegramBtnText>
+        <TelegramBtnText>Назад в Telegram бот</TelegramBtnText>
       </TelegramButtonContainer>
       <PhotoBlock />
       <InfoBlock />

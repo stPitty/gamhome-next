@@ -260,12 +260,16 @@ const ButtonsContainer = styled.div<{
 `;
 
 const DescText = styled.p<{ cardType: CardType }>`
+  white-space: pre-wrap;
   font-family: ${Font.ROBOTO};
   font-size: 16px;
   line-height: 24px;
   margin: 0;
   color: ${({ cardType }) =>
     cardType === CardType.PRIMARY ? WhiteColor.WHITE_80 : BlackColor.BLACK_80};
+  @media screen and (max-width: 1439px) {
+    white-space: unset;
+  }
 `;
 
 const HeaderText = styled.div<{
@@ -285,7 +289,8 @@ const HeaderText = styled.div<{
         if (cardType === CardType.PRIMARY) return "370px";
         return "340px";
       }
-    }}
+    }};
+  }
 `;
 
 const Body = styled.div<{

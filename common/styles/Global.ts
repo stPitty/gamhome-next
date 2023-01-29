@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { BrandColor, LightBlueColor, WhiteColor } from "../enums";
+import { BlackColor, BrandColor, LightBlueColor, WhiteColor } from "../enums";
 
 const Global = createGlobalStyle`
   html,
@@ -27,7 +27,7 @@ const Global = createGlobalStyle`
 
     ::-webkit-scrollbar-thumb {
       border-radius: 10px;
-      background-color: ${BrandColor.BRAND};
+      background-color: ${BlackColor.BLACK_24};
     }
     ::-webkit-scrollbar-track {
       -webkit-box-shadow: inset 0 0 6px ${WhiteColor.WHITE_16};

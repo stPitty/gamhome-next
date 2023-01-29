@@ -73,7 +73,7 @@ const HeaderContainer = styled.div<{ contentType: TabContentType }>`
     width: 302px;
   }
   @media screen and (max-width: 374px) {
-    width: 240px;
+    width: 100%;
     padding: 0 8px;
   }
 `;
@@ -127,7 +127,7 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: 32px;
-  width: 485px;
+  width: 512px;
   row-gap: 24px;
   flex-wrap: wrap;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
@@ -144,7 +144,7 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
     margin: 0;
   }
   @media screen and (max-width: 374px) {
-    width: 240px;
+    width: 100%;
     margin: 0;
   }
 `;
@@ -155,12 +155,7 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
-  width: ${({ contentType, isHeader }) => {
-    if (contentType === "jurAnalysis") {
-      if (isHeader) return "704px";
-      return "468px";
-    }
-  }};
+  width: 100%;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: ${({ contentType, isHeader }) => {
       if (contentType === "jurAnalysis") {
@@ -186,12 +181,7 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
     }};
   }
   @media screen and (max-width: 374px) {
-    width: ${({ contentType, isHeader }) => {
-      if (contentType === "jurAnalysis") {
-        if (isHeader) return "240px";
-        return "212px";
-      }
-    }};
+    width: 100%;
   }
 `;
 
