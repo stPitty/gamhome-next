@@ -3,6 +3,7 @@ import Spinner from "../../../components/UI/spinner/Spinner";
 
 const Photos = dynamic(() => import("../../../components/photos/Photos"), {
   loading: () => <Spinner />,
+  ssr: false,
 });
 
 const FullscreenCarousel: React.FC = () => {

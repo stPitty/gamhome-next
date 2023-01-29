@@ -1,8 +1,7 @@
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher";
 import { TFormData } from "../../../redux/slicers/types";
 import { Parameter, PostData } from "./types";
 
-const formatComplexData = (arr: Params[]) => {
+const formatComplexData = (arr: any[]) => {
   return arr.reduce(
     (
       previousValue: {

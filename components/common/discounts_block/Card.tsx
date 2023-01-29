@@ -263,11 +263,8 @@ const DescText = styled.p<{ cardType: CardAbout }>`
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: ${({ cardType }) => (cardType === "cleaning" ? "551px" : "608px")};
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 100%;
-  }
-  @media screen and (max-width: 374px) {
-    width: 240px;
   }
 `;
 
@@ -306,7 +303,7 @@ const ContentWrapper = styled.div`
     width: 317px;
   }
   @media screen and (max-width: 374px) {
-    width: 240px;
+    width: 256px;
   }
 `;
 

@@ -27,14 +27,15 @@ const WebinarBlock = React.forwardRef((_, ref) => {
       </ObservableComponentWrapper>
       <Container id={Hook.WEBINAR}>
         <ContentContainer>
-          <Tag>Бесплатный доступ к вебинару</Tag>
+          <Tag>Бесплатный доступ к&nbsp;вебинару</Tag>
           <HeaderText>
-            Узнайте основные риски при аренде квартиры и какие схемы используют
-            мошенники
+            Узнайте основные риски при&nbsp;аренде квартиры&nbsp;и&nbsp;какие
+            схемы используют мошенники
           </HeaderText>
           <Text>
-            На вебинаре разобраны основные методы мошенников и как их вычислить.
-            Изучите это видео, чтобы всегда понимать правила съёма квартиры
+            На&nbsp;вебинаре разобраны основные методы мошенников
+            и&nbsp;как&nbsp;их&nbsp;вычислить. Изучите это&nbsp;видео, чтобы
+            всегда понимать правила съёма квартиры
           </Text>
           <StyledButton
             buttonSize={ButtonSize.LARGE}
@@ -77,6 +78,7 @@ const Text = styled.p`
   line-height: 24px;
   color: ${WhiteColor.WHITE};
   margin: 0;
+  max-width: 528px;
 `;
 
 const HeaderText = styled.p`
@@ -85,7 +87,7 @@ const HeaderText = styled.p`
   line-height: 48px;
   color: ${WhiteColor.WHITE};
   margin: 0;
-  @media screen and (max-width: 1023px) and (min-width: 375px) {
+  @media screen and (max-width: 1023px) {
     font-size: 32px;
     line-height: 40px;
   }

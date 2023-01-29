@@ -19,6 +19,7 @@ const TabBody: React.FC<Props> = ({ data }) => {
 };
 
 const Container = styled.div<{ contentType: TabContentType }>`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

@@ -54,7 +54,7 @@ const sixIntsErrorMessage = "Укажите 6 цифр";
 const serviceModal: Omit<ModalBody, "header"> = {
   modalType: "withInput",
   subDesc:
-    "Отправляя заявку вы подтверждаете, что согласны с Политикой конфиденциальности и условиями Оферты",
+    "Отправляя заявку вы\u00A0подтверждаете, что согласны с\u00A0Политикой конфиденциальности и\u00A0условиями Оферты",
   buttonText: "Оставить заявку",
   nextStateBtnAction: thanksForOrder,
   clearAction: clearServiceData,
@@ -120,7 +120,7 @@ const modalData: ModalBodyData = {
   },
   [ModalState.CHECK_LISTS_ENTER_EMAIL]: {
     header: "Чек-листы и документы для аренды",
-    desc: "Файл с чек-листами и документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
+    desc: "Файл с\u00A0чек-листами и\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
     buttonText: "Перейти к оплате 799 ₽",
     modalType: "withInput",
     nextStateBtnAction: thanksForBuy,
@@ -131,7 +131,7 @@ const modalData: ModalBodyData = {
   },
   [ModalState.THANKS_FOR_BUY]: {
     header: "Спасибо за покупку",
-    desc: "Чек-листы и документы отправлены на почту",
+    desc: "Чек-листы и\u00A0документы отправлены на\u00A0почту",
     modalType: "lastMessage",
     image: "/images/man-sends-message.webp",
   },
@@ -156,7 +156,7 @@ const modalData: ModalBodyData = {
       },
       {
         id: 5,
-        text: "Соглашение о расторжении договора найма жилого помещения",
+        text: "Соглашение о\u00A0расторжении договора найма жилого помещения",
       },
       {
         id: 6,
@@ -169,7 +169,7 @@ const modalData: ModalBodyData = {
   },
   [ModalState.FREE_DOCS_BAG_ENTER_EMAIL]: {
     header: "Пакет бесплатных документов",
-    desc: "Файл с документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности",
+    desc: "Файл с\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности",
     buttonText: "Отправить",
     modalType: "withInput",
     nextStateBtnAction: docsSent,
@@ -206,7 +206,7 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OBJ_INPUT_EMAIL]: {
     header: "Проверить объект",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
+    desc: "Результат проверки пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
@@ -215,9 +215,9 @@ const modalData: ModalBodyData = {
     nextStateBtnAction: informationSent,
   },
   [ModalState.INFORMATION_SENT]: {
-    header: "Информация отправлена на проверку",
+    header: "Информация отправлена на\u00A0проверку",
     modalType: "lastMessage",
-    desc: "Результат проверки придёт на почту. Проверка занимает от 30 минут до 3 дней",
+    desc: "Результат проверки придёт на\u00A0почту. Проверка занимает от\u00A030\u00A0минут до\u00A03\u00A0дней",
     image: "/images/perfect-candidate.webp",
   },
   [ModalState.CHECK_OWNER_INPUT_INFO]: {
@@ -291,7 +291,7 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OWNER_INPUT_EMAIL]: {
     header: "Проверить собственника",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности и условия Оферты",
+    desc: "Результат проверки пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
     buttonText: "Перейти к оплате 549 ₽",
     nextStateBtnAction: informationSent,
     placeHolder: "email",
@@ -347,7 +347,7 @@ const modalData: ModalBodyData = {
   },
   [ModalState.TYPE_DEAL]: {
     header: "Типовые договора",
-    desc: "Файл с документами пришлём на почту. При отправке вы принимаете условия Политики конфиденциальности",
+    desc: "Файл с\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности",
     buttonText: "Отправить",
     modalType: "withInput",
     nextStateBtnAction: docsSent,

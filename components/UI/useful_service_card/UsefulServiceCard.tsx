@@ -177,7 +177,7 @@ const Text = styled.div<{ cardType: CardType }>`
 `;
 
 const ListMarker = styled.div<{ cardType: CardType }>`
-  margin: 10px 5px 10px 0;
+  margin: 10px;
   min-height: 4px;
   min-width: 4px;
   border-radius: 4px;

@@ -113,14 +113,15 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
       case 4:
         return css`
           width: 213px;
-          height: 319px;
+          height: 276px;
           position: relative;
           right: 12px;
-          bottom: 190px;
+          bottom: 148px;
         `;
     }
   }};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    border-radius: 16px;
     ${({ size }) => {
       switch (size) {
         case 1:
@@ -153,6 +154,7 @@ const Image = styled.div<{ image: string; size: 1 | 2 | 3 | 4 }>`
     }}
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
+    border-radius: 11px;
     ${({ size }) => {
       switch (size) {
         case 1:

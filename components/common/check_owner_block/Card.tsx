@@ -144,7 +144,8 @@ const PointsContainer = styled.div<{ contentType: TabContentType }>`
     margin: 0;
   }
   @media screen and (max-width: 374px) {
-    width: 100%;
+    width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "256px" : "100%"};
     margin: 0;
   }
 `;
@@ -155,7 +156,13 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
   line-height: 24px;
   color: ${BlackColor.BLACK_64};
   margin: 0;
-  width: 100%;
+  width: ${({ contentType, isHeader }) => {
+    if (contentType === "jurAnalysis") {
+      if (isHeader) return "704px";
+      return "100%";
+    }
+  }};
+  white-space: pre-wrap;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: ${({ contentType, isHeader }) => {
       if (contentType === "jurAnalysis") {
@@ -163,6 +170,9 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
         return "340px";
       }
     }};
+  }
+  @media screen and (max-width: 1023px) {
+    white-space: unset;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     width: ${({ contentType, isHeader }) => {
@@ -176,12 +186,18 @@ const DescText = styled.p<{ contentType?: TabContentType; isHeader?: boolean }>`
     width: ${({ contentType, isHeader }) => {
       if (contentType === "jurAnalysis") {
         if (isHeader) return "301px";
-        return "250px";
+        return "100%";
       }
     }};
   }
   @media screen and (max-width: 374px) {
-    width: 100%;
+    width: ${({ contentType, isHeader }) => {
+      if (contentType === "jurAnalysis") {
+        if (isHeader) return "240px";
+        return "212px";
+      }
+      return "100%";
+    }};
   }
 `;
 

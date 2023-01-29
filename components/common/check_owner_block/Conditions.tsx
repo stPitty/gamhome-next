@@ -133,7 +133,8 @@ const ConditionText = styled.p<{ contentType: TabContentType }>`
       contentType === "jurAnalysis" ? "319px" : "288px"};
   }
   @media screen and (max-width: 374px) {
-    width: 238px;
+    min-width: ${({ contentType }) =>
+      contentType === "jurAnalysis" ? "256px" : "238px"};
   }
 `;
 

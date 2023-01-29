@@ -143,6 +143,12 @@ const PointText = styled.p<{ cardType: CardType; isArrow?: boolean }>`
       return WhiteColor.WHITE_80;
     }
   }};
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    white-space: pre-line;
+  }
+  @media screen and (max-width: 375px) {
+    white-space: pre-line;
+  } ;
 `;
 
 const PointWrapper = styled.div`
@@ -283,7 +289,8 @@ const CardContainer = styled.div<{ cardType: CardType; isRent: boolean }>`
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
-  padding: 24px;
+  padding: ${({ cardType }) =>
+    cardType === CardType.FILLED ? `24px}` : "22px"};
   width: 416px;
   height: ${({ isRent }) => (isRent ? "916px" : "1276px")};
   background: ${WhiteColor.WHITE};

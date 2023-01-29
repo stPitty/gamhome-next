@@ -33,8 +33,8 @@ const Insurance = () => {
           <InfoContainer>
             <Header>Ипотечное страхование</Header>
             <DescText>
-              С нами вы можете застраховать недвижимость, жизнь и здоровье
-              дешевле, чем предложит банк.
+              С&nbsp;нами вы&nbsp;можете застраховать недвижимость, жизнь
+              и&nbsp;здоровье дешевле, чем предложит банк.
             </DescText>
             <ListContainer>
               <LIContainer>
@@ -42,7 +42,7 @@ const Insurance = () => {
                   <UsersSVG />
                 </LIIconContainer>
                 <LIText>
-                  Зaполните анкету, получите страховой полис на почту
+                  Зaполните анкету, получите страховой полис на&nbsp;почту
                 </LIText>
               </LIContainer>
               <LIContainer>
@@ -50,9 +50,8 @@ const Insurance = () => {
                   <PriceSVG />
                 </LIIconContainer>
                 <LIText>
-                  Полисы по ценам страховых компаний или ещё дешевле
-                  <AdaptiveTextDivider xs={true} />
-                  за счёт наших скидок
+                  Полисы по&nbsp;ценам страховых компаний
+                  или&nbsp;ещё&nbsp;дешевле за&nbsp;счёт наших скидок
                 </LIText>
               </LIContainer>
               <LIContainer>
@@ -60,7 +59,8 @@ const Insurance = () => {
                   <MoneySVG />
                 </LIIconContainer>
                 <LIText>
-                  Гарантируем выплаты по страховым случаям и подлинность полисов
+                  Гарантируем выплаты по страховым случаям и&nbsp;подлинность
+                  полисов
                 </LIText>
               </LIContainer>
               <LIContainer>
@@ -68,8 +68,8 @@ const Insurance = () => {
                   <PeopleSVG />
                 </LIIconContainer>
                 <LIText>
-                  Наши партнеры — крупные страховые компании{" "}
-                  <AdaptiveTextDivider xs={true} />с действующими лицензиями
+                  Наши партнеры&nbsp;&mdash; крупные страховые компании
+                  с&nbsp;действующими лицензиями
                 </LIText>
               </LIContainer>
             </ListContainer>

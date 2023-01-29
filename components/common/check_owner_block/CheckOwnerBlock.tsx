@@ -40,6 +40,7 @@ const CheckOwnerBlock = () => {
 };
 
 const Container = styled.div<{ isRent: boolean }>`
+  width: 100%;
   display: flex;
   margin-bottom: ${({ isRent }) => isRent && "-112px"};
   z-index: 1;

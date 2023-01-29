@@ -40,10 +40,11 @@ const CardWitsImage = React.forwardRef((_, ref) => {
             <AdaptiveTextDivider md={true} />
             <MarkedText>Заплатим 10%</MarkedText>,{" "}
             <AdaptiveTextDivider lg={true} sm={true} xs={true} />
-            за рекомендацию нас собственнику
+            за&nbsp;рекомендацию нас собственнику
           </HeaderText>
           <Text>
-            Мы быстро найдем новых жильцов, а вы получите 10% от нашей комиссии
+            Мы&nbsp;быстро найдем новых жильцов, а вы получите&nbsp;10%
+            от&nbsp;нашей комиссии
           </Text>
           <StyledButton
             onClick={handleButtonClick}
@@ -179,6 +180,7 @@ const TextWrapper = styled.div`
 `;
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;

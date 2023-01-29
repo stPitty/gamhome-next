@@ -5,6 +5,7 @@ import Spinner from "../../../components/UI/spinner/Spinner";
 
 const Rent = dynamic(() => import("../../../components/rent_page/RentPage"), {
   loading: () => <Spinner />,
+  ssr: false,
 });
 
 const RentPage: ComponentWithLayout = () => {
