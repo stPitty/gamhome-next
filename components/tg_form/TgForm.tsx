@@ -103,6 +103,10 @@ const TgForm = () => {
 
   useEffect(() => {
     setActiveParams(categoryRefsArr.refs, data.category);
+    if (data.category !== 2) {
+      dispatch(setPrimitiveField({ name: "minYear", value: "" }));
+      dispatch(setPrimitiveField({ name: "maxYear", value: "" }));
+    }
   }, [data.category]);
 
   useEffect(() => {
@@ -256,11 +260,13 @@ const TgForm = () => {
         <Location />
         <Divider />
         {data?.category && <Parameters />}
-        <StyledForm
-          header="Год постройки"
-          minType="minYear"
-          maxType="maxYear"
-        />
+        {data?.category === 2 && (
+          <StyledForm
+            header="Год постройки"
+            minType="minYear"
+            maxType="maxYear"
+          />
+        )}
         <StyledForm
           header="Расстояние до метро в минутах"
           minType="minKmMetro"

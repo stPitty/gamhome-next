@@ -30,6 +30,8 @@ const formatParams = (
     vars,
     roomsInFlatQuantity,
     roomsQuantity,
+    minYear,
+    maxYear,
   }: TFormData["data"],
   notFirstFloor: boolean
 ) => {
@@ -139,6 +141,14 @@ const formatParams = (
           parameterId: 19,
           value: params.partType,
           minValue: "",
+        });
+      }
+
+      if (minYear || maxYear) {
+        newArr.push({
+          parameterId: 20,
+          value: maxYear ? String(reduceSpaces(maxYear)) : "2023",
+          minValue: minYear ? String(reduceSpaces(minYear)) : "0",
         });
       }
 
@@ -333,12 +343,12 @@ const handlePushClick = (data: TFormData["data"]) => {
     formattedData.polygons = data.polygon;
   }
 
-  if (data?.maxYear?.length !== 0 || data?.minYear.length !== 0) {
-    formattedData.minYear =
-      data?.minYear.length !== 0 ? reduceSpaces(data.minYear) : 0;
-    formattedData.maxYear =
-      data?.maxYear.length !== 0 ? reduceSpaces(data.maxYear) : 2050;
-  }
+  // if (data?.maxYear?.length !== 0 || data?.minYear.length !== 0) {
+  //   formattedData.minYear =
+  //     data?.minYear.length !== 0 ? reduceSpaces(data.minYear) : 0;
+  //   formattedData.maxYear =
+  //     data?.maxYear.length !== 0 ? reduceSpaces(data.maxYear) : 2050;
+  // }
 
   if (data?.lastFloor === "Только последний") {
     formattedData.lastFloor = true;
