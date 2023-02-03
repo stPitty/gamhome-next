@@ -3,7 +3,7 @@ import { IOBottomMenuSingleton, IOScrollButtonSingleton } from "./IOSingleton";
 import React, { RefObject } from "react";
 import { AppDispatch } from "../../redux/types";
 import { setMobBtnVisibility } from "../../redux/slicers/mobBtnViewSlicer";
-import { getRefsArr } from "./index";
+import { getRefsArr, getRefsArrBuy } from "./index";
 
 const changeVisibility =
   (dispatch: AppDispatch) => (isInteresting: boolean) => {
@@ -32,10 +32,10 @@ const setIOForBottomMenu = (
 
 const setIOForScrollBtn = (
   dispatch: AppDispatch,
-  cardWithImageDarkRef: RefObject<unknown>["current"],
-  mainServicesLightRef: RefObject<unknown>["current"],
-  discountPartnersDarkRef: RefObject<unknown>["current"],
-  webinarLightRef: RefObject<unknown>["current"]
+  cardWithImageDarkRef: RefObject<HTMLDivElement>["current"],
+  mainServicesLightRef: RefObject<HTMLDivElement>["current"],
+  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
+  webinarLightRef: RefObject<HTMLDivElement>["current"]
 ) => {
   if (!IOScrollButtonSingleton.isRefExisting()) {
     IOScrollButtonSingleton.setRefs(
@@ -45,6 +45,19 @@ const setIOForScrollBtn = (
         discountPartnersDarkRef,
         webinarLightRef
       )
+    );
+  }
+  IOScrollButtonSingleton.init(dispatch);
+};
+
+const setIOForScrollBtnBuy = (
+  dispatch: AppDispatch,
+  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
+  webinarLightRef: RefObject<HTMLDivElement>["current"]
+) => {
+  if (!IOScrollButtonSingleton.isRefExisting()) {
+    IOScrollButtonSingleton.setRefs(
+      getRefsArrBuy(discountPartnersDarkRef, webinarLightRef)
     );
   }
   IOScrollButtonSingleton.init(dispatch);

@@ -83,7 +83,8 @@ const BankModal: FC<Props> = ({
         <Body>
           <InfoContainer>
             <HeaderText>
-              Рассчитайте ипотеку в {bankName} и еще в нескольких банках
+              Рассчитайте ипотеку в&nbsp;{bankName} и&nbsp;еще в&nbsp;нескольких
+              банках
             </HeaderText>
             <EvaluationContainer>
               <EvTextContainer>
@@ -258,6 +259,7 @@ const Body = styled.div`
   row-gap: 40px;
   @media screen and (max-width: 767px) {
     row-gap: 34px;
+    margin-top: 24px;
   }
 `;
 
@@ -272,9 +274,20 @@ const CloseIcon = styled(CloseSVG)`
 const CloseIconContainer = styled.div`
   display: flex;
   width: 36px;
-  height: 32px;
+  height: 36px;
   cursor: pointer;
   padding: 10px 10px 0;
+  border-radius: 12px;
+  transition: 0.1s linear;
+  &:hover {
+    background: ${BrandColor.BRAND_12};
+  }
+  &:active {
+    background: ${BrandColor.BRAND_16};
+  }
+  @media screen and (max-width: 767px) {
+    position: fixed;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -294,7 +307,7 @@ const Container = styled.div`
     border-radius: 16px 16px 0 0;
     padding: 8px 8px 88px 20px;
     width: 375px;
-    max-height: 536px;
+    max-height: 100vh;
     overflow-y: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;

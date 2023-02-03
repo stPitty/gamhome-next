@@ -10,8 +10,8 @@ const Global = createGlobalStyle`
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   }
   html {
-    overflow-x: hidden;
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
   a {
     color: inherit;

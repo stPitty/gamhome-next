@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   TFlatState,
@@ -8,13 +8,12 @@ import {
 import { useRouter } from "next/router";
 import { handleGetFlatData, handleSwapImageClick } from "../../common/helpers";
 import { Route } from "../../common/routes";
-import Button from "../UI/button/Button";
 import CloseSVG from "../../public/assets/svg/CloseSVG";
 import Carousel from "../UI/carousel/Carousel";
 import PreviewList from "../UI/preview_list/PreviewList";
 import styled from "styled-components";
 import ChevronSVG from "../../public/assets/svg/ChevronSVG";
-import { BlackColor, Font, WhiteColor } from "../../common/enums";
+import { BlackColor, Font } from "../../common/enums";
 import { WindowSize } from "../../redux/slicers/enums";
 import FullScreenHeader from "../UI/fullscreen_header/FullScreenHeader";
 
@@ -174,11 +173,12 @@ const ControlArea = styled.div`
   cursor: pointer;
   display: flex;
   height: 747px;
-  flex-grow: 1;
+  width: 176px;
   justify-content: center;
   align-items: center;
   @media screen and (max-width: 1439px) {
     height: 539px;
+    width: 118px;
   }
   @media screen and (max-width: 1024px) {
     display: none;
@@ -188,8 +188,7 @@ const ControlArea = styled.div`
 const PhotoWrapper = styled.div`
   display: flex;
   width: 100%;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     height: 539px;
   }
@@ -204,8 +203,7 @@ const PhotoContainer = styled.div`
   width: 1088px;
   height: 747px;
   overflow: hidden;
-  margin-left: auto;
-  margin-right: auto;
+
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 788px;
     height: 539px;

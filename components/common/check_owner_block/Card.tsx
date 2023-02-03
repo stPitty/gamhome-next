@@ -239,16 +239,16 @@ const MainContentWrapper = styled.div<{
   width: 1312px;
   background-image: url(${({ background }) => background});
   background-size: ${({ contentType }) =>
-    contentType === "jurAnalysis" ? "555px" : "648px"};
+    contentType === "jurAnalysis" ? "625px" : "648px"};
   background-position: ${({ contentType }) =>
-    contentType === "jurAnalysis" && "672px 259px"};
+    contentType === "jurAnalysis" && "right 250px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     background-size: ${({ contentType }) =>
-      contentType === "jurAnalysis" ? "368px" : "436px"};
+      contentType === "jurAnalysis" ? "450px" : "436px"};
     width: 952px;
     height: ${({ contentType }) => contentType === "jurAnalysis" && "846px"};
     background-position: ${({ contentType }) =>
-      contentType === "jurAnalysis" && "center 554px"};
+      contentType === "jurAnalysis" && "center 550px"};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     background-size: ${({ contentType }) => {
@@ -256,7 +256,7 @@ const MainContentWrapper = styled.div<{
         case "checkOwner":
           return "240px";
         case "jurAnalysis":
-          return "195px";
+          return "225px";
         default:
           return "220px";
       }
@@ -265,9 +265,9 @@ const MainContentWrapper = styled.div<{
     background-position: ${({ contentType }) => {
       switch (contentType) {
         case "checkOwner":
-          return "right 46px";
+          return "right 70px";
         case "jurAnalysis":
-          return "453px 56px";
+          return "453px 50px";
         default:
           return "right 67px";
       }
@@ -275,12 +275,7 @@ const MainContentWrapper = styled.div<{
   }
 
   @media screen and (max-width: 767px) {
-    background-size: ${({ contentType }) => {
-      if (contentType === "jurAnalysis") {
-        return "195px";
-      }
-      return "235px";
-    }};
+    background-size: 235px;
   }
 
   @media screen and (max-width: 767px) and (min-width: 375px) {
@@ -291,7 +286,7 @@ const MainContentWrapper = styled.div<{
         return "center 200px";
       }
       if (contentType === "jurAnalysis") {
-        return "center 384px";
+        return "center 390px";
       }
       return "center 245px";
     }};
@@ -305,9 +300,9 @@ const MainContentWrapper = styled.div<{
         return "center 290px";
       }
       if (contentType === "jurAnalysis") {
-        return "center 432px";
+        return "center 440px";
       }
-      return "center 285px";
+      return "center 265px";
     }};
   }
 `;

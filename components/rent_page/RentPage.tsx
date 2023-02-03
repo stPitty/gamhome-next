@@ -43,10 +43,10 @@ const Rent: ComponentWithLayout = () => {
 
   const observingWrapperRef: RefObject<HTMLDivElement> = createRef();
 
-  const cardWithImageDarkRef = createRef();
-  const mainServicesLightRef = createRef();
-  const discountPartnersDarkRef = createRef();
-  const webinarLightRef = createRef();
+  const cardWithImageDarkRef = createRef<HTMLDivElement>();
+  const mainServicesLightRef = createRef<HTMLDivElement>();
+  const discountPartnersDarkRef = createRef<HTMLDivElement>();
+  const webinarLightRef = createRef<HTMLDivElement>();
 
   useEffect(() => {
     setIOForBottomMenu(windowSize, observingWrapperRef.current, dispatch);

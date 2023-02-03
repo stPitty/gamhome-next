@@ -44,9 +44,9 @@ const Card: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <Container>
+    <Container cardType={data.cardType}>
       <ColumnImage cardType={data.cardType} image={data.image} />
-      <ContentWrapper>
+      <ContentWrapper cardType={data.cardType}>
         <HeaderWrapper>
           <HeaderText>{data.header}</HeaderText>
           <SubHeader>{data.subHeader}</SubHeader>
@@ -135,16 +135,16 @@ const Image = styled.div<{ image: string; cardType: CardAbout }>`
 const RowImage = styled(Image)`
   background-image: url(${({ image }) => image});
   background-size: ${({ cardType }) =>
-    cardType === "cleaning" ? "auto 570px" : "cover"};
+    cardType === "cleaning" ? "1200px" : "cover"};
   background-position: ${({ cardType }) =>
-    cardType === "cleaning" ? "-70px -50px" : "-300px"};
+    cardType === "cleaning" ? "-275px -105px" : "-300px"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "auto 570px" : "cover"};
+      cardType === "cleaning" ? "1150px" : "cover"};
     width: 460px;
     height: ${({ cardType }) => (cardType === "cleaning" ? "478px" : "586px")};
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-70px -55px" : "-560px"};
+      cardType === "cleaning" ? "-275px -100px" : "-535px"};
   }
   @media screen and (max-width: 1023px) {
     display: none;
@@ -154,13 +154,14 @@ const RowImage = styled(Image)`
 const ColumnImage = styled(Image)`
   display: none;
   background-image: url(${({ image }) => image});
-  width: 688px;
-  height: ${({ cardType }) => (cardType === "cleaning" ? "414px" : "375px")};
-  background-size: 688px;
-  background-position: ${({ cardType }) =>
-    cardType !== "cleaning" && "left -40px"};
   @media screen and (max-width: 1023px) {
     display: block;
+    width: 688px;
+    height: 375px;
+    background-size: ${({ cardType }) =>
+      cardType === "cleaning" ? "850px" : "cover"};
+    background-position: ${({ cardType }) =>
+      cardType === "cleaning" ? "-160px -50px" : "bottom"};
   }
   @media screen and (max-width: 767px) {
     height: ${({ cardType }) => (cardType === "cleaning" ? "234px" : "228px")};
@@ -169,16 +170,16 @@ const ColumnImage = styled(Image)`
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 349px;
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-20px" : "-40px"};
+      cardType === "cleaning" ? "-100px -15px" : "-40px"};
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "390px" : "cover"};
+      cardType === "cleaning" ? "470px" : "cover"};
   }
   @media screen and (max-width: 374px) {
     width: 288px;
     background-position: ${({ cardType }) =>
-      cardType === "cleaning" ? "-30px -30px" : "-100px"};
+      cardType === "cleaning" ? "-125px -15px" : "-100px"};
     background-size: ${({ cardType }) =>
-      cardType === "cleaning" ? "440px" : "400px"};
+      cardType === "cleaning" ? "460px" : "400px"};
   }
 `;
 
@@ -229,8 +230,7 @@ const Tag = styled.div`
 const TagsWrapper = styled.div<{ cardType: CardAbout }>`
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
-  width: ${({ cardType }) => cardType === "cleaning" && "500px"};
+  gap: 10px;
   @media screen and (max-width: 1439px) {
     gap: 8px;
     row-gap: 10px;
@@ -284,11 +284,11 @@ const SubHeader = styled(HeaderText)`
   color: ${BlackColor.BLACK_48};
 `;
 
-const ContentWrapper = styled.div`
+const ContentWrapper = styled.div<{ cardType: CardAbout }>`
   display: flex;
   flex-direction: column;
   margin: 40px 0 40px 40px;
-  width: 577px;
+  width: ${({ cardType }) => (cardType === "cleaning" ? "516px" : "581px")};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     width: 415px;
   }
@@ -307,12 +307,13 @@ const ContentWrapper = styled.div`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.div<{ cardType: CardAbout }>`
+  width: fit-content;
   display: flex;
-  width: 100%;
   background: ${WhiteColor.WHITE};
   border-radius: 24px;
-  column-gap: 40px;
+  column-gap: 35px;
+  column-gap: ${({ cardType }) => (cardType === "cleaning" ? "100px" : "35px")};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 37px;
   }

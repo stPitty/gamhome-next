@@ -150,6 +150,7 @@ const Container = styled.div<{
   align-items: center;
   margin: 48px 0;
   background: url(${({ image }) => image}) right no-repeat;
+  background-size: 336px;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     column-gap: 32px;
   }
@@ -167,8 +168,8 @@ const Container = styled.div<{
   @media screen and (max-width: 767px) {
     background: url(${({ image, cardType, isRent }) => {
       if (!isRent) {
-        if (cardType === "concierge") return "/images/man-sits-buy.webp";
-        return "/images/man-stands-buy.webp";
+        if (cardType === "concierge") return "/images/man-sits.webp";
+        return "/images/man-stands.webp";
       }
       return image;
     }})
@@ -214,6 +215,7 @@ const Container = styled.div<{
         if (cardType === "concierge") return "center 152px";
         if (cardType === "safetyDeal") return "center 219px";
       }
+      if (cardType === "owner") return "0 210px";
     }};
   }
 `;

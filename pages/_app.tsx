@@ -13,14 +13,19 @@ import { wrapper } from "../redux/store";
 import { YMaps } from "@pbe/react-yandex-maps";
 import ErrorBoundary from "../components/rent_page/error_boundary/ErrorBoundary";
 import { setWindowSize } from "../redux/slicers/windowSizeSlicer";
-import { useAppDispatch } from "../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { changePathName } from "../redux/slicers/pathNameSlicer";
 import { ContextProvider } from "../common/context/AppContext";
 import "mapbox-gl/dist/mapbox-gl.css";
+import { TModalState, TSideMenu } from "../redux/slicers/types";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
+  const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
+
+  const modalState = useAppSelector<TModalState>((state) => state.modalState);
+
   const router = useRouter();
 
   const dispatch = useAppDispatch();
@@ -28,6 +33,14 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   const handleResizeWindow = () => {
     dispatch(setWindowSize(window.innerWidth));
   };
+
+  useEffect(() => {
+    if (isOpened || modalState.isOpened) {
+      document.querySelector("html")!.style.overflowY = "hidden";
+    } else {
+      document.querySelector("html")!.style.overflowY = "unset";
+    }
+  }, [isOpened, modalState.isOpened]);
 
   useEffect(() => {
     dispatch(changePathName(router.pathname));

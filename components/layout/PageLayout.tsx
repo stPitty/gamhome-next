@@ -28,16 +28,14 @@ const PageLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <SideMenu />
       <MobileMenu />
       <ScrollTopBtn />
       {isOpened && <Modal />}
-      <Container>
-        <Header />
-        {children}
-        <Footer />
-      </Container>
+      <Header />
+      <Container>{children}</Container>
+      <Footer />
       <CookiesPopup />
+      <SideMenu />
     </>
   );
 };
@@ -45,22 +43,9 @@ const PageLayout: React.FC<Props> = ({ children }) => {
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  min-width: 1440px;
   justify-items: center;
   align-items: center;
   justify-content: center;
-  @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    min-width: 1024px;
-  }
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    min-width: 768px;
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
-    min-width: 375px;
-  }
-  @media screen and (max-width: 374px) {
-    min-width: 320px;
-  }
 `;
 
 export default memo(PageLayout);

@@ -26,6 +26,14 @@ const BankCarousel: FC<Props> = ({ cost, firstPay, time }) => {
     (state) => state.windowSize
   );
 
+  useEffect(() => {
+    if (modalOpen) {
+      document.querySelector("html")!.style.overflowY = "hidden";
+    } else {
+      document.querySelector("html")!.style.overflowY = "unset";
+    }
+  }, [modalOpen]);
+
   const handleOpenModal = (name: string) => () => {
     setModalOpen(true);
     setBankName(name);

@@ -178,10 +178,10 @@ const handleShowNumberClick =
   };
 
 const getRefsArr = (
-  cardWithImageDarkRef: RefObject<unknown>["current"],
-  mainServicesLightRef: RefObject<unknown>["current"],
-  discountPartnersDarkRef: RefObject<unknown>["current"],
-  webinarLightRef: RefObject<unknown>["current"]
+  cardWithImageDarkRef: RefObject<HTMLDivElement>["current"],
+  mainServicesLightRef: RefObject<HTMLDivElement>["current"],
+  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
+  webinarLightRef: RefObject<HTMLDivElement>["current"]
 ): ObservableRefAttrs[] => {
   return [
     {
@@ -192,6 +192,22 @@ const getRefsArr = (
       ref: mainServicesLightRef,
       name: "mainServices",
     },
+    {
+      ref: discountPartnersDarkRef,
+      name: "discountPartners",
+    },
+    {
+      ref: webinarLightRef,
+      name: "webinar",
+    },
+  ];
+};
+
+const getRefsArrBuy = (
+  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
+  webinarLightRef: RefObject<HTMLDivElement>["current"]
+): ObservableRefAttrs[] => {
+  return [
     {
       ref: discountPartnersDarkRef,
       name: "discountPartners",
@@ -270,4 +286,5 @@ export {
   getSquarePrice,
   handleFormatValue,
   handleGetYears,
+  getRefsArrBuy,
 };

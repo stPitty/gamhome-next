@@ -72,7 +72,7 @@ const UsefulServiceCard: React.FC<Props> = ({
       ? ButtonType.PRIMARY_WHITE
       : ButtonType.OUTLINE;
   const moreBtnType =
-    cardType === CardType.PRIMARY ? ButtonType.FLAT_WHITE : ButtonType.FLAT;
+    cardType === CardType.PRIMARY ? ButtonType.PRIMARY : ButtonType.FLAT;
 
   const handleOpenModal = (action: any) => () => {
     dispatch(action());
@@ -125,13 +125,14 @@ const UsefulServiceCard: React.FC<Props> = ({
             {buttonText}
           </StyledBtnPrim>
           {!withoutAddBtn && (
-            <Button
+            <StyledAddBtn
+              isPrim={moreBtnType === ButtonType.PRIMARY}
               buttonType={moreBtnType}
               buttonSize={ButtonSize.MEDIUM}
               onClick={handleOpenModal(secondaryBtnAction)}
             >
               Подробнее
-            </Button>
+            </StyledAddBtn>
           )}
         </ButtonsContainer>
       </Body>
@@ -151,6 +152,19 @@ const UsefulServiceCard: React.FC<Props> = ({
     </Container>
   );
 };
+
+const StyledAddBtn = styled(Button)<{ isPrim: boolean }>`
+  ${({ isPrim }) =>
+    isPrim &&
+    css`
+      &:hover {
+        background-color: ${WhiteColor.WHITE_16};
+      }
+      &:active {
+        background-color: ${WhiteColor.WHITE_24};
+      }
+    `}
+`;
 
 const InfoContainer = styled.div<{
   contentType: "rent" | "buy" | "tax";

@@ -262,7 +262,7 @@ const jurData: TabBodyData = {
     ],
     cost: "24 990",
   },
-  image: "/images/perfect-candidate-big.webp",
+  image: "/images/perfect-candidate.webp",
   contentType: "jurAnalysis",
   btnAction: law,
 };

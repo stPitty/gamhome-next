@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { TSideMenu } from "../../../redux/slicers/types";
+import { TModalState, TSideMenu } from "../../../redux/slicers/types";
 import styled from "styled-components";
 import {
   BlackColor,

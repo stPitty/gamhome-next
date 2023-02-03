@@ -70,7 +70,6 @@ const ModalBody = () => {
               >
                 {modalData[currentState].buttonText}
               </StyledButton>
-              <WhiteBlock />
             </ButtonContainer>
           )}
         </Container>
@@ -81,32 +80,24 @@ const ModalBody = () => {
 
 const WhiteBlock = styled.div`
   display: none;
-  width: 296px;
-  height: 24px;
   background-color: ${WhiteColor.WHITE};
-  @media screen and (max-width: 374px) {
+  @media screen and (max-width: 767px) {
     display: block;
+    width: 375px;
+    height: 32px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 296px;
+    height: 24px;
   }
 `;
 
 const StyledButton = styled(Button)`
-  @media screen and (max-width: 374px) {
-    width: 296px;
-  }
-`;
-
-const SubDescText = styled.p`
-  font-family: ${Font.ROBOTO_FLEX};
-  font-size: 16px;
-  line-height: 120%;
-  color: ${BlackColor.BLACK_80};
-  width: 478px;
-  margin: 4px 0 22px;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 335px;
   }
   @media screen and (max-width: 374px) {
-    width: 280px;
+    width: 296px;
   }
 `;
 
@@ -125,7 +116,6 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
     }
   }};
   @media screen and (max-width: 767px) {
-    width: 100%;
     ${({ modalType }) => {
       if (modalType !== "withInput") {
         return css`
@@ -137,8 +127,6 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
         `;
       }
     }};
-  }
-  @media screen and (max-width: 374px) {
     position: fixed;
     flex-direction: column;
     bottom: 0;
@@ -146,6 +134,28 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
     width: 100%;
     display: flex;
     align-items: center;
+    background: linear-gradient(white, white) no-repeat center;
+    background-size: 355px 100%;
+    padding-bottom: 32px;
+  }
+  @media screen and (max-width: 374px) {
+    background-size: 320px 100%;
+    padding-bottom: 24px;
+  }
+`;
+
+const SubDescText = styled.p`
+  font-family: ${Font.ROBOTO_FLEX};
+  font-size: 16px;
+  line-height: 120%;
+  color: ${BlackColor.BLACK_80};
+  width: 478px;
+  margin: 4px 0 22px;
+  @media screen and (max-width: 767px) {
+    width: 335px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 280px;
   }
 `;
 
@@ -153,7 +163,8 @@ const Image = styled.div<{ image: string }>`
   width: 271px;
   height: 180px;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 285px;
+  background-position: center;
   background-image: url(${({ image }) => image});
   align-self: center;
   margin-bottom: 24px;
@@ -163,9 +174,10 @@ const Container = styled.div<{ isLast: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: ${({ isLast }) => isLast && "center"};
-  padding-right: 40px;
+  padding-right: ${({ isLast }) => (isLast ? "32px" : "40px")};
   @media screen and (max-width: 767px) {
     padding-right: 20px;
+    margin-top: 32px;
   }
 `;
 
@@ -173,7 +185,8 @@ const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
   display: flex;
   flex-direction: column;
   row-gap: 16px;
-  width: 480px;
+  width: ${({ modalType }) =>
+    modalType !== "lastMessage" ? "480px" : "446px"};
   transition: none;
   & > * {
     margin: 0;
@@ -194,10 +207,8 @@ const TextWrapper = styled.div<{ modalType: Modal; isErrorMessage: boolean }>`
     }
   }};
   @media screen and (max-width: 767px) {
-    row-gap: 4px;
-  }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;
+    row-gap: 4px;
   }
   @media screen and (max-width: 374px) {
     width: 280px;
@@ -214,7 +225,7 @@ const Header = styled.p`
     font-size: 28px;
     line-height: 36px;
   }
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  @media screen and (max-width: 767px) {
     width: 335px;
   }
   @media screen and (max-width: 374px) {

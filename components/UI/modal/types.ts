@@ -3,6 +3,7 @@ import {
   CheckOwnerInputFieldNames,
   ServiceInputFieldNames,
 } from "../../../redux/slicers/types";
+import { ReactNode } from "react";
 
 export type Modal = "withInput" | "withInfo" | "lastMessage";
 
@@ -24,8 +25,8 @@ type InputProps = {
 export type ModalBody = Partial<InputProps> & {
   header: string;
   modalType: Modal;
-  desc?: DescText[] | string;
-  subDesc?: string;
+  desc?: DescText[] | string | ReactNode;
+  subDesc?: string | ReactNode;
   buttonText?: string;
   nextStateBtnAction?: Function;
   clearAction?: Function;

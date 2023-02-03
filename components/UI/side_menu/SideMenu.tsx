@@ -17,17 +17,23 @@ import Button from "../button/Button";
 import { menuItems } from "../../layout/header/constants";
 
 const SideMenu = () => {
-  const { isOpened, willBeClosed } = useAppSelector<TSideMenu>(
-    (state) => state.sideMenu
-  );
+  const [menuSlide, setMenuSlide] = useState<boolean>(false);
+
+  const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
 
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    let timeout = setTimeout(() => {}, 0);
+    if (isOpened) {
+      timeout = setTimeout(() => setMenuSlide(true), 250);
+    }
+    return () => clearTimeout(timeout);
+  }, [isOpened]);
+
   const handleCloseMenu = () => {
-    dispatch(setWillBeClosed());
-    setTimeout(() => {
-      dispatch(closeMenu());
-    }, 200);
+    setMenuSlide(false);
+    setTimeout(() => dispatch(closeMenu()), 250);
   };
 
   const handleMenuContainerClick = (e: SyntheticEvent<HTMLDivElement>) => {
@@ -35,12 +41,8 @@ const SideMenu = () => {
   };
 
   return (
-    <Wrapper
-      willBeClosed={willBeClosed}
-      isOpen={isOpened}
-      onClick={handleCloseMenu}
-    >
-      <Container willBeClosed={willBeClosed} onClick={handleMenuContainerClick}>
+    <Wrapper isOpen={isOpened} onClick={handleCloseMenu}>
+      <Container isSlide={menuSlide} onClick={handleMenuContainerClick}>
         <ButtonsContainer>
           <CloseButtonContainer onClick={handleCloseMenu}>
             <CloseIcon />
@@ -67,42 +69,6 @@ const SideMenu = () => {
     </Wrapper>
   );
 };
-
-const slowAppearanceBackground = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 100;
-  }
-`;
-
-const slowDisappearanceBackground = keyframes`
-  from {
-    opacity: 100;
-  }
-  to {
-    opacity: 0;
-  }
-`;
-
-const slowAppearanceMenu = keyframes`
-  from {
-    left: -282px
-  }
-  to {
-    left: 0;
-  }
-`;
-
-const slowDisappearanceMenu = keyframes`
-  from {
-    left: 0;
-  }
-  to {
-    left: -282px;
-  }
-`;
 
 const PhoneNumberLink = styled.a`
   font-family: ${Font.ROBOTO};
@@ -159,30 +125,29 @@ const ButtonsContainer = styled.div`
   column-gap: 20px;
 `;
 
-const Container = styled.div<{ willBeClosed: boolean }>`
-  position: absolute;
+const Container = styled.div<{ isSlide: boolean }>`
   row-gap: 40px;
   padding: 32px 22px 0 36px;
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 282px;
+  overflow-y: auto;
+  transition: 0.25s linear;
   background-color: ${WhiteColor.WHITE};
-  animation: 0.22s linear
-    ${({ willBeClosed }) =>
-      willBeClosed ? slowDisappearanceMenu : slowAppearanceMenu};
+  position: relative;
+  left: ${({ isSlide }) => (isSlide ? "0" : "-282px")};
 `;
 
-const Wrapper = styled.div<{ isOpen: boolean; willBeClosed: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
+const Wrapper = styled.div<{ isOpen: boolean }>`
+  visibility: ${({ isOpen }) => (isOpen ? "visible" : "hidden")};
   position: fixed;
-  height: 100%;
-  width: 100%;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
   z-index: 6;
-  background-color: ${BlackColor.BLACK_80};
-  animation: 0.22s linear
-    ${({ willBeClosed }) =>
-      willBeClosed ? slowDisappearanceBackground : slowAppearanceBackground};
+  background-color: ${({ isOpen }) => (isOpen ? BlackColor.BLACK_80 : "none")};
+  transition: 0.25s linear;
   @media screen and (max-width: 767px) {
     display: none;
   }

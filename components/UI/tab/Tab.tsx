@@ -262,8 +262,7 @@ const Container = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-user-select: none;

@@ -29,6 +29,7 @@ import {
   ownerInputFieldsNames,
   serviceInputFieldsNames,
 } from "../../../redux/slicers/constants";
+import ConditionsLink from "../ConditionsLink/ConditionsLink";
 
 const emailValidationRegexp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -53,8 +54,13 @@ const sixIntsErrorMessage = "Укажите 6 цифр";
 
 const serviceModal: Omit<ModalBody, "header"> = {
   modalType: "withInput",
-  subDesc:
-    "Отправляя заявку вы\u00A0подтверждаете, что согласны с\u00A0Политикой конфиденциальности и\u00A0условиями Оферты",
+  subDesc: (
+    <span>
+      Отправляя заявку вы&nbsp;подтверждаете, что согласны с&nbsp;
+      <ConditionsLink>Политикой конфиденциальности</ConditionsLink>{" "}
+      и&nbsp;условиями <ConditionsLink>Оферты</ConditionsLink>
+    </span>
+  ),
   buttonText: "Оставить заявку",
   nextStateBtnAction: thanksForOrder,
   clearAction: clearServiceData,
@@ -120,7 +126,14 @@ const modalData: ModalBodyData = {
   },
   [ModalState.CHECK_LISTS_ENTER_EMAIL]: {
     header: "Чек-листы и документы для аренды",
-    desc: "Файл с\u00A0чек-листами и\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
+    desc: (
+      <span>
+        Файл с&nbsp;чек-листами и&nbsp;документами пришлём на&nbsp;почту. При
+        отправке вы&nbsp;принимаете условия{" "}
+        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
+        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
+      </span>
+    ),
     buttonText: "Перейти к оплате 799 ₽",
     modalType: "withInput",
     nextStateBtnAction: thanksForBuy,
@@ -169,7 +182,13 @@ const modalData: ModalBodyData = {
   },
   [ModalState.FREE_DOCS_BAG_ENTER_EMAIL]: {
     header: "Пакет бесплатных документов",
-    desc: "Файл с\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности",
+    desc: (
+      <span>
+        Файл с&nbsp;документами пришлём на&nbsp;почту. При отправке
+        вы&nbsp;принимаете условия{" "}
+        <ConditionsLink>Политики конфиденциальности</ConditionsLink>
+      </span>
+    ),
     buttonText: "Отправить",
     modalType: "withInput",
     nextStateBtnAction: docsSent,
@@ -206,7 +225,15 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OBJ_INPUT_EMAIL]: {
     header: "Проверить объект",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
+    desc: (
+      <span>
+        Результат проверки пришлём на&nbsp;почту. При отправке
+        вы&nbsp;принимаете условия{" "}
+        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
+        и&nbsp;условия
+        <ConditionsLink>Оферты</ConditionsLink>
+      </span>
+    ),
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
@@ -291,7 +318,14 @@ const modalData: ModalBodyData = {
   [ModalState.CHECK_OWNER_INPUT_EMAIL]: {
     header: "Проверить собственника",
     modalType: "withInput",
-    desc: "Результат проверки пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности и\u00A0условия Оферты",
+    desc: (
+      <span>
+        Результат проверки пришлём на&nbsp;почту. При отправке
+        вы&nbsp;принимаете условия{" "}
+        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
+        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
+      </span>
+    ),
     buttonText: "Перейти к оплате 549 ₽",
     nextStateBtnAction: informationSent,
     placeHolder: "email",
@@ -347,7 +381,13 @@ const modalData: ModalBodyData = {
   },
   [ModalState.TYPE_DEAL]: {
     header: "Типовые договора",
-    desc: "Файл с\u00A0документами пришлём на\u00A0почту. При отправке вы\u00A0принимаете условия Политики конфиденциальности",
+    desc: (
+      <span>
+        Файл с&nbsp;документами пришлём на&nbsp;почту. При отправке
+        вы&nbsp;принимаете условия{" "}
+        <ConditionsLink>Политики конфиденциальности</ConditionsLink>
+      </span>
+    ),
     buttonText: "Отправить",
     modalType: "withInput",
     nextStateBtnAction: docsSent,

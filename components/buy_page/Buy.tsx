@@ -39,8 +39,6 @@ const Buy = () => {
 
   const observingWrapperRef: RefObject<HTMLDivElement> = createRef();
 
-  // const cardWithImageDarkRef = createRef();
-  const mainServicesLightRef = createRef();
   const discountPartnersDarkRef = createRef();
   const webinarLightRef = createRef();
 
@@ -85,7 +83,7 @@ const Buy = () => {
         <Insurance />
         <ServicesBlock />
         <CheckOwnerBlock />
-        <MainServices ref={mainServicesLightRef} />
+        <MainServices />
         <TaxHelp />
         <DiscountsBlock ref={discountPartnersDarkRef} />
         <WebinarBlock ref={webinarLightRef} />

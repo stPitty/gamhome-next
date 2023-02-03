@@ -1,5 +1,5 @@
 import { DescText, ModalBody } from "./types";
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { BlackColor, Font } from "../../../common/enums";
 import List from "../list/List";
@@ -26,7 +26,6 @@ const Text = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   margin: 0;
-  width: 430px;
   transition: none;
   @media screen and (max-width: 767px) and (min-width: 375px) {
     width: 335px;

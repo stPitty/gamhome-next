@@ -23,31 +23,32 @@ const DiscountsBlock = React.forwardRef((_, ref) => {
       </ObservableComponentWrapper>
       <Wrapper id={Hook.PARTNERS}>
         <Container>
-          <HeaderText>
-            Скидки
-            <AdaptiveTextDivider xs={true} /> от партнёров
-          </HeaderText>
-          {cardsData.map((el) => (
-            <Card data={el} key={el.id} />
-          ))}
+          <ContentWrapper>
+            <HeaderText>
+              Скидки
+              <AdaptiveTextDivider xs={true} /> от партнёров
+            </HeaderText>
+            {cardsData.map((el) => (
+              <Card data={el} key={el.id} />
+            ))}
+          </ContentWrapper>
         </Container>
       </Wrapper>
     </>
   );
 });
 
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+`;
+
 const ObservableComponent = styled.div<{ isAccepted: boolean }>`
   margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
   }
-  //@media screen and (max-width: 767px) and (min-width: 375px) {
-  //  margin-top: 120px;
-  //}
-  //@media screen and (max-width: 374px) {
-  //  margin-top: 120px;
-  //}
-  //
 `;
 
 const ObservableComponentWrapper = styled.div`
@@ -62,6 +63,8 @@ const ObservableComponentWrapper = styled.div`
 
 const Wrapper = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: center;
   padding-top: 112px;
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 96px;
@@ -91,13 +94,14 @@ const HeaderText = styled.p`
 `;
 
 const Container = styled.div`
+  align-items: center;
+  width: 100%;
   display: flex;
   flex-direction: column;
   background: ${BlackColor.BLACK_SECONDARY};
   border-radius: 48px;
   z-index: 1;
   padding: 64px;
-  row-gap: 40px;
   margin-bottom: -96px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;
