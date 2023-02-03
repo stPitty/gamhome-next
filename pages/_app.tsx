@@ -19,12 +19,21 @@ import { useRouter } from "next/router";
 import { changePathName } from "../redux/slicers/pathNameSlicer";
 import { ContextProvider } from "../common/context/AppContext";
 import "mapbox-gl/dist/mapbox-gl.css";
-import { TModalState, TSideMenu } from "../redux/slicers/types";
+import { TModalState, TSideMenu, TWindowSize } from "../redux/slicers/types";
+import { Hook } from "../common/routes";
+import { setScrollBtnTheme } from "../redux/slicers/scrollTopBtnSlicer";
+import { WindowSize } from "../redux/slicers/enums";
+import styled from "styled-components";
+import { handleChangeScrollBtnTheme } from "../common/helpers/handleChangeScrollBtnTheme";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
 
   const modalState = useAppSelector<TModalState>((state) => state.modalState);
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
 
   const router = useRouter();
 
@@ -53,6 +62,18 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
     window.addEventListener("resize", handleResizeWindow);
     return () => window.removeEventListener("resize", handleResizeWindow);
   }, []);
+
+  useEffect(() => {
+    window.addEventListener(
+      "scroll",
+      handleChangeScrollBtnTheme(windowSize, dispatch)
+    );
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleChangeScrollBtnTheme(windowSize, dispatch)
+      );
+  }, [windowSize]);
 
   return (
     <ErrorBoundary>

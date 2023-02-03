@@ -8,22 +8,24 @@ import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivi
 const Footer: React.FC = () => {
   return (
     <Container>
-      <StyledBody />
-      <TelephoneNumberText href="tel:88009999999">
-        8 800 999-99-99
-      </TelephoneNumberText>
-      <StyledMenuItems />
-      <TextContainer>
-        <ConditionsText>
-          Использование сервиса означает согласие
-          <AdaptiveTextDivider lg={true} sm={true} xs={true} /> с{" "}
-          <TextLink>Пользовательским соглашением</TextLink>
-          <AdaptiveTextDivider xs={true} /> и
-          <TextLink> Политикой конфиденциальности</TextLink>
-        </ConditionsText>
-        <br />
-        <Text>Иллюстрации взяты с icons8.com</Text>
-      </TextContainer>
+      <InnerWrapper>
+        <StyledBody />
+        <TelephoneNumberText href="tel:88009999999">
+          8 800 999-99-99
+        </TelephoneNumberText>
+        <StyledMenuItems />
+        <TextContainer>
+          <ConditionsText>
+            Использование сервиса означает согласие
+            <AdaptiveTextDivider lg={true} sm={true} xs={true} /> с{" "}
+            <TextLink>Пользовательским соглашением</TextLink>
+            <AdaptiveTextDivider xs={true} /> и
+            <TextLink> Политикой конфиденциальности</TextLink>
+          </ConditionsText>
+          <br />
+          <Text>Иллюстрации взяты с icons8.com</Text>
+        </TextContainer>
+      </InnerWrapper>
     </Container>
   );
 };
@@ -53,6 +55,7 @@ const StyledBody = styled(Body)`
 
 const StyledMenuItems = styled(MenuItems)`
   display: none;
+  width: fit-content;
   @media screen and (max-width: 1439px) {
     display: flex;
   }
@@ -107,14 +110,12 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 1440px;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
-    width: 1024px;
     padding-left: 36px;
     padding-right: 36px;
   }
@@ -129,7 +130,6 @@ const TextContainer = styled.div`
     align-items: flex-start;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 375px;
     padding-left: 13px;
     padding-right: 13px;
   }
@@ -140,15 +140,31 @@ const TextContainer = styled.div`
   }
 `;
 
+const InnerWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  row-gap: 21px;
+  max-width: 1360px;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    row-gap: 24px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    row-gap: 24px;
+  }
+  @media screen and (max-width: 767px) {
+    row-gap: 16px;
+  }
+`;
+
 const Container = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  row-gap: 21px;
   padding-bottom: 64px;
   padding-top: 112px;
+  width: 100%;
+  justify-content: center;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
-    align-items: flex-start;
     padding-bottom: 56px;
     row-gap: 24px;
   }
@@ -157,16 +173,13 @@ const Container = styled.div`
     row-gap: 24px;
   }
   @media screen and (max-width: 767px) {
-    align-items: flex-start;
     row-gap: 16px;
     padding-bottom: 48px;
     padding-top: 64px;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
-    width: 375px;
   }
   @media screen and (max-width: 374px) {
-    width: 320px;
   }
 `;
 

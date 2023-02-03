@@ -1,18 +1,14 @@
 import { ComponentWithLayout } from "../../common/types";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { TFlatState, TWindowSize } from "../../redux/slicers/types";
-import { createRef, RefObject, useEffect } from "react";
 import {
-  setIOForBottomMenu,
-  setIOForScrollBtn,
-} from "../../common/helpers/mainPageHelpers";
-import {
-  IOBottomMenuSingleton,
-  IOScrollButtonSingleton,
-} from "../../common/helpers/IOSingleton";
+  TFlatState,
+  TMobBtnView,
+  TWindowSize,
+} from "../../redux/slicers/types";
+import { useEffect } from "react";
 import { handleGetFlatData } from "../../common/helpers";
-import { Route } from "../../common/routes";
+import { Hook, Route } from "../../common/routes";
 import FlatBlock from "../common/flat_block";
 import AddInfoBlock from "./add_info_block";
 import PriceBlock from "./price_block";
@@ -22,13 +18,19 @@ import CardWitsImage from "./card_with_image/CardWitsImage";
 import MainServices from "../common/main_services";
 import DiscountsBlock from "../common/discounts_block";
 import WebinarBlock from "../common/webinar_block";
-import MobileButtons from "./mobile_buttons/MobileButtons";
+import MobileButtons from "../common/mobile_buttons/MobileButtons";
 import PageContainer from "../common/page_container/PageContainer";
 import ColumnWrapper from "../common/column_wrapper/ColumnWrapper";
 import RowWrapper from "../common/row_wrapper/RowWrapper";
-import ObservableWrapper from "../common/observable_wrapper/ObservableWrapper";
+import { WindowSize } from "../../redux/slicers/enums";
+import { setMobBtnVisibility } from "../../redux/slicers/mobBtnViewSlicer";
+import { handleChangeBtnVisibility } from "../../common/helpers/handleChangeBtnVisibility";
 
 const Rent: ComponentWithLayout = () => {
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
   const router = useRouter();
 
   const dispatch = useAppDispatch();
@@ -37,32 +39,20 @@ const Rent: ComponentWithLayout = () => {
     (state) => state.flatData
   );
 
-  const { windowSize } = useAppSelector<TWindowSize>(
-    (state) => state.windowSize
-  );
-
-  const observingWrapperRef: RefObject<HTMLDivElement> = createRef();
-
-  const cardWithImageDarkRef = createRef<HTMLDivElement>();
-  const mainServicesLightRef = createRef<HTMLDivElement>();
-  const discountPartnersDarkRef = createRef<HTMLDivElement>();
-  const webinarLightRef = createRef<HTMLDivElement>();
-
   useEffect(() => {
-    setIOForBottomMenu(windowSize, observingWrapperRef.current, dispatch);
-    return () => IOBottomMenuSingleton.destroy();
-  }, [windowSize]);
-
-  useEffect(() => {
-    setIOForScrollBtn(
-      dispatch,
-      cardWithImageDarkRef.current,
-      mainServicesLightRef.current,
-      discountPartnersDarkRef.current,
-      webinarLightRef.current
+    if (windowSize === WindowSize.LG || windowSize === WindowSize.XL) {
+      dispatch(setMobBtnVisibility(false));
+    }
+    window.addEventListener(
+      "scroll",
+      handleChangeBtnVisibility(windowSize, dispatch)
     );
-    return () => IOScrollButtonSingleton.destroy();
-  }, []);
+    return () =>
+      window.removeEventListener(
+        "scroll",
+        handleChangeBtnVisibility(windowSize, dispatch)
+      );
+  }, [windowSize]);
 
   useEffect(() => {
     handleGetFlatData(router, flatData, dispatch);
@@ -83,15 +73,13 @@ const Rent: ComponentWithLayout = () => {
         </ColumnWrapper>
         <PriceBlock />
       </RowWrapper>
-      <ObservableWrapper ref={observingWrapperRef}>
-        <ServicesBlock />
-        <CheckOwnerBlock />
-        <CardWitsImage ref={cardWithImageDarkRef} />
-        <MainServices ref={mainServicesLightRef} />
-        <DiscountsBlock ref={discountPartnersDarkRef} />
-        <WebinarBlock ref={webinarLightRef} />
-        <MobileButtons />
-      </ObservableWrapper>
+      <ServicesBlock />
+      <CheckOwnerBlock />
+      <CardWitsImage />
+      <MainServices />
+      <DiscountsBlock />
+      <WebinarBlock />
+      <MobileButtons />
     </PageContainer>
   );
 };

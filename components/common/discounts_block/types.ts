@@ -1,4 +1,5 @@
 import { AdaptiveLayoutPriority } from "../../../common/types";
+import { Hook } from "../../../common/routes";
 
 export type CardAbout = "delivery" | "cleaning";
 
@@ -14,4 +15,5 @@ export type CardData = {
   primaryButtonText: string;
   image: string;
   cardType: CardAbout;
+  contentId: Hook.DELIVERY_CONTENT | Hook.CLEANING_CONTENT;
 };

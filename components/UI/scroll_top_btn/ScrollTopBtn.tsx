@@ -27,6 +27,7 @@ const ScrollTopBtn = () => {
         isLightTheme={isLightTheme}
         isCookieAccepted={isCookieAccepted}
         isMenuShown={isShown}
+        id={Hook.SCROLL_TOP_BTN}
       >
         <ChevronIcon isLightTheme={isLightTheme} />
       </Container>
@@ -62,7 +63,7 @@ const Container = styled.div<{
   background: ${({ isLightTheme }) =>
     isLightTheme ? BlackColor.BLACK_32 : WhiteColor.WHITE_80};
   backdrop-filter: blur(8px);
-  z-index: 2;
+  z-index: 4;
   transition: 0.2s linear;
   &:hover {
     background: ${({ isLightTheme }) =>

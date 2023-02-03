@@ -10,7 +10,9 @@ const scrollTopBtnSlicer = createSlice({
   initialState,
   reducers: {
     setScrollBtnTheme(state, action) {
-      state.isLightTheme = action.payload;
+      if (action.payload !== state.isLightTheme) {
+        state.isLightTheme = action.payload;
+      }
     },
   },
 });

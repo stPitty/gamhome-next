@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TMobBtnView } from "./types";
 
 const initialState: TMobBtnView = {
-  isShown: false,
+  isShown: true,
 };
 
 const mobBtnViewSlicer = createSlice({
@@ -10,7 +10,9 @@ const mobBtnViewSlicer = createSlice({
   initialState,
   reducers: {
     setMobBtnVisibility(state, action) {
-      state.isShown = !action.payload;
+      if (state.isShown !== action.payload) {
+        state.isShown = action.payload;
+      }
     },
   },
 });

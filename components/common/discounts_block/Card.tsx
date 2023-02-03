@@ -46,7 +46,7 @@ const Card: React.FC<Props> = ({ data }) => {
   return (
     <Container cardType={data.cardType}>
       <ColumnImage cardType={data.cardType} image={data.image} />
-      <ContentWrapper cardType={data.cardType}>
+      <ContentWrapper cardType={data.cardType} id={data.contentId}>
         <HeaderWrapper>
           <HeaderText>{data.header}</HeaderText>
           <SubHeader>{data.subHeader}</SubHeader>

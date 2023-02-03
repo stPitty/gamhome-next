@@ -1,9 +1,10 @@
 import { FC } from "react";
 import { ChildProp } from "../../../common/types";
 import styled from "styled-components";
+import { Hook } from "../../../common/routes";
 
 const RowWrapper: FC<ChildProp> = ({ children }) => {
-  return <InfoWrapperRow>{children}</InfoWrapperRow>;
+  return <InfoWrapperRow id={Hook.ROW_WRAPPER}>{children}</InfoWrapperRow>;
 };
 
 const InfoWrapperRow = styled.div`

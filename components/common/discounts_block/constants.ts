@@ -1,4 +1,5 @@
 import { CardData } from "./types";
+import { Hook } from "../../../common/routes";
 
 const cardsData: CardData[] = [
   {
@@ -101,6 +102,7 @@ const cardsData: CardData[] = [
     primaryButtonText: "Заказать грузоперевозку",
     image: "/images/delivery.webp",
     cardType: "delivery",
+    contentId: Hook.DELIVERY_CONTENT,
   },
   {
     id: 2,
@@ -157,6 +159,7 @@ const cardsData: CardData[] = [
     primaryButtonText: "Заказать уборку",
     image: "/images/cleaning.webp",
     cardType: "cleaning",
+    contentId: Hook.CLEANING_CONTENT,
   },
 ];
 

@@ -8,10 +8,11 @@ const Global = createGlobalStyle`
     margin: 0;
     font-family: Inter, Roboto, "Roboto Flex", -apple-system, BlinkMacSystemFont, Segoe UI, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    overflow-x: hidden;
   }
   html {
     scroll-behavior: smooth;
-    overflow-x: hidden;
+    
   }
   a {
     color: inherit;

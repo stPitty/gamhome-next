@@ -7,78 +7,47 @@ import {
 } from "../../../common/enums";
 import Button from "../../UI/button/Button";
 import { ButtonSize } from "../../UI/button/enums";
-import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { wantToLendFlat } from "../../../redux/slicers/modalStateSlicer";
 import React, { memo } from "react";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
-import { TCookiePopUp } from "../../../redux/slicers/types";
+import { Hook } from "../../../common/routes";
 
-const CardWitsImage = React.forwardRef((_, ref) => {
+const CardWitsImage = () => {
   const dispatch = useAppDispatch();
 
   const handleButtonClick = () => {
     dispatch(wantToLendFlat());
   };
 
-  const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
-    (state) => state.cookiePopUp
-  );
-
   return (
-    <>
-      <ObservableComponentWrapper>
-        <ObservableComponent
-          isAccepted={isCookieAccepted}
-          ref={ref as React.RefObject<HTMLDivElement>}
-        />
-      </ObservableComponentWrapper>
-      <Container>
-        <ColumnImage />
-        <TextWrapper>
-          <HeaderText>
-            Съезжаете <AdaptiveTextDivider sm={true} xs={true} />с квартиры?
-            <AdaptiveTextDivider md={true} />
-            <MarkedText>Заплатим 10%</MarkedText>,{" "}
-            <AdaptiveTextDivider lg={true} sm={true} xs={true} />
-            за&nbsp;рекомендацию нас собственнику
-          </HeaderText>
-          <Text>
-            Мы&nbsp;быстро найдем новых жильцов, а вы получите&nbsp;10%
-            от&nbsp;нашей комиссии
-          </Text>
-          <StyledButton
-            onClick={handleButtonClick}
-            buttonSize={ButtonSize.LARGE}
-          >
-            Оставить заявку
-          </StyledButton>
-        </TextWrapper>
-        <RowImage />
-      </Container>
-    </>
+    <Container id={Hook.CARD_WITH_IMG}>
+      <ColumnImage />
+      <TextWrapper>
+        <HeaderText>
+          Съезжаете <AdaptiveTextDivider sm={true} xs={true} />с квартиры?
+          <AdaptiveTextDivider md={true} />
+          <MarkedText>Заплатим 10%</MarkedText>,{" "}
+          <AdaptiveTextDivider lg={true} sm={true} xs={true} />
+          за&nbsp;рекомендацию нас собственнику
+        </HeaderText>
+        <Text>
+          Мы&nbsp;быстро найдем новых жильцов, а вы получите&nbsp;10%
+          от&nbsp;нашей комиссии
+        </Text>
+        <StyledButton onClick={handleButtonClick} buttonSize={ButtonSize.LARGE}>
+          Оставить заявку
+        </StyledButton>
+      </TextWrapper>
+      <RowImage />
+    </Container>
   );
-});
+};
 
 const StyledButton = styled(Button)`
   width: 192px;
   @media screen and (max-width: 767px) {
     width: 100%;
-  }
-`;
-
-const ObservableComponent = styled.div<{ isAccepted: boolean }>`
-  margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
-`;
-
-const ObservableComponentWrapper = styled.div`
-  position: sticky;
-  top: 0;
-  max-width: 0;
-  max-height: 0;
-  @media screen and (max-width: 767px) {
-    display: none;
   }
 `;
 
@@ -215,7 +184,5 @@ const Container = styled.div`
     border-radius: 24px;
   }
 `;
-
-CardWitsImage.displayName = "CardWitsImage";
 
 export default memo(CardWitsImage);

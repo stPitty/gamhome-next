@@ -12,69 +12,42 @@ import { useAppSelector } from "../../../redux/hooks";
 import { TCookiePopUp } from "../../../redux/slicers/types";
 import Button from "../../UI/button/Button";
 
-const WebinarBlock = React.forwardRef((_, ref) => {
+const WebinarBlock = () => {
   const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
     (state) => state.cookiePopUp
   );
 
   return (
-    <>
-      <ObservableComponentWrapper>
-        <ObservableComponent
-          isAccepted={isCookieAccepted}
-          ref={ref as React.RefObject<HTMLDivElement>}
-        />
-      </ObservableComponentWrapper>
-      <Container id={Hook.WEBINAR}>
-        <ContentContainer>
-          <Tag>Бесплатный доступ к&nbsp;вебинару</Tag>
-          <HeaderText>
-            Узнайте основные риски при&nbsp;аренде квартиры&nbsp;и&nbsp;какие
-            схемы используют мошенники
-          </HeaderText>
-          <Text>
-            На&nbsp;вебинаре разобраны основные методы мошенников
-            и&nbsp;как&nbsp;их&nbsp;вычислить. Изучите это&nbsp;видео, чтобы
-            всегда понимать правила съёма квартиры
-          </Text>
-          <StyledButton
-            buttonSize={ButtonSize.LARGE}
-            buttonType={ButtonType.PRIMARY_WB}
-          >
-            Посмотреть видео
-          </StyledButton>
-        </ContentContainer>
-        <PhotoWrapper>
-          <Image />
-          <Badge img={1} />
-          <Badge img={2} />
-          <Badge img={3} />
-          <Badge img={4} />
-          <Badge img={5} />
-        </PhotoWrapper>
-      </Container>
-    </>
+    <Container id={Hook.WEBINAR}>
+      <ContentContainer>
+        <Tag>Бесплатный доступ к&nbsp;вебинару</Tag>
+        <HeaderText>
+          Узнайте основные риски при&nbsp;аренде квартиры&nbsp;и&nbsp;какие
+          схемы используют мошенники
+        </HeaderText>
+        <Text>
+          На&nbsp;вебинаре разобраны основные методы мошенников
+          и&nbsp;как&nbsp;их&nbsp;вычислить. Изучите это&nbsp;видео, чтобы
+          всегда понимать правила съёма квартиры
+        </Text>
+        <StyledButton
+          buttonSize={ButtonSize.LARGE}
+          buttonType={ButtonType.PRIMARY_WB}
+        >
+          Посмотреть видео
+        </StyledButton>
+      </ContentContainer>
+      <PhotoWrapper>
+        <Image />
+        <Badge img={1} />
+        <Badge img={2} />
+        <Badge img={3} />
+        <Badge img={4} />
+        <Badge img={5} />
+      </PhotoWrapper>
+    </Container>
   );
-});
-
-const ObservableComponent = styled.div<{ isAccepted: boolean }>`
-  margin-top: ${({ isAccepted }) => (isAccepted ? "150px" : "222px")};
-  width: 100px;
-  height: 100px;
-  background: red;
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isAccepted }) => (isAccepted ? "136px" : "208px")};
-`;
-
-const ObservableComponentWrapper = styled.div`
-  position: sticky;
-  top: 0;
-  max-width: 0;
-  max-height: 0;
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
-`;
+};
 
 const Badge = styled.div<{ img: 1 | 2 | 3 | 4 | 5 }>`
   background-repeat: no-repeat;
@@ -417,7 +390,5 @@ const Container = styled.div`
     row-gap: 40px;
   }
 `;
-
-WebinarBlock.displayName = "WebinarBlock";
 
 export default WebinarBlock;

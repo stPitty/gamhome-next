@@ -177,48 +177,6 @@ const handleShowNumberClick =
     }
   };
 
-const getRefsArr = (
-  cardWithImageDarkRef: RefObject<HTMLDivElement>["current"],
-  mainServicesLightRef: RefObject<HTMLDivElement>["current"],
-  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
-  webinarLightRef: RefObject<HTMLDivElement>["current"]
-): ObservableRefAttrs[] => {
-  return [
-    {
-      ref: cardWithImageDarkRef,
-      name: "cardWithImage",
-    },
-    {
-      ref: mainServicesLightRef,
-      name: "mainServices",
-    },
-    {
-      ref: discountPartnersDarkRef,
-      name: "discountPartners",
-    },
-    {
-      ref: webinarLightRef,
-      name: "webinar",
-    },
-  ];
-};
-
-const getRefsArrBuy = (
-  discountPartnersDarkRef: RefObject<HTMLDivElement>["current"],
-  webinarLightRef: RefObject<HTMLDivElement>["current"]
-): ObservableRefAttrs[] => {
-  return [
-    {
-      ref: discountPartnersDarkRef,
-      name: "discountPartners",
-    },
-    {
-      ref: webinarLightRef,
-      name: "webinar",
-    },
-  ];
-};
-
 const getSquarePrice = (genPrice: number | string, params: Parameter[]) => {
   const value = params.find(
     (el) =>
@@ -282,9 +240,7 @@ export {
   handleGetSubHeader,
   SortByPriority,
   handleShowNumberClick,
-  getRefsArr,
   getSquarePrice,
   handleFormatValue,
   handleGetYears,
-  getRefsArrBuy,
 };

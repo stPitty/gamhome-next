@@ -8,57 +8,32 @@ import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivi
 import { useAppSelector } from "../../../redux/hooks";
 import { TCookiePopUp } from "../../../redux/slicers/types";
 
-const DiscountsBlock = React.forwardRef((_, ref) => {
+const DiscountsBlock = () => {
   const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
     (state) => state.cookiePopUp
   );
 
   return (
-    <>
-      <ObservableComponentWrapper>
-        <ObservableComponent
-          isAccepted={isCookieAccepted}
-          ref={ref as React.RefObject<HTMLDivElement>}
-        />
-      </ObservableComponentWrapper>
-      <Wrapper id={Hook.PARTNERS}>
-        <Container>
-          <ContentWrapper>
-            <HeaderText>
-              Скидки
-              <AdaptiveTextDivider xs={true} /> от партнёров
-            </HeaderText>
-            {cardsData.map((el) => (
-              <Card data={el} key={el.id} />
-            ))}
-          </ContentWrapper>
-        </Container>
-      </Wrapper>
-    </>
+    <Wrapper id={Hook.PARTNERS}>
+      <Container>
+        <ContentWrapper>
+          <HeaderText>
+            Скидки
+            <AdaptiveTextDivider xs={true} /> от партнёров
+          </HeaderText>
+          {cardsData.map((el) => (
+            <Card data={el} key={el.id} />
+          ))}
+        </ContentWrapper>
+      </Container>
+    </Wrapper>
   );
-});
+};
 
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 40px;
-`;
-
-const ObservableComponent = styled.div<{ isAccepted: boolean }>`
-  margin-top: ${({ isAccepted }) => (isAccepted ? "166px" : "238px")};
-  @media screen and (max-width: 1023px) and (min-width: 768px) {
-    margin-top: ${({ isAccepted }) => (isAccepted ? "154px" : "226px")};
-  }
-`;
-
-const ObservableComponentWrapper = styled.div`
-  position: sticky;
-  top: 0;
-  max-width: 0;
-  max-height: 0;
-  @media screen and (max-width: 767px) {
-    display: none;
-  }
 `;
 
 const Wrapper = styled.div`
@@ -122,7 +97,5 @@ const Container = styled.div`
     padding: 40px 16px;
   }
 `;
-
-DiscountsBlock.displayName = "DiscountsBlock";
 
 export default DiscountsBlock;
