@@ -161,6 +161,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  max-width: 1440px;
 `;
 
 const Wrapper = styled.div`
