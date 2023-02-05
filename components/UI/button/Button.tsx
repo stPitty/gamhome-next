@@ -22,6 +22,7 @@ type Props = {
   loading?: boolean;
   onClick?: () => void;
   width?: number;
+  type?: "button" | "submit" | "reset";
 };
 
 const Button: React.FC<Props> = ({
@@ -34,6 +35,7 @@ const Button: React.FC<Props> = ({
   loading = false,
   onClick,
   width,
+  type = "button",
 }) => {
   const handleClick = (func: (() => void) | undefined) => () => {
     if (func && !loading && !disabled) {
@@ -43,6 +45,7 @@ const Button: React.FC<Props> = ({
 
   return (
     <StyledButton
+      type={type}
       buttonSize={buttonSize}
       buttonType={buttonType}
       className={className}

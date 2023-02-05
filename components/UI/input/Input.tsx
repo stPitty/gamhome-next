@@ -1,4 +1,11 @@
-import { Dispatch, memo, SetStateAction, SyntheticEvent, useMemo } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  memo,
+  SetStateAction,
+  SyntheticEvent,
+  useMemo,
+} from "react";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -22,6 +29,8 @@ type Props = {
   setIsValidationError?: Dispatch<SetStateAction<boolean>> | any;
   className?: string;
   stateName?: string;
+  onChangeHandler?: (e: ChangeEvent<any>) => void;
+  name?: string;
 };
 
 const Input: React.FC<Props> = ({
@@ -38,6 +47,8 @@ const Input: React.FC<Props> = ({
   setIsValidationError,
   className,
   stateName,
+  onChangeHandler,
+  name = "",
 }) => {
   const dispatch = useAppDispatch();
 
@@ -88,9 +99,10 @@ const Input: React.FC<Props> = ({
     <div className={className}>
       <Container>
         <StyledInput
+          name={name}
           type="text"
           value={value}
-          onChange={handleValueChange}
+          onChange={onChangeHandler ?? handleValueChange}
           width={width}
           required={required}
           isValidationError={isValidationError}
@@ -154,6 +166,7 @@ const StyledInput = styled.input<{
   color: ${BlackColor.BLACK_SECONDARY};
   outline: none;
   width: ${({ width }) => (width ? width + "px" : "100%")};
+
   &:hover {
     border-color: ${({ isValidationError }) =>
       isValidationError ? OtherColor.ERROR_JUICE : BlackColor.BLACK_48};

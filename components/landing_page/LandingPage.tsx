@@ -6,6 +6,8 @@ import Reports from "./components/Reports/Reports";
 import SellProperty from "./components/SellProperty/SellProperty";
 import Rent from "./components/Rent/Rent";
 import WantToRentOrBuy from "./components/WantToRentOrBuy/WantToRentOrBuy";
+import Questions from "./components/Questions/Questions";
+import ObserveTheNews from "./components/ObserveTheNews/ObserveTheNews";
 
 const LandingPage = () => {
   return (
@@ -17,6 +19,8 @@ const LandingPage = () => {
       <SellProperty />
       <Rent />
       <WantToRentOrBuy />
+      <Questions />
+      <ObserveTheNews />
     </Wrapper>
   );
 };

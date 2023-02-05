@@ -29,6 +29,7 @@
     "babel-preset-next": "^1.4.0",
     "eslint": "8.22.0",
     "eslint-config-next": "13.1.4",
+    "formik": "^2.2.9",
     "http-proxy-middleware": "^2.0.6",
     "mapbox-gl": "^2.11.1",
     "next": "13.1.4",
@@ -40,7 +41,8 @@
     "react-redux": "^8.0.5",
     "redux": "^4.2.0",
     "styled-components": "^5.3.6",
-    "typescript": "4.8.4"
+    "typescript": "4.8.4",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/mapbox-gl": "^2.7.10",
