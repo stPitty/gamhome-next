@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import GeneralInformation from "./components/GeneralInformation/GeneralInformation";
+import WorkWithUs from "./components/WorkWithUs/WorkWithUs";
 
 const LandingPage = () => {
   return (
     <Wrapper>
       <GeneralInformation />
+      <WorkWithUs />
     </Wrapper>
   );
 };

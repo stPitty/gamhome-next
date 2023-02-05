@@ -90,6 +90,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  max-width: 416px;
 `;
 
 export default memo(Card);

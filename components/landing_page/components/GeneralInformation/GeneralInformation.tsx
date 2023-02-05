@@ -6,23 +6,25 @@ import { CARD_1, CARD_2, CARD_3 } from "../../UI/Card/constants";
 const GeneralInformation = () => {
   return (
     <Wrapper>
-      <HeaderWrapper>
-        <HeaderMainText>
-          Надежный партнeр в&nbsp;организации
-          <AdaptiveTextDivider xl={true} />
-          сделок с&nbsp;недвижимостью
-        </HeaderMainText>
-        <HeaderTextSub>
-          Выполняем любые операции с&nbsp;недвижимостью:{" "}
-          <AdaptiveTextDivider xl={true} />
-          купля, продажа, обмен и&nbsp;аренда жилой недвижимости
-        </HeaderTextSub>
-      </HeaderWrapper>
-      <CardsWrapper>
-        <Card cardData={CARD_1} />
-        <Card cardData={CARD_2} />
-        <Card cardData={CARD_3} />
-      </CardsWrapper>
+      <Container>
+        <HeaderWrapper>
+          <HeaderMainText>
+            Надежный партнeр в&nbsp;организации
+            <AdaptiveTextDivider xl={true} />
+            сделок с&nbsp;недвижимостью
+          </HeaderMainText>
+          <HeaderTextSub>
+            Выполняем любые операции с&nbsp;недвижимостью:{" "}
+            <AdaptiveTextDivider xl={true} />
+            купля, продажа, обмен и&nbsp;аренда жилой недвижимости
+          </HeaderTextSub>
+        </HeaderWrapper>
+        <CardsWrapper>
+          <Card cardData={CARD_1} />
+          <Card cardData={CARD_2} />
+          <Card cardData={CARD_3} />
+        </CardsWrapper>
+      </Container>
     </Wrapper>
   );
 };
@@ -57,12 +59,17 @@ const HeaderWrapper = styled.div`
   row-gap: 24px;
 `;
 
+const Container = styled.div`
+  flex-direction: column;
+  display: flex;
+  row-gap: 64px;
+  padding: 0 64px;
+`;
+
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  flex-direction: column;
-  row-gap: 64px;
-  padding: 0 64px;
+  justify-content: center;
 `;
 
 export default GeneralInformation;

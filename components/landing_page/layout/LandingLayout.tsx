@@ -93,7 +93,6 @@ const FooterMenuContainer = styled.div`
 const FooterContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
   padding: 0 64px 72px;
   row-gap: 48px;
 `;
@@ -161,7 +160,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  max-width: 1440px;
+  width: 100%;
 `;
 
 const Wrapper = styled.div`
