@@ -10,6 +10,7 @@ import SideMenu from "../UI/side_menu/SideMenu";
 import ScrollTopBtn from "../UI/scroll_top_btn/ScrollTopBtn";
 import { setAcceptedCookie } from "../../redux/slicers/cookiePopUpSlicer";
 import MobileMenu from "../UI/mobile_menu/MobileMenu";
+import { BlackColor, Font } from "../../common/enums";
 
 type Props = {
   children: ReactNode;

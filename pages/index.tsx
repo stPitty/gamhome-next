@@ -1,10 +1,20 @@
 import { ComponentWithLayout } from "../common/types";
-import PageLayout from "../components/layout";
+import LandingLayout from "../components/landing_page/layout/LandingLayout";
+import dynamic from "next/dynamic";
+import Spinner from "../components/UI/spinner/Spinner";
+
+const LandingPage = dynamic(
+  () => import("../components/landing_page/LandingPage"),
+  {
+    loading: () => <Spinner />,
+    ssr: false,
+  }
+);
 
 const HomePage: ComponentWithLayout = () => {
-  return <div></div>;
+  return <LandingPage />;
 };
 
-HomePage.PageLayout = PageLayout;
+HomePage.PageLayout = LandingLayout;
 
 export default HomePage;

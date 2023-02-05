@@ -22,8 +22,8 @@ const spinAnimation = keyframes`
 
 const Wrapper = styled.div`
   display: flex;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  min-height: 90vh;
   justify-content: center;
   align-items: center;
 `;
