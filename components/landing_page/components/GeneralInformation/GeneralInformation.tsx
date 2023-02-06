@@ -92,6 +92,10 @@ const HeaderWrapper = styled.div`
     row-gap: 16px;
     max-width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    row-gap: 16px;
+    max-width: 288px;
+  }
 `;
 
 const Container = styled.div`
@@ -109,6 +113,9 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     row-gap: 40px;
     padding: 0 13px;
+  }
+  @media screen and (max-width: 374px) {
+    padding: 0 16px;
   }
 `;
 

@@ -108,6 +108,12 @@ const ImageContainer = styled.div<{ src: string }>`
     background-size: 349px;
     background-position: 0 -25px;
   }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+    height: 140px;
+    background-size: 288px;
+    background-position: 0 -5px;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -126,6 +132,9 @@ const CardWrapper = styled.div`
   @media screen and (max-width: 767px) {
     flex-direction: column;
     max-width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
   }
 `;
 

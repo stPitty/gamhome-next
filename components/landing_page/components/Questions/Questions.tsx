@@ -174,6 +174,9 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+  }
 `;
 
 const Wrapper = styled.div`

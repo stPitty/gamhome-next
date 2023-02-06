@@ -118,30 +118,49 @@ const InternetBadgesWrapper = styled.div`
   @media screen and (max-width: 1439px) {
     row-gap: 12px;
   }
+  @media screen and (max-width: 374px) {
+    row-gap: 10px;
+  }
 `;
 
 const YandexLogoContainer = styled.div`
   position: relative;
   width: 162px;
   height: 25.54px;
+  @media screen and (max-width: 374px) {
+    width: 152.2px;
+    height: 24px;
+  }
 `;
 
 const CyanLogoContainer = styled.div`
   position: relative;
   width: 95px;
   height: 34px;
+  @media screen and (max-width: 374px) {
+    width: 67px;
+    height: 24px;
+  }
 `;
 
 const UlaLogoContainer = styled.div`
   position: relative;
   width: 89px;
   height: 31px;
+  @media screen and (max-width: 374px) {
+    width: 70px;
+    height: 24px;
+  }
 `;
 
 const AvitoLogoContainer = styled.div`
   position: relative;
   width: 95px;
   height: 27px;
+  @media screen and (max-width: 374px) {
+    height: 24px;
+    width: 84px;
+  }
 `;
 
 const LogosContainer = styled.div`
@@ -156,6 +175,9 @@ const LogosContainer = styled.div`
   }
   @media screen and (max-width: 1023px) {
     width: 100%;
+  }
+  @media screen and (max-width: 374px) {
+    width: 250px;
   }
 `;
 
@@ -179,6 +201,11 @@ const LogosWrapper = styled.div`
   @media screen and (max-width: 767px) {
     height: 209px;
     padding: 16px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
+    height: 230px;
+    padding: 12px;
   }
 `;
 

@@ -38,7 +38,7 @@ const ObserveTheNews = () => {
           </BadgeOutlined>
           <BadgeFlatLast>
             <BadgeFlatText>
-              Изменения в&nbsp;законодательстве и&nbsp;нормативных документах,
+              Изменения в&nbsp;законодательстве и нормативных документах,
               касающиеся недвижимости
             </BadgeFlatText>
           </BadgeFlatLast>
@@ -66,6 +66,10 @@ const BadgeText = styled.p`
     font-size: 12.174px;
     line-height: 19px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 9.9px;
+    line-height: 15px;
+  }
 `;
 
 const BadgeFlatText = styled(BadgeText)`
@@ -92,9 +96,13 @@ const BadgeLayout = styled.div`
     border-radius: 8.97564px;
     padding: 8.97564px 11.9675px;
   }
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 767px) {
     border-radius: 11.2375px;
     padding: 11.2375px 14.9833px;
+  }
+  @media screen and (max-width: 374px) {
+    border-radius: 8.7899px;
+    padding: 8.7899px 11.7199px;
   }
 `;
 
@@ -117,6 +125,11 @@ const BadgeFlat = styled(BadgeLayout)`
     width: 252.84px;
     height: 60.47px;
     left: 0;
+  }
+  @media screen and (max-width: 374px) {
+    width: 207.5px;
+    height: 49.44px;
+    top: 1px;
   }
 `;
 
@@ -141,6 +154,12 @@ const BadgeFilled = styled(BadgeLayout)`
     width: 309.97px;
     height: 60.47px;
     left: 40px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 254.38px;
+    height: 49.44px;
+    padding: 9.22236px 12.2965px;
+    left: 34px;
   }
 `;
 
@@ -175,6 +194,14 @@ const BadgeOutlined = styled(BadgeLayout)`
     left: 20px;
     top: 15px;
   }
+  @media screen and (max-width: 374px) {
+    width: 198.58px;
+    height: 49.44px;
+    padding-left: 10px;
+    padding-right: 10px;
+    left: 16px;
+    top: 12px;
+  }
 `;
 
 const BadgeFlatLast = styled(BadgeLayout)`
@@ -200,6 +227,16 @@ const BadgeFlatLast = styled(BadgeLayout)`
     left: 41px;
     bottom: -43px;
   }
+  @media screen and (max-width: 374px) {
+    width: 241.72px;
+    height: 47.58px;
+    padding: 8.7899px 11.7199px;
+    left: 39px;
+    bottom: -33px;
+    & p {
+      font-size: 9.52239px;
+    }
+  }
 `;
 
 const BadgesWrapper = styled.div`
@@ -218,6 +255,10 @@ const BadgesWrapper = styled.div`
   @media screen and (max-width: 767px) {
     width: 350px;
     height: 285px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 287.72px;
+    height: 229px;
   }
 `;
 
@@ -270,6 +311,9 @@ const InformationWrapper = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+  }
 `;
 
 const Container = styled.div`
@@ -290,6 +334,11 @@ const Container = styled.div`
     max-width: 349px;
     flex-direction: column;
     row-gap: 66px;
+  }
+  @media screen and (max-width: 374px) {
+    margin: 40px 16px 94px;
+    max-width: 288px;
+    row-gap: 68px;
   }
 `;
 

@@ -164,6 +164,9 @@ const CardContainer = styled.div`
     width: 375px;
     padding: 16px;
   }
+  @media screen and (max-width: 374px) {
+    width: 320px;
+  }
 `;
 
 const WhiteCard = styled(CardContainer)`
@@ -183,6 +186,9 @@ const WhiteCard = styled(CardContainer)`
     row-gap: 262px;
     background-position: center 310px;
   }
+  @media screen and (max-width: 374px) {
+    background-position: center 335px;
+  }
 `;
 
 const PurpleCard = styled(CardContainer)`
@@ -197,6 +203,9 @@ const PurpleCard = styled(CardContainer)`
   @media screen and (max-width: 767px) {
     background-position: center 325px;
     row-gap: 221px;
+  }
+  @media screen and (max-width: 374px) {
+    background-position: center 380px;
   }
 `;
 

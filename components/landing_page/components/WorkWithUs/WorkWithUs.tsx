@@ -74,6 +74,9 @@ const CardInformationWrapper = styled.div`
   flex-direction: column;
   row-gap: 16px;
   width: 100%;
+  @media screen and (max-width: 374px) {
+    row-gap: 12px;
+  }
 `;
 
 const CardText = styled.p`
@@ -88,6 +91,9 @@ const CardText = styled.p`
   }
   @media screen and (max-width: 767px) {
     width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 
@@ -125,7 +131,7 @@ const CardContainer = styled.div`
     width: 100%;
     column-gap: 16px;
   }
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 767px) {
     flex-direction: column;
   }
 `;
@@ -211,6 +217,11 @@ const Container = styled.div`
     margin: 24px 13px;
     row-gap: 32px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+    margin: 24px 16px;
+    row-gap: 24px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -228,6 +239,9 @@ const Wrapper = styled.div`
     background-size: 362px;
     background-position: calc(50% + 5px) 9px;
     border-radius: 24px;
+  }
+  @media screen and (max-width: 374px) {
+    background-position: calc(50% + 35px) 9px;
   }
 `;
 

@@ -12,11 +12,13 @@ const WantToRentOrBuy = () => {
     <Wrapper>
       <Container>
         <HeaderText>
-          Хотите&nbsp;арендовать <AdaptiveTextDivider md />
+          Хотите&nbsp;
+          <AdaptiveTextDivider xs />
+          арендовать <AdaptiveTextDivider md />
           или купить квартиру?
         </HeaderText>
         <TgBotInfContainer>
-          <TgImageBotoom />
+          <TgImageBottom />
           <InformationWrapper>
             <TgInformationContainer>
               <TgInfHeaderText>Telegram бот</TgInfHeaderText>
@@ -94,7 +96,7 @@ const WantToRentOrBuy = () => {
   );
 };
 
-const TgImageBotoom = styled(TgBotImage)`
+const TgImageBottom = styled(TgBotImage)`
   display: none;
   @media screen and (max-width: 767px) {
     display: flex;
@@ -125,6 +127,11 @@ const SecondGHImgContainer = styled.div`
     min-width: 170px;
     height: 340px;
   }
+  @media screen and (max-width: 374px) {
+    min-width: 155px;
+    height: 310px;
+    right: 25px;
+  }
 `;
 
 const FirstGHImgContainer = styled.div`
@@ -148,6 +155,12 @@ const FirstGHImgContainer = styled.div`
     height: 338px;
     margin-top: 68px;
   }
+  @media screen and (max-width: 374px) {
+    min-width: 155px;
+    height: 310px;
+    margin-top: 62px;
+    left: -12px;
+  }
 `;
 
 const GHImagesContainer = styled.div`
@@ -162,6 +175,10 @@ const GHImagesContainer = styled.div`
   @media screen and (max-width: 1023px) {
     width: 298px;
     height: 380px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 273.53px;
+    height: 348px;
   }
 `;
 
@@ -199,6 +216,9 @@ const GamHomeServicesWrapper = styled.div`
     margin-top: 32px;
     row-gap: 48px;
     width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 
@@ -257,6 +277,9 @@ const InformationContainer = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+  }
 `;
 
 const TgInformationContainer = styled(InformationContainer)`
@@ -267,6 +290,9 @@ const TgInformationContainer = styled(InformationContainer)`
   @media screen and (max-width: 767px) {
     max-width: 349px;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+  }
 `;
 
 const GHInformationContainer = styled(InformationContainer)`
@@ -276,6 +302,9 @@ const GHInformationContainer = styled(InformationContainer)`
   }
   @media screen and (max-width: 767px) {
     max-width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
   }
 `;
 
@@ -305,6 +334,9 @@ const TgBotInfContainer = styled.div`
     flex-direction: column;
     row-gap: 48px;
   }
+  @media screen and (max-width: 374px) {
+    row-gap: 40px;
+  }
 `;
 
 const HeaderText = styled.h1`
@@ -325,6 +357,9 @@ const HeaderText = styled.h1`
   @media screen and (max-width: 767px) {
     text-align: start;
   }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
+  }
 `;
 
 const Container = styled.div`
@@ -344,6 +379,9 @@ const Container = styled.div`
   @media screen and (max-width: 767px) {
     row-gap: 40px;
     max-width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
   }
 `;
 

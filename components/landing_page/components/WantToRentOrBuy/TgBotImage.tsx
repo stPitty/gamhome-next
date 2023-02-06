@@ -65,6 +65,10 @@ const TgCheckboxText = styled.p`
     font-size: 9.02428px;
     line-height: 14px;
   }
+  @media screen and (max-width: 374px) {
+    font-size: 7.95127px;
+    line-height: 12px;
+  }
 `;
 
 const DoneIcon = styled(DoneSVG)`
@@ -78,6 +82,10 @@ const DoneIcon = styled(DoneSVG)`
   @media screen and (max-width: 1023px) {
     width: 8.46px;
     height: 6.57px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 7.45px;
+    height: 5.56px;
   }
 `;
 
@@ -97,6 +105,10 @@ const DoneIconContainer = styled.div`
     width: 13.54px;
     height: 13.54px;
   }
+  @media screen and (max-width: 374px) {
+    width: 11.93px;
+    height: 11.93px;
+  }
 `;
 
 const BrownCircleIcon = styled(CircleSVG)`
@@ -111,6 +123,10 @@ const BrownCircleIcon = styled(CircleSVG)`
     width: 4.51px;
     height: 4.51px;
   }
+  @media screen and (max-width: 374px) {
+    width: 3.98px;
+    height: 3.98px;
+  }
 `;
 
 const GreenCircleIcon = styled(CircleSVG)`
@@ -124,6 +140,10 @@ const GreenCircleIcon = styled(CircleSVG)`
   @media screen and (max-width: 1023px) {
     width: 4.51px;
     height: 4.51px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 3.98px;
+    height: 3.98px;
   }
 `;
 
@@ -141,6 +161,10 @@ const TgBadgePrimText = styled.p`
   @media screen and (max-width: 1023px) {
     font-size: 9.02428px;
     line-height: 14px;
+  }
+  @media screen and (max-width: 374px) {
+    font-size: 7.95127px;
+    line-height: 12px;
   }
 `;
 
@@ -167,6 +191,9 @@ const TgCheckboxRow = styled(TgBadgeRow)`
   @media screen and (max-width: 1023px) {
     column-gap: 4.5px;
   }
+  @media screen and (max-width: 374px) {
+    column-gap: 4px;
+  }
 `;
 
 const TgBadgeContainer = styled.div`
@@ -191,6 +218,12 @@ const TgBadgeContainer = styled.div`
     box-shadow: 0 0 1.12804px rgba(0, 0, 0, 0.12),
       0 11.2804px 11.2804px rgba(0, 0, 0, 0.08);
   }
+  @media screen and (max-width: 374px) {
+    box-shadow: 0 0 0.993909px rgba(0, 0, 0, 0.12),
+      0 9.93909px 9.93909px rgba(0, 0, 0, 0.08);
+    border-radius: 7.95127px;
+    padding: 7.95127px;
+  }
 `;
 
 const TgAddressBadge = styled(TgBadgeContainer)`
@@ -208,6 +241,11 @@ const TgAddressBadge = styled(TgBadgeContainer)`
   @media screen and (max-width: 1023px) {
     top: 100px;
   }
+  @media screen and (max-width: 374px) {
+    width: 85.87px;
+    height: 43.88px;
+    top: 89px;
+  }
 `;
 
 const TgCostBadge = styled(TgBadgeContainer)`
@@ -221,7 +259,8 @@ const TgCostBadge = styled(TgBadgeContainer)`
     top: 34px;
   }
   @media screen and (max-width: 767px) {
-    right: 45px;
+    top: 30px;
+    right: 35px;
   }
 `;
 
@@ -249,6 +288,12 @@ const TgCheckboxBadge = styled(TgBadgeContainer)`
     top: 169px;
     right: 130px;
   }
+  @media screen and (max-width: 374px) {
+    width: 114.81px;
+    height: 45.87px;
+    right: 123px;
+    top: 150px;
+  }
 `;
 
 const ImageContainer = styled.div`
@@ -265,6 +310,11 @@ const ImageContainer = styled.div`
     min-width: 150px;
     min-height: 302px;
     left: -27px;
+  }
+  @media screen and (max-width: 374px) {
+    min-width: 135px;
+    min-height: 265px;
+    left: -19px;
   }
 `;
 
@@ -283,6 +333,11 @@ const TgImageWrapper = styled.div`
   }
   @media screen and (max-width: 767px) {
     margin-left: 15px;
+  }
+  @media screen and (max-width: 374px) {
+    margin-left: 0;
+    width: 288px;
+    height: 248px;
   }
 `;
 export default memo(TgBotImage);

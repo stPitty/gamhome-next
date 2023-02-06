@@ -34,7 +34,7 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
                 <BurgerIconContainer>
                   <HamburgerSVG />
                 </BurgerIconContainer>
-                Меню
+                <MenuBtnText>Меню</MenuBtnText>
               </HeaderMenuButton>
               <StyledButton buttonSize={ButtonSize.MEDIUM}>
                 Оставить заявку
@@ -86,6 +86,12 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   );
 };
 
+const MenuBtnText = styled.span`
+  @media screen and (max-width: 374px) {
+    display: none !important;
+  }
+`;
+
 const Divider = styled.div`
   width: 100%;
   height: 1px;
@@ -119,6 +125,10 @@ const HeaderMenuButton = styled(Button)`
     width: 89px;
     height: 36px;
   }
+  @media screen and (max-width: 374px) {
+    width: 36px;
+    height: 36px;
+  }
 `;
 
 const HeaderButtonsContainer = styled.div`
@@ -147,6 +157,9 @@ const ConditionsText = styled.p`
   }
   @media screen and (max-width: 767px) {
     max-width: 349px;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 288px;
   }
 `;
 
@@ -196,6 +209,9 @@ const FooterContainer = styled.div`
   }
   @media screen and (max-width: 767px) {
     padding: 0 13px 32px;
+  }
+  @media screen and (max-width: 374px) {
+    padding: 0 16px 32px;
   }
 `;
 
@@ -306,6 +322,13 @@ const HeaderContainer = styled.div`
     margin-right: 0;
     padding-right: 13px;
     padding-left: 13px;
+  }
+  @media screen and (max-width: 374px) {
+    column-gap: 60px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 16px;
+    padding-left: 16px;
   }
 `;
 

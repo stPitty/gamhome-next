@@ -155,6 +155,10 @@ const CountsBadge = styled(CountsSVG)`
     top: 80px;
     left: -20px;
   }
+  @media screen and (max-width: 374px) {
+    left: -80px;
+    top: 87px;
+  }
 `;
 
 const DealBadge = styled(DealSVG)`
@@ -166,6 +170,9 @@ const DealBadge = styled(DealSVG)`
     position: relative;
     top: 100px;
     left: -110px;
+  }
+  @media screen and (max-width: 374px) {
+    left: -120px;
   }
 `;
 
@@ -338,6 +345,9 @@ const ManagerImgCard = styled.div`
       position: relative;
       left: -225px;
     }
+    @media screen and (max-width: 374px) {
+      left: -247px;
+    }
   }
   @media screen and (max-width: 1439px) {
     width: 186px;
@@ -353,6 +363,9 @@ const ManagerImgCard = styled.div`
   @media screen and (max-width: 767px) {
     width: 343px;
     margin-top: 56px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 288px;
   }
 `;
 
@@ -434,6 +447,9 @@ const CardContainer = styled.div`
   @media screen and (max-width: 767px) {
     max-width: 375px;
     padding: 16px;
+  }
+  @media screen and (max-width: 374px) {
+    max-width: 320px;
   }
 `;
 

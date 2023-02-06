@@ -52,6 +52,9 @@ const SocialMediaIconContainer = styled.a`
 
 const SocialMediaLinksWrapper = styled.div`
   display: flex;
+  @media screen and (max-width: 767px) {
+    column-gap: 12px;
+  }
 `;
 
 const ImageContainer = styled.div`
