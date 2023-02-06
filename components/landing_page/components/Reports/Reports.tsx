@@ -21,6 +21,10 @@ const HeaderText = styled.h1`
   font-size: 48px;
   line-height: 56px;
   color: #242424;
+  @media screen and (max-width: 1023px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const Container = styled.div`

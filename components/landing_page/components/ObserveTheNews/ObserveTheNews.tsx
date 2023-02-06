@@ -58,6 +58,10 @@ const BadgeText = styled.p`
     font-size: 12.2px;
     line-height: 19px;
   }
+  @media screen and (max-width: 1023px) {
+    font-size: 9.72361px;
+    line-height: 15px;
+  }
 `;
 
 const BadgeFlatText = styled(BadgeText)`
@@ -80,6 +84,10 @@ const BadgeLayout = styled.div`
     border-radius: 11.2px;
     padding: 11.2px 15px;
   }
+  @media screen and (max-width: 1023px) {
+    border-radius: 8.97564px;
+    padding: 8.97564px 11.9675px;
+  }
 `;
 
 const BadgeFlat = styled(BadgeLayout)`
@@ -91,6 +99,11 @@ const BadgeFlat = styled(BadgeLayout)`
     width: 253px;
     height: 60px;
     left: 62px;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 201.95px;
+    height: 47.95px;
+    left: 45px;
   }
 `;
 
@@ -104,6 +117,12 @@ const BadgeFilled = styled(BadgeLayout)`
     width: 310px;
     height: 60px;
     left: 232px;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 257.19px;
+    height: 50.65px;
+    left: 118px;
+    top: -9px;
   }
 `;
 
@@ -122,6 +141,14 @@ const BadgeOutlined = styled(BadgeLayout)`
     padding-right: 13px;
     left: 32px;
   }
+  @media screen and (max-width: 1023px) {
+    width: 214.13px;
+    height: 53.89px;
+    padding-left: 11px;
+    padding-right: 11px;
+    left: 33px;
+    top: 30px;
+  }
 `;
 
 const BadgeFlatLast = styled(BadgeLayout)`
@@ -135,6 +162,12 @@ const BadgeFlatLast = styled(BadgeLayout)`
     height: 60px;
     left: 181px;
   }
+  @media screen and (max-width: 1023px) {
+    width: 254.62px;
+    height: 49.52px;
+    left: 115px;
+    bottom: -40px;
+  }
 `;
 
 const BadgesWrapper = styled.div`
@@ -145,6 +178,10 @@ const BadgesWrapper = styled.div`
   @media screen and (max-width: 1439px) {
     width: 542px;
     height: 266px;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 375px;
+    height: 242px;
   }
 `;
 
@@ -168,6 +205,10 @@ const HeaderText = styled.h2`
   font-size: 48px;
   line-height: 56px;
   color: #ffffff;
+  @media screen and (max-width: 1023px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const TextWrapper = styled.div`
@@ -184,6 +225,9 @@ const InformationWrapper = styled.div`
   @media screen and (max-width: 1439px) {
     max-width: 443px;
   }
+  @media screen and (max-width: 1023px) {
+    max-width: 313px;
+  }
 `;
 
 const Container = styled.div`
@@ -195,6 +239,10 @@ const Container = styled.div`
     column-gap: 0;
     margin: 64px 36px;
   }
+  @media screen and (max-width: 1023px) {
+    margin: 40px;
+    max-width: 688px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -203,6 +251,9 @@ const Wrapper = styled.div`
   justify-content: center;
   background: #242424;
   border-radius: 48px;
+  @media screen and (max-width: 1023px) {
+    border-radius: 24px;
+  }
 `;
 
 export default ObserveTheNews;

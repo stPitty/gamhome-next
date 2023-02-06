@@ -6,6 +6,7 @@ import { QuestionsValues } from "./types";
 import Input from "../../../UI/input/Input";
 import Button from "../../../UI/button/Button";
 import { ButtonSize } from "../../../UI/button/enums";
+import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const Questions = () => {
   const formik = useFormik({
@@ -25,8 +26,9 @@ const Questions = () => {
         <HeaderWrapper>
           <HeaderText>Остались вопросы?</HeaderText>
           <HeaderTextSub>
-            Оставьте заявку на&nbsp;бесплатную консультацию или звоните нам
-            по&nbsp;телефону:{" "}
+            Оставьте заявку на&nbsp;бесплатную консультацию{" "}
+            <AdaptiveTextDivider md />
+            или звоните нам по&nbsp;телефону:{" "}
             <PhoneLink href="tel:+79260211033">+7&nbsp;926 021-10-33</PhoneLink>
           </HeaderTextSub>
         </HeaderWrapper>
@@ -86,6 +88,9 @@ const StyledButton = styled(Button)`
 
 const StyledInput = styled(Input)`
   width: 364px;
+  @media screen and (max-width: 1023px) {
+    width: 284px;
+  }
 `;
 
 const InputsWrapper = styled.div`
@@ -98,6 +103,9 @@ const InnerFormWrapper = styled.div`
   flex-direction: column;
   row-gap: 18px;
   align-items: center;
+  @media screen and (max-width: 1023px) {
+    row-gap: 10px;
+  }
 `;
 
 const StyledForm = styled.form`
@@ -133,6 +141,10 @@ const HeaderText = styled.h1`
   font-size: 48px;
   line-height: 56px;
   color: #242424;
+  @media screen and (max-width: 1023px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const Container = styled.div`

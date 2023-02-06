@@ -252,6 +252,9 @@ const LogosContainer = styled.div`
     width: 276px;
     row-gap: 12px;
   }
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+  }
 `;
 
 const LogosWrapper = styled.div`
@@ -266,6 +269,9 @@ const LogosWrapper = styled.div`
     row-gap: 16px;
     height: 225px;
     justify-content: space-between;
+  }
+  @media screen and (max-width: 1023px) {
+    height: 134px;
   }
 `;
 
@@ -313,6 +319,11 @@ const BadgeContainer = styled.div`
     align-items: flex-start;
     padding: 8px 10px;
   }
+  @media screen and (max-width: 1023px) {
+    width: 100%;
+    height: 36px;
+    align-items: center;
+  }
 `;
 
 const GreenBadge = styled(BadgeContainer)`
@@ -351,6 +362,9 @@ const ManagerImgCardText = styled.p`
   @media screen and (max-width: 1439px) {
     margin-bottom: 18px;
   }
+  @media screen and (max-width: 1023px) {
+    margin-bottom: -6px;
+  }
 `;
 
 const ManagerImgCard = styled.div`
@@ -372,11 +386,20 @@ const ManagerImgCard = styled.div`
     @media screen and (max-width: 1439px) {
       margin-left: 43px;
     }
+    @media screen and (max-width: 1023px) {
+      margin-left: 124px;
+    }
   }
   @media screen and (max-width: 1439px) {
     width: 186px;
     height: 232px;
     background-size: auto 128px;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 300px;
+    height: 172px;
+    background-size: auto 92px;
+    border-radius: 16px;
   }
 `;
 
@@ -388,6 +411,7 @@ const ServicesWrapper = styled.div`
 
 const StyledButton = styled(Button)`
   width: fit-content;
+  padding: 10px 20px;
 `;
 
 const ButtonsContainer = styled.div`
@@ -396,6 +420,9 @@ const ButtonsContainer = styled.div`
   padding-bottom: 94px;
   @media screen and (max-width: 1439px) {
     padding-bottom: 69px;
+  }
+  @media screen and (max-width: 1023px) {
+    padding-bottom: 65px;
   }
 `;
 
@@ -414,6 +441,10 @@ const CardHeaderText = styled.h2`
   line-height: 48px;
   color: #242424;
   margin: 0;
+  @media screen and (max-width: 1023px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const InformationContainer = styled.div`
@@ -433,11 +464,20 @@ const CardContainer = styled.div`
   @media screen and (max-width: 1439px) {
     max-width: 460px;
   }
+  @media screen and (max-width: 1023px) {
+    max-width: 688px;
+    padding: 24px;
+    border-radius: 24px;
+  }
 `;
 
 const CardsWrapper = styled.div`
   display: flex;
   column-gap: 32px;
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+    row-gap: 32px;
+  }
 `;
 
 const HeaderText = styled.h1`
@@ -446,6 +486,10 @@ const HeaderText = styled.h1`
   font-size: 48px;
   line-height: 56px;
   color: #242424;
+  @media screen and (max-width: 1023px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const Container = styled.div`

@@ -19,12 +19,7 @@ const Card: FC<Props> = ({
 
   return (
     <CardWrapper>
-      <ImageWrapper>
-        <ImageContainer>
-          <Image src={imgSrc} alt={imgAlt} fill loading="lazy" />
-        </ImageContainer>
-      </ImageWrapper>
-
+      <ImageContainer src={imgSrc} />
       <CardInformationContainer>
         <CardHeader>{header}</CardHeader>
         {descriptionShort && !isDescFull ? (
@@ -73,31 +68,39 @@ const CardHeader = styled.h3`
   line-height: 40px;
   color: #242424;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  @media screen and (max-width: 1023px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 const CardInformationContainer = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 12px;
-`;
-
-const ImageWrapper = styled.div`
-  display: flex;
-  border-radius: 12px;
-  overflow: hidden;
-  width: 416px;
-  height: 180px;
-  @media screen and (max-width: 1439px) {
-    width: 296px;
+  @media screen and (max-width: 1023px) {
+    max-width: 413px;
   }
 `;
 
-const ImageContainer = styled.div`
-  min-width: 416px;
+const ImageContainer = styled.div<{ src: string }>`
+  display: flex;
+  width: 416px;
   height: 180px;
-  position: relative;
+  border-radius: 12px;
+  background: url(${({ src }) => src}) no-repeat 0 -30px;
+  background-size: 416px;
   @media screen and (max-width: 1439px) {
-    right: 60px;
+    width: 296px;
+    background-size: 296px;
+    background-position: 0;
+  }
+  @media screen and (max-width: 1023px) {
+    width: 251px;
+    height: 100%;
+    background-size: ${({ src }) => (src.includes("3") ? "420px" : "296px")};
+    background-position: ${({ src }) =>
+      src.includes("3") ? "-85px -20px" : "-15px -5px"};
   }
 `;
 
@@ -108,6 +111,11 @@ const CardWrapper = styled.div`
   max-width: 416px;
   @media screen and (max-width: 1439px) {
     max-width: 296px;
+  }
+  @media screen and (max-width: 1023px) {
+    flex-direction: row;
+    max-width: 688px;
+    column-gap: 24px;
   }
 `;
 

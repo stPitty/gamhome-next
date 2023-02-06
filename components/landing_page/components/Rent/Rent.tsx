@@ -37,7 +37,7 @@ const Rent = () => {
                 <PurpleCardDescriptionText>
                   Предоставляем комплексное решение по&nbsp;сдаче недвижимого
                   имущества в&nbsp;аренду, включая поиск и&nbsp;отбор
-                  арендаторов, заключение договора и&nbsp;акта приема-передачи
+                  арендаторов, заключение договора и&nbsp;акта приема—передачи
                   имущества.
                 </PurpleCardDescriptionText>
                 <PurpleCardDescriptionText>
@@ -108,6 +108,10 @@ const CardHeaderText = styled.h3`
   font-size: 40px;
   line-height: 48px;
   margin: 0;
+  @media screen and (max-width: 1023px) {
+    font-size: 32px;
+    line-height: 40px;
+  }
 `;
 
 const WhiteCardHeaderText = styled(CardHeaderText)`
@@ -126,6 +130,9 @@ const CardInformationBlock = styled.div`
   @media screen and (max-width: 1439px) {
     max-width: 349px;
   }
+  @media screen and (max-width: 1023px) {
+    max-width: 336px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -138,6 +145,10 @@ const CardContainer = styled.div`
   @media screen and (max-width: 1439px) {
     width: 788px;
   }
+  @media screen and (max-width: 1023px) {
+    width: 688px;
+    padding: 24px;
+  }
 `;
 
 const WhiteCard = styled(CardContainer)`
@@ -149,6 +160,10 @@ const WhiteCard = styled(CardContainer)`
     background-size: auto 202px;
     background-position: calc(100% - 82px);
   }
+  @media screen and (max-width: 1023px) {
+    background-size: auto 198px;
+    background-position: calc(100% - 36px);
+  }
 `;
 
 const PurpleCard = styled(CardContainer)`
@@ -156,6 +171,9 @@ const PurpleCard = styled(CardContainer)`
   background-size: auto 236px;
   @media screen and (max-width: 1439px) {
     background-size: auto 193px;
+  }
+  @media screen and (max-width: 1023px) {
+    background-size: auto 158px;
   }
 `;
 
@@ -171,6 +189,10 @@ const HeaderText = styled.h1`
   font-size: 48px;
   line-height: 56px;
   color: #242424;
+  @media screen and (max-width: 1023px) {
+    font-size: 36px;
+    line-height: 44px;
+  }
 `;
 
 const Container = styled.div`

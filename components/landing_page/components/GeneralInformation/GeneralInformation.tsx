@@ -9,15 +9,15 @@ const GeneralInformation = () => {
       <Container>
         <HeaderWrapper>
           <HeaderMainText>
-            Надежный партнeр <AdaptiveTextDivider lg={true} />
+            Надежный партнeр <AdaptiveTextDivider lg={true} md={true} />
             в&nbsp;организации
             <AdaptiveTextDivider xl={true} /> сделок{" "}
-            <AdaptiveTextDivider lg={true} />
+            <AdaptiveTextDivider lg={true} md={true} />
             с&nbsp;недвижимостью
           </HeaderMainText>
           <HeaderTextSub>
             Выполняем любые операции с&nbsp;недвижимостью:{" "}
-            <AdaptiveTextDivider xl={true} lg={true} />
+            <AdaptiveTextDivider xl={true} lg={true} md={true} />
             купля, продажа, обмен и&nbsp;аренда жилой недвижимости
           </HeaderTextSub>
         </HeaderWrapper>
@@ -36,6 +36,10 @@ const CardsWrapper = styled.div`
   width: 100%;
   justify-content: center;
   column-gap: 32px;
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+    row-gap: 32px;
+  }
 `;
 
 const HeaderTextSub = styled.h2`
@@ -53,6 +57,10 @@ const HeaderMainText = styled.h1`
   font-size: 56px;
   line-height: 64px;
   color: #242424;
+  @media screen and (max-width: 1023px) {
+    font-size: 40px;
+    line-height: 48px;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -68,6 +76,10 @@ const Container = styled.div`
   padding: 0 64px;
   @media screen and (max-width: 1439px) {
     padding: 0 36px;
+  }
+  @media screen and (max-width: 1023px) {
+    row-gap: 56px;
+    padding: 0 40px;
   }
 `;
 

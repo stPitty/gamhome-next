@@ -133,6 +133,9 @@ const ConditionsText = styled.p`
     max-width: 624px;
     text-align: start;
   }
+  @media screen and (max-width: 1023px) {
+    max-width: 328px;
+  }
 `;
 
 const FooterConditionsBlock = styled.div`
@@ -141,6 +144,10 @@ const FooterConditionsBlock = styled.div`
   row-gap: 24px;
   @media screen and (max-width: 1439px) {
     flex-direction: row;
+    column-gap: 82px;
+  }
+  @media screen and (max-width: 1439px) {
+    flex-direction: column;
     column-gap: 82px;
   }
 `;
@@ -153,6 +160,9 @@ const FooterMenuContainer = styled.div`
   @media screen and (max-width: 1439px) {
     column-gap: 442px;
   }
+  @media screen and (max-width: 1023px) {
+    column-gap: 178px;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -163,6 +173,9 @@ const FooterContainer = styled.div`
   @media screen and (max-width: 1439px) {
     padding: 0 36px 40px;
     row-gap: 24px;
+  }
+  @media screen and (max-width: 1439px) {
+    padding: 0 40px 32px;
   }
 `;
 
@@ -247,6 +260,11 @@ const HeaderContainer = styled.div`
     column-gap: 325px;
     margin-left: 12px;
     margin-right: 12px;
+  }
+  @media screen and (max-width: 1023px) {
+    column-gap: 61px;
+    margin-left: 16px;
+    margin-right: 16px;
   }
 `;
 
