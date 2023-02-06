@@ -65,6 +65,9 @@ const Rent = () => {
 
 const StyledButton = styled(Button)`
   width: fit-content;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const AddInfoBtn = styled(StyledButton)`
@@ -79,6 +82,11 @@ const AddInfoBtn = styled(StyledButton)`
 const ButtonContainer = styled.div`
   display: flex;
   column-gap: 12px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-direction: column;
+    row-gap: 12px;
+  }
 `;
 
 const CardDescriptionText = styled.p`
@@ -133,6 +141,9 @@ const CardInformationBlock = styled.div`
   @media screen and (max-width: 1023px) {
     max-width: 336px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 343px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -149,6 +160,10 @@ const CardContainer = styled.div`
     width: 688px;
     padding: 24px;
   }
+  @media screen and (max-width: 767px) {
+    width: 375px;
+    padding: 16px;
+  }
 `;
 
 const WhiteCard = styled(CardContainer)`
@@ -164,6 +179,10 @@ const WhiteCard = styled(CardContainer)`
     background-size: auto 198px;
     background-position: calc(100% - 36px);
   }
+  @media screen and (max-width: 767px) {
+    row-gap: 262px;
+    background-position: center 310px;
+  }
 `;
 
 const PurpleCard = styled(CardContainer)`
@@ -174,6 +193,10 @@ const PurpleCard = styled(CardContainer)`
   }
   @media screen and (max-width: 1023px) {
     background-size: auto 158px;
+  }
+  @media screen and (max-width: 767px) {
+    background-position: center 325px;
+    row-gap: 221px;
   }
 `;
 

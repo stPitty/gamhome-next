@@ -79,11 +79,17 @@ const ConditionsText = styled.p`
   font-size: 13px;
   line-height: 20px;
   color: #242424;
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 const StyledButton = styled(Button)`
   width: 201px;
   height: 56px;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const StyledInput = styled(Input)`
@@ -91,11 +97,17 @@ const StyledInput = styled(Input)`
   @media screen and (max-width: 1023px) {
     width: 284px;
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const InputsWrapper = styled.div`
   display: flex;
   column-gap: 24px;
+  @media screen and (max-width: 767px) {
+    flex-wrap: wrap;
+  }
 `;
 
 const InnerFormWrapper = styled.div`
@@ -125,6 +137,9 @@ const HeaderTextSub = styled.p`
   font-size: 16px;
   line-height: 24px;
   color: rgba(36, 36, 36, 0.8);
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 const HeaderWrapper = styled.div`
@@ -145,6 +160,9 @@ const HeaderText = styled.h1`
     font-size: 36px;
     line-height: 44px;
   }
+  @media screen and (max-width: 767px) {
+    text-align: center;
+  }
 `;
 
 const Container = styled.div`
@@ -153,6 +171,9 @@ const Container = styled.div`
   align-items: center;
   row-gap: 24px;
   max-width: 752px;
+  @media screen and (max-width: 767px) {
+    max-width: 349px;
+  }
 `;
 
 const Wrapper = styled.div`

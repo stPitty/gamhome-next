@@ -36,6 +36,11 @@ const Wrapper = styled.div`
   }
   @media screen and (max-width: 1023px) {
     padding: 32px 0 64px;
+    row-gap: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding: 37px 0 64px;
+    row-gap: 72px;
   }
 `;
 

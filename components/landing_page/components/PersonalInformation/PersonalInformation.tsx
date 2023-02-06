@@ -52,10 +52,18 @@ const PersonalInformation = () => {
           </InformationBlock>
           <RightPhotoBlock />
         </InformationBlockWrapper>
+        <BottomPhotoBlock />
       </Container>
     </Wrapper>
   );
 };
+
+const BottomPhotoBlock = styled(Photo)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
 
 const InformationBlockWrapper = styled.div`
   display: flex;
@@ -68,6 +76,9 @@ const RightPhotoBlock = styled(Photo)`
   display: none;
   @media screen and (max-width: 1023px) {
     display: flex;
+  }
+  @media screen and (max-width: 767px) {
+    display: none !important;
   }
 `;
 
@@ -109,6 +120,10 @@ const CardContainer = styled.div`
   @media screen and (max-width: 1023px) {
     max-width: 328px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: unset;
+    width: 100%;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -116,6 +131,11 @@ const CardsWrapper = styled.div`
   column-gap: 32px;
   @media screen and (max-width: 1023px) {
     width: 688px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+    flex-wrap: wrap;
+    row-gap: 32px;
   }
 `;
 
@@ -131,6 +151,9 @@ const DescriptionText = styled.p`
 const DescriptionTextBottom = styled(DescriptionText)`
   @media screen and (max-width: 1023px) {
     width: 688px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 349px;
   }
 `;
 
@@ -168,6 +191,9 @@ const InformationBlock = styled.div`
     max-width: 448px;
     overflow: visible;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 349px;
+  }
 `;
 
 const Container = styled.div`
@@ -175,6 +201,11 @@ const Container = styled.div`
   column-gap: 146px;
   @media screen and (max-width: 1439px) {
     column-gap: 32px;
+  }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 40px;
   }
 `;
 

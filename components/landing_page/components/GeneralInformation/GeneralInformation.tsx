@@ -2,6 +2,8 @@ import styled from "styled-components";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import Card from "../../UI/Card/Card";
 import { CARD_1, CARD_2, CARD_3 } from "../../UI/Card/constants";
+import Button from "../../../UI/button/Button";
+import { ButtonSize } from "../../../UI/button/enums";
 
 const GeneralInformation = () => {
   return (
@@ -20,6 +22,9 @@ const GeneralInformation = () => {
             <AdaptiveTextDivider xl={true} lg={true} md={true} />
             купля, продажа, обмен и&nbsp;аренда жилой недвижимости
           </HeaderTextSub>
+          <StyledButton buttonSize={ButtonSize.MEDIUM}>
+            Оставить заявку
+          </StyledButton>
         </HeaderWrapper>
         <CardsWrapper>
           <Card cardData={CARD_1} />
@@ -30,6 +35,14 @@ const GeneralInformation = () => {
     </Wrapper>
   );
 };
+
+const StyledButton = styled(Button)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    margin-top: 16px;
+  }
+`;
 
 const CardsWrapper = styled.div`
   display: flex;
@@ -49,6 +62,10 @@ const HeaderTextSub = styled.h2`
   font-size: 20px;
   line-height: 28px;
   color: #242424;
+  @media screen and (max-width: 767px) {
+    font-size: 16px;
+    line-height: 24px;
+  }
 `;
 
 const HeaderMainText = styled.h1`
@@ -61,12 +78,20 @@ const HeaderMainText = styled.h1`
     font-size: 40px;
     line-height: 48px;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 28px;
+    line-height: 36px;
+  }
 `;
 
 const HeaderWrapper = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  @media screen and (max-width: 767px) {
+    row-gap: 16px;
+    max-width: 349px;
+  }
 `;
 
 const Container = styled.div`
@@ -80,6 +105,10 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) {
     row-gap: 56px;
     padding: 0 40px;
+  }
+  @media screen and (max-width: 767px) {
+    row-gap: 40px;
+    padding: 0 13px;
   }
 `;
 

@@ -5,15 +5,20 @@ import Image from "next/image";
 import PaperSVG from "../../../../public/assets/svg/PaperSVG";
 import CoinsSVG from "../../../../public/assets/svg/CoinsSVG";
 import CaseSVG from "../../../../public/assets/svg/CaseSVG";
-import MailSVG from "../../../../public/assets/svg/Mail.SVG";
-import PlanetSVG from "../../../../public/assets/svg/PlanetSVG";
-import CrossSVG from "../../../../public/assets/svg/CrossSVG";
+import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import PrepDocsSVG from "../../../../public/assets/svg/PrepDocsSVG";
+import DealSVG from "../../../../public/assets/svg/DealSVG";
+import CountsSVG from "../../../../public/assets/svg/CountsSVG";
+import Badges from "./Badges";
 
 const SellProperty = () => {
   return (
     <Wrapper>
       <Container>
-        <HeaderText>Продать недвижимость</HeaderText>
+        <HeaderText>
+          Продать <AdaptiveTextDivider sm />
+          недвижимость
+        </HeaderText>
         <CardsWrapper>
           <CardContainer>
             <InformationContainer>
@@ -39,12 +44,17 @@ const SellProperty = () => {
             </ButtonsContainer>
             <ServicesWrapper>
               <ManagerImgCard>
-                <Image
-                  src="/images/landing/manager.webp"
-                  alt="Менеджер"
-                  width={99}
-                  height={151}
-                />
+                <ManagerImagesContainer>
+                  <PrepDocsBadge />
+                  <DealBadge />
+                  <CountsBadge />
+                  <Image
+                    src="/images/landing/manager.png"
+                    alt="Менеджер"
+                    width={99}
+                    height={151}
+                  />
+                </ManagerImagesContainer>
                 <ManagerImgCardText>
                   Выезд менеджера для&nbsp;проведения сделки
                 </ManagerImgCardText>
@@ -70,78 +80,35 @@ const SellProperty = () => {
                 </PurpleBadge>
               </ServicesContainer>
             </ServicesWrapper>
+            <FirstCardBottomBtnContainer>
+              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                Заказать за&nbsp;79&nbsp;890&nbsp;₽
+              </StyledButton>
+              <StyledButton
+                buttonSize={ButtonSize.MEDIUM}
+                buttonType={ButtonType.FLAT}
+              >
+                Подробнее
+              </StyledButton>
+            </FirstCardBottomBtnContainer>
           </CardContainer>
           <CardContainer>
-            <LogosWrapper>
-              <LogosContainer>
-                <AvitoLogoContainer>
-                  <Image
-                    src="/images/landing/brands/avito.webp"
-                    alt="Avito logo"
-                    fill
-                    loading="lazy"
-                  />
-                </AvitoLogoContainer>
-                <UlaLogoContainer>
-                  <Image
-                    src="/images/landing/brands/ula.webp"
-                    alt="Ula logo"
-                    fill
-                    loading="lazy"
-                  />
-                </UlaLogoContainer>
-                <CyanLogoContainer>
-                  <Image
-                    src="/images/landing/brands/cyan.webp"
-                    alt="Ula logo"
-                    fill
-                    loading="lazy"
-                  />
-                </CyanLogoContainer>
-                <YandexLogoContainer>
-                  <Image
-                    src="/images/landing/brands/yandex.webp"
-                    alt="Ula logo"
-                    fill
-                    loading="lazy"
-                  />
-                </YandexLogoContainer>
-              </LogosContainer>
-              <InternetBadgesWrapper>
-                <YellowBadge>
-                  <InternetBadgeIconContainer>
-                    <MailSVG />
-                  </InternetBadgeIconContainer>
-                  <InternetBadgeText>Email рассылки</InternetBadgeText>
-                </YellowBadge>
-                <YellowBadge>
-                  <InternetBadgeIconContainer>
-                    <PlanetSVG />
-                  </InternetBadgeIconContainer>
-                  <InternetBadgeText>Социальные сети</InternetBadgeText>
-                </YellowBadge>
-                <GreyBadge>
-                  <CrossIconContainer>
-                    <CrossSVG />
-                  </CrossIconContainer>
-                  <InternetBadgeText>10 инструментов продажи</InternetBadgeText>
-                </GreyBadge>
-              </InternetBadgesWrapper>
-            </LogosWrapper>
+            <SecondCardBadgesTop />
             <InformationContainer>
               <CardHeaderText>Продажа или обмен под&nbsp;ключ</CardHeaderText>
               <DescriptionText>
                 Полное ведение объекта от&nbsp;оценки и&nbsp;подготовки
                 к&nbsp;продаже до&nbsp;заключения сделки.
               </DescriptionText>
-              <DescriptionText>
+              <LastDescriptionText>
                 Запуск рекламной кампании, организация показов и&nbsp;торгов,
                 ведение переговоров, а&nbsp;также сбор необходимой документации
                 и&nbsp;организация взаиморасчетов. Чат с&nbsp;персональным
                 менеджером и&nbsp;еженедельные отчеты, чтобы быть в&nbsp;курсе
                 всех событий
-              </DescriptionText>
+              </LastDescriptionText>
             </InformationContainer>
+            <SecondCardBadgesBottom />
             <SecondCardButtonsContainer>
               <StyledButton buttonSize={ButtonSize.MEDIUM}>
                 Оставить заявку
@@ -160,118 +127,85 @@ const SellProperty = () => {
   );
 };
 
+const SecondCardBadgesBottom = styled(Badges)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
+
+const SecondCardBadgesTop = styled(Badges)`
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
+`;
+
+const ManagerImagesContainer = styled.div`
+  display: flex;
+  width: 100%;
+`;
+
+const CountsBadge = styled(CountsSVG)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    z-index: 1;
+    min-width: fit-content;
+    position: relative;
+    top: 80px;
+    left: -20px;
+  }
+`;
+
+const DealBadge = styled(DealSVG)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    z-index: 1;
+    min-width: fit-content;
+    position: relative;
+    top: 100px;
+    left: -110px;
+  }
+`;
+
+const PrepDocsBadge = styled(PrepDocsSVG)`
+  display: none;
+  @media screen and (max-width: 767px) {
+    display: block;
+    z-index: 1;
+    min-width: fit-content;
+    position: relative;
+    top: 33px;
+    left: -5px;
+  }
+`;
+
+const FirstCardBottomBtnContainer = styled.div`
+  display: none;
+  width: 100%;
+  flex-direction: column;
+  row-gap: 12px;
+  margin-top: -8px;
+  & button {
+    width: 100%;
+  }
+  @media screen and (max-width: 767px) {
+    display: flex;
+  }
+`;
+
 const SecondCardButtonsContainer = styled.div`
   display: flex;
   column-gap: 12px;
   margin-top: 12px;
-`;
-
-const CrossIconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 16px;
-  height: 16px;
-`;
-
-const InternetBadgeIconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 16px;
-  height: 16px;
-`;
-
-const InternetBadgeText = styled.p`
-  margin: 0;
-  font-family: "Roboto";
-  font-weight: 500;
-  font-size: 13px;
-  line-height: 20px;
-  color: #242424;
-`;
-
-const InternetBadge = styled.div`
-  display: flex;
-  align-items: center;
-
-  border-radius: 100px;
-  padding: 8px 12px;
-`;
-
-const YellowBadge = styled(InternetBadge)`
-  column-gap: 4px;
-  background: #ffd760;
-`;
-
-const GreyBadge = styled(InternetBadge)`
-  background: #f5f7f9;
-  column-gap: 8px;
-`;
-
-const InternetBadgesWrapper = styled.div`
-  display: flex;
-  column-gap: 10px;
-  flex-wrap: wrap;
-  @media screen and (max-width: 1439px) {
+  @media screen and (max-width: 767px) {
+    margin-top: -8px;
+    flex-direction: column;
     row-gap: 12px;
-  }
-`;
-
-const YandexLogoContainer = styled.div`
-  position: relative;
-  width: 162px;
-  height: 25.54px;
-`;
-
-const CyanLogoContainer = styled.div`
-  position: relative;
-  width: 95px;
-  height: 34px;
-`;
-
-const UlaLogoContainer = styled.div`
-  position: relative;
-  width: 89px;
-  height: 31px;
-`;
-
-const AvitoLogoContainer = styled.div`
-  position: relative;
-  width: 95px;
-  height: 27px;
-`;
-
-const LogosContainer = styled.div`
-  display: flex;
-  column-gap: 18px;
-  height: 34px;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  @media screen and (max-width: 1439px) {
-    width: 276px;
-    row-gap: 12px;
-  }
-  @media screen and (max-width: 1023px) {
-    width: 100%;
-  }
-`;
-
-const LogosWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-  padding: 24px;
-  background: #ffffff;
-  border-radius: 24px;
-  width: 100%;
-  @media screen and (max-width: 1439px) {
-    row-gap: 16px;
-    height: 225px;
-    justify-content: space-between;
-  }
-  @media screen and (max-width: 1023px) {
-    height: 134px;
+    & button {
+      width: 100%;
+    }
   }
 `;
 
@@ -349,6 +283,9 @@ const ServicesContainer = styled.div`
   @media screen and (max-width: 1439px) {
     width: 186px;
   }
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
 const ManagerImgCardText = styled.p`
@@ -364,6 +301,9 @@ const ManagerImgCardText = styled.p`
   }
   @media screen and (max-width: 1023px) {
     margin-bottom: -6px;
+  }
+  @media screen and (max-width: 767px) {
+    text-align: center;
   }
 `;
 
@@ -389,6 +329,15 @@ const ManagerImgCard = styled.div`
     @media screen and (max-width: 1023px) {
       margin-left: 124px;
     }
+    @media screen and (max-width: 767px) {
+      margin-left: 0;
+    }
+  }
+  & img {
+    @media screen and (max-width: 767px) {
+      position: relative;
+      left: -225px;
+    }
   }
   @media screen and (max-width: 1439px) {
     width: 186px;
@@ -400,6 +349,10 @@ const ManagerImgCard = styled.div`
     height: 172px;
     background-size: auto 92px;
     border-radius: 16px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 343px;
+    margin-top: 56px;
   }
 `;
 
@@ -424,6 +377,9 @@ const ButtonsContainer = styled.div`
   @media screen and (max-width: 1023px) {
     padding-bottom: 65px;
   }
+  @media screen and (max-width: 767px) {
+    display: none !important;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -433,6 +389,12 @@ const DescriptionText = styled.p`
   line-height: 24px;
   color: #242424;
   margin: 0;
+`;
+
+const LastDescriptionText = styled(DescriptionText)`
+  @media screen and (max-width: 767px) {
+    margin-top: -4px;
+  }
 `;
 
 const CardHeaderText = styled.h2`
@@ -469,6 +431,10 @@ const CardContainer = styled.div`
     padding: 24px;
     border-radius: 24px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 375px;
+    padding: 16px;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -489,6 +455,9 @@ const HeaderText = styled.h1`
   @media screen and (max-width: 1023px) {
     font-size: 36px;
     line-height: 44px;
+  }
+  @media screen and (max-width: 767px) {
+    text-align: center;
   }
 `;
 

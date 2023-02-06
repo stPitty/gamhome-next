@@ -86,6 +86,9 @@ const CardText = styled.p`
   @media screen and (max-width: 1023px) {
     width: 628px;
   }
+  @media screen and (max-width: 767px) {
+    width: 349px;
+  }
 `;
 
 const CardHeaderText = styled.h3`
@@ -122,6 +125,9 @@ const CardContainer = styled.div`
     width: 100%;
     column-gap: 16px;
   }
+  @media screen and (max-width: 1023px) {
+    flex-direction: column;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -151,6 +157,9 @@ const StyledBottomBtn = styled(StyledButton)`
   @media screen and (max-width: 1023px) {
     display: flex;
   }
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const HeaderText = styled.h1`
@@ -177,6 +186,9 @@ const HeaderContainer = styled.div`
   @media screen and (max-width: 1023px) {
     margin-left: -4px;
   }
+  @media screen and (max-width: 767px) {
+    margin-left: 0;
+  }
 `;
 
 const Container = styled.div`
@@ -194,6 +206,11 @@ const Container = styled.div`
     margin: 40px;
     row-gap: 40px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 349px;
+    margin: 24px 13px;
+    row-gap: 32px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -206,6 +223,11 @@ const Wrapper = styled.div`
   @media screen and (max-width: 1023px) {
     background-size: 768px;
     background-position: calc(50% + 30px) 145px;
+  }
+  @media screen and (max-width: 767px) {
+    background-size: 362px;
+    background-position: calc(50% + 5px) 9px;
+    border-radius: 24px;
   }
 `;
 

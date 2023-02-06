@@ -62,6 +62,10 @@ const BadgeText = styled.p`
     font-size: 9.72361px;
     line-height: 15px;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 12.174px;
+    line-height: 19px;
+  }
 `;
 
 const BadgeFlatText = styled(BadgeText)`
@@ -88,6 +92,10 @@ const BadgeLayout = styled.div`
     border-radius: 8.97564px;
     padding: 8.97564px 11.9675px;
   }
+  @media screen and (max-width: 1023px) {
+    border-radius: 11.2375px;
+    padding: 11.2375px 14.9833px;
+  }
 `;
 
 const BadgeFlat = styled(BadgeLayout)`
@@ -104,6 +112,11 @@ const BadgeFlat = styled(BadgeLayout)`
     width: 201.95px;
     height: 47.95px;
     left: 45px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 252.84px;
+    height: 60.47px;
+    left: 0;
   }
 `;
 
@@ -123,6 +136,11 @@ const BadgeFilled = styled(BadgeLayout)`
     height: 50.65px;
     left: 118px;
     top: -9px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 309.97px;
+    height: 60.47px;
+    left: 40px;
   }
 `;
 
@@ -149,6 +167,14 @@ const BadgeOutlined = styled(BadgeLayout)`
     left: 33px;
     top: 30px;
   }
+  @media screen and (max-width: 767px) {
+    width: 241.97px;
+    height: 60.47px;
+    padding-left: 13px;
+    padding-right: 13px;
+    left: 20px;
+    top: 15px;
+  }
 `;
 
 const BadgeFlatLast = styled(BadgeLayout)`
@@ -168,6 +194,12 @@ const BadgeFlatLast = styled(BadgeLayout)`
     left: 115px;
     bottom: -40px;
   }
+  @media screen and (max-width: 767px) {
+    width: 309.03px;
+    height: 60.47px;
+    left: 41px;
+    bottom: -43px;
+  }
 `;
 
 const BadgesWrapper = styled.div`
@@ -183,11 +215,18 @@ const BadgesWrapper = styled.div`
     width: 375px;
     height: 242px;
   }
+  @media screen and (max-width: 767px) {
+    width: 350px;
+    height: 285px;
+  }
 `;
 
 const StyledButton = styled(Button)`
   width: 241px;
   padding: 0;
+  @media screen and (max-width: 767px) {
+    width: 100%;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -228,6 +267,9 @@ const InformationWrapper = styled.div`
   @media screen and (max-width: 1023px) {
     max-width: 313px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 349px;
+  }
 `;
 
 const Container = styled.div`
@@ -242,6 +284,12 @@ const Container = styled.div`
   @media screen and (max-width: 1023px) {
     margin: 40px;
     max-width: 688px;
+  }
+  @media screen and (max-width: 767px) {
+    margin: 40px 13px;
+    max-width: 349px;
+    flex-direction: column;
+    row-gap: 66px;
   }
 `;
 

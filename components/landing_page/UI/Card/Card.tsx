@@ -102,6 +102,12 @@ const ImageContainer = styled.div<{ src: string }>`
     background-position: ${({ src }) =>
       src.includes("3") ? "-85px -20px" : "-15px -5px"};
   }
+  @media screen and (max-width: 767px) {
+    width: 349px;
+    height: 140px;
+    background-size: 349px;
+    background-position: 0 -25px;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -116,6 +122,10 @@ const CardWrapper = styled.div`
     flex-direction: row;
     max-width: 688px;
     column-gap: 24px;
+  }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    max-width: 349px;
   }
 `;
 

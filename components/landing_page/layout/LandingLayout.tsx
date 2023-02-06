@@ -23,7 +23,9 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
             </XlMenu>
           </HeaderLeftBlock>
           <HeaderRightBlock>
-            <PhoneLink href="tel:88009999999">8 800 999-99-99</PhoneLink>
+            <HeaderPhoneLink href="tel:88009999999">
+              8 800 999-99-99
+            </HeaderPhoneLink>
             <HeaderButtonsContainer>
               <HeaderMenuButton
                 buttonSize={ButtonSize.MEDIUM}
@@ -110,6 +112,13 @@ const HeaderMenuButton = styled(Button)`
     height: 44px;
     column-gap: 4px;
   }
+  @media screen and (max-width: 767px) {
+    font-size: 13px;
+    line-height: 20px;
+    padding: 0;
+    width: 89px;
+    height: 36px;
+  }
 `;
 
 const HeaderButtonsContainer = styled.div`
@@ -136,6 +145,9 @@ const ConditionsText = styled.p`
   @media screen and (max-width: 1023px) {
     max-width: 328px;
   }
+  @media screen and (max-width: 767px) {
+    max-width: 349px;
+  }
 `;
 
 const FooterConditionsBlock = styled.div`
@@ -146,7 +158,7 @@ const FooterConditionsBlock = styled.div`
     flex-direction: row;
     column-gap: 82px;
   }
-  @media screen and (max-width: 1439px) {
+  @media screen and (max-width: 1023px) {
     flex-direction: column;
     column-gap: 82px;
   }
@@ -163,6 +175,11 @@ const FooterMenuContainer = styled.div`
   @media screen and (max-width: 1023px) {
     column-gap: 178px;
   }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 16px;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -174,8 +191,11 @@ const FooterContainer = styled.div`
     padding: 0 36px 40px;
     row-gap: 24px;
   }
-  @media screen and (max-width: 1439px) {
+  @media screen and (max-width: 1023px) {
     padding: 0 40px 32px;
+  }
+  @media screen and (max-width: 767px) {
+    padding: 0 13px 32px;
   }
 `;
 
@@ -187,6 +207,9 @@ const ChildrenContainer = styled.div`
 
 const StyledButton = styled(Button)`
   width: 167px;
+  @media screen and (max-width: 767px) {
+    display: none;
+  }
 `;
 
 const PhoneLink = styled.a`
@@ -199,6 +222,12 @@ const PhoneLink = styled.a`
   transition: 0.1s all linear;
   &:hover {
     color: ${BlackColor.BLACK_80};
+  }
+`;
+
+const HeaderPhoneLink = styled(PhoneLink)`
+  @media screen and (max-width: 767px) {
+    display: none;
   }
 `;
 
@@ -241,6 +270,11 @@ const LgMenu = styled(MenuLayout)`
   @media screen and (max-width: 1439px) {
     display: flex;
   }
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 16px;
+  }
 `;
 
 const Logo = styled(LogoSVG)``;
@@ -265,6 +299,13 @@ const HeaderContainer = styled.div`
     column-gap: 61px;
     margin-left: 16px;
     margin-right: 16px;
+  }
+  @media screen and (max-width: 767px) {
+    column-gap: 68px;
+    margin-left: 0;
+    margin-right: 0;
+    padding-right: 13px;
+    padding-left: 13px;
   }
 `;
 
