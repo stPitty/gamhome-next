@@ -123,6 +123,9 @@ const CardInformationBlock = styled.div`
   flex-direction: column;
   row-gap: 16px;
   max-width: 496px;
+  @media screen and (max-width: 1439px) {
+    max-width: 349px;
+  }
 `;
 
 const CardContainer = styled.div`
@@ -132,6 +135,9 @@ const CardContainer = styled.div`
   row-gap: 32px;
   border-radius: 24px;
   padding: 32px;
+  @media screen and (max-width: 1439px) {
+    width: 788px;
+  }
 `;
 
 const WhiteCard = styled(CardContainer)`
@@ -139,11 +145,18 @@ const WhiteCard = styled(CardContainer)`
   background: #ffffff url("/images/landing/business_woman.webp") no-repeat
     calc(100% - 146px);
   background-size: auto 221px;
+  @media screen and (max-width: 1439px) {
+    background-size: auto 202px;
+    background-position: calc(100% - 82px);
+  }
 `;
 
 const PurpleCard = styled(CardContainer)`
   background: #526eff url("/images/man-in-home.webp") no-repeat right;
   background-size: auto 236px;
+  @media screen and (max-width: 1439px) {
+    background-size: auto 193px;
+  }
 `;
 
 const CardsWrapper = styled.div`

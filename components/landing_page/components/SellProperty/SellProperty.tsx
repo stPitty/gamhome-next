@@ -212,6 +212,10 @@ const GreyBadge = styled(InternetBadge)`
 const InternetBadgesWrapper = styled.div`
   display: flex;
   column-gap: 10px;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1439px) {
+    row-gap: 12px;
+  }
 `;
 
 const YandexLogoContainer = styled.div`
@@ -243,6 +247,11 @@ const LogosContainer = styled.div`
   column-gap: 18px;
   height: 34px;
   align-items: flex-end;
+  flex-wrap: wrap;
+  @media screen and (max-width: 1439px) {
+    width: 276px;
+    row-gap: 12px;
+  }
 `;
 
 const LogosWrapper = styled.div`
@@ -253,6 +262,11 @@ const LogosWrapper = styled.div`
   background: #ffffff;
   border-radius: 24px;
   width: 100%;
+  @media screen and (max-width: 1439px) {
+    row-gap: 16px;
+    height: 225px;
+    justify-content: space-between;
+  }
 `;
 
 const BadgeIconContainer = styled.div`
@@ -292,6 +306,13 @@ const BadgeContainer = styled.div`
   border-radius: 100px;
   width: 100%;
   column-gap: 4px;
+  @media screen and (max-width: 1439px) {
+    width: 154px;
+    height: 56px;
+    border-radius: 16px;
+    align-items: flex-start;
+    padding: 8px 10px;
+  }
 `;
 
 const GreenBadge = styled(BadgeContainer)`
@@ -314,6 +335,9 @@ const ServicesContainer = styled.div`
   background: #ffffff;
   border-radius: 24px;
   row-gap: 16px;
+  @media screen and (max-width: 1439px) {
+    width: 186px;
+  }
 `;
 
 const ManagerImgCardText = styled.p`
@@ -324,6 +348,9 @@ const ManagerImgCardText = styled.p`
   line-height: 24px;
   color: #242424;
   min-height: 54px;
+  @media screen and (max-width: 1439px) {
+    margin-bottom: 18px;
+  }
 `;
 
 const ManagerImgCard = styled.div`
@@ -342,6 +369,14 @@ const ManagerImgCard = styled.div`
   row-gap: 16px;
   & :first-child {
     margin-left: 24px;
+    @media screen and (max-width: 1439px) {
+      margin-left: 43px;
+    }
+  }
+  @media screen and (max-width: 1439px) {
+    width: 186px;
+    height: 232px;
+    background-size: auto 128px;
   }
 `;
 
@@ -359,6 +394,9 @@ const ButtonsContainer = styled.div`
   display: flex;
   column-gap: 12px;
   padding-bottom: 94px;
+  @media screen and (max-width: 1439px) {
+    padding-bottom: 69px;
+  }
 `;
 
 const DescriptionText = styled.p`
@@ -392,6 +430,9 @@ const CardContainer = styled.div`
   background: #f5f7f9;
   border-radius: 48px;
   row-gap: 32px;
+  @media screen and (max-width: 1439px) {
+    max-width: 460px;
+  }
 `;
 
 const CardsWrapper = styled.div`

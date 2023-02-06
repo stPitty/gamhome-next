@@ -87,6 +87,9 @@ const CardContainer = styled.div`
   flex-direction: column;
   row-gap: 16px;
   width: 416px;
+  @media screen and (max-width: 1439px) {
+    width: 297px;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -109,6 +112,9 @@ const HeaderText = styled.h1`
   color: #ffffff;
   margin: 0;
   width: 864px;
+  @media screen and (max-width: 1439px) {
+    width: 504px;
+  }
 `;
 
 const HeaderContainer = styled.div`
@@ -123,6 +129,10 @@ const Container = styled.div`
   margin: 56px 64px 52px;
   row-gap: 56px;
   max-width: 1312px;
+  @media screen and (max-width: 1439px) {
+    max-width: 953px;
+    margin: 56px 36px 56px;
+  }
 `;
 
 const Wrapper = styled.div`
@@ -130,8 +140,10 @@ const Wrapper = styled.div`
   width: 100%;
   justify-content: center;
   background: #242424 url("/assets/svg/RussiaSVG.svg") no-repeat
-    calc(50% + 70px);
+    calc(50% + 20px);
   border-radius: 48px;
+  @media screen and (max-width: 1439px) {
+  }
 `;
 
 export default WorkWithUs;

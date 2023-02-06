@@ -31,6 +31,9 @@ const Wrapper = styled.div`
   width: 100%;
   row-gap: 112px;
   padding: 116px 0 80px;
+  @media screen and (max-width: 1439px) {
+    padding-top: 60px;
+  }
 `;
 
 export default LandingPage;

@@ -2,9 +2,10 @@ import styled from "styled-components";
 import LogoSVG from "../../../public/assets/svg/LogoSVG";
 import { BlackColor, Font } from "../../../common/enums";
 import Button from "../../UI/button/Button";
-import { ButtonSize } from "../../UI/button/enums";
+import { ButtonSize, ButtonType } from "../../UI/button/enums";
 import { ChildrenProp } from "../../../common/form_utils/types";
 import { FC } from "react";
+import HamburgerSVG from "../../../public/assets/svg/HamburgerSVG";
 
 const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   return (
@@ -13,19 +14,30 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
         <HeaderContainer>
           <HeaderLeftBlock>
             <Logo />
-            <Menu>
+            <XlMenu>
               <MenuItem>Продать</MenuItem>
               <MenuItem>Сдать в аренду</MenuItem>
               <MenuItem>Найти жилье</MenuItem>
               <MenuItem>О нас</MenuItem>
               <MenuItem>Отзывы</MenuItem>
-            </Menu>
+            </XlMenu>
           </HeaderLeftBlock>
           <HeaderRightBlock>
             <PhoneLink href="tel:88009999999">8 800 999-99-99</PhoneLink>
-            <StyledButton buttonSize={ButtonSize.MEDIUM}>
-              Оставить заявку
-            </StyledButton>
+            <HeaderButtonsContainer>
+              <HeaderMenuButton
+                buttonSize={ButtonSize.MEDIUM}
+                buttonType={ButtonType.OUTLINE}
+              >
+                <BurgerIconContainer>
+                  <HamburgerSVG />
+                </BurgerIconContainer>
+                Меню
+              </HeaderMenuButton>
+              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                Оставить заявку
+              </StyledButton>
+            </HeaderButtonsContainer>
           </HeaderRightBlock>
         </HeaderContainer>
         <ChildrenContainer>{children}</ChildrenContainer>
@@ -33,21 +45,30 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
           <FooterMenuContainer>
             <HeaderLeftBlock>
               <Logo />
-              <Menu>
+              <XlMenu>
                 <MenuItem>Продать</MenuItem>
                 <MenuItem>Сдать в аренду</MenuItem>
                 <MenuItem>Найти жилье</MenuItem>
                 <MenuItem>О нас</MenuItem>
                 <MenuItem>Отзывы</MenuItem>
-              </Menu>
+              </XlMenu>
             </HeaderLeftBlock>
-            <HeaderRightBlock>
+            <FooterRightBlock>
               <PhoneLink href="tel:88009999999">8 800 999-99-99</PhoneLink>
               <StyledButton buttonSize={ButtonSize.MEDIUM}>
                 Оставить заявку
               </StyledButton>
-            </HeaderRightBlock>
+            </FooterRightBlock>
           </FooterMenuContainer>
+          <Divider />
+          <LgMenu>
+            <MenuItem>Продать</MenuItem>
+            <MenuItem>Сдать в аренду</MenuItem>
+            <MenuItem>Найти жилье</MenuItem>
+            <MenuItem>О нас</MenuItem>
+            <MenuItem>Отзывы</MenuItem>
+          </LgMenu>
+          <Divider />
           <FooterConditionsBlock>
             <ConditionsText>
               Использование сервиса означает согласие с&nbsp;
@@ -63,6 +84,39 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   );
 };
 
+const Divider = styled.div`
+  width: 100%;
+  height: 1px;
+  background: #dfe6ec;
+  display: none;
+  @media screen and (max-width: 1439px) {
+    display: block;
+  }
+`;
+
+const BurgerIconContainer = styled.div`
+  width: 24px;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const HeaderMenuButton = styled(Button)`
+  display: none;
+  @media screen and (max-width: 1439px) {
+    display: flex;
+    width: 113px;
+    height: 44px;
+    column-gap: 4px;
+  }
+`;
+
+const HeaderButtonsContainer = styled.div`
+  display: flex;
+  column-gap: 12px;
+`;
+
 const ConditionsLink = styled.a`
   color: #0086ff;
   cursor: pointer;
@@ -75,12 +129,20 @@ const ConditionsText = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   text-align: center;
+  @media screen and (max-width: 1439px) {
+    max-width: 624px;
+    text-align: start;
+  }
 `;
 
 const FooterConditionsBlock = styled.div`
   display: flex;
   flex-direction: column;
   row-gap: 24px;
+  @media screen and (max-width: 1439px) {
+    flex-direction: row;
+    column-gap: 82px;
+  }
 `;
 
 const FooterMenuContainer = styled.div`
@@ -88,6 +150,9 @@ const FooterMenuContainer = styled.div`
   width: 100%;
   align-items: center;
   column-gap: 284px;
+  @media screen and (max-width: 1439px) {
+    column-gap: 442px;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -95,6 +160,10 @@ const FooterContainer = styled.div`
   flex-direction: column;
   padding: 0 64px 72px;
   row-gap: 48px;
+  @media screen and (max-width: 1439px) {
+    padding: 0 36px 40px;
+    row-gap: 24px;
+  }
 `;
 
 const ChildrenContainer = styled.div`
@@ -120,11 +189,19 @@ const PhoneLink = styled.a`
   }
 `;
 
-const HeaderRightBlock = styled.div`
+const RightBlock = styled.div`
   display: flex;
   align-items: center;
   column-gap: 32px;
 `;
+
+const HeaderRightBlock = styled(RightBlock)`
+  @media screen and (max-width: 1439px) {
+    column-gap: 24px;
+  }
+`;
+
+const FooterRightBlock = styled(RightBlock)``;
 
 const MenuItem = styled.p`
   font-size: 16px;
@@ -134,10 +211,23 @@ const MenuItem = styled.p`
   margin: 0;
 `;
 
-const Menu = styled.div`
+const MenuLayout = styled.div`
   display: flex;
   align-items: center;
   column-gap: 16px;
+`;
+
+const XlMenu = styled(MenuLayout)`
+  @media screen and (max-width: 1439px) {
+    display: none;
+  }
+`;
+
+const LgMenu = styled(MenuLayout)`
+  display: none;
+  @media screen and (max-width: 1439px) {
+    display: flex;
+  }
 `;
 
 const Logo = styled(LogoSVG)``;
@@ -153,6 +243,11 @@ const HeaderContainer = styled.div`
   padding: 16px 24px;
   margin: 24px 40px;
   column-gap: 284px;
+  @media screen and (max-width: 1439px) {
+    column-gap: 325px;
+    margin-left: 12px;
+    margin-right: 12px;
+  }
 `;
 
 const Container = styled.div`
@@ -169,6 +264,7 @@ const Wrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
   overflow-x: hidden;
+  background: url("/images/landing/background.png") repeat;
 `;
 
 export default LandingLayout;

@@ -9,13 +9,15 @@ const GeneralInformation = () => {
       <Container>
         <HeaderWrapper>
           <HeaderMainText>
-            Надежный партнeр в&nbsp;организации
-            <AdaptiveTextDivider xl={true} />
-            сделок с&nbsp;недвижимостью
+            Надежный партнeр <AdaptiveTextDivider lg={true} />
+            в&nbsp;организации
+            <AdaptiveTextDivider xl={true} /> сделок{" "}
+            <AdaptiveTextDivider lg={true} />
+            с&nbsp;недвижимостью
           </HeaderMainText>
           <HeaderTextSub>
             Выполняем любые операции с&nbsp;недвижимостью:{" "}
-            <AdaptiveTextDivider xl={true} />
+            <AdaptiveTextDivider xl={true} lg={true} />
             купля, продажа, обмен и&nbsp;аренда жилой недвижимости
           </HeaderTextSub>
         </HeaderWrapper>
@@ -64,6 +66,9 @@ const Container = styled.div`
   display: flex;
   row-gap: 64px;
   padding: 0 64px;
+  @media screen and (max-width: 1439px) {
+    padding: 0 36px;
+  }
 `;
 
 const Wrapper = styled.div`

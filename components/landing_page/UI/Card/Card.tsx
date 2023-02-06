@@ -19,11 +19,12 @@ const Card: FC<Props> = ({
 
   return (
     <CardWrapper>
-      <ImageContainer>
+      <ImageWrapper>
         <ImageContainer>
           <Image src={imgSrc} alt={imgAlt} fill loading="lazy" />
         </ImageContainer>
-      </ImageContainer>
+      </ImageWrapper>
+
       <CardInformationContainer>
         <CardHeader>{header}</CardHeader>
         {descriptionShort && !isDescFull ? (
@@ -80,10 +81,24 @@ const CardInformationContainer = styled.div`
   row-gap: 12px;
 `;
 
-const ImageContainer = styled.div`
+const ImageWrapper = styled.div`
+  display: flex;
+  border-radius: 12px;
+  overflow: hidden;
   width: 416px;
   height: 180px;
+  @media screen and (max-width: 1439px) {
+    width: 296px;
+  }
+`;
+
+const ImageContainer = styled.div`
+  min-width: 416px;
+  height: 180px;
   position: relative;
+  @media screen and (max-width: 1439px) {
+    right: 60px;
+  }
 `;
 
 const CardWrapper = styled.div`
@@ -91,6 +106,9 @@ const CardWrapper = styled.div`
   flex-direction: column;
   row-gap: 24px;
   max-width: 416px;
+  @media screen and (max-width: 1439px) {
+    max-width: 296px;
+  }
 `;
 
 export default memo(Card);

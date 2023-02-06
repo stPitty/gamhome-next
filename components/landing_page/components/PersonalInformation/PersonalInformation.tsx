@@ -5,20 +5,25 @@ import VKSVG from "../../../../public/assets/svg/VKSVG";
 import InstagramSVG from "../../../../public/assets/svg/InstagramSVG";
 import TelegramSVG from "../../../../public/assets/svg/TelegramSVG";
 import WhatsUpSVG from "../../../../public/assets/svg/WhatsUpSVG";
+import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 
 const PersonalInformation = () => {
   return (
     <Wrapper>
       <Container>
         <PhotoBlock>
-          <ImageContainer>
-            <Image
-              src="/images/landing/personal_photo.webp"
-              alt="Евгений Гамолин"
-              fill
-              loading="lazy"
-            />
-          </ImageContainer>
+          <ImageWrapper>
+            <ImageContainer>
+              <Image
+                src="/images/landing/personal_photo.webp"
+                alt="Евгений Гамолин"
+                fill
+                loading="lazy"
+                unoptimized
+              />
+            </ImageContainer>
+          </ImageWrapper>
+
           <SocialMediaLinksWrapper>
             <SocialMediaIconContainer>
               <VKSVG />
@@ -36,7 +41,8 @@ const PersonalInformation = () => {
         </PhotoBlock>
         <InformationBlock>
           <HeaderText>
-            Евгений Гамолин, основатель <BrandMarker>GamHome</BrandMarker>
+            Евгений Гамолин, <AdaptiveTextDivider lg={true} />
+            основатель <BrandMarker>GamHome</BrandMarker>
           </HeaderText>
           <DescriptionContainer>
             <DescriptionText>
@@ -49,7 +55,7 @@ const PersonalInformation = () => {
               в&nbsp;закрытом сообществе профессиональных риэлторов
               &laquo;ГорОбмен&raquo; входящие в&nbsp;Топ-5 лучших компаний
               на&nbsp;рынке недвижимости Московского региона, по&nbsp;данным,
-              ПАО &laquo;Сбербанк&raquo;
+              ПАО&nbsp;&laquo;Сбербанк&raquo;
             </DescriptionText>
           </DescriptionContainer>
           <CardsWrapper>
@@ -103,6 +109,9 @@ const CardContainer = styled.div`
   background: #f5f7f9;
   border-radius: 24px;
   max-width: 359px;
+  @media screen and (max-width: 1439px) {
+    max-width: 337px;
+  }
 `;
 
 const CardsWrapper = styled.div`
@@ -142,6 +151,9 @@ const InformationBlock = styled.div`
   flex-direction: column;
   max-width: 750px;
   row-gap: 32px;
+  @media screen and (max-width: 1439px) {
+    max-width: 706px;
+  }
 `;
 
 const SocialMediaIconContainer = styled.a`
@@ -168,8 +180,17 @@ const SocialMediaLinksWrapper = styled.div`
 const ImageContainer = styled.div`
   width: 192px;
   height: 246px;
-  border-radius: 24px;
   position: relative;
+`;
+
+const ImageWrapper = styled.div`
+  width: 192px;
+  height: 246px;
+  overflow: hidden;
+  border-radius: 24px;
+  @media screen and (max-width: 1439px) {
+    height: 236px;
+  }
 `;
 
 const PhotoBlock = styled.div`
@@ -177,11 +198,17 @@ const PhotoBlock = styled.div`
   flex-direction: column;
   row-gap: 16px;
   align-items: center;
+  @media screen and (max-width: 1439px) {
+    width: 214px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   column-gap: 146px;
+  @media screen and (max-width: 1439px) {
+    column-gap: 32px;
+  }
 `;
 
 const Wrapper = styled.div`

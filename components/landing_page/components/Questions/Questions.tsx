@@ -42,8 +42,6 @@ const Questions = () => {
                 onChangeHandler={formik.handleChange}
                 required={true}
                 name="name"
-                isValidationError={!!formik.errors.name}
-                errorMessage={formik.errors.name}
               />
               <StyledInput
                 value={formik.values.phone}
@@ -51,8 +49,6 @@ const Questions = () => {
                 onChangeHandler={formik.handleChange}
                 required={true}
                 name="phone"
-                isValidationError={!!formik.errors.phone}
-                errorMessage={formik.errors.phone}
               />
             </InputsWrapper>
             <StyledButton buttonSize={ButtonSize.MEDIUM} type="submit">

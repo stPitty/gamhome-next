@@ -54,6 +54,10 @@ const BadgeText = styled.p`
   font-size: 13px;
   line-height: 20px;
   margin: 0;
+  @media screen and (max-width: 1439px) {
+    font-size: 12.2px;
+    line-height: 19px;
+  }
 `;
 
 const BadgeFlatText = styled(BadgeText)`
@@ -72,6 +76,10 @@ const BadgeLayout = styled.div`
   border-radius: 12px;
   padding: 12px 16px;
   position: relative;
+  @media screen and (max-width: 1439px) {
+    border-radius: 11.2px;
+    padding: 11.2px 15px;
+  }
 `;
 
 const BadgeFlat = styled(BadgeLayout)`
@@ -79,6 +87,11 @@ const BadgeFlat = styled(BadgeLayout)`
   width: 270px;
   height: 64px;
   left: 98px;
+  @media screen and (max-width: 1439px) {
+    width: 253px;
+    height: 60px;
+    left: 62px;
+  }
 `;
 
 const BadgeFilled = styled(BadgeLayout)`
@@ -87,6 +100,11 @@ const BadgeFilled = styled(BadgeLayout)`
   height: 64px;
   top: -18px;
   left: 279px;
+  @media screen and (max-width: 1439px) {
+    width: 310px;
+    height: 60px;
+    left: 232px;
+  }
 `;
 
 const BadgeOutlined = styled(BadgeLayout)`
@@ -95,6 +113,15 @@ const BadgeOutlined = styled(BadgeLayout)`
   background: #ffffff;
   border: 2px solid #526eff;
   left: 33px;
+  padding-left: 14px;
+  padding-right: 14px;
+  @media screen and (max-width: 1439px) {
+    width: 248px;
+    height: 60px;
+    padding-left: 13px;
+    padding-right: 13px;
+    left: 32px;
+  }
 `;
 
 const BadgeFlatLast = styled(BadgeLayout)`
@@ -103,6 +130,11 @@ const BadgeFlatLast = styled(BadgeLayout)`
   height: 64px;
   bottom: -25px;
   left: 193px;
+  @media screen and (max-width: 1439px) {
+    width: 309px;
+    height: 60px;
+    left: 181px;
+  }
 `;
 
 const BadgesWrapper = styled.div`
@@ -110,6 +142,10 @@ const BadgesWrapper = styled.div`
   flex-direction: column;
   width: 624px;
   height: 280px;
+  @media screen and (max-width: 1439px) {
+    width: 542px;
+    height: 266px;
+  }
 `;
 
 const StyledButton = styled(Button)`
@@ -145,12 +181,20 @@ const InformationWrapper = styled.div`
   flex-direction: column;
   row-gap: 40px;
   max-width: 640px;
+  @media screen and (max-width: 1439px) {
+    max-width: 443px;
+  }
 `;
 
 const Container = styled.div`
   display: flex;
   column-gap: 46px;
   margin: 64px 66px 64px 64px;
+  align-items: center;
+  @media screen and (max-width: 1439px) {
+    column-gap: 0;
+    margin: 64px 36px;
+  }
 `;
 
 const Wrapper = styled.div`
