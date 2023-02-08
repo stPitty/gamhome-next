@@ -26,7 +26,7 @@ const LandingPage = () => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.main`
   display: flex;
   flex-direction: column;
   width: 100%;

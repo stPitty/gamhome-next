@@ -17,14 +17,6 @@ type Props = {
 };
 
 const PageLayout: React.FC<Props> = ({ children }) => {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    if (localStorage.getItem("acceptCookies")) {
-      dispatch(setAcceptedCookie());
-    }
-  }, []);
-
   const { isOpened } = useAppSelector<TModalState>((state) => state.modalState);
 
   return (

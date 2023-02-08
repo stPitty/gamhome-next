@@ -119,7 +119,7 @@ const Container = styled.div`
   }
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: center;

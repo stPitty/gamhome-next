@@ -21,6 +21,7 @@ import { ContextProvider } from "../common/context/AppContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TModalState, TSideMenu, TWindowSize } from "../redux/slicers/types";
 import { handleChangeScrollBtnTheme } from "../common/helpers/handleChangeScrollBtnTheme";
+import { setAcceptedCookie } from "../redux/slicers/cookiePopUpSlicer";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
@@ -41,9 +42,9 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
 
   useEffect(() => {
     if (isOpened || modalState.isOpened) {
-      document.querySelector("html")!.style.overflowY = "hidden";
+      document.querySelector("html")!.style.overflow = "hidden";
     } else {
-      document.querySelector("html")!.style.overflowY = "unset";
+      document.querySelector("html")!.style.overflow = "unset";
     }
   }, [isOpened, modalState.isOpened]);
 
@@ -52,6 +53,10 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   }, [router]);
 
   useEffect(() => {
+    if (localStorage.getItem("acceptCookies")) {
+      dispatch(setAcceptedCookie());
+    }
+
     if (typeof window !== "undefined") {
       handleResizeWindow();
     }

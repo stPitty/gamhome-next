@@ -52,9 +52,7 @@ const MobileMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
       ref={menuRef}
       onTouchStart={handleTouchStart as any}
       onTouchEnd={handleTouchEnd as any}
-      style={{
-        bottom: isOpened ? "0" : "-100vh",
-      }}
+      isOpened={isOpened}
     >
       <MenuContainer>
         <HeaderContainer>
@@ -170,19 +168,20 @@ const MenuContainer = styled.div`
   align-items: center;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isOpened: boolean }>`
   display: none;
   position: fixed;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  transition: 0.4s linear;
-  height: 100vh;
+  transition: 0.5s linear;
+  height: 100%;
   width: 100vw;
   z-index: 6;
   background-color: ${WhiteColor.WHITE};
   padding: 16px 13px 32px;
+  bottom: ${({ isOpened }) => (isOpened ? "0" : "-100vh")};
   @media screen and (max-width: 767px) {
     display: flex;
   }

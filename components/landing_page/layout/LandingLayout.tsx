@@ -44,12 +44,7 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
     <>
       <Wrapper>
         <Container>
-          <HeaderContainer
-            style={{
-              background: scrolled ? "rgba(255, 255, 255, 0.64)" : "unset",
-              backdropFilter: scrolled ? "blur(5px)" : "unset",
-            }}
-          >
+          <HeaderContainer isScrolled={scrolled}>
             <HeaderLeftBlock>
               <Link href={"#" + Hook.HOME} scroll={false}>
                 <Logo />
@@ -371,7 +366,7 @@ const HeaderLeftBlock = styled.div`
   column-gap: 56px;
 `;
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{ isScrolled: boolean }>`
   display: flex;
   position: fixed;
   top: 0;
@@ -381,6 +376,9 @@ const HeaderContainer = styled.div`
   column-gap: 284px;
   border-radius: 100px;
   transition: 0.25s linear;
+  background: ${({ isScrolled }) => isScrolled && "rgba(255, 255, 255, 0.64)"};
+  backdrop-filter: ${({ isScrolled }) => isScrolled && "blur(5px)"};
+  -webkit-backdrop-filter: ${({ isScrolled }) => isScrolled && "blur(5px)"};
   @media screen and (max-width: 1439px) {
     column-gap: 325px;
     margin-left: 12px;
@@ -413,23 +411,26 @@ const Container = styled.div`
   width: 100%;
   background: url("/assets/svg/Gradient_1.svg") calc(50% + 500px) -600px no-repeat,
     url("/assets/svg/Gradient_2.svg") calc(50% - 350px) calc(100% - 475px)
-      no-repeat;
+      no-repeat,
+    url("/assets/svg/Gradient_3.svg") 50% calc(100% - 4100px) no-repeat;
   @media screen and (max-width: 1439px) {
     background-position: calc(50% + 350px) -275px,
-      calc(50% - 125px) calc(100% - 550px);
-    background-size: 1000px, 1750px;
+      calc(50% - 125px) calc(100% - 550px), calc(50% + 50px) calc(100% - 4220px);
+    background-size: 1000px, 1750px, 1400px;
   }
   @media screen and (max-width: 1023px) {
     background-position: calc(50% + 260px) -225px,
-      calc(50% - 125px) calc(100% - 750px);
-    background-size: 850px, 1100px;
+      calc(50% - 125px) calc(100% - 750px), calc(50% + 25px) calc(100% - 4250px);
+    background-size: 850px, 1100px, 1400px;
   }
   @media screen and (max-width: 767px) {
-    background-position: calc(50% + 75px) -250px, calc(50%) calc(100% - 1550px);
-    background-size: 850px, 800px;
+    background-position: calc(50% + 75px) -250px, calc(50%) calc(100% - 1550px),
+      calc(50% + 25px) calc(100% - 6500px);
+    background-size: 850px, 800px, 1200px;
   }
   @media screen and (max-width: 374px) {
-    background-position: calc(50% + 85px) -255px, calc(50%) calc(100% - 1575px);
+    background-position: calc(50% + 85px) -255px, calc(50%) calc(100% - 1575px),
+      calc(50% + 25px) calc(100% - 6800px);
   }
 `;
 

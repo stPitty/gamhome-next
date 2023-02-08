@@ -235,7 +235,7 @@ const Container = styled.div`
   row-gap: 40px;
 `;
 
-const Wrapper = styled.div`
+const Wrapper = styled.section`
   display: flex;
   width: 100%;
   justify-content: center;
