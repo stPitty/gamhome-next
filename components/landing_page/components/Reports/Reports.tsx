@@ -10,6 +10,7 @@ import { WindowSize } from "../../../../redux/slicers/enums";
 import {
   handleEmblaSelect,
   handleLeftBtnClick,
+  handleResizeSlider,
   handleRightBtnClick,
 } from "./helpers";
 import { OPTIONS } from "./constants";
@@ -51,6 +52,7 @@ const Reports = () => {
   useEffect(() => {
     if (isInit) {
       emblaApi?.reInit(OPTIONS);
+      handleResizeSlider(emblaApi, windowSize);
     }
   }, [windowSize]);
 
