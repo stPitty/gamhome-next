@@ -20,10 +20,6 @@ import { changePathName } from "../redux/slicers/pathNameSlicer";
 import { ContextProvider } from "../common/context/AppContext";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { TModalState, TSideMenu, TWindowSize } from "../redux/slicers/types";
-import { Hook } from "../common/routes";
-import { setScrollBtnTheme } from "../redux/slicers/scrollTopBtnSlicer";
-import { WindowSize } from "../redux/slicers/enums";
-import styled from "styled-components";
 import { handleChangeScrollBtnTheme } from "../common/helpers/handleChangeScrollBtnTheme";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {

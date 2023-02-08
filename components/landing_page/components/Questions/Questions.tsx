@@ -183,5 +183,12 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 112px;
+  @media screen and (max-width: 1023px) {
+    padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 72px;
+  }
 `;
 export default Questions;

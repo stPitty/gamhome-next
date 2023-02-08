@@ -3,7 +3,7 @@ import { Hook } from "../../../common/routes";
 
 type MenuItem = {
   id: number;
-  name: MenuEntryName;
+  name: string;
   link: Hook;
 };
 

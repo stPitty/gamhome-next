@@ -2,10 +2,11 @@ import styled from "styled-components";
 import { BrandColor } from "../../../../common/enums";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import Photo from "./Photo";
+import { Hook } from "../../../../common/routes";
 
 const PersonalInformation = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.ABOUT_US}>
       <Container>
         <LeftPhotoBlock />
         <InformationBlockWrapper>
@@ -219,6 +220,13 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 112px;
+  @media screen and (max-width: 1023px) {
+    padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 72px;
+  }
 `;
 
 export default PersonalInformation;

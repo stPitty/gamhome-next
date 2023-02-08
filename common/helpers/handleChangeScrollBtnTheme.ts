@@ -12,6 +12,9 @@ const handleChangeScrollBtnTheme =
     const deliveryContent = document.getElementById(Hook.DELIVERY_CONTENT);
     const cleaningContent = document.getElementById(Hook.CLEANING_CONTENT);
 
+    const workWithUs = document.getElementById(Hook.WORK_WITH_US);
+    const observeTheNews = document.getElementById(Hook.OBSERVE_THE_NEWS);
+
     const cardWithImageQuantifier = windowSize === WindowSize.MD ? 72 : 90;
 
     const partnersQuantifierTop = windowSize === WindowSize.MD ? 72 : 90;
@@ -22,6 +25,9 @@ const handleChangeScrollBtnTheme =
 
     let darkDelivery;
     let darkCleaning;
+
+    let lightWorkWithUs;
+    let lightObserveTheNews;
 
     try {
       if (scrollBtn && scrollBtn.getClientRects()[0]) {
@@ -39,6 +45,22 @@ const handleChangeScrollBtnTheme =
               partners?.getClientRects()[0].bottom + partnersQuantifierBottom &&
             scrollBtn?.getClientRects()[0].top >=
               partners?.getClientRects()[0].top + partnersQuantifierTop;
+        }
+
+        if (observeTheNews) {
+          lightWorkWithUs =
+            scrollBtn?.getClientRects()[0].bottom <=
+              observeTheNews?.getClientRects()[0].bottom + 24 &&
+            scrollBtn?.getClientRects()[0].top >=
+              observeTheNews?.getClientRects()[0].top - 24;
+        }
+
+        if (workWithUs) {
+          lightObserveTheNews =
+            scrollBtn?.getClientRects()[0].bottom <=
+              workWithUs?.getClientRects()[0].bottom + 24 &&
+            scrollBtn?.getClientRects()[0].top >=
+              workWithUs?.getClientRects()[0].top - 24;
         }
 
         if (windowSize === WindowSize.MD) {
@@ -60,7 +82,12 @@ const handleChangeScrollBtnTheme =
         }
         dispatch(
           setScrollBtnTheme(
-            !(lightCardWithImage || lightPartners) ||
+            !(
+              lightCardWithImage ||
+              lightPartners ||
+              lightWorkWithUs ||
+              lightObserveTheNews
+            ) ||
               darkDelivery ||
               darkCleaning
           )

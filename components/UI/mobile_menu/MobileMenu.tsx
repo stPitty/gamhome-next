@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
-import { TModalState, TSideMenu } from "../../../redux/slicers/types";
+import { TSideMenu } from "../../../redux/slicers/types";
 import styled from "styled-components";
 import {
   BlackColor,
@@ -10,12 +10,15 @@ import {
 import LogoSVG from "../../../public/assets/svg/LogoSVG";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
 import { closeMenu } from "../../../redux/slicers/sideMenuSlicer";
-import { useRef, useState } from "react";
-import { menuItems } from "../../layout/header/constants";
+import { FC, useRef, useState } from "react";
 import Button from "../button/Button";
-import { ButtonSize } from "../button/enums";
+import { MenuItem } from "../../layout/header/types";
 
-const MobileMenu = () => {
+type Props = {
+  menuItems: MenuItem[];
+  isLanding?: boolean;
+};
+const MobileMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
 
   const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
@@ -49,7 +52,9 @@ const MobileMenu = () => {
       ref={menuRef}
       onTouchStart={handleTouchStart as any}
       onTouchEnd={handleTouchEnd as any}
-      isOpen={isOpened}
+      style={{
+        bottom: isOpened ? "0" : "-100vh",
+      }}
     >
       <MenuContainer>
         <HeaderContainer>
@@ -76,7 +81,7 @@ const MobileMenu = () => {
         <PhoneNumberLink href="tel:88009999999">
           8 800 999-99-99
         </PhoneNumberLink>
-        <StyledButton>Перейти в Telegram Bot</StyledButton>
+        {!isLanding && <StyledButton>Перейти в Telegram Bot</StyledButton>}
       </ButtonsContainer>
     </Wrapper>
   );
@@ -146,6 +151,14 @@ const CloseIconContainer = styled.div`
   align-items: center;
   width: 36px;
   height: 36px;
+  border-radius: 12px;
+  transition: 0.1s linear;
+  &:hover {
+    background: ${BrandColor.BRAND_12};
+  }
+  &:active {
+    background: ${BrandColor.BRAND_16};
+  }
 `;
 
 const StyledLogo = styled(LogoSVG)``;
@@ -157,27 +170,19 @@ const MenuContainer = styled.div`
   align-items: center;
 `;
 
-const Wrapper = styled.div<{
-  isOpen: boolean;
-}>`
+const Wrapper = styled.div`
   display: none;
   position: fixed;
   flex-direction: column;
-  bottom: 0;
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
   transition: 0.4s linear;
-  height: ${({ isOpen }) => {
-    if (isOpen) {
-      return "100%";
-    }
-    return "0";
-  }};
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   z-index: 6;
   background-color: ${WhiteColor.WHITE};
-  padding: ${({ isOpen }) => isOpen && "16px 13px 32px"};
+  padding: 16px 13px 32px;
   @media screen and (max-width: 767px) {
     display: flex;
   }

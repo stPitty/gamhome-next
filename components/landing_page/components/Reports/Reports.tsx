@@ -1,8 +1,9 @@
 import styled from "styled-components";
+import { Hook } from "../../../../common/routes";
 
 const Reports = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.REPORTS}>
       <Container>
         <HeaderText>Отзывы</HeaderText>
         <ReportsWrapper>Reports carousel</ReportsWrapper>
@@ -38,6 +39,13 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 112px;
+  @media screen and (max-width: 1023px) {
+    padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 72px;
+  }
 `;
 
 export default Reports;

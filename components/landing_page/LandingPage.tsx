@@ -8,10 +8,11 @@ import Rent from "./components/Rent/Rent";
 import WantToRentOrBuy from "./components/WantToRentOrBuy/WantToRentOrBuy";
 import Questions from "./components/Questions/Questions";
 import ObserveTheNews from "./components/ObserveTheNews/ObserveTheNews";
+import { Hook } from "../../common/routes";
 
 const LandingPage = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.HOME}>
       <GeneralInformation />
       <WorkWithUs />
       <PersonalInformation />
@@ -29,21 +30,18 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  row-gap: 112px;
-  padding: 116px 0 80px;
+  padding: 224px 0 80px;
   @media screen and (max-width: 1439px) {
-    padding-top: 60px;
+    padding-top: 184px;
   }
   @media screen and (max-width: 1023px) {
-    padding: 32px 0 64px;
-    row-gap: 96px;
+    padding: 156px 0 64px;
   }
   @media screen and (max-width: 767px) {
-    padding: 37px 0 64px;
-    row-gap: 72px;
+    padding: 147px 0 64px;
   }
   @media screen and (max-width: 374px) {
-    padding: 16px 0 64px;
+    padding: 126px 0 64px;
   }
 `;
 

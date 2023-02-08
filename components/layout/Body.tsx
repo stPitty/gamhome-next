@@ -1,5 +1,5 @@
 import { handleRedirClick } from "../../common/helpers";
-import { Route } from "../../common/routes";
+import { Hook, Route } from "../../common/routes";
 import MenuItems from "./header/MenuItems";
 import Button from "../UI/button/Button";
 import { ButtonType } from "../UI/button/enums";
@@ -11,6 +11,7 @@ import HamburgerSVG from "../../public/assets/svg/HamburgerSVG";
 import { memo } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { openMenu, setWontBeClosed } from "../../redux/slicers/sideMenuSlicer";
+import Link from "next/link";
 
 type Props = {
   isHeader?: boolean;
@@ -29,7 +30,9 @@ const Body: React.FC<Props> = ({ isHeader = false, className }) => {
 
   return (
     <Container className={className}>
-      <LogoSVG />
+      <Link href={Route.HOME}>
+        <LogoSVG />
+      </Link>
       <MenuWrapper>
         <MenuItems />
         {isHeader && (

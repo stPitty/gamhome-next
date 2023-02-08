@@ -92,7 +92,7 @@ const ImageContainer = styled.div<{ src: string }>`
   background-size: 416px;
   @media screen and (max-width: 1439px) {
     width: 296px;
-    background-size: 296px;
+    background-size: cover;
     background-position: 0;
   }
   @media screen and (max-width: 1023px) {

@@ -10,6 +10,7 @@ import SideMenu from "../UI/side_menu/SideMenu";
 import ScrollTopBtn from "../UI/scroll_top_btn/ScrollTopBtn";
 import { setAcceptedCookie } from "../../redux/slicers/cookiePopUpSlicer";
 import MobileMenu from "../UI/mobile_menu/MobileMenu";
+import { menuItems } from "./header/constants";
 
 type Props = {
   children: ReactNode;
@@ -28,14 +29,14 @@ const PageLayout: React.FC<Props> = ({ children }) => {
 
   return (
     <>
-      <MobileMenu />
+      <MobileMenu menuItems={menuItems} />
       <ScrollTopBtn />
       {isOpened && <Modal />}
       <Header />
       <Container>{children}</Container>
       <Footer />
       <CookiesPopup />
-      <SideMenu />
+      <SideMenu menuItems={menuItems} />
     </>
   );
 };

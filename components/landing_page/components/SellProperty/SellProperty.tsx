@@ -10,10 +10,11 @@ import PrepDocsSVG from "../../../../public/assets/svg/PrepDocsSVG";
 import DealSVG from "../../../../public/assets/svg/DealSVG";
 import CountsSVG from "../../../../public/assets/svg/CountsSVG";
 import Badges from "./Badges";
+import { Hook } from "../../../../common/routes";
 
 const SellProperty = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.SELL_PROPERTY}>
       <Container>
         <HeaderText>
           Продать <AdaptiveTextDivider sm />
@@ -488,5 +489,12 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 112px;
+  @media screen and (max-width: 1023px) {
+    padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 72px;
+  }
 `;
 export default SellProperty;

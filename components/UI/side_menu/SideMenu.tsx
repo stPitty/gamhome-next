@@ -1,22 +1,23 @@
-import { SyntheticEvent, useEffect, useState } from "react";
+import { FC, SyntheticEvent, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { TSideMenu } from "../../../redux/slicers/types";
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import {
   BlackColor,
   BrandColor,
   Font,
   WhiteColor,
 } from "../../../common/enums";
-import {
-  closeMenu,
-  setWillBeClosed,
-} from "../../../redux/slicers/sideMenuSlicer";
+import { closeMenu } from "../../../redux/slicers/sideMenuSlicer";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
 import Button from "../button/Button";
-import { menuItems } from "../../layout/header/constants";
+import { MenuItem } from "../../layout/header/types";
 
-const SideMenu = () => {
+type Props = {
+  menuItems: MenuItem[];
+  isLanding?: boolean;
+};
+const SideMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
   const [menuSlide, setMenuSlide] = useState<boolean>(false);
 
   const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
@@ -27,6 +28,8 @@ const SideMenu = () => {
     let timeout = setTimeout(() => {}, 0);
     if (isOpened) {
       timeout = setTimeout(() => setMenuSlide(true), 250);
+    } else {
+      setMenuSlide(false);
     }
     return () => clearTimeout(timeout);
   }, [isOpened]);
@@ -47,7 +50,7 @@ const SideMenu = () => {
           <CloseButtonContainer onClick={handleCloseMenu}>
             <CloseIcon />
           </CloseButtonContainer>
-          <StyledButton>Перейти в Telegram Bot</StyledButton>
+          {!isLanding && <StyledButton>Перейти в Telegram Bot</StyledButton>}
         </ButtonsContainer>
         <MenuContainer>
           {menuItems.map((el) => {
@@ -117,12 +120,21 @@ const CloseButtonContainer = styled.div`
   height: 36px;
   cursor: pointer;
   padding: 10px;
+  border-radius: 12px;
+  transition: 0.1s linear;
+  &:hover {
+    background: ${BrandColor.BRAND_12};
+  }
+  &:active {
+    background: ${BrandColor.BRAND_16};
+  }
 `;
 
 const ButtonsContainer = styled.div`
   display: flex;
   width: 100%;
   column-gap: 20px;
+  justify-content: flex-end;
 `;
 
 const Container = styled.div<{ isSlide: boolean }>`

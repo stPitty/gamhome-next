@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import Button from "../../../UI/button/Button";
 import { ButtonSize } from "../../../UI/button/enums";
+import { Hook } from "../../../../common/routes";
 
 const ObserveTheNews = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.OBSERVE_THE_NEWS}>
       <Container>
         <InformationWrapper>
           <TextWrapper>
@@ -348,8 +349,13 @@ const Wrapper = styled.div`
   justify-content: center;
   background: #242424;
   border-radius: 48px;
+  margin-top: 112px;
   @media screen and (max-width: 1023px) {
+    margin-top: 96px;
     border-radius: 24px;
+  }
+  @media screen and (max-width: 767px) {
+    margin-top: 72px;
   }
 `;
 

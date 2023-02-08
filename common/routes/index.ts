@@ -18,4 +18,11 @@ export enum Hook {
   DELIVERY_CONTENT = "delivery_content",
   CLEANING_CONTENT = "cleaning_content",
   ROW_WRAPPER = "row_wrapper",
+  WORK_WITH_US = "work_with_us",
+  OBSERVE_THE_NEWS = "observe_the_news",
+  SELL_PROPERTY = "sell_property",
+  RENT = "rent",
+  FIND_PROPERTY = "find_property",
+  ABOUT_US = "about_us",
+  REPORTS = "reports",
 }

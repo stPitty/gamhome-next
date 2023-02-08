@@ -2,10 +2,11 @@ import styled from "styled-components";
 import Button from "../../../UI/button/Button";
 import { ButtonSize, ButtonType } from "../../../UI/button/enums";
 import { WhiteColor } from "../../../../common/enums";
+import { Hook } from "../../../../common/routes";
 
 const Rent = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.RENT}>
       <Container>
         <HeaderText>Сдать в&nbsp;аренду</HeaderText>
         <CardsWrapper>
@@ -238,6 +239,13 @@ const Wrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: center;
+  padding-top: 112px;
+  @media screen and (max-width: 1023px) {
+    padding-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    padding-top: 72px;
+  }
 `;
 
 export default Rent;

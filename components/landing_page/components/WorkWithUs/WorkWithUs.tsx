@@ -5,10 +5,11 @@ import LikeSVG from "../../../../public/assets/svg/LikeSVG";
 import PersonSVG from "../../../../public/assets/svg/PersonSVG";
 import LockSVG from "../../../../public/assets/svg/LockSVG";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import { Hook } from "../../../../common/routes";
 
 const WorkWithUs = () => {
   return (
-    <Wrapper>
+    <Wrapper id={Hook.WORK_WITH_US}>
       <Container>
         <HeaderContainer>
           <HeaderText>
@@ -231,14 +232,17 @@ const Wrapper = styled.div`
   background: #242424 url("/assets/svg/RussiaSVG.svg") no-repeat
     calc(50% + 20px);
   border-radius: 48px;
+  margin-top: 112px;
   @media screen and (max-width: 1023px) {
     background-size: 768px;
     background-position: calc(50% + 30px) 145px;
+    margin-top: 96px;
   }
   @media screen and (max-width: 767px) {
     background-size: 362px;
     background-position: calc(50% + 5px) 9px;
     border-radius: 24px;
+    margin-top: 72px;
   }
   @media screen and (max-width: 374px) {
     background-position: calc(50% + 35px) 9px;
