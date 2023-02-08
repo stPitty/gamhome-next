@@ -69,6 +69,12 @@ const IconContainer = styled.div<{ isLast: boolean }>`
   @media screen and (max-width: 768px) {
     margin-right: 8px;
     position: fixed;
+    ${({ isLast }) =>
+      isLast &&
+      css`
+        position: relative;
+        top: 12px;
+      `};
   }
   &:hover {
     background: ${BrandColor.BRAND_12};
@@ -87,10 +93,11 @@ const StyledCloseIcon = styled(CloseSVG)`
 `;
 
 const Wrapper = styled.div`
+  top: 0;
   display: flex;
   position: fixed;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   align-items: center;
   justify-content: center;
   z-index: 7;

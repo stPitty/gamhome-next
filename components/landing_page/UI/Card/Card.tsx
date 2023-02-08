@@ -4,12 +4,14 @@ import { ButtonSize, ButtonType } from "../../../UI/button/enums";
 import styled from "styled-components";
 import Button from "../../../UI/button/Button";
 import { CardProp } from "./types";
+import Link from "next/link";
+import { OtherColor } from "../../../../common/enums";
 
 type Props = {
   cardData: CardProp;
 };
 const Card: FC<Props> = ({
-  cardData: { imgSrc, imgAlt, descriptionShort, descriptionFull, header },
+  cardData: { link, imgSrc, imgAlt, descriptionShort, descriptionFull, header },
 }) => {
   const [isDescFull, setIsDescFull] = useState<boolean>(false);
 
@@ -19,7 +21,9 @@ const Card: FC<Props> = ({
 
   return (
     <CardWrapper>
-      <ImageContainer src={imgSrc} />
+      <Link href={"#" + link} scroll={false}>
+        <ImageContainer src={imgSrc} />
+      </Link>
       <CardInformationContainer>
         <CardHeader>{header}</CardHeader>
         {descriptionShort && !isDescFull ? (
@@ -30,12 +34,14 @@ const Card: FC<Props> = ({
         ) : (
           <CardDesc>{descriptionFull}</CardDesc>
         )}
-        <StyledAdditionInformationBtn
-          buttonType={ButtonType.FLAT}
-          buttonSize={ButtonSize.MEDIUM}
-        >
-          Подробнее
-        </StyledAdditionInformationBtn>
+        <Link href={"#" + link} scroll={false}>
+          <StyledAdditionInformationBtn
+            buttonType={ButtonType.FLAT}
+            buttonSize={ButtonSize.MEDIUM}
+          >
+            Подробнее
+          </StyledAdditionInformationBtn>
+        </Link>
       </CardInformationContainer>
     </CardWrapper>
   );
@@ -59,6 +65,10 @@ const CardDesc = styled.p`
 const DeployDescBtn = styled.span`
   color: #0086ff;
   cursor: pointer;
+  transition: 0.1s linear;
+  &:hover {
+    color: ${OtherColor.LINK_HOVER};
+  }
 `;
 
 const CardHeader = styled.h3`

@@ -27,6 +27,11 @@ export enum ModalState {
   TAX_CONSULT,
   MAKE_DECLARATION,
   THANKS_FOR_ORDER_2,
+  FREE_CONSULTATION,
+  FOLLOWING_DEAL,
+  SELL_OR_CHANGE,
+  AGENT_DEAL,
+  UNDER_KEY,
 }
 
 export enum WindowSize {

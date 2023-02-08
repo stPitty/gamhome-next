@@ -10,14 +10,19 @@ import ScrollTopBtn from "../../UI/scroll_top_btn/ScrollTopBtn";
 import CookiesPopup from "../../layout/cookies-popup/CookiesPopup";
 import SideMenu from "../../UI/side_menu/SideMenu";
 import MobileMenu from "../../UI/mobile_menu/MobileMenu";
-import { useAppDispatch } from "../../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { openMenu } from "../../../redux/slicers/sideMenuSlicer";
 import { menuItems } from "./constants";
 import Link from "next/link";
 import { Hook } from "../../../common/routes";
+import { TModalState } from "../../../redux/slicers/types";
+import Modal from "../../UI/modal/Modal";
+import { freeConsult } from "../../../redux/slicers/modalStateSlicer";
 
 const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   const [scrolled, setScrolled] = useState<boolean>(false);
+
+  const { isOpened } = useAppSelector<TModalState>((state) => state.modalState);
 
   const dispatch = useAppDispatch();
   const handleWindowScroll = (e: any) => {
@@ -38,6 +43,10 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
 
   const handleMenuBtnClick = () => {
     dispatch(openMenu());
+  };
+
+  const handleApplyBtnClick = () => {
+    dispatch(freeConsult());
   };
 
   return (
@@ -82,7 +91,10 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
                   </BurgerIconContainer>
                   <MenuBtnText>Меню</MenuBtnText>
                 </HeaderMenuButton>
-                <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleApplyBtnClick}
+                >
                   Оставить заявку
                 </StyledButton>
               </HeaderButtonsContainer>
@@ -113,18 +125,31 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
               </HeaderLeftBlock>
               <FooterRightBlock>
                 <PhoneLink href="tel:88009999999">8 800 999-99-99</PhoneLink>
-                <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleApplyBtnClick}
+                >
                   Оставить заявку
                 </StyledButton>
               </FooterRightBlock>
             </FooterMenuContainer>
             <Divider />
             <LgMenu>
-              <MenuItem>Продать</MenuItem>
-              <MenuItem>Сдать в аренду</MenuItem>
-              <MenuItem>Найти жилье</MenuItem>
-              <MenuItem>О нас</MenuItem>
-              <MenuItem>Отзывы</MenuItem>
+              <Link href={"#" + Hook.SELL_PROPERTY} scroll={false}>
+                <MenuItem>Продать</MenuItem>
+              </Link>
+              <Link href={"#" + Hook.RENT} scroll={false}>
+                <MenuItem>Сдать в аренду</MenuItem>
+              </Link>
+              <Link href={"#" + Hook.FIND_PROPERTY} scroll={false}>
+                <MenuItem>Найти жилье</MenuItem>
+              </Link>
+              <Link href={"#" + Hook.ABOUT_US} scroll={false}>
+                <MenuItem>О нас</MenuItem>
+              </Link>
+              <Link href={"#" + Hook.REPORTS} scroll={false}>
+                <MenuItem>Отзывы</MenuItem>
+              </Link>
             </LgMenu>
             <Divider />
             <FooterConditionsBlock>
@@ -147,6 +172,7 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
       <ScrollTopBtn />
       <CookiesPopup />
       <SideMenu isLanding menuItems={menuItems} />
+      {isOpened && <Modal />}
     </>
   );
 };

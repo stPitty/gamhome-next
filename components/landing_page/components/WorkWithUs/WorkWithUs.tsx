@@ -6,8 +6,15 @@ import PersonSVG from "../../../../public/assets/svg/PersonSVG";
 import LockSVG from "../../../../public/assets/svg/LockSVG";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import { Hook } from "../../../../common/routes";
+import { freeConsult } from "../../../../redux/slicers/modalStateSlicer";
+import { useAppDispatch } from "../../../../redux/hooks";
 
 const WorkWithUs = () => {
+  const dispatch = useAppDispatch();
+  const handleApplyBtnClick = () => {
+    dispatch(freeConsult());
+  };
+
   return (
     <Wrapper id={Hook.WORK_WITH_US}>
       <Container>
@@ -16,7 +23,10 @@ const WorkWithUs = () => {
             Почему нужно <AdaptiveTextDivider md />
             работать с&nbsp;нами
           </HeaderText>
-          <StyledTopBtn buttonSize={ButtonSize.MEDIUM}>
+          <StyledTopBtn
+            buttonSize={ButtonSize.MEDIUM}
+            onClick={handleApplyBtnClick}
+          >
             Оставить заявку
           </StyledTopBtn>
         </HeaderContainer>
@@ -62,7 +72,10 @@ const WorkWithUs = () => {
             </CardInformationWrapper>
           </CardContainer>
         </CardsWrapper>
-        <StyledBottomBtn buttonSize={ButtonSize.MEDIUM}>
+        <StyledBottomBtn
+          buttonSize={ButtonSize.MEDIUM}
+          onClick={handleApplyBtnClick}
+        >
           Оставить заявку
         </StyledBottomBtn>
       </Container>

@@ -75,4 +75,9 @@ export type ModalBodyData = {
   [ModalState.MAKE_DEAL_INFO]: ModalBody;
   [ModalState.MAKE_DEAL]: ModalBody;
   [ModalState.TAX_CONSULT]: ModalBody;
+  [ModalState.FREE_CONSULTATION]: ModalBody;
+  [ModalState.FOLLOWING_DEAL]: ModalBody;
+  [ModalState.SELL_OR_CHANGE]: ModalBody;
+  [ModalState.AGENT_DEAL]: ModalBody;
+  [ModalState.UNDER_KEY]: ModalBody;
 };

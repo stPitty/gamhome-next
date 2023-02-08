@@ -3,8 +3,23 @@ import Button from "../../../UI/button/Button";
 import { ButtonSize, ButtonType } from "../../../UI/button/enums";
 import { WhiteColor } from "../../../../common/enums";
 import { Hook } from "../../../../common/routes";
+import { useAppDispatch } from "../../../../redux/hooks";
+import {
+  agentDeal,
+  underKey,
+} from "../../../../redux/slicers/modalStateSlicer";
 
 const Rent = () => {
+  const dispatch = useAppDispatch();
+
+  const handleAgentClick = () => {
+    dispatch(agentDeal());
+  };
+
+  const handleKeyClick = () => {
+    dispatch(underKey());
+  };
+
   return (
     <Wrapper id={Hook.RENT}>
       <Container>
@@ -26,7 +41,10 @@ const Rent = () => {
               </CardDescriptionContainer>
             </CardInformationBlock>
             <ButtonContainer>
-              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+              <StyledButton
+                buttonSize={ButtonSize.MEDIUM}
+                onClick={handleAgentClick}
+              >
                 Заказать за&nbsp;5&nbsp;000&nbsp;₽
               </StyledButton>
             </ButtonContainer>
@@ -52,6 +70,7 @@ const Rent = () => {
               <StyledButton
                 buttonType={ButtonType.PRIMARY_WHITE}
                 buttonSize={ButtonSize.MEDIUM}
+                onClick={handleKeyClick}
               >
                 Оставить заявку
               </StyledButton>

@@ -1,4 +1,5 @@
 import { CardProp } from "./types";
+import { Hook } from "../../../../common/routes";
 
 const CARD_1: CardProp = {
   imgSrc: "/images/landing/card_img_1.webp",
@@ -8,6 +9,7 @@ const CARD_1: CardProp = {
     "Продайте свою недвижимость по\u00A0максимальной цене благодаря нашему опыту в\u00A0переговорах, знаниям рынка недвижимости и\u00A0эффективному маркетингу",
   descriptionShort:
     "Продайте свою недвижимость по\u00A0максимальной цене благодаря нашему опыту...",
+  link: Hook.SELL_PROPERTY,
 };
 
 const CARD_2: CardProp = {
@@ -16,6 +18,7 @@ const CARD_2: CardProp = {
   header: "Сдать в\u00A0аренду",
   descriptionFull:
     "Готовое решение по\u00A0поиску жильцов, защите интересов и\u00A0оформлению документов",
+  link: Hook.RENT,
 };
 
 const CARD_3: CardProp = {
@@ -26,6 +29,7 @@ const CARD_3: CardProp = {
     "Найдите идеальное жильё с\u00A0нашим бесплатным Telegram ботом. Если вам понадобится дополнительная помощь, наши специалисты помогут вам на\u00A0каждом этапе\u00A0— от\u00A0поиска недвижимости до\u00A0заключения сделки",
   descriptionShort:
     "Найдите идеальное жильё с\u00A0нашим бесплатным Telegram ботом. Если вам понадобится...",
+  link: Hook.FIND_PROPERTY,
 };
 
 export { CARD_1, CARD_2, CARD_3 };

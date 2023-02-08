@@ -7,19 +7,6 @@ const handleEmblaSelect =
     const quantifier = windowSize === WindowSize.LG ? 1 : 0;
 
     for (let i = 0; i < slides.length; i++) {
-      if (selectedIndex !== 0) {
-        (slides?.[i]?.firstChild as Element)?.classList.add("moved");
-      } else {
-        (slides?.[i]?.firstChild as Element)?.classList.remove("moved");
-      }
-
-      if (
-        windowSize === WindowSize.LG &&
-        (selectedIndex === 9 || selectedIndex === 1)
-      ) {
-        (slides?.[i]?.firstChild as Element)?.classList.remove("moved");
-      }
-
       if (i === selectedIndex + quantifier) {
         (slides?.[i]?.firstChild as Element)?.classList.add("selected");
         continue;

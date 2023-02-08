@@ -7,6 +7,7 @@ import DoneSVG from "../../../../public/assets/svg/DoneSVG";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import TgBotImage from "./TgBotImage";
 import { Hook } from "../../../../common/routes";
+import Link from "next/link";
 
 const WantToRentOrBuy = () => {
   return (
@@ -32,9 +33,11 @@ const WantToRentOrBuy = () => {
                 всех новых объявлений, появляющихся на&nbsp;рынке недвижимости
               </TgBottomInformationDescription>
             </TgInformationContainer>
-            <StyledButton buttonSize={ButtonSize.MEDIUM}>
-              Перейти в Telegram бот
-            </StyledButton>
+            <Link target="_blank" href="https://t.me/GamhomeBot">
+              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                Перейти в Telegram бот
+              </StyledButton>
+            </Link>
           </InformationWrapper>
           <TgImageTopRight />
         </TgBotInfContainer>
@@ -87,9 +90,11 @@ const WantToRentOrBuy = () => {
                 </StyledLi>
               </StyledUL>
             </GHInformationContainer>
-            <StyledButton buttonSize={ButtonSize.MEDIUM}>
-              Перейти в Telegram бот
-            </StyledButton>
+            <Link target="_blank" href="https://t.me/GamhomeBot">
+              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+                Перейти в Telegram бот
+              </StyledButton>
+            </Link>
           </InformationWrapper>
         </GamHomeServicesWrapper>
       </Container>

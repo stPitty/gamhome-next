@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Button from "../../../UI/button/Button";
 import { ButtonSize } from "../../../UI/button/enums";
 import { Hook } from "../../../../common/routes";
+import { useAppDispatch } from "../../../../redux/hooks";
+import Link from "next/link";
 
 const ObserveTheNews = () => {
   return (
@@ -15,9 +17,11 @@ const ObserveTheNews = () => {
               с&nbsp;рынком недвижимости
             </DescriptionText>
           </TextWrapper>
-          <StyledButton buttonSize={ButtonSize.LARGE}>
-            Перейти в Telegram чат
-          </StyledButton>
+          <Link href="https://t.me/gamhome_ru" target="_blank">
+            <StyledButton buttonSize={ButtonSize.LARGE}>
+              Перейти в Telegram чат
+            </StyledButton>
+          </Link>
         </InformationWrapper>
         <BadgesWrapper>
           <BadgeFlat>

@@ -68,6 +68,7 @@ const modalStateSlicer = createSlice({
     },
     thanksForOrder(state) {
       state.currentState = ModalState.THANKS_FOR_ORDER;
+      if (!state.isOpened) state.isOpened = true;
     },
     thanksForOrder2(state) {
       state.currentState = ModalState.THANKS_FOR_ORDER_2;
@@ -115,6 +116,26 @@ const modalStateSlicer = createSlice({
       state.currentState = ModalState.MAKE_DEAL;
       if (!state.isOpened) state.isOpened = true;
     },
+    freeConsult(state) {
+      state.currentState = ModalState.FREE_CONSULTATION;
+      state.isOpened = true;
+    },
+    followingDeal(state) {
+      state.currentState = ModalState.FOLLOWING_DEAL;
+      if (!state.isOpened) state.isOpened = true;
+    },
+    sellOrChange(state) {
+      state.currentState = ModalState.SELL_OR_CHANGE;
+      if (!state.isOpened) state.isOpened = true;
+    },
+    agentDeal(state) {
+      state.currentState = ModalState.AGENT_DEAL;
+      if (!state.isOpened) state.isOpened = true;
+    },
+    underKey(state) {
+      state.currentState = ModalState.UNDER_KEY;
+      if (!state.isOpened) state.isOpened = true;
+    },
     closeModal(state) {
       state.currentState = null;
       state.isOpened = false;
@@ -152,6 +173,11 @@ export const {
   makeDealInfo,
   makeDeal,
   taxConsult,
+  freeConsult,
+  followingDeal,
+  sellOrChange,
+  agentDeal,
+  underKey,
 } = modalStateSlicer.actions;
 
 export default modalStateSlicer.reducer;

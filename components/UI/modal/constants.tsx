@@ -443,6 +443,38 @@ const modalData: ModalBodyData = {
     desc: "Мы свяжемся с вами в ближайшее время",
     nextStateBtnAction: thanksForOrder2,
   },
+  [ModalState.FREE_CONSULTATION]: {
+    ...serviceModal,
+    header: "Бесплатная консультация",
+    desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.FOLLOWING_DEAL]: {
+    ...serviceModal,
+    header: "Сопровождение сделки",
+    desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    buttonText: "Заказать за\u00A079\u00A0890\u00A0₽",
+    nextStateBtnAction: thanksForBuy,
+  },
+  [ModalState.SELL_OR_CHANGE]: {
+    ...serviceModal,
+    header: "Продажа или обмен под\u00A0ключ",
+    desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    nextStateBtnAction: thanksForOrder2,
+  },
+  [ModalState.AGENT_DEAL]: {
+    ...serviceModal,
+    header: "Агент на\u00A0договор",
+    desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    buttonText: "Заказать за\u00A05\u00A0000\u00A0₽",
+    nextStateBtnAction: thanksForBuy,
+  },
+  [ModalState.UNDER_KEY]: {
+    ...serviceModal,
+    header: "Под ключ",
+    desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    nextStateBtnAction: thanksForOrder2,
+  },
 };
 
 export { modalData, emailValidationRegexp };

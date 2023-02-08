@@ -16,16 +16,28 @@ const Photo: FC<Props> = ({ className }) => {
     <PhotoBlock className={className}>
       <ImageContainer />
       <SocialMediaLinksWrapper>
-        <SocialMediaIconContainer>
+        <SocialMediaIconContainer
+          target="_blank"
+          href="https://vk.com/gamolin_evgeniy"
+        >
           <VKSVG />
         </SocialMediaIconContainer>
-        <SocialMediaIconContainer>
+        <SocialMediaIconContainer
+          target="_blank"
+          href="https://instagram.com/gamolin_evgeniy"
+        >
           <InstagramSVG />
         </SocialMediaIconContainer>
-        <SocialMediaIconContainer>
+        <SocialMediaIconContainer
+          target="_blank"
+          href="https://wa.me/79260211033"
+        >
           <TelegramSVG />
         </SocialMediaIconContainer>
-        <SocialMediaIconContainer>
+        <SocialMediaIconContainer
+          target="_blank"
+          href="https://t.me/gamolin_evgeniy"
+        >
           <WhatsUpSVG />
         </SocialMediaIconContainer>
       </SocialMediaLinksWrapper>

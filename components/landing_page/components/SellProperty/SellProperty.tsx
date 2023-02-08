@@ -11,8 +11,23 @@ import DealSVG from "../../../../public/assets/svg/DealSVG";
 import CountsSVG from "../../../../public/assets/svg/CountsSVG";
 import Badges from "./Badges";
 import { Hook } from "../../../../common/routes";
+import { useAppDispatch } from "../../../../redux/hooks";
+import {
+  followingDeal,
+  sellOrChange,
+} from "../../../../redux/slicers/modalStateSlicer";
 
 const SellProperty = () => {
+  const dispatch = useAppDispatch();
+
+  const handleFollowDealClick = () => {
+    dispatch(followingDeal());
+  };
+
+  const handleSellOrBuyClick = () => {
+    dispatch(sellOrChange());
+  };
+
   return (
     <Wrapper id={Hook.SELL_PROPERTY}>
       <Container>
@@ -33,7 +48,10 @@ const SellProperty = () => {
               </DescriptionText>
             </InformationContainer>
             <ButtonsContainer>
-              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+              <StyledButton
+                buttonSize={ButtonSize.MEDIUM}
+                onClick={handleFollowDealClick}
+              >
                 Заказать за&nbsp;79&nbsp;890&nbsp;₽
               </StyledButton>
               <StyledButton
@@ -82,7 +100,10 @@ const SellProperty = () => {
               </ServicesContainer>
             </ServicesWrapper>
             <FirstCardBottomBtnContainer>
-              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+              <StyledButton
+                buttonSize={ButtonSize.MEDIUM}
+                onClick={handleFollowDealClick}
+              >
                 Заказать за&nbsp;79&nbsp;890&nbsp;₽
               </StyledButton>
               <StyledButton
@@ -111,7 +132,10 @@ const SellProperty = () => {
             </InformationContainer>
             <SecondCardBadgesBottom />
             <SecondCardButtonsContainer>
-              <StyledButton buttonSize={ButtonSize.MEDIUM}>
+              <StyledButton
+                buttonSize={ButtonSize.MEDIUM}
+                onClick={handleSellOrBuyClick}
+              >
                 Оставить заявку
               </StyledButton>
               <StyledButton

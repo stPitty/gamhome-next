@@ -39,7 +39,7 @@ const Reports = () => {
     return clsx({
       selected: windowSize === WindowSize.LG,
     });
-  }, []);
+  }, [windowSize]);
 
   useEffect(() => {
     if (emblaApi) {
@@ -218,19 +218,6 @@ const ImageContainer = styled.div`
     width: 230px;
     height: 498px;
   }
-  &.moved {
-    left: 17.5px;
-  }
-  @media screen and (max-width: 1439px) {
-    &.moved {
-      left: 35px;
-    }
-  }
-  @media screen and (max-width: 1023px) {
-    &.moved {
-      left: 17.5px;
-    }
-  }
   @media screen and (max-width: 767px) {
     width: 167.51px;
     height: 363.36px;
@@ -239,27 +226,26 @@ const ImageContainer = styled.div`
       width: 197.57px;
       height: 427.79px;
     }
-    &.moved {
-      left: 14.5px;
-    }
   }
 `;
 
 const Slide = styled.div`
   min-width: 0;
-  flex: 0 0 fit-content;
+  flex: 0 0 230px;
   height: 100%;
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding: 0 29.75px;
+  margin: 0 16.5px;
   @media screen and (max-width: 1439px) {
-    padding: 0 22.83px;
+    margin: 0 22px 0 0;
   }
   @media screen and (max-width: 1023px) {
-    padding: 0 17px;
+    margin: 0 8px;
   }
   @media screen and (max-width: 767px) {
-    padding: 0 14.6px;
+    margin: 0 7px;
+    flex: 0 0 197.57px;
   }
 `;
 
@@ -271,7 +257,7 @@ const ReportsContainer = styled.div`
     width: 952px;
     height: 498px;
     position: relative;
-    right: 23px;
+    right: 16px;
   }
   @media screen and (max-width: 1023px) {
     width: 688px;

@@ -4,8 +4,15 @@ import Card from "../../UI/Card/Card";
 import { CARD_1, CARD_2, CARD_3 } from "../../UI/Card/constants";
 import Button from "../../../UI/button/Button";
 import { ButtonSize } from "../../../UI/button/enums";
+import { freeConsult } from "../../../../redux/slicers/modalStateSlicer";
+import { useAppDispatch } from "../../../../redux/hooks";
 
 const GeneralInformation = () => {
+  const dispatch = useAppDispatch();
+  const handleApplyBtnClick = () => {
+    dispatch(freeConsult());
+  };
+
   return (
     <Wrapper>
       <Container>
@@ -22,7 +29,10 @@ const GeneralInformation = () => {
             <AdaptiveTextDivider xl={true} lg={true} md={true} />
             купля, продажа, обмен и&nbsp;аренда жилой недвижимости
           </HeaderTextSub>
-          <StyledButton buttonSize={ButtonSize.MEDIUM}>
+          <StyledButton
+            buttonSize={ButtonSize.MEDIUM}
+            onClick={handleApplyBtnClick}
+          >
             Оставить заявку
           </StyledButton>
         </HeaderWrapper>
