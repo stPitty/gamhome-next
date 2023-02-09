@@ -73,6 +73,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    objectFit="contain"
                   />
                 </ImageContainer>
               </Slide>

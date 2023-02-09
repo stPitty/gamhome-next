@@ -6,19 +6,9 @@ export default function Document() {
       <Head>
         <meta charSet="utf-8" />
         <title>GamHome</title>
-        <script
-          async
-          src="https://telegram.org/js/telegram-web-app.js"
-        ></script>
-        <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.2.2/mapbox-gl-draw.css"
-          type="text/css"
-        />
-        <link
-          rel="stylesheet"
-          href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
-          type="text/css"
+        <meta
+          name="Лучший сервис для поиска недвижимости GamHome"
+          content="GamHome - это ведущая служба недвижимости, которая предлагает экспертную поддержку как риэлторам, так и индивидуальным клиентам в поиске идеального дома и в процессе оформления сделки. Найдите дом своей мечты сегодня с GamHome."
         />
       </Head>
       <body>

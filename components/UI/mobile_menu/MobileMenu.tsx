@@ -13,6 +13,7 @@ import { closeMenu } from "../../../redux/slicers/sideMenuSlicer";
 import { FC, useRef, useState } from "react";
 import Button from "../button/Button";
 import { MenuItem } from "../../layout/header/types";
+import Link from "next/link";
 
 type Props = {
   menuItems: MenuItem[];
@@ -79,7 +80,15 @@ const MobileMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
         <PhoneNumberLink href="tel:88009999999">
           8 800 999-99-99
         </PhoneNumberLink>
-        {!isLanding && <StyledButton>Перейти в Telegram Bot</StyledButton>}
+        {!isLanding && (
+          <Link
+            style={{ width: "100%" }}
+            href="https://t.me/GamhomeBot"
+            target="_blank"
+          >
+            <StyledButton>Перейти в Telegram Bot</StyledButton>
+          </Link>
+        )}
       </ButtonsContainer>
     </Wrapper>
   );
@@ -87,6 +96,7 @@ const MobileMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
 
 const StyledButton = styled(Button)`
   height: 36px;
+  transition: none;
 `;
 
 const PhoneNumberLink = styled.a`
@@ -150,13 +160,6 @@ const CloseIconContainer = styled.div`
   width: 36px;
   height: 36px;
   border-radius: 12px;
-  transition: 0.1s linear;
-  &:hover {
-    background: ${BrandColor.BRAND_12};
-  }
-  &:active {
-    background: ${BrandColor.BRAND_16};
-  }
 `;
 
 const StyledLogo = styled(LogoSVG)``;
@@ -175,13 +178,13 @@ const Wrapper = styled.div<{ isOpened: boolean }>`
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
-  transition: 0.5s linear;
   height: 100%;
   width: 100vw;
   z-index: 6;
   background-color: ${WhiteColor.WHITE};
   padding: 16px 13px 32px;
-  bottom: ${({ isOpened }) => (isOpened ? "0" : "-100vh")};
+  bottom: 0;
+  visibility: ${({ isOpened }) => (isOpened ? "visible" : "hidden")};
   @media screen and (max-width: 767px) {
     display: flex;
   }

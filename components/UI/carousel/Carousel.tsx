@@ -14,6 +14,7 @@ import {
   increment,
 } from "../../../redux/slicers/photoPositionSlicer";
 import { WindowSize } from "../../../redux/slicers/enums";
+import Image from "next/image";
 
 type Props = {
   isFullscreen: boolean;
@@ -75,47 +76,45 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
     >
       {flatData?.images.map((item, index) => {
         return (
-          <Image
+          <ImageContainer
             key={item.id}
             isFullscreen={isFullscreen}
             onClick={handleImageClick(index)}
             clickable={!isFullscreen}
-            image={item.url}
-          />
+          >
+            <Image
+              src={item.url}
+              alt="Фотография оъекта недвижимости"
+              fill
+              loading="lazy"
+              objectFit="contain"
+            />
+          </ImageContainer>
         );
       })}
     </Container>
   );
 };
 
-const Image = styled.div<{
-  image: string;
+const ImageContainer = styled.div<{
   clickable: boolean;
   isFullscreen: boolean;
 }>`
-  display: block;
+  position: relative;
   margin: 0;
   min-width: ${({ isFullscreen }) => (isFullscreen ? "1088px" : "792px")};
   height: ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
-  background: url(${({ image }) => image}) center no-repeat;
-  background-size: auto
-    ${({ isFullscreen }) => (isFullscreen ? "747px" : "544px")};
   cursor: ${({ clickable }) => clickable && "pointer"};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     min-width: ${({ isFullscreen }) => (isFullscreen ? "788px" : "576px")};
     height: ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
-    background-size: auto
-      ${({ isFullscreen }) => (isFullscreen ? "539px" : "393px")};
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     min-width: ${({ isFullscreen }) => (isFullscreen ? "768px" : "640px")};
     height: ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
-    background-size: auto
-      ${({ isFullscreen }) => (isFullscreen ? "526px" : "393px")};
   }
   @media screen and (max-width: 767px) {
     height: 332px;
-    background-size: contain;
   }
   @media screen and (max-width: 767px) and (min-width: 375px) {
     min-width: 349px;

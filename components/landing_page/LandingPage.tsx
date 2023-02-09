@@ -9,8 +9,17 @@ import WantToRentOrBuy from "./components/WantToRentOrBuy/WantToRentOrBuy";
 import Questions from "./components/Questions/Questions";
 import ObserveTheNews from "./components/ObserveTheNews/ObserveTheNews";
 import { Hook } from "../../common/routes";
+import { useAppDispatch } from "../../redux/hooks";
+import { useEffect } from "react";
+import { setMobBtnVisibility } from "../../redux/slicers/mobBtnViewSlicer";
 
 const LandingPage = () => {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(setMobBtnVisibility(false));
+  }, []);
+
   return (
     <Wrapper id={Hook.HOME}>
       <GeneralInformation />

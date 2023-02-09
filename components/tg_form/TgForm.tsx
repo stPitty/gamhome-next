@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useMemo, useState } from "react";
+import React, { useContext, useEffect, useMemo } from "react";
 import {
   handleClearSelect,
   handleGetData,
@@ -12,7 +12,7 @@ import {
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import SaveButton from "../tg_form_ui/menu_buttons/SaveButton";
 import { useGetRefs } from "../../common/custom_hooks/useGetRefs";
-import { ParamType, RefType } from "../../common/form_utils/enums";
+import { RefType } from "../../common/form_utils/enums";
 import {
   categoryValues,
   feeValues,
@@ -40,6 +40,8 @@ import Location from "./location/Location";
 import Parameters from "./simple_sections/Parameters";
 import Map from "./location/Map";
 import styled from "styled-components";
+import "@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css";
+import Script from "next/script";
 
 const TgForm = () => {
   const { data, citiesData, isLoading, isError } = useAppSelector<TFormData>(
@@ -196,6 +198,7 @@ const TgForm = () => {
 
   return (
     <>
+      <Script src="https://telegram.org/js/telegram-web-app.js" />
       <GeneralWrapper>
         <HeaderContainer>Настроить параметры поиска</HeaderContainer>
         <Divider />

@@ -386,7 +386,7 @@ const Container = styled.div`
     padding: 112px 13px 70px;
   }
   @media screen and (max-width: 374px) {
-    padding: 112px 16px 477px;
+    padding: 112px 16px 45px;
     row-gap: 40px;
   }
 `;

@@ -12,6 +12,7 @@ import { closeMenu } from "../../../redux/slicers/sideMenuSlicer";
 import CloseSVG from "../../../public/assets/svg/CloseSVG";
 import Button from "../button/Button";
 import { MenuItem } from "../../layout/header/types";
+import Link from "next/link";
 
 type Props = {
   menuItems: MenuItem[];
@@ -50,7 +51,11 @@ const SideMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
           <CloseButtonContainer onClick={handleCloseMenu}>
             <CloseIcon />
           </CloseButtonContainer>
-          {!isLanding && <StyledButton>Перейти в Telegram Bot</StyledButton>}
+          {!isLanding && (
+            <Link href="https://t.me/GamhomeBot" target="_blank">
+              <StyledButton>Перейти в Telegram Bot</StyledButton>
+            </Link>
+          )}
         </ButtonsContainer>
         <MenuContainer>
           {menuItems.map((el) => {
@@ -102,6 +107,7 @@ const MenuContainer = styled.div`
 
 const StyledButton = styled(Button)`
   width: 168px;
+  height: 36px;
 `;
 
 const CloseIcon = styled(CloseSVG)`

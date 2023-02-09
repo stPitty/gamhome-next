@@ -343,13 +343,6 @@ const handlePushClick = (data: TFormData["data"]) => {
     formattedData.polygons = data.polygon;
   }
 
-  // if (data?.maxYear?.length !== 0 || data?.minYear.length !== 0) {
-  //   formattedData.minYear =
-  //     data?.minYear.length !== 0 ? reduceSpaces(data.minYear) : 0;
-  //   formattedData.maxYear =
-  //     data?.maxYear.length !== 0 ? reduceSpaces(data.maxYear) : 2050;
-  // }
-
   if (data?.lastFloor === "Только последний") {
     formattedData.lastFloor = true;
   }
@@ -363,8 +356,6 @@ const handlePushClick = (data: TFormData["data"]) => {
   if (params.length !== 0) {
     formattedData.parameters = params;
   }
-
-  console.log(formattedData);
 
   localStorage.setItem("formData", JSON.stringify(data));
 

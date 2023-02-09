@@ -4,6 +4,7 @@ import { BrandColor, LightBlueColor } from "../../../common/enums";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { setPosition } from "../../../redux/slicers/photoPositionSlicer";
 import { TFlatState, TPhotoPosition } from "../../../redux/slicers/types";
+import Image from "next/image";
 
 type Props = {
   quantity: number;
@@ -30,13 +31,21 @@ const PreviewList: React.FC<Props> = ({ quantity, isFullSized }) => {
       position={position}
     >
       {flatData?.images.map((el, index) => (
-        <Image
+        <ImageContainer
           isFullSized={isFullSized}
           onClick={handelPreviewClick(index)}
           outline={position === index}
           key={el.id}
-          image={el.url}
-        />
+          // image={el.url}
+        >
+          <Image
+            src={el.url}
+            alt="Превью оъекта недвижимости"
+            fill
+            loading="lazy"
+            objectFit="cover"
+          />
+        </ImageContainer>
       ))}
     </ImagesWrapper>
   );
@@ -86,18 +95,17 @@ const ImagesWrapper = styled.div<{
   }
 `;
 
-const Image = styled.div<{
-  image: string;
+const ImageContainer = styled.div<{
   outline: boolean;
   isFullSized: boolean;
 }>`
-  background: url(${({ image }) => image}) no-repeat border-box center;
-  background-size: cover;
+  position: relative;
   min-width: ${({ isFullSized }) => (isFullSized ? "98px" : "160px")};
   height: ${({ isFullSized }) => (isFullSized ? "80px" : "130px")};
   border-radius: 12px;
   cursor: pointer;
   transition: 0s;
+  overflow: hidden;
   border: ${({ outline }) => outline && `2px solid ${BrandColor.BRAND}`};
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     min-width: ${({ isFullSized }) => (isFullSized ? "99px" : "115px")};

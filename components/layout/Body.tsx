@@ -42,13 +42,11 @@ const Body: React.FC<Props> = ({ isHeader = false, className }) => {
           </BurgerMenuContainer>
         )}
         <ButtonsWrapper>
-          <Button
-            width={168}
-            onClick={handleRedirClick(router, Route.HOME)}
-            buttonType={ButtonType.OUTLINE}
-          >
-            Перейти в Telegram Bot
-          </Button>
+          <Link href="https://t.me/GamhomeBot" target="_blank">
+            <Button width={168} buttonType={ButtonType.OUTLINE}>
+              Перейти в Telegram Bot
+            </Button>
+          </Link>
           <TelephoneNumberText href="tel:88009999999">
             8 800 999-99-99
           </TelephoneNumberText>

@@ -14,7 +14,7 @@ import { YMaps } from "@pbe/react-yandex-maps";
 import ErrorBoundary from "../components/rent_page/error_boundary/ErrorBoundary";
 import { setWindowSize } from "../redux/slicers/windowSizeSlicer";
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { changePathName } from "../redux/slicers/pathNameSlicer";
 import { ContextProvider } from "../common/context/AppContext";
@@ -22,8 +22,11 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { TModalState, TSideMenu, TWindowSize } from "../redux/slicers/types";
 import { handleChangeScrollBtnTheme } from "../common/helpers/handleChangeScrollBtnTheme";
 import { setAcceptedCookie } from "../redux/slicers/cookiePopUpSlicer";
+import { WindowSize } from "../redux/slicers/enums";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
+  const [mounted, setMounted] = useState<boolean>(false);
+
   const { isOpened } = useAppSelector<TSideMenu>((state) => state.sideMenu);
 
   const modalState = useAppSelector<TModalState>((state) => state.modalState);
@@ -36,9 +39,11 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
 
   const dispatch = useAppDispatch();
 
-  const handleResizeWindow = () => {
-    dispatch(setWindowSize(window.innerWidth));
-  };
+  const handleResizeWindow = useCallback(() => {
+    if (window) {
+      dispatch(setWindowSize(window.innerWidth));
+    }
+  }, []);
 
   useEffect(() => {
     if (isOpened || modalState.isOpened) {
@@ -49,17 +54,17 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   }, [isOpened, modalState.isOpened]);
 
   useEffect(() => {
-    dispatch(changePathName(router.pathname));
-  }, [router]);
+    if (mounted) {
+      dispatch(changePathName(router.pathname));
+    }
+  }, [router, mounted]);
 
   useEffect(() => {
+    if (!mounted) setMounted(true);
     if (localStorage.getItem("acceptCookies")) {
       dispatch(setAcceptedCookie());
     }
 
-    if (typeof window !== "undefined") {
-      handleResizeWindow();
-    }
     window.addEventListener("resize", handleResizeWindow);
     return () => window.removeEventListener("resize", handleResizeWindow);
   }, []);
@@ -75,6 +80,12 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
         handleChangeScrollBtnTheme(windowSize, dispatch)
       );
   }, [windowSize]);
+
+  useEffect(() => {
+    if (mounted) {
+      handleResizeWindow();
+    }
+  }, [mounted]);
 
   return (
     <ErrorBoundary>
