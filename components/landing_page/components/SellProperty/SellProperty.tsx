@@ -16,9 +16,22 @@ import {
   followingDeal,
   sellOrChange,
 } from "../../../../redux/slicers/modalStateSlicer";
+import LargeModal from "../../UI/LargeModal/LargeModal";
+import { useEffect, useState } from "react";
+import { LargeModalState } from "../../UI/LargeModal/types";
 
 const SellProperty = () => {
+  const [modalState, setModalState] = useState<LargeModalState>(null);
+
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (modalState) {
+      document.querySelector("html")!.style.overflow = "hidden";
+    } else {
+      document.querySelector("html")!.style.overflow = "unset";
+    }
+  }, [modalState]);
 
   const handleFollowDealClick = () => {
     dispatch(followingDeal());
@@ -28,127 +41,137 @@ const SellProperty = () => {
     dispatch(sellOrChange());
   };
 
+  const handleOpenModal = (type: LargeModalState) => () => {
+    setModalState(type);
+  };
+
   return (
-    <Wrapper id={Hook.SELL_PROPERTY}>
-      <Container>
-        <HeaderText>
-          Продать <AdaptiveTextDivider sm />
-          недвижимость
-        </HeaderText>
-        <CardsWrapper>
-          <CardContainer>
-            <InformationContainer>
-              <CardHeaderText>Сопровождение сделки</CardHeaderText>
-              <DescriptionText>
-                Нашли покупателей самостоятельно и&nbsp;хотите обезопасить себя
-                от&nbsp;мошенничества, ошибок и&nbsp;финансовых рисков, доверьте
-                нам сопровождение сделки. Наша команда проверит
-                и&nbsp;подготовит все&nbsp;необходимые документы
-                и&nbsp;обеспечит безопасное проведение сделки
-              </DescriptionText>
-            </InformationContainer>
-            <ButtonsContainer>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                onClick={handleFollowDealClick}
-              >
-                Заказать за&nbsp;79&nbsp;890&nbsp;₽
-              </StyledButton>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                buttonType={ButtonType.FLAT}
-              >
-                Подробнее
-              </StyledButton>
-            </ButtonsContainer>
-            <ServicesWrapper>
-              <ManagerImgCard>
-                <ManagerImagesContainer>
-                  <PrepDocsBadge />
-                  <DealBadge />
-                  <CountsBadge />
-                  <Image
-                    src="/images/landing/manager.png"
-                    alt="Менеджер"
-                    width={99}
-                    height={151}
-                  />
-                </ManagerImagesContainer>
-                <ManagerImgCardText>
-                  Выезд менеджера для&nbsp;проведения сделки
-                </ManagerImgCardText>
-              </ManagerImgCard>
-              <ServicesContainer>
-                <GreenBadge>
-                  <BadgeIconContainer>
-                    <PaperSVG />
-                  </BadgeIconContainer>
-                  <GreenBadgeText>Подготовка документов</GreenBadgeText>
-                </GreenBadge>
-                <BlueBadge>
-                  <BadgeIconContainer>
-                    <CoinsSVG />
-                  </BadgeIconContainer>
-                  <BlueBadgeText>Организация взаиморасчетов</BlueBadgeText>
-                </BlueBadge>
-                <PurpleBadge>
-                  <BadgeIconContainer>
-                    <CaseSVG />
-                  </BadgeIconContainer>
-                  <PurpleBadgeText>Проведение сделки</PurpleBadgeText>
-                </PurpleBadge>
-              </ServicesContainer>
-            </ServicesWrapper>
-            <FirstCardBottomBtnContainer>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                onClick={handleFollowDealClick}
-              >
-                Заказать за&nbsp;79&nbsp;890&nbsp;₽
-              </StyledButton>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                buttonType={ButtonType.FLAT}
-              >
-                Подробнее
-              </StyledButton>
-            </FirstCardBottomBtnContainer>
-          </CardContainer>
-          <CardContainer>
-            <SecondCardBadgesTop />
-            <InformationContainer>
-              <CardHeaderText>Продажа или обмен под&nbsp;ключ</CardHeaderText>
-              <DescriptionText>
-                Полное ведение объекта от&nbsp;оценки и&nbsp;подготовки
-                к&nbsp;продаже до&nbsp;заключения сделки.
-              </DescriptionText>
-              <LastDescriptionText>
-                Запуск рекламной кампании, организация показов и&nbsp;торгов,
-                ведение переговоров, а&nbsp;также сбор необходимой документации
-                и&nbsp;организация взаиморасчетов. Чат с&nbsp;персональным
-                менеджером и&nbsp;еженедельные отчеты, чтобы быть в&nbsp;курсе
-                всех событий
-              </LastDescriptionText>
-            </InformationContainer>
-            <SecondCardBadgesBottom />
-            <SecondCardButtonsContainer>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                onClick={handleSellOrBuyClick}
-              >
-                Оставить заявку
-              </StyledButton>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                buttonType={ButtonType.FLAT}
-              >
-                Подробнее
-              </StyledButton>
-            </SecondCardButtonsContainer>
-          </CardContainer>
-        </CardsWrapper>
-      </Container>
-    </Wrapper>
+    <>
+      <LargeModal setIsOpened={setModalState} type={modalState} />
+      <Wrapper id={Hook.SELL_PROPERTY}>
+        <Container>
+          <HeaderText>
+            Продать <AdaptiveTextDivider sm />
+            недвижимость
+          </HeaderText>
+          <CardsWrapper>
+            <CardContainer>
+              <InformationContainer>
+                <CardHeaderText>Сопровождение сделки</CardHeaderText>
+                <DescriptionText>
+                  Нашли покупателей самостоятельно и&nbsp;хотите обезопасить
+                  себя от&nbsp;мошенничества, ошибок и&nbsp;финансовых рисков,
+                  доверьте нам сопровождение сделки. Наша команда проверит
+                  и&nbsp;подготовит все&nbsp;необходимые документы
+                  и&nbsp;обеспечит безопасное проведение сделки
+                </DescriptionText>
+              </InformationContainer>
+              <ButtonsContainer>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleFollowDealClick}
+                >
+                  Заказать за&nbsp;79&nbsp;890&nbsp;₽
+                </StyledButton>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  buttonType={ButtonType.FLAT}
+                  onClick={handleOpenModal("followDeal")}
+                >
+                  Подробнее
+                </StyledButton>
+              </ButtonsContainer>
+              <ServicesWrapper>
+                <ManagerImgCard>
+                  <ManagerImagesContainer>
+                    <PrepDocsBadge />
+                    <DealBadge />
+                    <CountsBadge />
+                    <Image
+                      src="/images/landing/manager.png"
+                      alt="Менеджер"
+                      width={99}
+                      height={151}
+                    />
+                  </ManagerImagesContainer>
+                  <ManagerImgCardText>
+                    Выезд менеджера для&nbsp;проведения сделки
+                  </ManagerImgCardText>
+                </ManagerImgCard>
+                <ServicesContainer>
+                  <GreenBadge>
+                    <BadgeIconContainer>
+                      <PaperSVG />
+                    </BadgeIconContainer>
+                    <GreenBadgeText>Подготовка документов</GreenBadgeText>
+                  </GreenBadge>
+                  <BlueBadge>
+                    <BadgeIconContainer>
+                      <CoinsSVG />
+                    </BadgeIconContainer>
+                    <BlueBadgeText>Организация взаиморасчетов</BlueBadgeText>
+                  </BlueBadge>
+                  <PurpleBadge>
+                    <BadgeIconContainer>
+                      <CaseSVG />
+                    </BadgeIconContainer>
+                    <PurpleBadgeText>Проведение сделки</PurpleBadgeText>
+                  </PurpleBadge>
+                </ServicesContainer>
+              </ServicesWrapper>
+              <FirstCardBottomBtnContainer>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleFollowDealClick}
+                >
+                  Заказать за&nbsp;79&nbsp;890&nbsp;₽
+                </StyledButton>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  buttonType={ButtonType.FLAT}
+                  onClick={handleOpenModal("followDeal")}
+                >
+                  Подробнее
+                </StyledButton>
+              </FirstCardBottomBtnContainer>
+            </CardContainer>
+            <CardContainer>
+              <SecondCardBadgesTop />
+              <InformationContainer>
+                <CardHeaderText>Продажа или обмен под&nbsp;ключ</CardHeaderText>
+                <DescriptionText>
+                  Полное ведение объекта от&nbsp;оценки и&nbsp;подготовки
+                  к&nbsp;продаже до&nbsp;заключения сделки.
+                </DescriptionText>
+                <LastDescriptionText>
+                  Запуск рекламной кампании, организация показов и&nbsp;торгов,
+                  ведение переговоров, а&nbsp;также сбор необходимой
+                  документации и&nbsp;организация взаиморасчетов. Чат
+                  с&nbsp;персональным менеджером и&nbsp;еженедельные отчеты,
+                  чтобы быть в&nbsp;курсе всех событий
+                </LastDescriptionText>
+              </InformationContainer>
+              <SecondCardBadgesBottom />
+              <SecondCardButtonsContainer>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleSellOrBuyClick}
+                >
+                  Оставить заявку
+                </StyledButton>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  buttonType={ButtonType.FLAT}
+                  onClick={handleOpenModal("sellOrBuy")}
+                >
+                  Подробнее
+                </StyledButton>
+              </SecondCardButtonsContainer>
+            </CardContainer>
+          </CardsWrapper>
+        </Container>
+      </Wrapper>
+    </>
   );
 };
 

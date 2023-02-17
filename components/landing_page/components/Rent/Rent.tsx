@@ -8,9 +8,22 @@ import {
   agentDeal,
   underKey,
 } from "../../../../redux/slicers/modalStateSlicer";
+import { useEffect, useState } from "react";
+import { LargeModalState } from "../../UI/LargeModal/types";
+import LargeModal from "../../UI/LargeModal/LargeModal";
 
 const Rent = () => {
+  const [modalState, setModalState] = useState<LargeModalState>(null);
+
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (modalState) {
+      document.querySelector("html")!.style.overflow = "hidden";
+    } else {
+      document.querySelector("html")!.style.overflow = "unset";
+    }
+  }, [modalState]);
 
   const handleAgentClick = () => {
     dispatch(agentDeal());
@@ -20,66 +33,78 @@ const Rent = () => {
     dispatch(underKey());
   };
 
+  const handleOpenModal = (type: LargeModalState) => () => {
+    setModalState(type);
+  };
+
   return (
-    <Wrapper id={Hook.RENT}>
-      <Container>
-        <HeaderText>Сдать в&nbsp;аренду</HeaderText>
-        <CardsWrapper>
-          <WhiteCard>
-            <CardInformationBlock>
-              <WhiteCardHeaderText>Агент на&nbsp;договор</WhiteCardHeaderText>
-              <CardDescriptionContainer>
-                <WhiteCardDescriptionText>
-                  Подойдет тем, кто нашел арендатора самостоятельно
-                </WhiteCardDescriptionText>
-                <WhiteCardDescriptionText>
-                  Наш агент приедет для заключения договора аренды, который
-                  защищает интересы собственника. Агент предоставит поддержку
-                  в&nbsp;переговорах во&nbsp;время подписания договора
-                  и&nbsp;составит опись имущества
-                </WhiteCardDescriptionText>
-              </CardDescriptionContainer>
-            </CardInformationBlock>
-            <ButtonContainer>
-              <StyledButton
-                buttonSize={ButtonSize.MEDIUM}
-                onClick={handleAgentClick}
-              >
-                Заказать за&nbsp;5&nbsp;000&nbsp;₽
-              </StyledButton>
-            </ButtonContainer>
-          </WhiteCard>
-          <PurpleCard>
-            <CardInformationBlock>
-              <PurpleCardHeaderText>Под ключ</PurpleCardHeaderText>
-              <CardDescriptionContainer>
-                <PurpleCardDescriptionText>
-                  Предоставляем комплексное решение по&nbsp;сдаче недвижимого
-                  имущества в&nbsp;аренду, включая поиск и&nbsp;отбор
-                  арендаторов, заключение договора и&nbsp;акта приема—передачи
-                  имущества.
-                </PurpleCardDescriptionText>
-                <PurpleCardDescriptionText>
-                  Гарантируем высокое качество и&nbsp;профессионализм наших
-                  услуг, а&nbsp;также максимально высокую доходность
-                  и&nbsp;конфиденциальность для вас
-                </PurpleCardDescriptionText>
-              </CardDescriptionContainer>
-            </CardInformationBlock>
-            <ButtonContainer>
-              <StyledButton
-                buttonType={ButtonType.PRIMARY_WHITE}
-                buttonSize={ButtonSize.MEDIUM}
-                onClick={handleKeyClick}
-              >
-                Оставить заявку
-              </StyledButton>
-              <AddInfoBtn buttonSize={ButtonSize.MEDIUM}>Подробнее</AddInfoBtn>
-            </ButtonContainer>
-          </PurpleCard>
-        </CardsWrapper>
-      </Container>
-    </Wrapper>
+    <>
+      <LargeModal setIsOpened={setModalState} type={modalState} />
+      <Wrapper id={Hook.RENT}>
+        <Container>
+          <HeaderText>Сдать в&nbsp;аренду</HeaderText>
+          <CardsWrapper>
+            <WhiteCard>
+              <CardInformationBlock>
+                <WhiteCardHeaderText>Агент на&nbsp;договор</WhiteCardHeaderText>
+                <CardDescriptionContainer>
+                  <WhiteCardDescriptionText>
+                    Подойдет тем, кто нашел арендатора самостоятельно
+                  </WhiteCardDescriptionText>
+                  <WhiteCardDescriptionText>
+                    Наш агент приедет для заключения договора аренды, который
+                    защищает интересы собственника. Агент предоставит поддержку
+                    в&nbsp;переговорах во&nbsp;время подписания договора
+                    и&nbsp;составит опись имущества
+                  </WhiteCardDescriptionText>
+                </CardDescriptionContainer>
+              </CardInformationBlock>
+              <ButtonContainer>
+                <StyledButton
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleAgentClick}
+                >
+                  Заказать за&nbsp;5&nbsp;000&nbsp;₽
+                </StyledButton>
+              </ButtonContainer>
+            </WhiteCard>
+            <PurpleCard>
+              <CardInformationBlock>
+                <PurpleCardHeaderText>Под ключ</PurpleCardHeaderText>
+                <CardDescriptionContainer>
+                  <PurpleCardDescriptionText>
+                    Предоставляем комплексное решение по&nbsp;сдаче недвижимого
+                    имущества в&nbsp;аренду, включая поиск и&nbsp;отбор
+                    арендаторов, заключение договора и&nbsp;акта приема—передачи
+                    имущества.
+                  </PurpleCardDescriptionText>
+                  <PurpleCardDescriptionText>
+                    Гарантируем высокое качество и&nbsp;профессионализм наших
+                    услуг, а&nbsp;также максимально высокую доходность
+                    и&nbsp;конфиденциальность для вас
+                  </PurpleCardDescriptionText>
+                </CardDescriptionContainer>
+              </CardInformationBlock>
+              <ButtonContainer>
+                <StyledButton
+                  buttonType={ButtonType.PRIMARY_WHITE}
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleKeyClick}
+                >
+                  Оставить заявку
+                </StyledButton>
+                <AddInfoBtn
+                  buttonSize={ButtonSize.MEDIUM}
+                  onClick={handleOpenModal("key")}
+                >
+                  Подробнее
+                </AddInfoBtn>
+              </ButtonContainer>
+            </PurpleCard>
+          </CardsWrapper>
+        </Container>
+      </Wrapper>
+    </>
   );
 };
 
