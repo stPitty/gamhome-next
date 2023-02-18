@@ -7,7 +7,6 @@ const LandingPage = dynamic(
   () => import("../components/landing_page/LandingPage"),
   {
     loading: () => <Spinner />,
-    ssr: false,
   }
 );
 
