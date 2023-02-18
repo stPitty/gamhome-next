@@ -6,15 +6,13 @@ const handleGetRegionId = (
   cityObj: FlatData["city"],
   regionsList: IRegions["regions"]
 ) => {
-  let regionId;
   for (let i = 0; i < regionsList.length; i++) {
     const regionName = regionsList[i].regionName;
     if (regionName === cityObj.name || regionName === cityObj.region.name) {
-      regionId = regionsList[i].regionId;
-      break;
+      return regionsList[i].regionId;
     }
   }
-  return regionId ?? "3";
+  return "3";
 };
 
 const handleGetIsTwoLevels = (windowSize: WindowSize | null) => () => {

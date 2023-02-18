@@ -28,6 +28,8 @@ const Mortgage = () => {
 
   const [isChanging, setIsChanging] = useState<boolean>(false);
 
+  const [isReq, setIsReq] = useState<boolean>(true);
+
   const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
@@ -38,6 +40,7 @@ const Mortgage = () => {
 
   useEffect(() => {
     if (!isChanging) {
+      setIsReq(true);
       setIsChanging(true);
     }
     const timeout = setTimeout(() => {
@@ -62,21 +65,20 @@ const Mortgage = () => {
             },
           },
         });
-        console.log(banksData.data);
+        setIsReq(false);
         if (banksData.isError) {
           console.error((data as any)?.error);
-          return;
         }
       })();
     }
-  }, [isChanging]);
+  }, [isChanging, regionId]);
 
   useEffect(() => {
-    if (flatData && data) {
+    if (flatData && data && !regionId) {
       const region = handleGetRegionId(flatData.city, data?.regions);
       setRegionId(region);
     }
-  }, [flatData]);
+  }, [flatData, data]);
 
   const minContribution = useMemo(() => {
     if (flatData?.nonFormattedPrice) {
@@ -149,7 +151,7 @@ const Mortgage = () => {
             Связаться с менеджером
           </TopBtn>
         </SliderContainer>
-        {isLoading || isChanging || banksData.isLoading ? (
+        {isLoading || isChanging || banksData.isLoading || isReq ? (
           <StyledSpinner />
         ) : banksData.isError ? (
           <BanksErrorBlock message={ErrorMessages.REQ_ERROR} />
