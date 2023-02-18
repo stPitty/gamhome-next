@@ -13,7 +13,6 @@ const InfoWrapperRow = styled.div`
   justify-items: center;
   justify-content: center;
   padding: 0 64px;
-  height: 100%;
   column-gap: 32px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     padding-left: 36px;

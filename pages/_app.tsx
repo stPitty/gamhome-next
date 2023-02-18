@@ -22,7 +22,6 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { TModalState, TSideMenu, TWindowSize } from "../redux/slicers/types";
 import { handleChangeScrollBtnTheme } from "../common/helpers/handleChangeScrollBtnTheme";
 import { setAcceptedCookie } from "../redux/slicers/cookiePopUpSlicer";
-import { WindowSize } from "../redux/slicers/enums";
 
 const App = ({ Component, pageProps }: AppWithPageLayout) => {
   const [mounted, setMounted] = useState<boolean>(false);

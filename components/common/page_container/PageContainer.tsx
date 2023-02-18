@@ -14,7 +14,9 @@ const Container = styled.div`
   align-items: center;
   align-content: center;
   width: 100%;
-  overflow-x: hidden;
+  @media screen and (max-width: 1023px) {
+    overflow-x: hidden;
+  }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     padding-top: 100px;
   }

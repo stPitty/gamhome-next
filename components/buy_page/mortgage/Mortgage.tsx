@@ -49,7 +49,7 @@ const Mortgage = () => {
   }, [propertyCost, downPayment, term]);
 
   useEffect(() => {
-    if (!isChanging) {
+    if (!isChanging && regionId) {
       (async () => {
         const data = await getBanks({
           query: {

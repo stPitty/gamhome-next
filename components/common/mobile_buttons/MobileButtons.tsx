@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   TCookiePopUp,
   TFlatState,
@@ -20,6 +20,8 @@ const MobileButtons = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [showNumber, setShowNumber] = useState<boolean>(false);
 
+  const [mount, setMount] = useState<boolean>(false);
+
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
   const { windowSize } = useAppSelector<TWindowSize>(
@@ -32,47 +34,53 @@ const MobileButtons = () => {
     (state) => state.cookiePopUp
   );
 
+  useEffect(() => {
+    setMount(true);
+  }, []);
+
   return (
     <Wrapper isShown={isShown}>
       <TopShadow />
-      <Container isCookieAccepted={isCookieAccepted}>
-        <ButtonsContainer>
-          {showNumber ? (
-            <StyledLink href={`tel:${flatData?.phone}`}>
+      {mount && (
+        <Container isCookieAccepted={isCookieAccepted}>
+          <ButtonsContainer>
+            {showNumber ? (
+              <StyledLink href={`tel:${flatData?.phone}`}>
+                <StyledButton
+                  phone={true}
+                  buttonType={ButtonType.OUTLINE}
+                  buttonSize={ButtonSize.LARGE}
+                >
+                  {flatData?.phone}
+                </StyledButton>
+              </StyledLink>
+            ) : (
               <StyledButton
-                phone={true}
-                buttonType={ButtonType.OUTLINE}
                 buttonSize={ButtonSize.LARGE}
+                loading={loading}
+                onClick={handleShowNumberClick(
+                  showNumber,
+                  setLoading,
+                  setShowNumber
+                )}
               >
-                {flatData?.phone}
+                Показать телефон
+              </StyledButton>
+            )}
+            <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
+              <StyledButton
+                buttonSize={ButtonSize.LARGE}
+                buttonType={ButtonType.PRIMARY_PURPLE}
+              >
+                <KeyIcon />
+                {windowSize === WindowSize.MD
+                  ? "Подберите мне квартиру"
+                  : "Подбор квартиры"}
               </StyledButton>
             </StyledLink>
-          ) : (
-            <StyledButton
-              buttonSize={ButtonSize.LARGE}
-              loading={loading}
-              onClick={handleShowNumberClick(
-                showNumber,
-                setLoading,
-                setShowNumber
-              )}
-            >
-              Показать телефон
-            </StyledButton>
-          )}
-          <StyledLink href={"#" + Hook.SERVICES} scroll={false}>
-            <StyledButton
-              buttonSize={ButtonSize.LARGE}
-              buttonType={ButtonType.PRIMARY_PURPLE}
-            >
-              <KeyIcon />
-              {windowSize === WindowSize.MD
-                ? "Подберите мне квартиру"
-                : "Подбор квартиры"}
-            </StyledButton>
-          </StyledLink>
-        </ButtonsContainer>
-      </Container>
+          </ButtonsContainer>
+        </Container>
+      )}
     </Wrapper>
   );
 };
@@ -148,14 +156,14 @@ const ButtonsContainer = styled.div`
 `;
 
 const Container = styled.div<{ isCookieAccepted: boolean }>`
-  width: 100%;
-  height: ${({ isCookieAccepted }) => (isCookieAccepted ? "130px" : "202px")};
-  transition: 0.2s linear all;
-  margin-top: -1px;
-  background-color: ${WhiteColor.WHITE};
   display: flex;
   justify-content: center;
-  @media screen and (max-width: 767px) and (min-width: 375px) {
+  width: 100%;
+  height: ${({ isCookieAccepted }) => (isCookieAccepted ? "130px" : "202px")};
+  transition: 0.2s linear;
+  margin-top: -1px;
+  background-color: ${WhiteColor.WHITE};
+  @media screen and (max-width: 767px) {
     height: ${({ isCookieAccepted }) => (isCookieAccepted ? "81px" : "153px")};
   }
   @media screen and (max-width: 374px) {
