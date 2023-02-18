@@ -27,9 +27,9 @@ const BankItems: FC<Props> = ({ data, handleOpenModal }) => {
   return (
     <>
       {isTwoLevels
-        ? formattedData?.map((el) => {
+        ? formattedData?.map((el, index) => {
             return (
-              <VerticalBankContainer>
+              <VerticalBankContainer key={index}>
                 {(el as unknown as IBanksData["minimalBankMortgageOffers"]).map(
                   (el) => {
                     return (
