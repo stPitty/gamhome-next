@@ -1,4 +1,4 @@
 export enum Url {
-  CLIENT_PATH = "http://localhost:3000",
+  CLIENT_PATH = "https://gamhome-next.vercel.app",
   SERVER_PATH = "http://194.87.98.241",
 }
