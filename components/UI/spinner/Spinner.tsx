@@ -1,10 +1,14 @@
 import { SpinnerIos } from "@styled-icons/fluentui-system-filled/SpinnerIos";
 import styled, { keyframes } from "styled-components";
 import { BrandColor } from "../../../common/enums";
+import { FC, memo } from "react";
 
-const Spinner = () => {
+type Props = {
+  className?: string;
+};
+const Spinner: FC<Props> = ({ className }) => {
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       <SpinnerIcon />
     </Wrapper>
   );
@@ -37,4 +41,4 @@ const SpinnerIcon = styled(SpinnerIos)`
   animation: ${spinAnimation} linear infinite 0.5s;
 `;
 
-export default Spinner;
+export default memo(Spinner);

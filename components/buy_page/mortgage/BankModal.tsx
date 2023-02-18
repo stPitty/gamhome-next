@@ -20,47 +20,29 @@ import { ButtonSize } from "../../UI/button/enums";
 import { handleMoneyDataFormatter } from "../../../common/helpers";
 import { useAppDispatch } from "../../../redux/hooks";
 import { contactManager } from "../../../redux/slicers/modalStateSlicer";
+import { IBank } from "./types";
 
 type Props = {
   isOpen: boolean;
-  setIsOpen: Dispatch<SetStateAction<boolean>>;
-  bankName: string | null;
+  setIsOpen: Dispatch<SetStateAction<IBank | null>>;
+  bankData: IBank | null;
   cost: string;
   time: string;
   firsPay: string;
-  percents: string;
 };
 
 const BankModal: FC<Props> = ({
   isOpen,
   setIsOpen,
-  bankName,
+  bankData,
   cost,
   firsPay,
   time,
-  percents,
 }) => {
-  const [pay, setPay] = useState<string>("");
-
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    const parsedTime = Number.parseInt(time, 10);
-    const parsedPercents = Number.parseFloat(percents.replace(",", "."));
-    const parsedCost = Number.parseInt(cost.replaceAll(" ", ""), 10);
-    const parsedFirstPay = Number.parseInt(firsPay.replaceAll(" ", ""), 10);
-    const overPay = Math.floor(
-      (parsedTime * parsedPercents * parsedCost) / 100
-    );
-    const minPay = Math.floor(
-      (overPay + parsedCost - parsedFirstPay) / (parsedTime * 12)
-    );
-    const minPayStr = handleMoneyDataFormatter(minPay);
-    setPay(minPayStr);
-  }, [isOpen]);
-
   const handleCloseModal = () => {
-    setIsOpen(false);
+    setIsOpen(null);
   };
 
   const handleModalClick = (e: SyntheticEvent) => {
@@ -68,7 +50,7 @@ const BankModal: FC<Props> = ({
   };
 
   const handleButtonClick = () => {
-    setIsOpen(false);
+    setIsOpen(null);
     dispatch(contactManager());
   };
 
@@ -83,8 +65,8 @@ const BankModal: FC<Props> = ({
         <Body>
           <InfoContainer>
             <HeaderText>
-              Рассчитайте ипотеку в&nbsp;{bankName} и&nbsp;еще в&nbsp;нескольких
-              банках
+              Рассчитайте ипотеку в&nbsp;{bankData?.bank?.name} и&nbsp;еще
+              в&nbsp;нескольких банках
             </HeaderText>
             <EvaluationContainer>
               <EvTextContainer>
@@ -100,7 +82,7 @@ const BankModal: FC<Props> = ({
                 <EvTextContent>Срок ипотеки</EvTextContent>
               </EvTextContainer>
               <EvTextContainer>
-                <EvTextHeader>{percents}</EvTextHeader>
+                <EvTextHeader>{bankData?.minimalPercent} %</EvTextHeader>
                 <EvTextContent>Ставка от</EvTextContent>
               </EvTextContainer>
               <EvTextContainer>
@@ -108,7 +90,9 @@ const BankModal: FC<Props> = ({
                 <EvTextContent>На одобрение</EvTextContent>
               </EvTextContainer>
               <EvTextContainer>
-                <EvTextHeader>{pay} ₽/мес.</EvTextHeader>
+                <EvTextHeader>
+                  {handleMoneyDataFormatter(bankData?.minimalPayment)} ₽/мес.
+                </EvTextHeader>
                 <EvTextContent>Платеж от</EvTextContent>
               </EvTextContainer>
             </EvaluationContainer>
@@ -121,6 +105,7 @@ const BankModal: FC<Props> = ({
           </DescriptionText>
           <BtnContainer>
             <StyledButton
+              isOpened={isOpen}
               buttonSize={ButtonSize.MEDIUM}
               onClick={handleButtonClick}
             >
@@ -130,6 +115,7 @@ const BankModal: FC<Props> = ({
           <AdaptiveBtnContainer>
             <BtnWrapper>
               <StyledButton
+                isOpened={isOpen}
                 buttonSize={ButtonSize.MEDIUM}
                 onClick={handleButtonClick}
               >
@@ -173,9 +159,10 @@ const AdaptiveBtnContainer = styled.div`
   }
 `;
 
-const StyledButton = styled(Button)`
+const StyledButton = styled(Button)<{ isOpened: boolean }>`
   width: 236px;
   margin-top: -8px;
+  transition: ${({ isOpened }) => !isOpened && "none"};
   @media screen and (max-width: 767px) {
     width: 100%;
   }

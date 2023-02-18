@@ -15,10 +15,12 @@ import pathNameReducer from "./slicers/pathNameSlicer";
 import formDataReducer from "./slicers/formDataSlicer";
 import disableSelectsReducer from "./slicers/disableSelectsSlicer";
 import { parametersApi } from "./APIs/parametersApi";
+import { banksApi } from "./APIs/banksApi";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 const combinedReducer = combineReducers({
   [parametersApi.reducerPath]: parametersApi.reducer,
+  [banksApi.reducerPath]: banksApi.reducer,
   formData: formDataReducer,
   disableSelects: disableSelectsReducer,
   position: photoPositionReducer,
@@ -55,7 +57,9 @@ export const makeStore = () =>
     middleware: (getDefaultMiddleware: CurriedGetDefaultMiddleware<any>) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(parametersApi.middleware),
+      })
+        .concat(parametersApi.middleware)
+        .concat(banksApi.middleware),
   } as any);
 
 export const wrapper = createWrapper(makeStore, { debug: true });

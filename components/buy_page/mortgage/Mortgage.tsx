@@ -6,18 +6,77 @@ import { ButtonSize } from "../../UI/button/enums";
 import BankCarousel from "./BankCarousel";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import { contactManager } from "../../../redux/slicers/modalStateSlicer";
+import {
+  useGetBanksMutation,
+  useGetRegionsQuery,
+} from "../../../redux/APIs/banksApi";
+import { handleGetRegionId } from "./helpers";
+import Spinner from "../../UI/spinner/Spinner";
+import { handleFormatValue } from "../../../common/helpers";
+import BanksErrorBlock from "./BanksErrorBlock";
+import { ErrorMessages } from "./enums";
 
 const Mortgage = () => {
-  const [cost, setCost] = useState<string>("");
-  const [firstPay, setFirstPay] = useState<string>("");
-  const [time, setTime] = useState<string>("");
+  const [propertyCost, setPropertyCost] = useState<string>("");
+  const [downPayment, setDownPayment] = useState<string>("");
+  const [term, setTerm] = useState<string>("");
+
+  const [regionId, setRegionId] = useState<string | null>(null);
+
+  const [isChanging, setIsChanging] = useState<boolean>(false);
+
+  const dispatch = useAppDispatch();
 
   const { flatData } = useAppSelector<TFlatState>((state) => state.flatData);
 
-  const dispatch = useAppDispatch();
+  const { data, isLoading, isError, isSuccess } = useGetRegionsQuery("");
+
+  const [getBanks, banksData] = useGetBanksMutation();
+
+  useEffect(() => {
+    if (!isChanging) {
+      setIsChanging(true);
+    }
+    const timeout = setTimeout(() => {
+      setIsChanging(false);
+    }, 3000);
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [propertyCost, downPayment, term]);
+
+  useEffect(() => {
+    if (!isChanging) {
+      (async () => {
+        const data = await getBanks({
+          query: {
+            purpose: 2,
+            regionId,
+            term: handleFormatValue(term),
+            mainCreditSums: {
+              downPayment: handleFormatValue(downPayment),
+              propertyCost: handleFormatValue(propertyCost),
+            },
+          },
+        });
+        console.log(banksData.data);
+        if (banksData.isError) {
+          console.error((data as any)?.error);
+          return;
+        }
+      })();
+    }
+  }, [isChanging]);
+
+  useEffect(() => {
+    if (flatData && data) {
+      const region = handleGetRegionId(flatData.city, data?.regions);
+      setRegionId(region);
+    }
+  }, [flatData]);
 
   const minContribution = useMemo(() => {
     if (flatData?.nonFormattedPrice) {
@@ -59,8 +118,8 @@ const Mortgage = () => {
         <SliderContainer>
           <SliderWrapper>
             <Slider
-              inputValue={cost}
-              setInputValue={setCost}
+              inputValue={propertyCost}
+              setInputValue={setPropertyCost}
               title="Стоимость жилья"
               min={500_000}
               max={100_000_000}
@@ -68,8 +127,8 @@ const Mortgage = () => {
               type="money"
             />
             <Slider
-              inputValue={firstPay}
-              setInputValue={setFirstPay}
+              inputValue={downPayment}
+              setInputValue={setDownPayment}
               title="Первоначальный взнос"
               min={minContribution}
               max={maxContribution}
@@ -77,8 +136,8 @@ const Mortgage = () => {
               type="money"
             />
             <Slider
-              inputValue={time}
-              setInputValue={setTime}
+              inputValue={term}
+              setInputValue={setTerm}
               title="Срок ипотеки"
               min={1}
               max={30}
@@ -90,7 +149,18 @@ const Mortgage = () => {
             Связаться с менеджером
           </TopBtn>
         </SliderContainer>
-        <BankCarousel cost={cost} firstPay={firstPay} time={time} />
+        {isLoading || isChanging || banksData.isLoading ? (
+          <StyledSpinner />
+        ) : banksData.isError ? (
+          <BanksErrorBlock message={ErrorMessages.REQ_ERROR} />
+        ) : (
+          <BankCarousel
+            cost={propertyCost}
+            firstPay={downPayment}
+            time={term}
+            data={banksData?.data}
+          />
+        )}
         <BottomBtn onClick={handleContactClick}>
           Связаться с менеджером
         </BottomBtn>
@@ -98,6 +168,17 @@ const Mortgage = () => {
     </Wrapper>
   );
 };
+
+const StyledSpinner = styled(Spinner)`
+  min-height: unset;
+  height: 340px;
+  @media screen and (max-width: 1439px) {
+    height: 320px;
+  }
+  @media screen and (max-width: 767px) {
+    height: 152px;
+  }
+`;
 
 const SliderWrapper = styled.div`
   display: flex;

@@ -30,7 +30,7 @@ const handleSwapImageClick =
     }
   };
 
-const handleMoneyDataFormatter = (num: string | number): string => {
+const handleMoneyDataFormatter = (num: string | number | undefined): string => {
   if (num) {
     return String(num)
       .split("")
@@ -195,8 +195,8 @@ const getSquarePrice = (genPrice: number | string, params: Parameter[]) => {
 
 const handleFormatValue = (
   value: string,
-  minNum: number | undefined,
-  maxNum: number | undefined
+  minNum?: number | undefined,
+  maxNum?: number | undefined
 ): number | string | null => {
   const newValue = value
     .split("")

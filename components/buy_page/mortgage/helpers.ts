@@ -1,50 +1,67 @@
-import { Dispatch, SetStateAction } from "react";
+import { FlatData } from "../../../redux/slicers/types";
+import { IBanksData, IRegions } from "./types";
 import { WindowSize } from "../../../redux/slicers/enums";
 
-const carouselHandler = (windowSize: WindowSize | null) => {
-  if (windowSize === WindowSize.XL) {
-    return {
-      quantifier: 246,
-      width: 1348,
-    };
+const handleGetRegionId = (
+  cityObj: FlatData["city"],
+  regionsList: IRegions["regions"]
+) => {
+  let regionId;
+  for (let i = 0; i < regionsList.length; i++) {
+    const regionName = regionsList[i].regionName;
+    if (regionName === cityObj.name || regionName === cityObj.region.name) {
+      regionId = regionsList[i].regionId;
+      break;
+    }
   }
-  if (windowSize === WindowSize.LG) {
-    return {
-      quantifier: 218,
-      width: 1409,
-    };
-  }
-  if (windowSize === WindowSize.MD) {
-    return {
-      quantifier: 203,
-      width: 1424,
-    };
-  }
-  if (windowSize === WindowSize.SM || windowSize === WindowSize.XS) {
-    return {
-      quantifier: 208,
-      width: 4160,
-    };
-  }
+  return regionId ?? "3";
 };
 
-const handleControlClick =
-  (
-    type: "left" | "right",
-    translate: number,
-    setTranslate: Dispatch<SetStateAction<number>>,
-    windowSize: WindowSize | null
-  ) =>
-  () => {
-    const values = carouselHandler(windowSize);
-    if (values) {
-      if (type === "left" && translate > 0) {
-        setTranslate((prev) => prev - values.quantifier);
-      }
-      if (type === "right" && translate < values.width) {
-        setTranslate((prev) => prev + values.quantifier);
-      }
+const handleGetIsTwoLevels = (windowSize: WindowSize | null) => () => {
+  return (
+    windowSize === WindowSize.XL ||
+    windowSize === WindowSize.LG ||
+    windowSize === WindowSize.MD
+  );
+};
+
+const handleGetFormattedData =
+  (isTwoLevels: boolean, data: IBanksData) => () => {
+    if (isTwoLevels && data?.minimalBankMortgageOffers) {
+      const arr = structuredClone(data?.minimalBankMortgageOffers);
+      const newArr: IBanksData["minimalBankMortgageOffers"][] = [];
+
+      let counter = 0;
+
+      do {
+        if (!newArr[counter]) {
+          newArr[counter] = [];
+        }
+        if (newArr[counter].length === 2) {
+          counter++;
+        } else {
+          newArr[counter].push(arr.shift() as any);
+        }
+      } while (arr.length !== 0);
+
+      return newArr;
     }
+
+    return data.minimalBankMortgageOffers;
   };
 
-export { carouselHandler, handleControlClick };
+const handleRightClick = (emblaApi: any) => () => {
+  emblaApi?.scrollNext();
+};
+
+const handleLeftClick = (emblaApi: any) => () => {
+  emblaApi?.scrollPrev();
+};
+
+export {
+  handleGetRegionId,
+  handleGetIsTwoLevels,
+  handleGetFormattedData,
+  handleRightClick,
+  handleLeftClick,
+};

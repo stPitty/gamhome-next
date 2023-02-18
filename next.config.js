@@ -14,7 +14,14 @@ const nextConfig = {
         port: "",
         pathname: "/image/**",
       },
+      {
+        protocol: "https",
+        hostname: "img.m2.ru",
+        port: "",
+        pathname: "/m2-pht/**",
+      },
     ],
+    dangerouslyAllowSVG: true,
   },
 };
 
