@@ -23,6 +23,18 @@ const nextConfig = {
     ],
     dangerouslyAllowSVG: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/banksApi/:path*",
+        destination: "https://m2.ru/api/:path*",
+      },
+      {
+        source: "/api/:path*",
+        destination: "http://194.87.98.241/api/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
