@@ -44,6 +44,9 @@ export type ModalBody = Partial<InputProps> & {
     halfWidth?: boolean;
     id: number;
   })[];
+  price?: number;
+  pipelineId?: number;
+  isCrmDeal?: boolean;
 };
 
 export type ModalBodyData = {
@@ -61,8 +64,10 @@ export type ModalBodyData = {
   [ModalState.CHECK_OWNER_INPUT_INFO]: ModalBody;
   [ModalState.WANT_TO_LEND_FLAT]: ModalBody;
   [ModalState.AGENT_FOR_CONTRACT]: ModalBody;
-  [ModalState.CONCIERGE_SERVICE]: ModalBody;
-  [ModalState.KEY_SEARCH]: ModalBody;
+  [ModalState.CONCIERGE_SERVICE_RENT]: ModalBody;
+  [ModalState.CONCIERGE_SERVICE_BUY]: ModalBody;
+  [ModalState.KEY_SEARCH_RENT]: ModalBody;
+  [ModalState.KEY_SEARCH_BUY]: ModalBody;
   [ModalState.THANKS_FOR_ORDER]: ModalBody;
   [ModalState.CONTACT_MANAGER]: ModalBody;
   [ModalState.THANKS_FOR_ORDER_2]: ModalBody;
@@ -80,4 +85,23 @@ export type ModalBodyData = {
   [ModalState.SELL_OR_CHANGE]: ModalBody;
   [ModalState.AGENT_DEAL]: ModalBody;
   [ModalState.UNDER_KEY]: ModalBody;
+  [ModalState.ERROR_APPLYING]: ModalBody;
+};
+
+export type Deal = {
+  price?: string;
+  pipelineId?: number;
+  propertyId?: string;
+  city?: string;
+};
+
+export type Contact = {
+  name?: string;
+  phone?: string;
+  email?: string;
+};
+
+export type CrmReqBody = {
+  deal: Deal;
+  contact: Contact;
 };

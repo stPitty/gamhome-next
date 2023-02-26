@@ -97,6 +97,7 @@ const serviceModal: Omit<ModalBody, "header"> = {
       submitFailedMessage: "Укажите город",
     },
   ],
+  isCrmDeal: true,
 };
 
 const modalData: ModalBodyData = {
@@ -204,6 +205,15 @@ const modalData: ModalBodyData = {
   },
   [ModalState.ERROR_WITH_DOCS_POST]: {
     header: "Не получилось отправить документы",
+    modalType: "lastMessage",
+    desc: "Попробуйте еще раз",
+    image: "/images/fatal-error.webp",
+    buttonText: "Отправить еще раз",
+    nextStateBtnAction: closeModal,
+    isErrorMessage: true,
+  },
+  [ModalState.ERROR_APPLYING]: {
+    header: "Не получилось отправить заявку",
     modalType: "lastMessage",
     desc: "Попробуйте еще раз",
     image: "/images/fatal-error.webp",
@@ -335,18 +345,37 @@ const modalData: ModalBodyData = {
   },
   [ModalState.WANT_TO_LEND_FLAT]: {
     header: "Хочу сдать квартиру",
+    pipelineId: 6267634,
     ...serviceModal,
   },
   [ModalState.AGENT_FOR_CONTRACT]: {
     header: "Агент на договор",
+    pipelineId: 6267646,
+    price: 3000,
     ...serviceModal,
   },
-  [ModalState.CONCIERGE_SERVICE]: {
+  [ModalState.CONCIERGE_SERVICE_RENT]: {
     header: "Консьерж сервис",
+    pipelineId: 6267638,
+    price: 14890,
     ...serviceModal,
   },
-  [ModalState.KEY_SEARCH]: {
+  [ModalState.CONCIERGE_SERVICE_BUY]: {
+    header: "Консьерж сервис",
+    pipelineId: 6267682,
+    price: 99999,
+    ...serviceModal,
+  },
+  [ModalState.KEY_SEARCH_RENT]: {
     header: "Поиск под ключ",
+    pipelineId: 6267630,
+    price: 20000,
+    ...serviceModal,
+  },
+  [ModalState.KEY_SEARCH_BUY]: {
+    header: "Поиск под ключ",
+    pipelineId: 6252474,
+    price: 150000,
     ...serviceModal,
   },
   [ModalState.THANKS_FOR_ORDER]: {
@@ -365,18 +394,22 @@ const modalData: ModalBodyData = {
     ...serviceModal,
     header: "Расчёт ипотеки",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267754,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.PROPERTY_EVAL]: {
     ...serviceModal,
     header: "Оценка недвижимости",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267758,
+    price: 2500,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.INSURANCE]: {
     ...serviceModal,
     header: "Ипотечное страхование",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267766,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.TYPE_DEAL]: {
@@ -400,17 +433,23 @@ const modalData: ModalBodyData = {
     ...serviceModal,
     header: "Правовое заключение",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267686,
+    price: 79890,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.DEAL_FOLLOWING]: {
     ...serviceModal,
     header: "Сопровождение сделки",
+    pipelineId: 6267686,
+    price: 79890,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.MAKE_DECLARATION]: {
     ...serviceModal,
     header: "Составление деклараций 3-НДФЛ",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267770,
+    price: 1900,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.MAKE_DEAL_INFO]: {
@@ -435,18 +474,23 @@ const modalData: ModalBodyData = {
     ...serviceModal,
     header: "Составление договоров",
     desc: "Мы свяжемся с вами в ближайшее время",
+    pipelineId: 6267762,
+    price: 1500,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.TAX_CONSULT]: {
     ...serviceModal,
     header: "Консультация по налогообложению",
     desc: "Мы свяжемся с вами в ближайшее время",
+    price: 1500,
+    pipelineId: 6267770,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.FREE_CONSULTATION]: {
     ...serviceModal,
     header: "Бесплатная консультация",
     desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    pipelineId: 6250686,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.FOLLOWING_DEAL]: {
@@ -454,12 +498,15 @@ const modalData: ModalBodyData = {
     header: "Сопровождение сделки",
     desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
     buttonText: "Заказать за\u00A079\u00A0890\u00A0₽",
+    price: 79890,
+    pipelineId: 6267686,
     nextStateBtnAction: thanksForBuy,
   },
   [ModalState.SELL_OR_CHANGE]: {
     ...serviceModal,
     header: "Продажа или обмен под\u00A0ключ",
     desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    pipelineId: 6252418,
     nextStateBtnAction: thanksForOrder2,
   },
   [ModalState.AGENT_DEAL]: {
@@ -467,12 +514,15 @@ const modalData: ModalBodyData = {
     header: "Агент на\u00A0договор",
     desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
     buttonText: "Заказать за\u00A05\u00A0000\u00A0₽",
+    price: 5000,
+    pipelineId: 6267646,
     nextStateBtnAction: thanksForBuy,
   },
   [ModalState.UNDER_KEY]: {
     ...serviceModal,
     header: "Под ключ",
     desc: "Мы\u00A0свяжемся с\u00A0вами для уточнения информации",
+    pipelineId: 6267634,
     nextStateBtnAction: thanksForOrder2,
   },
 };

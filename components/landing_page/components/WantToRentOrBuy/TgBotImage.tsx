@@ -23,7 +23,7 @@ const TgBotImage: FC<Props> = ({ className }) => {
       </TgAddressBadge>
       <ImageContainer>
         <Image
-          src="/images/landing/tg_bot.webp"
+          src="/images/landing/tg_bot.png"
           alt="Скриншот с бота в Телеграм"
           fill
           loading="lazy"
@@ -249,18 +249,18 @@ const TgAddressBadge = styled(TgBadgeContainer)`
 `;
 
 const TgCostBadge = styled(TgBadgeContainer)`
-  right: 50px;
+  right: 15px;
   top: 60px;
   @media screen and (max-width: 1439px) {
-    right: 35px;
+    right: 10px;
   }
   @media screen and (max-width: 1023px) {
-    right: 25px;
+    right: 5px;
     top: 34px;
   }
   @media screen and (max-width: 767px) {
     top: 30px;
-    right: 35px;
+    right: 20px;
   }
 `;
 
@@ -268,53 +268,67 @@ const TgCheckboxBadge = styled(TgBadgeContainer)`
   row-gap: 12px;
   min-width: 231px;
   height: 92px;
-  right: 210px;
+  right: 174px;
   top: 300px;
   @media screen and (max-width: 1439px) {
     row-gap: 9px;
     min-width: 170px;
     height: 68px;
     top: 220px;
-    right: 157px;
+    right: 130px;
   }
   @media screen and (max-width: 1023px) {
     row-gap: 7px;
     min-width: 131px;
     height: 53px;
     top: 169px;
-    right: 117px;
+    right: 97px;
   }
   @media screen and (max-width: 767px) {
     top: 169px;
-    right: 130px;
+    right: 100px;
   }
   @media screen and (max-width: 374px) {
-    width: 114.81px;
+    min-width: 114.81px;
     height: 45.87px;
-    right: 123px;
     top: 150px;
   }
 `;
 
 const ImageContainer = styled.div`
   position: relative;
-  min-width: 270px;
-  min-height: 537px;
-  left: -50px;
+  min-width: 231.65px;
+  height: 501px;
+  left: -32px;
+  border-radius: 24px;
+  overflow: hidden;
+  filter: drop-shadow(0px 0px 1.7957px rgba(0, 0, 0, 0.12))
+    drop-shadow(0px 17.957px 17.957px rgba(0, 0, 0, 0.08));
   @media screen and (max-width: 1439px) {
-    min-width: 200px;
-    min-height: 392px;
-    left: -38px;
+    min-width: 169.69px;
+    height: 367px;
+    filter: drop-shadow(0px 0px 1.31541px rgba(0, 0, 0, 0.12))
+      drop-shadow(0px 13.1541px 13.1541px rgba(0, 0, 0, 0.08));
+    border-radius: 17.5808px;
+    left: -24px;
   }
   @media screen and (max-width: 1023px) {
-    min-width: 150px;
-    min-height: 302px;
-    left: -27px;
+    min-width: 130.65px;
+    height: 282.57px;
+    filter: drop-shadow(0px 0px 1.01281px rgba(0, 0, 0, 0.12))
+      drop-shadow(0px 10.1281px 10.1281px rgba(0, 0, 0, 0.08));
+    border-radius: 13.5364px;
+    left: -15px;
   }
-  @media screen and (max-width: 374px) {
-    min-width: 135px;
-    min-height: 265px;
-    left: -19px;
+  @media screen and (max-width: 767px) {
+    left: -10px;
+  }
+  @media screen and (max-width: 375px) {
+    min-width: 115.12px;
+    height: 248.97px;
+    filter: drop-shadow(0px 0px 0.892381px rgba(0, 0, 0, 0.12))
+      drop-shadow(0px 8.92381px 8.92381px rgba(0, 0, 0, 0.08));
+    border-radius: 11.9269px;
   }
 `;
 

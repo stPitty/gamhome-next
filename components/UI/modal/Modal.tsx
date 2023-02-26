@@ -116,7 +116,7 @@ const Container = styled.div<{ modalType: boolean }>`
   border-radius: 16px;
   width: fit-content;
   @media screen and (max-width: 767px) {
-    max-height: 100vh;
+    max-height: 100%;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;

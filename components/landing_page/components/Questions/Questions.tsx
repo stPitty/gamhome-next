@@ -9,21 +9,43 @@ import { ButtonSize } from "../../../UI/button/enums";
 import AdaptiveTextDivider from "../../../UI/adaptive_text_divider/AdaptiveTextDivider";
 import { useAppDispatch } from "../../../../redux/hooks";
 import {
+  errorWithApplying,
   thanksForOrder,
-  thanksForOrder2,
 } from "../../../../redux/slicers/modalStateSlicer";
+import { useLazySendContactDataQuery } from "../../../../redux/APIs/crmApi";
 
 const Questions = () => {
   const dispatch = useAppDispatch();
 
+  const [sendData, resData] = useLazySendContactDataQuery();
+
   const formik = useFormik({
     initialValues,
     validationSchema: FORM_SCHEMA,
-    onSubmit<Values>(
+    onSubmit: async (
       values: QuestionsValues,
-      formikHelpers: FormikHelpers<Values>
-    ): void | Promise<any> {
-      console.log(values);
+      formikHelpers: FormikHelpers<QuestionsValues>
+    ): Promise<void | Promise<any>> => {
+      const data = {
+        deal: {
+          pipelineId: 6250686,
+        },
+        contact: {
+          name: values.name,
+          phone: values.phone,
+        },
+      };
+
+      formikHelpers.resetForm();
+
+      const res = await sendData(data);
+
+      if (res.isError) {
+        console.error(res.error);
+        dispatch(errorWithApplying());
+        return;
+      }
+
       dispatch(thanksForOrder());
     },
   });

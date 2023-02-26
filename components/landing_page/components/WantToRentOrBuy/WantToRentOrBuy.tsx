@@ -103,9 +103,9 @@ const WantToRentOrBuy = () => {
 };
 
 const TgImageBottom = styled(TgBotImage)`
-  display: none;
+  display: none !important;
   @media screen and (max-width: 767px) {
-    display: flex;
+    display: flex !important;
   }
 `;
 

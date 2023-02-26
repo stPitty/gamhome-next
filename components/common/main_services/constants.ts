@@ -2,9 +2,11 @@ import { CardData } from "./types";
 import { CardType } from "./enums";
 import {
   agentForContract,
-  conciergeService,
+  conciergeServiceBuy,
+  conciergeServiceRent,
   dealFollowing,
-  keySearch,
+  keySearchRent,
+  keySearchBuy,
 } from "../../../redux/slicers/modalStateSlicer";
 import { ButtonType } from "../../UI/button/enums";
 
@@ -45,7 +47,7 @@ const rentCardsData: CardData[] = [
     cost: "14 890 ₽",
     descText:
       "Найдём то\u00A0что вам нужно, договоримся о\u00A0просмотрах. Поиск длительностью 21\u00A0день",
-    buttonAction: conciergeService,
+    buttonAction: conciergeServiceRent,
     points: [
       {
         id: 1,
@@ -82,7 +84,7 @@ const rentCardsData: CardData[] = [
     cost: "От 20 000 ₽",
     descText:
       "Персональное сопровождение от\u00A0поиска до\u00A0заселения в\u00A0новую квартиру",
-    buttonAction: keySearch,
+    buttonAction: keySearchRent,
     points: [
       {
         id: 1,
@@ -193,7 +195,7 @@ const buyCardsData: CardData[] = [
     cost: "99 990 ₽",
     descText:
       "Найдём то\u00A0что вам нужно, консультации на\u00A0всех этапах сделки. Поиск длительностью 4\u00A0месяца",
-    buttonAction: conciergeService,
+    buttonAction: conciergeServiceBuy,
     points: [
       {
         id: 1,
@@ -246,7 +248,7 @@ const buyCardsData: CardData[] = [
     cost: "150 000 ₽",
     descText:
       "Персональное сопровождение от\u00A0поиска до\u00A0заселения в\u00A0новую квартиру",
-    buttonAction: keySearch,
+    buttonAction: keySearchBuy,
     points: [
       {
         id: 1,

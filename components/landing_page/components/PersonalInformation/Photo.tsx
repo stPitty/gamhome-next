@@ -70,12 +70,13 @@ const SocialMediaLinksWrapper = styled.div`
 `;
 
 const ImageContainer = styled.div`
-  width: 192px;
-  height: 246px;
+  width: 304px;
+  height: 389.5px;
   background: url("/images/landing/personal_photo.webp") no-repeat;
-  background-size: 192px;
+  background-size: 304px;
   border-radius: 24px;
   @media screen and (max-width: 1439px) {
+    width: 192px;
     height: 236px;
     background-size: 192px;
   }

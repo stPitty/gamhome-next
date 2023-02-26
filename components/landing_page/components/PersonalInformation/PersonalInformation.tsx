@@ -15,6 +15,7 @@ const PersonalInformation = () => {
               Евгений Гамолин, <AdaptiveTextDivider lg={true} md />
               основатель <BrandMarker>GamHome</BrandMarker>
             </HeaderText>
+            <BottomPhotoBlock />
             <DescriptionContainer>
               <DescriptionText>
                 Уже более 10&nbsp;лет я&nbsp;работаю в&nbsp;риэлторском бизнесе,
@@ -53,16 +54,15 @@ const PersonalInformation = () => {
           </InformationBlock>
           <RightPhotoBlock />
         </InformationBlockWrapper>
-        <BottomPhotoBlock />
       </Container>
     </Wrapper>
   );
 };
 
 const BottomPhotoBlock = styled(Photo)`
-  display: none;
+  display: none !important;
   @media screen and (max-width: 767px) {
-    display: flex;
+    display: flex !important;
   }
 `;
 
@@ -74,9 +74,9 @@ const InformationBlockWrapper = styled.div`
 `;
 
 const RightPhotoBlock = styled(Photo)`
-  display: none;
+  display: none !important;
   @media screen and (max-width: 1023px) {
-    display: flex;
+    display: flex !important;
   }
   @media screen and (max-width: 767px) {
     display: none !important;
@@ -93,8 +93,8 @@ const CardDescriptionText = styled.p`
   margin: 0;
   font-family: "Roboto";
   font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 24px;
   color: rgba(36, 36, 36, 0.64);
 `;
 
@@ -114,9 +114,9 @@ const CardContainer = styled.div`
   flex-grow: 1;
   background: #f5f7f9;
   border-radius: 24px;
-  max-width: 359px;
+  flex-basis: 303px;
   @media screen and (max-width: 1439px) {
-    max-width: 337px;
+    flex-basis: 296px;
   }
   @media screen and (max-width: 1023px) {
     max-width: 328px;
@@ -144,8 +144,8 @@ const DescriptionText = styled.p`
   margin: 0;
   font-family: "Roboto";
   font-weight: 400;
-  font-size: 20px;
-  line-height: 28px;
+  font-size: 16px;
+  line-height: 24px;
   color: #242424;
 `;
 
@@ -186,10 +186,10 @@ const HeaderText = styled.h3`
 const InformationBlock = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 750px;
+  max-width: 638px;
   row-gap: 32px;
   @media screen and (max-width: 1439px) {
-    max-width: 706px;
+    max-width: 624px;
   }
   @media screen and (max-width: 1023px) {
     max-width: 448px;
@@ -197,6 +197,7 @@ const InformationBlock = styled.div`
   }
   @media screen and (max-width: 767px) {
     max-width: 349px;
+    align-items: center;
   }
   @media screen and (max-width: 374px) {
     max-width: 288px;
@@ -205,7 +206,7 @@ const InformationBlock = styled.div`
 
 const Container = styled.div`
   display: flex;
-  column-gap: 146px;
+  column-gap: 144px;
   @media screen and (max-width: 1439px) {
     column-gap: 32px;
   }

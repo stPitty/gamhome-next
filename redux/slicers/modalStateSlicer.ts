@@ -35,6 +35,11 @@ const modalStateSlicer = createSlice({
     },
     errorWithDocs(state) {
       state.currentState = ModalState.ERROR_WITH_DOCS_POST;
+      if (!state.isOpened) state.isOpened = true;
+    },
+    errorWithApplying(state) {
+      state.currentState = ModalState.ERROR_APPLYING;
+      if (!state.isOpened) state.isOpened = true;
     },
     checkObjInputNum(state) {
       state.currentState = ModalState.CHECK_OBJ_INPUT_NUM;
@@ -58,12 +63,20 @@ const modalStateSlicer = createSlice({
       state.currentState = ModalState.AGENT_FOR_CONTRACT;
       state.isOpened = true;
     },
-    conciergeService(state) {
-      state.currentState = ModalState.CONCIERGE_SERVICE;
+    conciergeServiceRent(state) {
+      state.currentState = ModalState.CONCIERGE_SERVICE_RENT;
       state.isOpened = true;
     },
-    keySearch(state) {
-      state.currentState = ModalState.KEY_SEARCH;
+    conciergeServiceBuy(state) {
+      state.currentState = ModalState.CONCIERGE_SERVICE_BUY;
+      state.isOpened = true;
+    },
+    keySearchRent(state) {
+      state.currentState = ModalState.KEY_SEARCH_RENT;
+      state.isOpened = true;
+    },
+    keySearchBuy(state) {
+      state.currentState = ModalState.KEY_SEARCH_BUY;
       state.isOpened = true;
     },
     thanksForOrder(state) {
@@ -152,6 +165,7 @@ export const {
   thanksForBuy,
   closeModal,
   errorWithDocs,
+  errorWithApplying,
   checkObjInputEmail,
   checkObjInputNum,
   informationSent,
@@ -159,8 +173,10 @@ export const {
   checkOwnerInputEmail,
   wantToLendFlat,
   agentForContract,
-  conciergeService,
-  keySearch,
+  conciergeServiceRent,
+  conciergeServiceBuy,
+  keySearchBuy,
+  keySearchRent,
   thanksForOrder,
   contactManager,
   thanksForOrder2,

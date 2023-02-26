@@ -1,13 +1,18 @@
 import { TModalState } from "../../../redux/slicers/types";
-import { ModalBodyData } from "./types";
+import { CrmReqBody, Deal, ModalBodyData } from "./types";
 import { AppDispatch } from "../../../redux/types";
 import { Dispatch, SetStateAction } from "react";
+import {
+  errorWithApplying,
+  errorWithDocs,
+} from "../../../redux/slicers/modalStateSlicer";
 
-const reduxStateHandler = (
+const reduxStateHandler = async (
   currentState: TModalState["currentState"],
   modalData: ModalBodyData,
   reduxState: any,
-  dispatch: AppDispatch
+  dispatch: AppDispatch,
+  handleSendData: (arg: CrmReqBody) => void
 ) => {
   let rejectSubmit = false;
   for (let i = 0; i < modalData[currentState!].fieldNames!.length; i++) {
@@ -33,6 +38,54 @@ const reduxStateHandler = (
     }
   }
   if (!rejectSubmit) {
+    if (modalData[currentState!].isCrmDeal) {
+      const data: CrmReqBody = {
+        deal: {
+          pipelineId: modalData[currentState!].pipelineId!,
+        },
+        contact: {},
+      };
+
+      if (modalData[currentState!].price) {
+        data.deal.price = modalData[currentState!].price;
+      }
+
+      if (reduxState.flatData?.flatData?.id) {
+        data.deal.propertyId = reduxState.flatData?.flatData?.id;
+      }
+
+      if (reduxState[modalData[currentState!].stateName!]?.city?.value) {
+        data.deal.city =
+          reduxState[modalData[currentState!].stateName!]?.city?.value;
+      }
+
+      if (reduxState[modalData[currentState!].stateName!]?.email?.value) {
+        data.contact.email =
+          reduxState[modalData[currentState!].stateName!]?.email?.value;
+      }
+
+      if (reduxState[modalData[currentState!].stateName!]?.phone?.value) {
+        data.contact.phone =
+          reduxState[modalData[currentState!].stateName!]?.phone?.value;
+      }
+
+      if (reduxState[modalData[currentState!].stateName!]?.name?.value) {
+        data.contact.name =
+          reduxState[modalData[currentState!].stateName!]?.name?.value;
+      }
+
+      console.log(data);
+
+      const res = await handleSendData(data);
+
+      if ((res as any)?.isError) {
+        console.error((res as any)?.error);
+        dispatch(errorWithApplying());
+        dispatch(modalData[currentState!].clearAction!());
+        return;
+      }
+    }
+
     dispatch(modalData[currentState!].nextStateBtnAction!());
     dispatch(modalData[currentState!].clearAction!());
   }
@@ -76,14 +129,21 @@ const handleChangeStateClick =
     isValidationError: boolean,
     setInputValue: Dispatch<SetStateAction<string>>,
     inputValue: string,
-    setIsSubmitFailed: Dispatch<SetStateAction<boolean>>
+    setIsSubmitFailed: Dispatch<SetStateAction<boolean>>,
+    handleSendData: (arg: CrmReqBody) => void
   ) =>
   () => {
     if (currentState !== null && modalData[currentState].withMultiInputs) {
-      reduxStateHandler(currentState, modalData, reduxState, dispatch);
+      reduxStateHandler(
+        currentState,
+        modalData,
+        reduxState,
+        dispatch,
+        handleSendData
+      );
     } else if (
       currentState !== null &&
-      !modalData[currentState].withMultiInputs
+      !modalData[currentState]?.withMultiInputs
     ) {
       reactStateHandler(
         currentState,

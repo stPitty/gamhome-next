@@ -21,7 +21,6 @@ export const parametersApi = createApi({
       transformResponse: (
         baseQueryReturnValue: ParametersData
       ): FormattedParametersData => {
-        let i = 1;
         return getFormattedParams(baseQueryReturnValue).sort(
           (a, b) => a.index - b.index
         );

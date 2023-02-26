@@ -35,22 +35,12 @@ const Card: FC<Props> = ({
           <CardDesc>{descriptionFull}</CardDesc>
         )}
         <Link href={"#" + link} scroll={false}>
-          <StyledAdditionInformationBtn
-            buttonType={ButtonType.FLAT}
-            buttonSize={ButtonSize.MEDIUM}
-          >
-            Подробнее
-          </StyledAdditionInformationBtn>
+          <ScrollLink>Подробнее</ScrollLink>
         </Link>
       </CardInformationContainer>
     </CardWrapper>
   );
 };
-
-const StyledAdditionInformationBtn = styled(Button)`
-  padding: 9px 0;
-  width: fit-content;
-`;
 
 const CardDesc = styled.p`
   font-family: "Roboto";
@@ -69,6 +59,11 @@ const DeployDescBtn = styled.span`
   &:hover {
     color: ${OtherColor.LINK_HOVER};
   }
+`;
+
+const ScrollLink = styled(DeployDescBtn)`
+  font-family: "Roboto";
+  font-weight: 500;
 `;
 
 const CardHeader = styled.h3`
