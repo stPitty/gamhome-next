@@ -6,6 +6,7 @@ import {
   errorWithApplying,
   errorWithDocs,
 } from "../../../redux/slicers/modalStateSlicer";
+import { NextRouter } from "next/router";
 
 const reduxStateHandler = async (
   currentState: TModalState["currentState"],
@@ -47,7 +48,7 @@ const reduxStateHandler = async (
       };
 
       if (modalData[currentState!].price) {
-        data.deal.price = modalData[currentState!].price;
+        data.deal.price = String(modalData[currentState!].price);
       }
 
       if (reduxState.flatData?.flatData?.id) {
