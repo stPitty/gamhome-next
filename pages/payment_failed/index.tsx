@@ -9,9 +9,15 @@ const PaymentFailedPage = () => {
   const [confirm] = useLazyConfirmQuery();
 
   useEffect(() => {
-    const token = sessionStorage.getItem("token");
+    const params = new Proxy(new URLSearchParams(window.location.search), {
+      get: (searchParams, prop) => searchParams.get(prop as any),
+    });
 
-    confirm(token);
+    const token = (params as { token?: string })?.token;
+
+    if (token) {
+      confirm(token);
+    }
   }, []);
 
   const handleCloseClick = () => {

@@ -59,8 +59,6 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   }, [router, mounted]);
 
   useEffect(() => {
-    // const userToken = new URL()
-
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop as any),
     });
