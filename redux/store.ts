@@ -14,15 +14,18 @@ import scrollTopBtnReducer from "./slicers/scrollTopBtnSlicer";
 import pathNameReducer from "./slicers/pathNameSlicer";
 import formDataReducer from "./slicers/formDataSlicer";
 import disableSelectsReducer from "./slicers/disableSelectsSlicer";
+import cadastralDataReducer from "./slicers/cadastralDataSlicer";
 import { parametersApi } from "./APIs/parametersApi";
 import { banksApi } from "./APIs/banksApi";
 import { CurriedGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import { crmApi } from "./APIs/crmApi";
+import { checkApi } from "./APIs/checkApi";
 
 const combinedReducer = combineReducers({
   [parametersApi.reducerPath]: parametersApi.reducer,
   [banksApi.reducerPath]: banksApi.reducer,
   [crmApi.reducerPath]: crmApi.reducer,
+  [checkApi.reducerPath]: checkApi.reducer,
   formData: formDataReducer,
   disableSelects: disableSelectsReducer,
   position: photoPositionReducer,
@@ -36,6 +39,7 @@ const combinedReducer = combineReducers({
   cookiePopUp: cookiePopUpReducer,
   scrollTopBtn: scrollTopBtnReducer,
   pathName: pathNameReducer,
+  cadastralData: cadastralDataReducer,
 });
 
 const reducer = (
@@ -62,7 +66,8 @@ export const makeStore = () =>
       })
         .concat(parametersApi.middleware)
         .concat(banksApi.middleware)
-        .concat(crmApi.middleware),
+        .concat(crmApi.middleware)
+        .concat(checkApi.middleware),
   } as any);
 
 export const wrapper = createWrapper(makeStore, { debug: true });

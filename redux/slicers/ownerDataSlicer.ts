@@ -59,6 +59,7 @@ const ownerDataSlicer = createSlice({
         state[ownerInputFieldsNames[i]].isSubmitFailed = false;
       }
     },
+    emptyClear() {},
   },
 });
 
@@ -67,6 +68,7 @@ export const {
   setOwnerValidationError,
   setOwnerSubmitError,
   clearOwnerData,
+  emptyClear,
 } = ownerDataSlicer.actions;
 
 export default ownerDataSlicer.reducer;

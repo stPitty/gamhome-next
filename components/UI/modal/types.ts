@@ -47,6 +47,13 @@ export type ModalBody = Partial<InputProps> & {
   price?: number;
   pipelineId?: number;
   isCrmDeal?: boolean;
+  isPayable?: boolean;
+  paymentObj?: {
+    saveDataAction?: Function;
+    isLast?: boolean;
+    type?: "subject" | "property";
+  };
+  errorAction?: Function;
 };
 
 export type ModalBodyData = {

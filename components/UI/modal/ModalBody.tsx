@@ -11,6 +11,10 @@ import { Modal } from "./types";
 import Form from "../../common/check_owner_block/Form";
 import { handleChangeStateClick } from "./helpers";
 import { useLazySendContactDataQuery } from "../../../redux/APIs/crmApi";
+import {
+  useLazyCheckPropertyQuery,
+  useLazyCheckSubjectQuery,
+} from "../../../redux/APIs/checkApi";
 
 const ModalBody = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -19,7 +23,11 @@ const ModalBody = () => {
 
   const dispatch = useAppDispatch();
 
-  const [sendData, data] = useLazySendContactDataQuery();
+  const [sendData] = useLazySendContactDataQuery();
+
+  const [checkSubject] = useLazyCheckSubjectQuery();
+
+  const [checkProperty] = useLazyCheckPropertyQuery();
 
   const { currentState } = useAppSelector<TModalState>(
     (state) => state.modalState
@@ -69,7 +77,9 @@ const ModalBody = () => {
                   setInputValue,
                   inputValue,
                   setIsSubmitFailed,
-                  sendData
+                  sendData,
+                  checkSubject,
+                  checkProperty
                 )}
               >
                 {modalData[currentState].buttonText}

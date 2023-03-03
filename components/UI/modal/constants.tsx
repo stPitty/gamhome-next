@@ -5,6 +5,7 @@ import {
   checkOwnerInputEmail,
   closeModal,
   docsSent,
+  errorWithDocs,
   informationSent,
   makeDeal,
   openBuyCheckListWithEmail,
@@ -15,6 +16,7 @@ import {
 } from "../../../redux/slicers/modalStateSlicer";
 import {
   clearOwnerData,
+  emptyClear,
   setOwnerSubmitError,
   setOwnerValidationError,
   setOwnerValue,
@@ -30,19 +32,35 @@ import {
   serviceInputFieldsNames,
 } from "../../../redux/slicers/constants";
 import ConditionsLink from "../ConditionsLink/ConditionsLink";
+import {
+  setCadastralNum,
+  setEmail,
+} from "../../../redux/slicers/cadastralDataSlicer";
 
 const emailValidationRegexp =
   /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-const flatNumberRegexp = /^\d{1,3}:\d{1,2}:\d{6,7}:\d{1,4}$/;
+const flatNumberRegexp = /^\d+:\d+:\d+:\d+$/;
 
 const personalDataRegexp = /^.{0,50}$/;
+
+const userDateRegexp = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/;
+
+const dateErrorMessage = "Введите число в формате: YYYY-MM-DD";
+
+const passNumRegexp = /^\d{6}$/;
+
+const issuerCodeRegexp = /^\d{3}-\d{3}$/;
+
+const issuerCodeErrorMessage = "Введите число в формате: XXX-XXX";
 
 const dateRegexp = /^.{0,30}$/im;
 
 const passSerRegexp = /^\d{4}$/;
 
-const passDivNumRegexp = /^\d{6}$/;
+const nameRegexp = /^[а-яА-я]{1,32}\s[а-яА-я]{1,32}(\s[а-яА-я]{1,32})?$/;
+
+const nameErrorMessage = "Введите корректные ФИО";
 
 const fiftySymbolsErrorMessage = "Не более 50 символов";
 
@@ -231,6 +249,10 @@ const modalData: ModalBodyData = {
     errorMessage: "Укажите корректный кадастровый номер",
     submitFailedMessage: "Укажите кадастровый номер",
     withoutInfo: true,
+    isPayable: true,
+    paymentObj: {
+      saveDataAction: setCadastralNum,
+    },
   },
   [ModalState.CHECK_OBJ_INPUT_EMAIL]: {
     header: "Проверить объект",
@@ -240,8 +262,7 @@ const modalData: ModalBodyData = {
         Результат проверки пришлём на&nbsp;почту. При отправке
         вы&nbsp;принимаете условия{" "}
         <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
-        и&nbsp;условия
-        <ConditionsLink>Оферты</ConditionsLink>
+        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
       </span>
     ),
     placeHolder: "email",
@@ -249,7 +270,15 @@ const modalData: ModalBodyData = {
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
     buttonText: "Перейти к оплате 799 ₽",
-    nextStateBtnAction: informationSent,
+    nextStateBtnAction: closeModal,
+    isPayable: true,
+    price: 79900, //799*100
+    paymentObj: {
+      saveDataAction: setEmail,
+      isLast: true,
+      type: "property",
+    },
+    errorAction: errorWithDocs,
   },
   [ModalState.INFORMATION_SENT]: {
     header: "Информация отправлена на\u00A0проверку",
@@ -263,7 +292,7 @@ const modalData: ModalBodyData = {
     desc: "Укажите паспортные данные собственника квартиры",
     buttonText: "Далее",
     nextStateBtnAction: checkOwnerInputEmail,
-    clearAction: clearOwnerData,
+    clearAction: emptyClear,
     withMultiInputs: true,
     stateName: "ownerData",
     setSubmitErrorAction: setOwnerSubmitError,
@@ -276,16 +305,16 @@ const modalData: ModalBodyData = {
         name: "nameValue",
         placeHolder: "ФИО",
         submitFailedMessage: "Укажите Фамилию Имя Отчество",
-        validationPattern: personalDataRegexp,
-        errorMessage: fiftySymbolsErrorMessage,
+        validationPattern: nameRegexp,
+        errorMessage: nameErrorMessage,
       },
       {
         id: 2,
         name: "bornDate",
         placeHolder: "Дата рождения",
         submitFailedMessage: "Укажите Дату рождения",
-        validationPattern: dateRegexp,
-        errorMessage: thirtySymbolsErrorMessage,
+        validationPattern: userDateRegexp,
+        errorMessage: dateErrorMessage,
       },
       {
         id: 3,
@@ -301,7 +330,7 @@ const modalData: ModalBodyData = {
         name: "passNum",
         placeHolder: "Номер",
         submitFailedMessage: sixIntsErrorMessage,
-        validationPattern: passDivNumRegexp,
+        validationPattern: passNumRegexp,
         errorMessage: sixIntsErrorMessage,
         halfWidth: true,
       },
@@ -310,8 +339,8 @@ const modalData: ModalBodyData = {
         name: "dateGet",
         placeHolder: "Дата выдачи",
         submitFailedMessage: "Укажите Дату выдачи",
-        validationPattern: dateRegexp,
-        errorMessage: thirtySymbolsErrorMessage,
+        validationPattern: userDateRegexp,
+        errorMessage: dateErrorMessage,
         halfWidth: true,
       },
       {
@@ -319,11 +348,12 @@ const modalData: ModalBodyData = {
         name: "divCode",
         placeHolder: "Код подразделения",
         submitFailedMessage: sixIntsErrorMessage,
-        validationPattern: passDivNumRegexp,
-        errorMessage: sixIntsErrorMessage,
+        validationPattern: issuerCodeRegexp,
+        errorMessage: issuerCodeErrorMessage,
         halfWidth: true,
       },
     ],
+    isPayable: true,
   },
   [ModalState.CHECK_OWNER_INPUT_EMAIL]: {
     header: "Проверить собственника",
@@ -337,11 +367,18 @@ const modalData: ModalBodyData = {
       </span>
     ),
     buttonText: "Перейти к оплате 549 ₽",
-    nextStateBtnAction: informationSent,
+    nextStateBtnAction: closeModal,
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
+    errorAction: errorWithDocs,
+    clearAction: clearOwnerData,
+    isPayable: true,
+    paymentObj: {
+      isLast: true,
+      type: "subject",
+    },
   },
   [ModalState.WANT_TO_LEND_FLAT]: {
     header: "Хочу сдать квартиру",

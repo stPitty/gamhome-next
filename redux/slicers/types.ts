@@ -242,6 +242,11 @@ type Select =
 
 type TDisableSelect = Record<Select, boolean>;
 
+type TCadastralData = {
+  cadastralNumber: string;
+  email: string;
+};
+
 export type {
   TPhotoPosition,
   TModalState,
@@ -268,4 +273,5 @@ export type {
   Metros,
   TDisableSelect,
   Select,
+  TCadastralData,
 };

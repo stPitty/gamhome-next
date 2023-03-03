@@ -7,6 +7,7 @@ import {
   errorWithDocs,
 } from "../../../redux/slicers/modalStateSlicer";
 import { NextRouter } from "next/router";
+import { clearData } from "../../../redux/slicers/cadastralDataSlicer";
 
 const reduxStateHandler = async (
   currentState: TModalState["currentState"],
@@ -46,7 +47,6 @@ const reduxStateHandler = async (
         },
         contact: {},
       };
-
       if (modalData[currentState!].price) {
         data.deal.price = String(modalData[currentState!].price);
       }
@@ -75,8 +75,6 @@ const reduxStateHandler = async (
           reduxState[modalData[currentState!].stateName!]?.name?.value;
       }
 
-      console.log(data);
-
       const res = await handleSendData(data);
 
       if ((res as any)?.isError) {
@@ -86,20 +84,22 @@ const reduxStateHandler = async (
         return;
       }
     }
-
     dispatch(modalData[currentState!].nextStateBtnAction!());
     dispatch(modalData[currentState!].clearAction!());
   }
 };
 
-const reactStateHandler = (
+const reactStateHandler = async (
   currentState: TModalState["currentState"],
   modalData: ModalBodyData,
   dispatch: AppDispatch,
   isValidationError: boolean,
   setInputValue: Dispatch<SetStateAction<string>>,
   inputValue: string,
-  setIsSubmitFailed: Dispatch<SetStateAction<boolean>>
+  setIsSubmitFailed: Dispatch<SetStateAction<boolean>>,
+  checkSubject: Function,
+  checkProperty: Function,
+  reduxState: any
 ) => {
   if (
     modalData[currentState!].modalType !== "withInput" &&
@@ -116,6 +116,82 @@ const reactStateHandler = (
     modalData[currentState!].modalType === "withInput" &&
     !isValidationError
   ) {
+    if (modalData[currentState!].isPayable) {
+      if (modalData[currentState!].paymentObj?.saveDataAction) {
+        dispatch(
+          modalData[currentState!].paymentObj?.saveDataAction!(inputValue)
+        );
+      }
+
+      if (modalData[currentState!].paymentObj?.isLast) {
+        const token = sessionStorage.getItem("token");
+
+        if (modalData[currentState!].paymentObj?.type === "property") {
+          const cadastralNumber = reduxState.cadastralData.cadastralNumber;
+
+          const data = await checkProperty({
+            token: token ?? "",
+            check: {
+              amount: 79900,
+              cadastralNumber,
+              email: inputValue,
+            },
+          });
+          dispatch(clearData());
+          if (data?.isError || !data?.data?.Success) {
+            console.error(data.error);
+            dispatch(modalData[currentState!].errorAction!());
+            dispatch(modalData[currentState!].nextStateBtnAction!());
+            setInputValue("");
+            return;
+          }
+
+          window.open(data?.data?.PaymentURL, "_blank");
+        }
+
+        if (modalData[currentState!].paymentObj?.type === "subject") {
+          const ownerData = reduxState.ownerData;
+
+          const username = ownerData.nameValue.value.split(" ");
+
+          const body: any = {
+            token: token ?? "",
+            check: {
+              email: inputValue,
+              amount: 54900,
+              name: username[0],
+              surname: username[1],
+              birthDate: ownerData.bornDate.value,
+              passNumber: ownerData.passNum.value,
+              passSeries: ownerData.passSer.value,
+              passIssueDate: ownerData.dateGet.value,
+              issuerCode: ownerData.divCode.value,
+            },
+          };
+
+          if (username?.[2]) {
+            body.patronymic = username?.[2];
+          }
+
+          const data = await checkSubject(body);
+
+          if (data?.isError || !data?.data?.Success) {
+            console.error(data.error);
+            dispatch(modalData[currentState!].errorAction!());
+            dispatch(modalData[currentState!].nextStateBtnAction!());
+            dispatch(modalData[currentState!].clearAction!());
+            setInputValue("");
+            return;
+          }
+
+          window.open(data?.data?.PaymentURL, "_blank");
+          // dispatch(modalData[currentState!].clearAction!());
+
+          return;
+        }
+      }
+    }
+
     dispatch(modalData[currentState!].nextStateBtnAction!());
     setInputValue("");
   }
@@ -131,7 +207,9 @@ const handleChangeStateClick =
     setInputValue: Dispatch<SetStateAction<string>>,
     inputValue: string,
     setIsSubmitFailed: Dispatch<SetStateAction<boolean>>,
-    handleSendData: (arg: CrmReqBody) => void
+    handleSendData: (arg: CrmReqBody) => void,
+    checkSubject: Function,
+    checkProperty: Function
   ) =>
   () => {
     if (currentState !== null && modalData[currentState].withMultiInputs) {
@@ -153,7 +231,10 @@ const handleChangeStateClick =
         isValidationError,
         setInputValue,
         inputValue,
-        setIsSubmitFailed
+        setIsSubmitFailed,
+        checkSubject,
+        checkProperty,
+        reduxState
       );
     }
   };
