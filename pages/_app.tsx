@@ -59,6 +59,13 @@ const App = ({ Component, pageProps }: AppWithPageLayout) => {
   }, [router, mounted]);
 
   useEffect(() => {
+    setTimeout(() => {
+      const html = document.querySelector("html");
+      if (html) {
+        html.style.opacity = "100";
+      }
+    }, 1000);
+
     const params = new Proxy(new URLSearchParams(window.location.search), {
       get: (searchParams, prop) => searchParams.get(prop as any),
     });

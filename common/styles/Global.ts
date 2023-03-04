@@ -12,6 +12,7 @@ const Global = createGlobalStyle`
   }
   html {
     scroll-behavior: smooth;
+    opacity: 0;
   }
   a {
     color: inherit;
