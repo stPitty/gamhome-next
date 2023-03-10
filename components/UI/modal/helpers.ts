@@ -99,6 +99,7 @@ const reactStateHandler = async (
   setIsSubmitFailed: Dispatch<SetStateAction<boolean>>,
   checkSubject: Function,
   checkProperty: Function,
+  checkDocs: Function,
   reduxState: any
 ) => {
   if (
@@ -141,7 +142,6 @@ const reactStateHandler = async (
           if (data?.isError || !data?.data?.Success) {
             console.error(data.error);
             dispatch(modalData[currentState!].errorAction!());
-            dispatch(modalData[currentState!].nextStateBtnAction!());
             setInputValue("");
             return;
           }
@@ -178,16 +178,29 @@ const reactStateHandler = async (
           if (data?.isError || !data?.data?.Success) {
             console.error(data.error);
             dispatch(modalData[currentState!].errorAction!());
-            dispatch(modalData[currentState!].nextStateBtnAction!());
             dispatch(modalData[currentState!].clearAction!());
             setInputValue("");
             return;
           }
 
           window.open(data?.data?.PaymentURL, "_blank");
-          // dispatch(modalData[currentState!].clearAction!());
+          dispatch(modalData[currentState!].clearAction!());
+        }
 
-          return;
+        if (modalData[currentState!].paymentObj?.type === "check-list") {
+          const data = await checkDocs({
+              amount: 79900,
+              email: inputValue,
+          });
+
+          if (data?.isError || !data?.data?.Success) {
+            console.error(data.error);
+            dispatch(modalData[currentState!].errorAction!());
+            setInputValue("");
+            return;
+          }
+
+          window.open(data?.data?.PaymentURL, "_blank");
         }
       }
     }
@@ -209,7 +222,8 @@ const handleChangeStateClick =
     setIsSubmitFailed: Dispatch<SetStateAction<boolean>>,
     handleSendData: (arg: CrmReqBody) => void,
     checkSubject: Function,
-    checkProperty: Function
+    checkProperty: Function,
+    checkDocs: Function
   ) =>
   () => {
     if (currentState !== null && modalData[currentState].withMultiInputs) {
@@ -234,6 +248,7 @@ const handleChangeStateClick =
         setIsSubmitFailed,
         checkSubject,
         checkProperty,
+        checkDocs,
         reduxState
       );
     }

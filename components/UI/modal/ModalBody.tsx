@@ -14,6 +14,7 @@ import { useLazySendContactDataQuery } from "../../../redux/APIs/crmApi";
 import {
   useLazyCheckPropertyQuery,
   useLazyCheckSubjectQuery,
+  useLazyCheckDocsQuery,
 } from "../../../redux/APIs/checkApi";
 
 const ModalBody = () => {
@@ -28,6 +29,8 @@ const ModalBody = () => {
   const [checkSubject] = useLazyCheckSubjectQuery();
 
   const [checkProperty] = useLazyCheckPropertyQuery();
+
+  const [checkDocs] = useLazyCheckDocsQuery();
 
   const { currentState } = useAppSelector<TModalState>(
     (state) => state.modalState
@@ -79,7 +82,8 @@ const ModalBody = () => {
                   setIsSubmitFailed,
                   sendData,
                   checkSubject,
-                  checkProperty
+                  checkProperty,
+                  checkDocs
                 )}
               >
                 {modalData[currentState].buttonText}

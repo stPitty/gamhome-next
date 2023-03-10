@@ -4,11 +4,6 @@ import { HYDRATE } from "next-redux-wrapper";
 export const checkApi = createApi({
   reducerPath: "checkApi",
   baseQuery: fetchBaseQuery({ baseUrl: "/api/check" }),
-  extractRehydrationInfo(action, { reducerPath }) {
-    if (action.type === HYDRATE) {
-      return action.payload[reducerPath];
-    }
-  },
   endpoints: (builder) => ({
     checkSubject: builder.query({
       query: (body) => ({
@@ -30,6 +25,13 @@ export const checkApi = createApi({
         method: "POST",
       }),
     }),
+    checkDocs: builder.query({
+      query: (body) => ({
+        url: "docs",
+        method: "POST",
+        body
+      })
+    })
   }),
 });
 
@@ -37,4 +39,5 @@ export const {
   useLazyCheckSubjectQuery,
   useLazyCheckPropertyQuery,
   useLazyConfirmQuery,
+  useLazyCheckDocsQuery
 } = checkApi;

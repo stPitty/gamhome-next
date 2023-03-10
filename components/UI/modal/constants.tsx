@@ -155,11 +155,18 @@ const modalData: ModalBodyData = {
     ),
     buttonText: "Перейти к оплате 799 ₽",
     modalType: "withInput",
-    nextStateBtnAction: thanksForBuy,
     placeHolder: "email",
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
+    nextStateBtnAction: closeModal,
+    isPayable: true,
+    price: 79900, //799*100
+    paymentObj: {
+      isLast: true,
+      type: "check-list",
+    },
+    errorAction: errorWithDocs,
   },
   [ModalState.THANKS_FOR_BUY]: {
     header: "Спасибо за покупку",
