@@ -57,7 +57,7 @@ const IconContainer = styled.div<{ isLast: boolean }>`
   cursor: pointer;
   width: 36px;
   height: 36px;
-  margin: ${({ isLast }) => (isLast ? "-4px 8px" : "8px 16px")} 0 0;
+  padding: ${({ isLast }) => (isLast ? "-4px 8px" : "8px 16px")} 0 0;
   border-radius: 12px;
   transition: 0.1s linear;
   ${({ isLast }) =>
@@ -67,8 +67,10 @@ const IconContainer = styled.div<{ isLast: boolean }>`
       top: 12px;
     `};
   @media screen and (max-width: 768px) {
-    margin-right: 8px;
-    position: fixed;
+    padding-right: 8px;
+    position: sticky;
+    top: 0;
+    z-index: 1;
     ${({ isLast }) =>
       isLast &&
       css`
@@ -124,12 +126,11 @@ const Container = styled.div<{ modalType: boolean }>`
       width: 0;
     }
     width: 375px;
-    padding: 0 0 88px 20px;
+    padding: 0 0 0 20px;
     border-radius: 16px 16px 0 0;
   }
   @media screen and (max-width: 374px) {
     width: 320px;
-    padding: 0 0 72px 20px;
   }
 `;
 

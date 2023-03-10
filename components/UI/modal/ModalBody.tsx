@@ -145,10 +145,9 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
         `;
       }
     }};
-    position: fixed;
+    position: sticky;
     flex-direction: column;
     bottom: 0;
-    left: 0;
     width: 100%;
     display: flex;
     align-items: center;
@@ -195,7 +194,6 @@ const Container = styled.div<{ isLast: boolean }>`
   padding-right: ${({ isLast }) => (isLast ? "32px" : "40px")};
   @media screen and (max-width: 767px) {
     padding-right: 20px;
-    margin-top: 32px;
   }
 `;
 
