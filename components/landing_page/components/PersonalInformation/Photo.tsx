@@ -30,13 +30,13 @@ const Photo: FC<Props> = ({ className }) => {
         </SocialMediaIconContainer>
         <SocialMediaIconContainer
           target="_blank"
-          href="https://wa.me/79260211033"
+          href="https://t.me/gamolin_evgeniy"
         >
           <TelegramSVG />
         </SocialMediaIconContainer>
         <SocialMediaIconContainer
           target="_blank"
-          href="https://t.me/gamolin_evgeniy"
+          href="https://wa.me/79260211033"
         >
           <WhatsUpSVG />
         </SocialMediaIconContainer>

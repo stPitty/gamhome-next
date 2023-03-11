@@ -1,12 +1,13 @@
 import { MenuItem } from "./types";
 import { MenuEntryName } from "./enums";
-import { Hook } from "../../../common/routes";
+import { Hook, Route } from "../../../common/routes";
 
 const menuItems: MenuItem[] = [
   {
     id: 1,
     name: MenuEntryName.MAIN,
-    link: Hook.HOME,
+    link: Route.HOME,
+    isRedirect: true,
   },
   {
     id: 2,

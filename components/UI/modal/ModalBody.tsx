@@ -41,7 +41,10 @@ const ModalBody = () => {
   return (
     <>
       {currentState !== null && (
-        <Container isLast={modalData[currentState].modalType === "lastMessage"}>
+        <Container
+          withBtn={!!modalData[currentState].buttonText}
+          isLast={modalData[currentState].modalType === "lastMessage"}
+        >
           {modalData[currentState].modalType === "lastMessage" && (
             <Image image={modalData[currentState].image!} />
           )}
@@ -96,20 +99,6 @@ const ModalBody = () => {
   );
 };
 
-const WhiteBlock = styled.div`
-  display: none;
-  background-color: ${WhiteColor.WHITE};
-  @media screen and (max-width: 767px) {
-    display: block;
-    width: 375px;
-    height: 32px;
-  }
-  @media screen and (max-width: 374px) {
-    width: 296px;
-    height: 24px;
-  }
-`;
-
 const StyledButton = styled(Button)`
   @media screen and (max-width: 767px) {
     width: 335px;
@@ -145,9 +134,11 @@ const ButtonContainer = styled.div<{ modalType: Modal }>`
         `;
       }
     }};
-    position: fixed;
+    position: sticky;
+    position: -webkit-sticky;
     flex-direction: column;
     bottom: 0;
+    z-index: 10;
     left: 0;
     width: 100%;
     display: flex;
@@ -188,7 +179,7 @@ const Image = styled.div<{ image: string }>`
   margin-bottom: 24px;
 `;
 
-const Container = styled.div<{ isLast: boolean }>`
+const Container = styled.div<{ isLast: boolean; withBtn: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: ${({ isLast }) => isLast && "center"};
@@ -196,6 +187,7 @@ const Container = styled.div<{ isLast: boolean }>`
   @media screen and (max-width: 767px) {
     padding-right: 20px;
     margin-top: 32px;
+    padding-bottom: ${({ isLast, withBtn }) => isLast && !withBtn && "32px"};
   }
 `;
 

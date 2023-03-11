@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
 import { WindowSize } from "../../../redux/slicers/enums";
+import { Hook } from "../../../common/routes";
 
 const handleResizeMap = (
   windowSize: WindowSize,
@@ -28,4 +29,27 @@ const handleResizeMap = (
   }
 };
 
-export { handleResizeMap };
+const handleClickConciergeButton = (windowSize: WindowSize | null) => () => {
+  const conciergeCard = document.getElementById(Hook.CONCIERGE);
+  let num = 0;
+
+  if (windowSize === WindowSize.MD) {
+    num = 82;
+  }
+  if (windowSize === WindowSize.SM) {
+    num = 58;
+  }
+  if (windowSize === WindowSize.XS) {
+    num = 57;
+  }
+
+  const top = conciergeCard
+    ? conciergeCard?.getBoundingClientRect().top - num
+    : 0;
+  window.scrollBy({
+    top,
+    behavior: "smooth",
+  });
+};
+
+export { handleResizeMap, handleClickConciergeButton };

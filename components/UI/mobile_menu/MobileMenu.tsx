@@ -68,7 +68,7 @@ const MobileMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
               <MenuItem
                 onClick={handleCloseMenu}
                 key={el.id}
-                href={"#" + el.link}
+                href={el?.isRedirect ? el.link : "#" + el.link}
               >
                 {el.name}
               </MenuItem>

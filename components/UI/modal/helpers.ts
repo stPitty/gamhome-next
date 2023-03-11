@@ -48,7 +48,7 @@ const reduxStateHandler = async (
         contact: {},
       };
       if (modalData[currentState!].price) {
-        data.deal.price = String(modalData[currentState!].price);
+        data.deal.price = modalData[currentState!].price;
       }
 
       if (reduxState.flatData?.flatData?.id) {
@@ -189,8 +189,8 @@ const reactStateHandler = async (
 
         if (modalData[currentState!].paymentObj?.type === "check-list") {
           const data = await checkDocs({
-              amount: 79900,
-              email: inputValue,
+            amount: 79900,
+            email: inputValue,
           });
 
           if (data?.isError || !data?.data?.Success) {

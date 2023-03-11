@@ -104,7 +104,9 @@ const Container = styled.div`
 
 const Wrapper = styled.div<{ isModalOpened: boolean }>`
   display: flex;
-  position: fixed;
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 1;
   bottom: 0;
   left: 0;
   justify-content: center;

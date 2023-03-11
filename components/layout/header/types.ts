@@ -4,7 +4,8 @@ import { Hook } from "../../../common/routes";
 type MenuItem = {
   id: number;
   name: string;
-  link: Hook;
+  link: string;
+  isRedirect?: boolean;
 };
 
 export type { MenuItem };

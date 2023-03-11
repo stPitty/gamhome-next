@@ -9,6 +9,7 @@ import {
   keySearchBuy,
 } from "../../../redux/slicers/modalStateSlicer";
 import { ButtonType } from "../../UI/button/enums";
+import { Hook } from "../../../common/routes";
 
 const rentCardsData: CardData[] = [
   {
@@ -75,6 +76,7 @@ const rentCardsData: CardData[] = [
       },
     ],
     tagText: "70% заселяется в\u00A0первую неделю поиска",
+    anchor: Hook.CONCIERGE,
   },
   {
     id: 3,
@@ -239,6 +241,7 @@ const buyCardsData: CardData[] = [
       },
     ],
     tagText: "Найдём квартиру, поможем с\u00A0документами",
+    anchor: Hook.CONCIERGE,
   },
   {
     id: 3,

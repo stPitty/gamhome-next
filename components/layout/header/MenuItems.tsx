@@ -12,7 +12,11 @@ const MenuItems: React.FC<Props> = ({ className }) => {
   return (
     <MenuWrapper className={className}>
       {menuItems.map((item) => (
-        <Link key={item.id} href={"#" + item.link} scroll={false}>
+        <Link
+          key={item.id}
+          href={item?.isRedirect ? item.link : "#" + item.link}
+          scroll={!!item?.isRedirect}
+        >
           <Text>{item.name}</Text>
         </Link>
       ))}

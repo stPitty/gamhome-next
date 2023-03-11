@@ -5,6 +5,7 @@ import InfoBlock from "./info-block";
 import { useAppSelector } from "../../../redux/hooks";
 import { TFlatState } from "../../../redux/slicers/types";
 import ChevronSVG from "../../../public/assets/svg/ChevronSVG";
+import Link from "next/link";
 
 const FlatBlock: React.FC = () => {
   const { flatData, isLoading } = useAppSelector<TFlatState>(
@@ -18,12 +19,14 @@ const FlatBlock: React.FC = () => {
       ) : (
         <HeaderText>{flatData?.title}</HeaderText>
       )}
-      <TelegramButtonContainer>
-        <ChevronIconContainer>
-          <ChevronIcon />
-        </ChevronIconContainer>
-        <TelegramBtnText>Назад в Telegram бот</TelegramBtnText>
-      </TelegramButtonContainer>
+      <Link href="https://t.me/GamhomeBot" target="_blank">
+        <TelegramButtonContainer>
+          <ChevronIconContainer>
+            <ChevronIcon />
+          </ChevronIconContainer>
+          <TelegramBtnText>Назад в Telegram бот</TelegramBtnText>
+        </TelegramButtonContainer>
+      </Link>
       <PhotoBlock />
       <InfoBlock />
     </Container>

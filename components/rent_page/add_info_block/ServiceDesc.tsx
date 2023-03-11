@@ -7,7 +7,8 @@ import { Concierge, Owner, SafetyDeal } from "./enums";
 import { Hook, Route } from "../../../common/routes";
 import Link from "next/link";
 import { useAppSelector } from "../../../redux/hooks";
-import { TPathName } from "../../../redux/slicers/types";
+import { TPathName, TWindowSize } from "../../../redux/slicers/types";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 type Props = {
   headerText: Concierge | Owner | SafetyDeal;
@@ -15,6 +16,7 @@ type Props = {
   image: Concierge | Owner | SafetyDeal;
   cardType: "concierge" | "owner" | "safetyDeal";
   btnLink: Hook;
+  onBtnClickHandler?: (windowSize: WindowSize | null) => () => void;
 };
 
 const ServiceDesc: React.FC<Props> = ({
@@ -23,8 +25,13 @@ const ServiceDesc: React.FC<Props> = ({
   image,
   cardType,
   btnLink,
+  onBtnClickHandler = (windowSize: WindowSize | null) => () => {},
 }) => {
   const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
 
   return (
     <Container
@@ -39,9 +46,22 @@ const ServiceDesc: React.FC<Props> = ({
             {desc}
           </DescText>
         </TextWrapper>
-        <Link href={"#" + btnLink} scroll={false}>
-          <StyledButton buttonSize={ButtonSize.MEDIUM}>Подробнее</StyledButton>
-        </Link>
+        {!onBtnClickHandler ||
+        windowSize === WindowSize.XL ||
+        windowSize === WindowSize.LG ? (
+          <Link href={"#" + btnLink} scroll={false}>
+            <StyledButton buttonSize={ButtonSize.MEDIUM}>
+              Подробнее
+            </StyledButton>
+          </Link>
+        ) : (
+          <StyledButton
+            onClick={onBtnClickHandler(windowSize)}
+            buttonSize={ButtonSize.MEDIUM}
+          >
+            Подробнее
+          </StyledButton>
+        )}
       </InfoWrapper>
     </Container>
   );

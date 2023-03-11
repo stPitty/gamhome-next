@@ -23,6 +23,7 @@ import TaxHelp from "./tax_help/TaxHelp";
 import { WindowSize } from "../../redux/slicers/enums";
 import { setMobBtnVisibility } from "../../redux/slicers/mobBtnViewSlicer";
 import { handleChangeBtnVisibility } from "../../common/helpers/handleChangeBtnVisibility";
+import { webinarImages } from "./constants";
 
 const Buy = () => {
   const { windowSize } = useAppSelector<TWindowSize>(
@@ -79,7 +80,7 @@ const Buy = () => {
       <MainServices />
       <TaxHelp />
       <DiscountsBlock />
-      <WebinarBlock />
+      <WebinarBlock type="buy" imagePaths={webinarImages} />
       <MobileButtons />
     </PageContainer>
   );

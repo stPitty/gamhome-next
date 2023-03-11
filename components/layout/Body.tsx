@@ -119,7 +119,7 @@ const ButtonsWrapper = styled.div`
     column-gap: 24px;
   }
   @media screen and (max-width: 767px) {
-    display: none;
+    display: none !important;
   }
 `;
 const TelephoneNumberText = styled.a`

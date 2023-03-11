@@ -25,6 +25,7 @@ import RowWrapper from "../common/row_wrapper/RowWrapper";
 import { WindowSize } from "../../redux/slicers/enums";
 import { setMobBtnVisibility } from "../../redux/slicers/mobBtnViewSlicer";
 import { handleChangeBtnVisibility } from "../../common/helpers/handleChangeBtnVisibility";
+import { webinarImages } from "./constants";
 
 const Rent: ComponentWithLayout = () => {
   const { windowSize } = useAppSelector<TWindowSize>(
@@ -78,7 +79,7 @@ const Rent: ComponentWithLayout = () => {
       <CardWitsImage />
       <MainServices />
       <DiscountsBlock />
-      <WebinarBlock />
+      <WebinarBlock imagePaths={webinarImages} type="rent" />
       <MobileButtons />
     </PageContainer>
   );

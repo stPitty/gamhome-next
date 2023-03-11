@@ -25,4 +25,5 @@ export enum Hook {
   FIND_PROPERTY = "find_property",
   ABOUT_US = "about_us",
   REPORTS = "reports",
+  CONCIERGE = "concierge",
 }

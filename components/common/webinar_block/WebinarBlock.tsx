@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import React from "react";
+import React, { FC } from "react";
 import { Hook } from "../../../common/routes";
 import { ButtonSize, ButtonType } from "../../UI/button/enums";
 import {
@@ -11,8 +11,14 @@ import {
 import { useAppSelector } from "../../../redux/hooks";
 import { TCookiePopUp } from "../../../redux/slicers/types";
 import Button from "../../UI/button/Button";
+import Image from "next/image";
 
-const WebinarBlock = () => {
+type Props = {
+  imagePaths: [string, string, string, string, string];
+  type: "rent" | "buy";
+};
+
+const WebinarBlock: FC<Props> = ({ imagePaths, type }) => {
   const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
     (state) => state.cookiePopUp
   );
@@ -22,14 +28,22 @@ const WebinarBlock = () => {
       <ContentContainer>
         <Tag>Бесплатный доступ к&nbsp;вебинару</Tag>
         <HeaderText>
-          Узнайте основные риски при&nbsp;аренде квартиры&nbsp;и&nbsp;какие
+          Узнайте основные риски при&nbsp;
+          {type === "rent" ? "аренде" : "покупке"} квартиры&nbsp;и&nbsp;какие
           схемы используют мошенники
         </HeaderText>
-        <Text>
-          На&nbsp;вебинаре разобраны основные методы мошенников
-          и&nbsp;как&nbsp;их&nbsp;вычислить. Изучите это&nbsp;видео, чтобы
-          всегда понимать правила съёма квартиры
-        </Text>
+        {type === "rent" ? (
+          <Text>
+            На&nbsp;вебинаре разобраны основные методы мошенников
+            и&nbsp;как&nbsp;их&nbsp;вычислить. Изучите это&nbsp;видео, чтобы
+            всегда понимать правила съёма квартиры
+          </Text>
+        ) : (
+          <Text>
+            На вебинаре разобраны основные ошибки, которые допускают покупатели.
+            Изучите это видео, чтобы всегда понимать правила покупки квартиры
+          </Text>
+        )}
         <StyledButton
           buttonSize={ButtonSize.LARGE}
           buttonType={ButtonType.PRIMARY_WB}
@@ -37,203 +51,151 @@ const WebinarBlock = () => {
           Посмотреть видео
         </StyledButton>
       </ContentContainer>
-      <PhotoWrapper>
-        <Image />
-        <Badge img={1} />
-        <Badge img={2} />
-        <Badge img={3} />
-        <Badge img={4} />
-        <Badge img={5} />
+      <PhotoWrapper type={type}>
+        <StyledImage />
+        <BadgeContainer_1>
+          <Image src={imagePaths[0]} alt="badge icon 1" fill loading="lazy" />
+        </BadgeContainer_1>
+        <BadgeContainer_2 type={type}>
+          <Image src={imagePaths[1]} alt="badge icon 2" fill loading="lazy" />
+        </BadgeContainer_2>
+        <BadgeContainer_3 type={type}>
+          <Image src={imagePaths[2]} alt="badge icon 3" fill loading="lazy" />
+        </BadgeContainer_3>
+        <BadgeContainer_4 type={type}>
+          <Image src={imagePaths[3]} alt="badge icon 4" fill loading="lazy" />
+        </BadgeContainer_4>
+        <BadgeContainer_5 type={type}>
+          <Image src={imagePaths[4]} alt="badge icon 5" fill loading="lazy" />
+        </BadgeContainer_5>
       </PhotoWrapper>
     </Container>
   );
 };
 
-const Badge = styled.div<{ img: 1 | 2 | 3 | 4 | 5 }>`
-  background-repeat: no-repeat;
+const BadgeContainer = styled.div`
   position: relative;
-  ${({ img }) => {
-    switch (img) {
-      case 1:
-        return css`
-          min-width: 278px;
-          background-image: url("/images/badges/badge_1.webp");
-          left: 115px;
-          top: 10px;
-        `;
-      case 2:
-        return css`
-          min-width: 272px;
-          background-image: url("/images/badges/badge_3.webp");
-          left: 123px;
-          top: 262px;
-        `;
-      case 3:
-        return css`
-          min-width: 155px;
-          background-image: url("/images/badges/badge_4.webp");
-          left: -470px;
-          top: 400px;
-        `;
-      case 4:
-        return css`
-          min-width: 211px;
-          background-image: url("/images/badges/badge_5.webp");
-          left: -250px;
-          top: 425px;
-        `;
-      case 5:
-        return css`
-          min-width: 283px;
-          background-image: url("/images/badges/badge_2.webp");
-          left: -725px;
-          top: 515px;
-        `;
-    }
-  }};
+  height: 16%;
+  overflow: visible;
+`;
+
+const BadgeContainer_5 = styled(BadgeContainer)<{ type: "rent" | "buy" }>`
+  min-width: ${({ type }) => (type === "rent" ? "283px" : "351px")};
+  left: -725px;
+  top: 500px;
   @media screen and (max-width: 1439px) {
-    ${({ img }) => {
-      switch (img) {
-        case 1:
-          return css`
-            min-width: 210px;
-            background-size: 210px;
-            left: 115px;
-            top: 0;
-          `;
-        case 2:
-          return css`
-            min-width: 203px;
-            background-size: 203px;
-            left: 95px;
-            top: 250px;
-          `;
-        case 3:
-          return css`
-            min-width: 155px;
-            background-size: 155px;
-            left: -310px;
-            top: 300px;
-          `;
-        case 4:
-          return css`
-            min-width: 168px;
-            background-size: 168px;
-            left: -250px;
-            top: 350px;
-          `;
-        case 5:
-          return css`
-            min-width: 170px;
-            background-size: 170px;
-            left: -535px;
-            top: 420px;
-          `;
-      }
-    }};
+    min-width: ${({ type }) => (type === "rent" ? "170px" : "213px")};
+    left: ${({ type }) => (type === "rent" ? "-535px" : "-550px")};
+    top: 410px;
   }
   @media screen and (max-width: 1023px) {
-    ${({ img }) => {
-      switch (img) {
-        case 1:
-          return css`
-            min-width: 177px;
-            background-size: 177px;
-            left: 90px;
-            top: 0;
-          `;
-        case 2:
-          return css`
-            min-width: 170px;
-            background-size: 170px;
-            left: 90px;
-            top: 210px;
-          `;
-        case 3:
-          return css`
-            min-width: 130px;
-            background-size: 130px;
-            left: -275px;
-            top: 250px;
-          `;
-        case 4:
-          return css`
-            min-width: 142px;
-            background-size: 142px;
-            left: -225px;
-            top: 300px;
-          `;
-        case 5:
-          return css`
-            min-width: 142px;
-            background-size: 142px;
-            left: -460px;
-            top: 355px;
-          `;
-      }
-    }};
+    min-width: ${({ type }) => (type === "rent" ? "142px" : "179px")};
+    left: ${({ type }) => (type === "rent" ? "-460px" : "-470px")};
+    top: 345px;
   }
   @media screen and (max-width: 767px) {
-    ${({ img }) => {
-      switch (img) {
-        case 1:
-          return css`
-            left: 100px;
-          `;
-        case 2:
-          return css`
-            min-width: 138px;
-            background-size: 138px;
-            left: 93px;
-            top: 200px;
-          `;
-        case 3:
-          return css`
-            left: -240px;
-          `;
-        case 4:
-          return css`
-            left: -180px;
-            top: 300px;
-          `;
-        case 5:
-          return css`
-            left: -430px;
-          `;
-      }
-    }};
+    left: ${({ type }) => (type === "rent" ? "-430px" : "-475px")};
   }
   @media screen and (max-width: 374px) {
-    ${({ img }) => {
-      switch (img) {
-        case 1:
-          return css`
-            left: 110px;
-          `;
-        case 2:
-          return css`
-            left: 79px;
-            top: 215px;
-          `;
-        case 3:
-          return css`
-            top: 245px;
-            left: -228px;
-          `;
-        case 4:
-          return css`
-            left: -200px;
-          `;
-        case 5:
-          return css`
-            left: -410px;
-          `;
-      }
-    }};
+    left: ${({ type }) => (type === "rent" ? "-410px" : "-455px")};
   }
 `;
 
-const Image = styled.div`
+const BadgeContainer_4 = styled(BadgeContainer)<{ type: "rent" | "buy" }>`
+  min-width: ${({ type }) => (type === "rent" ? "211px" : "264px")};
+  left: -250px;
+  top: ${({ type }) => (type === "rent" ? "425px" : "400px")};
+  @media screen and (max-width: 1439px) {
+    min-width: ${({ type }) => (type === "rent" ? "168px" : "211px")};
+    left: ${({ type }) => (type === "rent" ? "-250px" : "-220px")};
+    top: 340px;
+  }
+  @media screen and (max-width: 1023px) {
+    min-width: ${({ type }) => (type === "rent" ? "142px" : "178px")};
+    left: ${({ type }) => (type === "rent" ? "-215px" : "-205px")};
+    top: 290px;
+  }
+  @media screen and (max-width: 767px) {
+    left: ${({ type }) => (type === "rent" ? "-180px" : "-220px")};
+    top: 290px;
+  }
+  @media screen and (max-width: 374px) {
+    left: ${({ type }) => (type === "rent" ? "-190px" : "-240px")};
+    top: 285px;
+  }
+`;
+
+const BadgeContainer_3 = styled(BadgeContainer)<{ type: "rent" | "buy" }>`
+  min-width: 155px;
+  left: -470px;
+  top: 375px;
+  @media screen and (max-width: 1439px) {
+    min-width: 155px;
+    left: ${({ type }) => (type === "rent" ? "-310px" : "-280px")};
+    top: 280px;
+  }
+  @media screen and (max-width: 1023px) {
+    min-width: 130px;
+    left: ${({ type }) => (type === "rent" ? "-275px" : "-245px")};
+    top: 250px;
+  }
+  @media screen and (max-width: 767px) {
+    left: -240px;
+    top: 240px;
+  }
+  @media screen and (max-width: 374px) {
+    top: 245px;
+    left: -220px;
+  }
+`;
+
+const BadgeContainer_2 = styled(BadgeContainer)<{ type: "rent" | "buy" }>`
+  min-width: ${({ type }) => (type === "rent" ? "272px" : "228px")};
+  left: 123px;
+  top: 262px;
+  @media screen and (max-width: 1439px) {
+    min-width: ${({ type }) => (type === "rent" ? "203px" : "172px")};
+    left: ${({ type }) => (type === "rent" ? "110px" : "125px")};
+    top: 250px;
+  }
+  @media screen and (max-width: 1023px) {
+    min-width: ${({ type }) => (type === "rent" ? "170px" : "143px")};
+    left: 90px;
+    top: 210px;
+  }
+  @media screen and (max-width: 767px) {
+    min-width: 138px;
+    left: 93px;
+    top: 190px;
+  }
+  @media screen and (max-width: 374px) {
+    left: ${({ type }) => (type === "rent" ? "85px" : "65px")};
+    top: 205px;
+  }
+`;
+
+const BadgeContainer_1 = styled(BadgeContainer)`
+  min-width: 278px;
+  left: 115px;
+  top: 10px;
+  @media screen and (max-width: 1439px) {
+    min-width: 210px;
+    left: 115px;
+    top: 0;
+  }
+  @media screen and (max-width: 1023px) {
+    min-width: 177px;
+    left: 90px;
+  }
+  @media screen and (max-width: 767px) {
+    left: 100px;
+  }
+  @media screen and (max-width: 374px) {
+    left: 110px;
+  }
+`;
+
+const StyledImage = styled.div`
   min-width: 438px;
   height: 567px;
   background-image: url("/images/woman-webinar.webp");
@@ -265,30 +227,36 @@ const Image = styled.div`
   }
 `;
 
-const PhotoWrapper = styled.div`
+const PhotoWrapper = styled.div<{ type: "rent" | "buy" }>`
   display: flex;
-  overflow: hidden;
+  align-items: flex-start;
   width: 595px;
   height: 585px;
   justify-content: center;
+  overflow: visible;
+  padding-left: ${({ type }) => type === "buy" && "100px"};
   @media screen and (max-width: 1439px) {
     width: 403px;
     height: 467px;
     position: relative;
     top: -50px;
+    padding-left: ${({ type }) => type === "buy" && "40px"};
   }
   @media screen and (max-width: 1023px) {
     width: 366px;
     height: 391px;
     position: unset;
     margin-top: 20px;
+    padding-left: ${({ type }) => type === "buy" && "60px"};
   }
   @media screen and (max-width: 767px) {
     margin-top: 0;
     width: 332px;
+    padding-left: ${({ type }) => type === "buy" && "80px"};
   }
   @media screen and (max-width: 374px) {
     width: 305px;
+    padding-left: ${({ type }) => type === "buy" && "75px"};
   }
 `;
 

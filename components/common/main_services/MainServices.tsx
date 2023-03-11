@@ -1,11 +1,16 @@
 import styled from "styled-components";
 import Cards from "./Card";
-import React from "react";
+import React, { useMemo } from "react";
 import { Hook, Route } from "../../../common/routes";
 import { BlackColor } from "../../../common/enums";
 import { useAppSelector } from "../../../redux/hooks";
-import { TCookiePopUp, TPathName } from "../../../redux/slicers/types";
+import {
+  TCookiePopUp,
+  TPathName,
+  TWindowSize,
+} from "../../../redux/slicers/types";
 import { rentCardsData, buyCardsData } from "./constants";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 const MainServices = React.forwardRef((_, ref) => {
   const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
@@ -13,6 +18,17 @@ const MainServices = React.forwardRef((_, ref) => {
   const { isCookieAccepted } = useAppSelector<TCookiePopUp>(
     (state) => state.cookiePopUp
   );
+
+  const { windowSize } = useAppSelector<TWindowSize>(
+    (state) => state.windowSize
+  );
+
+  const ContainerId = useMemo(() => {
+    if (windowSize === WindowSize.XL || windowSize === WindowSize.LG) {
+      return Hook.CONCIERGE;
+    }
+    return "";
+  }, [windowSize]);
 
   return (
     <>

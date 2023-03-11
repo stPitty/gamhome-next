@@ -26,6 +26,7 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
 
   const dispatch = useAppDispatch();
   const handleWindowScroll = (e: any) => {
+    console.log(window.scrollY);
     if (e.currentTarget.scrollY > 0) {
       setScrolled(true);
     }
@@ -168,11 +169,11 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
           </FooterContainer>
         </Container>
       </Wrapper>
+      {isOpened && <Modal />}
       <MobileMenu isLanding menuItems={menuItems} />
       <ScrollTopBtn />
       <CookiesPopup />
       <SideMenu isLanding menuItems={menuItems} />
-      {isOpened && <Modal />}
     </>
   );
 };
@@ -464,7 +465,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  min-height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   background: url("/images/landing/background.png") repeat;
 `;

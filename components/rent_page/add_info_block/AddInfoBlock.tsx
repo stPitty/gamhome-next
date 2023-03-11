@@ -6,6 +6,7 @@ import MapBlock from "./MapBlock";
 import { Hook, Route } from "../../../common/routes";
 import { useAppSelector } from "../../../redux/hooks";
 import { TPathName } from "../../../redux/slicers/types";
+import { handleClickConciergeButton } from "./helpers";
 
 const AddInfoBlock = () => {
   const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
@@ -18,6 +19,7 @@ const AddInfoBlock = () => {
         image={Concierge.IMAGE}
         headerText={Concierge.HEADER}
         btnLink={Hook.SERVICES}
+        onBtnClickHandler={handleClickConciergeButton}
       />
       <Divider />
       <Description />

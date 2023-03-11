@@ -96,7 +96,7 @@ export type ModalBodyData = {
 };
 
 export type Deal = {
-  price?: string;
+  price?: number;
   pipelineId?: number;
   propertyId?: string;
   city?: string;

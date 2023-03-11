@@ -16,4 +16,5 @@ export type CardData = {
   tagText?: string;
   violetTag?: boolean;
   plusService?: string;
+  anchor?: string;
 };

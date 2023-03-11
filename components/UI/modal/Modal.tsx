@@ -93,11 +93,11 @@ const StyledCloseIcon = styled(CloseSVG)`
 `;
 
 const Wrapper = styled.div`
-  top: 0;
   display: flex;
   position: fixed;
-  height: 100vh;
-  width: 100vw;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
   z-index: 7;
@@ -116,7 +116,8 @@ const Container = styled.div<{ modalType: boolean }>`
   border-radius: 16px;
   width: fit-content;
   @media screen and (max-width: 767px) {
-    max-height: 100%;
+    max-height: 100vh;
+    height: fit-content;
     overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
@@ -124,7 +125,7 @@ const Container = styled.div<{ modalType: boolean }>`
       width: 0;
     }
     width: 375px;
-    padding: 0 0 88px 20px;
+    padding: 0 0 0 20px;
     border-radius: 16px 16px 0 0;
   }
   @media screen and (max-width: 374px) {

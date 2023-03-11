@@ -14,8 +14,7 @@ const GeneralWrapper: React.FC<ChildrenProp> = ({ children }) => {
     <Wrapper>
       <Container
         style={{
-          paddingBottom: !isModalOpened ? "68px" : "0",
-          height: isModalOpened ? "0" : "100vh",
+          height: isModalOpened ? "0" : "fit-content",
         }}
         isModalOpened={!!isModalOpened}
       >
@@ -42,8 +41,6 @@ const Container = styled.div<{ isModalOpened: boolean }>`
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #fdfdfd;
-  overflow: hidden;
 `;
 
 export default GeneralWrapper;

@@ -62,7 +62,7 @@ const SideMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
             return (
               <MenuItemText
                 key={el.id}
-                href={"#" + el.link}
+                href={el?.isRedirect ? el.link : "#" + el.link}
                 onClick={handleCloseMenu}
               >
                 {el.name}

@@ -54,10 +54,10 @@ const StyledBody = styled(Body)`
 `;
 
 const StyledMenuItems = styled(MenuItems)`
-  display: none;
+  display: none !important;
   width: fit-content;
   @media screen and (max-width: 1439px) {
-    display: flex;
+    display: flex !important;
   }
   @media screen and (max-width: 1439px) and (min-width: 768px) {
     padding-left: 36px;

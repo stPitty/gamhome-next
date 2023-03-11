@@ -1,5 +1,5 @@
 import { CardData } from "./types";
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 import styled from "styled-components";
 import { ButtonSize } from "../../UI/button/enums";
 import {
@@ -17,8 +17,9 @@ import VectorArrowSVG from "../../../public/assets/svg/VectorArrowSVG";
 import ChevronDoneBoltSVG from "../../../public/assets/svg/ChevronDoneBoltSVG";
 import Button from "../../UI/button/Button";
 import { CardType } from "./enums";
-import { TPathName } from "../../../redux/slicers/types";
+import { TPathName, TWindowSize } from "../../../redux/slicers/types";
 import { Route } from "../../../common/routes";
+import { WindowSize } from "../../../redux/slicers/enums";
 
 type Props = {
   data: CardData[];
@@ -38,6 +39,7 @@ const Cards: React.FC<Props> = ({ data }) => {
       {data.map((el) => {
         return (
           <CardContainer
+            id={el?.anchor ?? ""}
             isRent={pathName === Route.RENT}
             key={el.id}
             cardType={el.cardType}
@@ -148,7 +150,7 @@ const PointText = styled.p<{ cardType: CardType; isArrow?: boolean }>`
   }
   @media screen and (max-width: 375px) {
     white-space: pre-line;
-  } ;
+  }
 `;
 
 const PointWrapper = styled.div`

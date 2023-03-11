@@ -38,6 +38,12 @@ const Photos: React.FC = () => {
     return windowSize === WindowSize.XL ? 8 : 7;
   }, [windowSize]);
 
+  const handleCloseClick = () => {
+    const path = router.asPath.replace("photos", "");
+    console.log(path);
+    router.push(path);
+  };
+
   useEffect(() => {
     const keyupEventHandler = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -65,15 +71,6 @@ const Photos: React.FC = () => {
     }
   }, [isError]);
 
-  const handleCloseClick = () => {
-    const path = router.asPath.replace("photos", "");
-    router.push(path);
-  };
-
-  const handleCloseCallback = useCallback(() => {
-    handleCloseClick();
-  }, []);
-
   return (
     <Container>
       <TabletHeader>
@@ -84,7 +81,7 @@ const Photos: React.FC = () => {
           <CloseSVG />
         </CloseIconContainer>
       </TabletHeader>
-      <FullScreenHeader isTop={true} handleClose={handleCloseCallback} />
+      <FullScreenHeader isTop={true} handleClose={handleCloseClick} />
       <PhotoWrapper>
         <ControlArea
           onClick={handleSwapImageClick(
@@ -111,7 +108,7 @@ const Photos: React.FC = () => {
       <PreviewWrapper>
         <PreviewList isFullSized={true} quantity={imagesQuantity} />
       </PreviewWrapper>
-      <FullScreenHeader isTop={false} handleClose={handleCloseCallback} />
+      <FullScreenHeader isTop={false} handleClose={handleCloseClick} />
     </Container>
   );
 };
