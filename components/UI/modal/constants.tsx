@@ -204,7 +204,6 @@ const modalData: ModalBodyData = {
     ],
     buttonText: "Получить документы",
     modalType: "withInfo",
-    nextStateBtnAction: openFreeDocsWithEmail,
   },
   [ModalState.FREE_DOCS_BAG_ENTER_EMAIL]: {
     header: "Пакет бесплатных документов",
@@ -222,6 +221,12 @@ const modalData: ModalBodyData = {
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
+    isPayable: true,
+    paymentObj: {
+      isLast: true,
+      type: "freeDocs",
+    },
+    errorAction: errorWithDocs,
   },
   [ModalState.DOCS_SENT]: {
     header: "Документы отправлены на почту",
@@ -472,6 +477,12 @@ const modalData: ModalBodyData = {
     errorMessage: "Введите корректный Email",
     submitFailedMessage: "Укажите Email",
     validationPattern: emailValidationRegexp,
+    isPayable: true,
+    paymentObj: {
+      isLast: true,
+      type: "freeDocs",
+    },
+    errorAction: errorWithDocs,
   },
   [ModalState.LAW]: {
     ...serviceModal,

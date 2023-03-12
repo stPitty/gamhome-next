@@ -15,6 +15,7 @@ import {
   useLazyCheckPropertyQuery,
   useLazyCheckSubjectQuery,
   useLazyCheckDocsQuery,
+  useLazyFreeDocsQuery,
 } from "../../../redux/APIs/checkApi";
 
 const ModalBody = () => {
@@ -31,6 +32,8 @@ const ModalBody = () => {
   const [checkProperty] = useLazyCheckPropertyQuery();
 
   const [checkDocs] = useLazyCheckDocsQuery();
+
+  const [freeDocs] = useLazyFreeDocsQuery();
 
   const { currentState } = useAppSelector<TModalState>(
     (state) => state.modalState
@@ -86,7 +89,8 @@ const ModalBody = () => {
                   sendData,
                   checkSubject,
                   checkProperty,
-                  checkDocs
+                  checkDocs,
+                  freeDocs
                 )}
               >
                 {modalData[currentState].buttonText}

@@ -2,13 +2,11 @@ import React, { SyntheticEvent, useState } from "react";
 import styled, { css } from "styled-components";
 import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useRouter } from "next/router";
-import { Route } from "../../../common/routes";
 import {
   TFlatState,
   TPhotoPosition,
   TWindowSize,
 } from "../../../redux/slicers/types";
-import { Url } from "../../../common/config_enums/url.enum";
 import {
   decrement,
   increment,
@@ -42,9 +40,7 @@ const Carousel: React.FC<Props> = ({ isFullscreen }) => {
       windowSize !== WindowSize.XS &&
       windowSize !== WindowSize.SM
     ) {
-      const path = `${Url.CLIENT_PATH}/${router.pathname.split("/")[1]}/${
-        router.query.id
-      }${Route.PHOTOS}`;
+      const path = `${window.location.href}/photos`;
       router.push(path);
     }
   };
@@ -182,7 +178,7 @@ const Container = styled.div<{
         transform: translateX(${-(count * 288)}px);
       `;
     }};
-  } ;
+  }
 `;
 
 export default Carousel;

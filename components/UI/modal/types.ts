@@ -51,7 +51,7 @@ export type ModalBody = Partial<InputProps> & {
   paymentObj?: {
     saveDataAction?: Function;
     isLast?: boolean;
-    type?: "subject" | "property" | "check-list";
+    type?: "subject" | "property" | "check-list" | "freeDocs";
   };
   errorAction?: Function;
 };

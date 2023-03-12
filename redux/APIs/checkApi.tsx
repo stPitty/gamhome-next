@@ -29,9 +29,16 @@ export const checkApi = createApi({
       query: (body) => ({
         url: "docs",
         method: "POST",
-        body
-      })
-    })
+        body,
+      }),
+    }),
+    freeDocs: builder.query({
+      query: (body) => ({
+        url: "freeDocs",
+        method: "POST",
+        body,
+      }),
+    }),
   }),
 });
 
@@ -39,5 +46,6 @@ export const {
   useLazyCheckSubjectQuery,
   useLazyCheckPropertyQuery,
   useLazyConfirmQuery,
-  useLazyCheckDocsQuery
+  useLazyCheckDocsQuery,
+  useLazyFreeDocsQuery,
 } = checkApi;

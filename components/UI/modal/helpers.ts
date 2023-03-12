@@ -100,6 +100,7 @@ const reactStateHandler = async (
   checkSubject: Function,
   checkProperty: Function,
   checkDocs: Function,
+  freeDocs: Function,
   reduxState: any
 ) => {
   if (
@@ -123,7 +124,6 @@ const reactStateHandler = async (
           modalData[currentState!].paymentObj?.saveDataAction!(inputValue)
         );
       }
-
       if (modalData[currentState!].paymentObj?.isLast) {
         const token = sessionStorage.getItem("token");
 
@@ -202,6 +202,19 @@ const reactStateHandler = async (
 
           window.open(data?.data?.PaymentURL, "_blank");
         }
+
+        if (modalData[currentState!].paymentObj?.type === "freeDocs") {
+          const data = await freeDocs({
+            email: inputValue,
+          });
+
+          if (data?.isError) {
+            console.error(data.error);
+            dispatch(modalData[currentState!].errorAction!());
+            setInputValue("");
+            return;
+          }
+        }
       }
     }
 
@@ -223,7 +236,8 @@ const handleChangeStateClick =
     handleSendData: (arg: CrmReqBody) => void,
     checkSubject: Function,
     checkProperty: Function,
-    checkDocs: Function
+    checkDocs: Function,
+    freeDocs: Function
   ) =>
   () => {
     if (currentState !== null && modalData[currentState].withMultiInputs) {
@@ -249,6 +263,7 @@ const handleChangeStateClick =
         checkSubject,
         checkProperty,
         checkDocs,
+        freeDocs,
         reduxState
       );
     }
