@@ -156,11 +156,19 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
             <FooterConditionsBlock>
               <ConditionsText>
                 Использование сервиса означает согласие с&nbsp;
-                <ConditionsLink>
+                <ConditionsLink
+                  href="/documents/privacy_policy.pdf"
+                  target="_blank"
+                >
                   Политикой конфиденциальности
                 </ConditionsLink>{" "}
                 и&nbsp;
-                <ConditionsLink>Пользовательским соглашением</ConditionsLink>
+                <ConditionsLink
+                  href="/documents/user_agreement.pdf"
+                  target="_blank"
+                >
+                  Пользовательским соглашением
+                </ConditionsLink>
               </ConditionsText>
               <ConditionsText>
                 Иллюстраци взяты с&nbsp;icons8.com

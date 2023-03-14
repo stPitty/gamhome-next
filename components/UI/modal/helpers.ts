@@ -101,7 +101,8 @@ const reactStateHandler = async (
   checkProperty: Function,
   checkDocs: Function,
   freeDocs: Function,
-  reduxState: any
+  reduxState: any,
+  router: NextRouter
 ) => {
   if (
     modalData[currentState!].modalType !== "withInput" &&
@@ -204,8 +205,11 @@ const reactStateHandler = async (
         }
 
         if (modalData[currentState!].paymentObj?.type === "freeDocs") {
+          const docType = router.asPath.split("/")[1];
+
           const data = await freeDocs({
             email: inputValue,
+            docType,
           });
 
           if (data?.isError) {
@@ -237,7 +241,8 @@ const handleChangeStateClick =
     checkSubject: Function,
     checkProperty: Function,
     checkDocs: Function,
-    freeDocs: Function
+    freeDocs: Function,
+    router: NextRouter
   ) =>
   () => {
     if (currentState !== null && modalData[currentState].withMultiInputs) {
@@ -264,7 +269,8 @@ const handleChangeStateClick =
         checkProperty,
         checkDocs,
         freeDocs,
-        reduxState
+        reduxState,
+        router
       );
     }
   };

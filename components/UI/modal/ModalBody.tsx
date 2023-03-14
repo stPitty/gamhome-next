@@ -17,6 +17,7 @@ import {
   useLazyCheckDocsQuery,
   useLazyFreeDocsQuery,
 } from "../../../redux/APIs/checkApi";
+import { useRouter } from "next/router";
 
 const ModalBody = () => {
   const [inputValue, setInputValue] = useState<string>("");
@@ -24,6 +25,8 @@ const ModalBody = () => {
   const [isValidationError, setIsValidationError] = useState<boolean>(false);
 
   const dispatch = useAppDispatch();
+
+  const router = useRouter();
 
   const [sendData] = useLazySendContactDataQuery();
 
@@ -90,7 +93,8 @@ const ModalBody = () => {
                   checkSubject,
                   checkProperty,
                   checkDocs,
-                  freeDocs
+                  freeDocs,
+                  router
                 )}
               >
                 {modalData[currentState].buttonText}

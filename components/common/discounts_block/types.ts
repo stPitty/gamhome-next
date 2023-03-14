@@ -16,4 +16,5 @@ export type CardData = {
   image: string;
   cardType: CardAbout;
   contentId: Hook.DELIVERY_CONTENT | Hook.CLEANING_CONTENT;
+  link: string;
 };

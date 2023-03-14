@@ -103,6 +103,7 @@ const cardsData: CardData[] = [
     image: "/images/delivery.webp",
     cardType: "delivery",
     contentId: Hook.DELIVERY_CONTENT,
+    link: "https://gruzovichkof.ru",
   },
   {
     id: 2,
@@ -160,6 +161,7 @@ const cardsData: CardData[] = [
     image: "/images/cleaning.webp",
     cardType: "cleaning",
     contentId: Hook.CLEANING_CONTENT,
+    link: "https://www.domovenok.ru/promo?promocode=GAMHOME",
   },
 ];
 

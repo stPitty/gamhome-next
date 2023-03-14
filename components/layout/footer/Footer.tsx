@@ -18,9 +18,14 @@ const Footer: React.FC = () => {
           <ConditionsText>
             Использование сервиса означает согласие
             <AdaptiveTextDivider lg={true} sm={true} xs={true} /> с{" "}
-            <TextLink>Пользовательским соглашением</TextLink>
+            <TextLink href="/documents/user_agreement.pdf" target="_blank">
+              Пользовательским соглашением
+            </TextLink>
             <AdaptiveTextDivider xs={true} /> и
-            <TextLink> Политикой конфиденциальности</TextLink>
+            <TextLink href="/documents/privacy_policy.pdf" target="_blank">
+              {" "}
+              Политикой конфиденциальности
+            </TextLink>
           </ConditionsText>
           <br />
           <Text>Иллюстрации взяты с icons8.com</Text>

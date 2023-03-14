@@ -75,8 +75,13 @@ const serviceModal: Omit<ModalBody, "header"> = {
   subDesc: (
     <span>
       Отправляя заявку вы&nbsp;подтверждаете, что согласны с&nbsp;
-      <ConditionsLink>Политикой конфиденциальности</ConditionsLink>{" "}
-      и&nbsp;условиями <ConditionsLink>Оферты</ConditionsLink>
+      <ConditionsLink href="/documents/privacy_policy.pdf">
+        Политикой конфиденциальности
+      </ConditionsLink>{" "}
+      и&nbsp;условиями{" "}
+      <ConditionsLink href="/documents/user_agreement.pdf">
+        Пользовательского Соглашения
+      </ConditionsLink>
     </span>
   ),
   buttonText: "Оставить заявку",
@@ -149,8 +154,13 @@ const modalData: ModalBodyData = {
       <span>
         Файл с&nbsp;чек-листами и&nbsp;документами пришлём на&nbsp;почту. При
         отправке вы&nbsp;принимаете условия{" "}
-        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
-        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
+        <ConditionsLink href="/documents/privacy_policy.pdf">
+          Политики конфиденциальности
+        </ConditionsLink>{" "}
+        и&nbsp;условия{" "}
+        <ConditionsLink href="/documents/user_agreement.pdf">
+          Пользовательского Соглашения
+        </ConditionsLink>
       </span>
     ),
     buttonText: "Перейти к оплате 799 ₽",
@@ -211,7 +221,9 @@ const modalData: ModalBodyData = {
       <span>
         Файл с&nbsp;документами пришлём на&nbsp;почту. При отправке
         вы&nbsp;принимаете условия{" "}
-        <ConditionsLink>Политики конфиденциальности</ConditionsLink>
+        <ConditionsLink href="/documents/privacy_policy.pdf">
+          Политики конфиденциальности
+        </ConditionsLink>
       </span>
     ),
     buttonText: "Отправить",
@@ -273,8 +285,13 @@ const modalData: ModalBodyData = {
       <span>
         Результат проверки пришлём на&nbsp;почту. При отправке
         вы&nbsp;принимаете условия{" "}
-        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
-        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
+        <ConditionsLink href="/documents/privacy_policy.pdf">
+          Политики конфиденциальности
+        </ConditionsLink>{" "}
+        и&nbsp;условия{" "}
+        <ConditionsLink href="/documents/user_agreement.pdf">
+          Пользовательского Соглашения
+        </ConditionsLink>
       </span>
     ),
     placeHolder: "email",
@@ -374,8 +391,13 @@ const modalData: ModalBodyData = {
       <span>
         Результат проверки пришлём на&nbsp;почту. При отправке
         вы&nbsp;принимаете условия{" "}
-        <ConditionsLink>Политики конфиденциальности</ConditionsLink>{" "}
-        и&nbsp;условия <ConditionsLink>Оферты</ConditionsLink>
+        <ConditionsLink href="/documents/privacy_policy.pdf">
+          Политики конфиденциальности
+        </ConditionsLink>{" "}
+        и&nbsp;условия{" "}
+        <ConditionsLink href="/documents/user_agreement.pdf">
+          Пользовательского Соглашения
+        </ConditionsLink>
       </span>
     ),
     buttonText: "Перейти к оплате 549 ₽",
@@ -467,7 +489,9 @@ const modalData: ModalBodyData = {
       <span>
         Файл с&nbsp;документами пришлём на&nbsp;почту. При отправке
         вы&nbsp;принимаете условия{" "}
-        <ConditionsLink>Политики конфиденциальности</ConditionsLink>
+        <ConditionsLink href="/documents/privacy_policy.pdf">
+          Политики конфиденциальности
+        </ConditionsLink>
       </span>
     ),
     buttonText: "Отправить",

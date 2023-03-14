@@ -16,6 +16,7 @@ import { TWindowSize } from "../../../redux/slicers/types";
 import { WindowSize } from "../../../redux/slicers/enums";
 import { SortByPriority } from "../../../common/helpers";
 import DeployableWrapper from "../../UI/deployable_wrapper/DeployableWrapper";
+import Link from "next/link";
 
 type Props = {
   data: CardData;
@@ -60,9 +61,14 @@ const Card: React.FC<Props> = ({ data }) => {
           </TagsWrapper>
         </StyledDeployableWrapper>
         <ButtonsContainer>
-          <StyledButton cardType={data.cardType} buttonSize={ButtonSize.LARGE}>
-            {data.primaryButtonText}
-          </StyledButton>
+          <Link href={data.link} target="_blank">
+            <StyledButton
+              cardType={data.cardType}
+              buttonSize={ButtonSize.LARGE}
+            >
+              {data.primaryButtonText}
+            </StyledButton>
+          </Link>
           <PromoCodeContainer onClick={handlePromoCodeClick}>
             <CopySVG />
             <PromoText>Промокод GAMHOME</PromoText>
