@@ -25,7 +25,7 @@ const ServiceDesc: React.FC<Props> = ({
   image,
   cardType,
   btnLink,
-  onBtnClickHandler = (windowSize: WindowSize | null) => () => {},
+  onBtnClickHandler,
 }) => {
   const { pathName } = useAppSelector<TPathName>((state) => state.pathName);
 
