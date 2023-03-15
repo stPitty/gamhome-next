@@ -70,8 +70,8 @@ const SideMenu: FC<Props> = ({ menuItems, isLanding = false }) => {
             );
           })}
         </MenuContainer>
-        <PhoneNumberLink href="tel:88009999999">
-          8 800 999-99-99
+        <PhoneNumberLink href="tel:+79260211033">
+          +7&nbsp;926 021-10-33
         </PhoneNumberLink>
       </Container>
     </Wrapper>

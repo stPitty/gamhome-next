@@ -422,7 +422,7 @@ const modalData: ModalBodyData = {
   [ModalState.AGENT_FOR_CONTRACT]: {
     header: "Агент на договор",
     pipelineId: 6267646,
-    price: 3000,
+    price: 5000,
     ...serviceModal,
   },
   [ModalState.CONCIERGE_SERVICE_RENT]: {

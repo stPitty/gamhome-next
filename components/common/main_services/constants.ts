@@ -17,7 +17,7 @@ const rentCardsData: CardData[] = [
     cardType: CardType.UNFILLED,
     buttonType: ButtonType.OUTLINE,
     headerText: "Агент на\u00A0договор",
-    cost: "3 000 ₽",
+    cost: "5 000 ₽",
     descText:
       "Единоразовый выезд агента для\u00A0проверки и\u00A0подписания договора",
     buttonAction: agentForContract,

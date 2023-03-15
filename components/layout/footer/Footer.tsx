@@ -10,8 +10,8 @@ const Footer: React.FC = () => {
     <Container>
       <InnerWrapper>
         <StyledBody />
-        <TelephoneNumberText href="tel:88009999999">
-          8 800 999-99-99
+        <TelephoneNumberText href="tel:+79260211033">
+          +7&nbsp;926 021-10-33
         </TelephoneNumberText>
         <StyledMenuItems />
         <TextContainer>
@@ -28,7 +28,25 @@ const Footer: React.FC = () => {
             </TextLink>
           </ConditionsText>
           <br />
-          <Text>Иллюстрации взяты с icons8.com</Text>
+          <Text>
+            &copy;&nbsp;2023,{" "}
+            <TextLink href="https://gamhome.ru" target="_blank">
+              gamhome.ru
+            </TextLink>
+            &nbsp;&mdash; интернет-сервис для поиска и&nbsp;проведения операций
+            с&nbsp;недвижимостью. <br />
+            ИП&nbsp;Гамолин Е.Д., ИНН: 463232652970, ОГРН: 322508100612708,
+            <br />
+            Фактический адрес: 141507, Московская обл., г.о. Солнечногорск, д.
+            Тиминово
+          </Text>
+          <br />
+          <Text>
+            Иллюстрации взяты с{" "}
+            <TextLink href="https://icons8.com" target="_blank">
+              icons8.com
+            </TextLink>
+          </Text>
         </TextContainer>
       </InnerWrapper>
     </Container>
@@ -102,6 +120,10 @@ const Text = styled.p`
   line-height: 24px;
   color: ${BlackColor.BLACK_80};
   margin: 0;
+  text-align: center;
+  @media screen and (max-width: 1439px) {
+    text-align: start;
+  }
 `;
 
 const ConditionsText = styled(Text)`
@@ -116,7 +138,6 @@ const TextContainer = styled.div`
   align-items: center;
   justify-content: center;
   @media screen and (max-width: 1439px) and (min-width: 768px) {
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }

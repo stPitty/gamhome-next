@@ -47,8 +47,8 @@ const Body: React.FC<Props> = ({ isHeader = false, className }) => {
               Перейти в Telegram Bot
             </Button>
           </Link>
-          <TelephoneNumberText href="tel:88009999999">
-            8 800 999-99-99
+          <TelephoneNumberText href="tel:+79260211033">
+            +7&nbsp;926 021-10-33
           </TelephoneNumberText>
         </ButtonsWrapper>
       </MenuWrapper>

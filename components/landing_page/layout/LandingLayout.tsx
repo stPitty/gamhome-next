@@ -78,8 +78,8 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
               </XlMenu>
             </HeaderLeftBlock>
             <HeaderRightBlock>
-              <HeaderPhoneLink href="tel:88009999999">
-                8 800 999-99-99
+              <HeaderPhoneLink href="tel:+79260211033">
+                +7&nbsp;926 021-10-33
               </HeaderPhoneLink>
               <HeaderButtonsContainer>
                 <HeaderMenuButton
@@ -125,7 +125,9 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
                 </XlMenu>
               </HeaderLeftBlock>
               <FooterRightBlock>
-                <PhoneLink href="tel:88009999999">8 800 999-99-99</PhoneLink>
+                <PhoneLink href="tel:+79260211033">
+                  +7&nbsp;926 021-10-33
+                </PhoneLink>
                 <StyledButton
                   buttonSize={ButtonSize.MEDIUM}
                   onClick={handleApplyBtnClick}
