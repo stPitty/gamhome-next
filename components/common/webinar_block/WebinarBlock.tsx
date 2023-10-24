@@ -12,6 +12,7 @@ import { useAppSelector } from "../../../redux/hooks";
 import { TCookiePopUp } from "../../../redux/slicers/types";
 import Button from "../../UI/button/Button";
 import Image from "next/image";
+import Link from "next/link";
 
 type Props = {
   imagePaths: [string, string, string, string, string];
@@ -44,12 +45,21 @@ const WebinarBlock: FC<Props> = ({ imagePaths, type }) => {
             Изучите это видео, чтобы всегда понимать правила покупки квартиры
           </Text>
         )}
-        <StyledButton
-          buttonSize={ButtonSize.LARGE}
-          buttonType={ButtonType.PRIMARY_WB}
+        <Link
+          href={
+            type === "rent"
+              ? "https://salebot.site/md/gamhome_arenda"
+              : "https://salebot.site/md/gamhome_pokupka"
+          }
+          target="_blank"
         >
-          Посмотреть видео
-        </StyledButton>
+          <StyledButton
+            buttonSize={ButtonSize.LARGE}
+            buttonType={ButtonType.PRIMARY_WB}
+          >
+            Посмотреть видео
+          </StyledButton>
+        </Link>
       </ContentContainer>
       <PhotoWrapper type={type}>
         <StyledImage />
