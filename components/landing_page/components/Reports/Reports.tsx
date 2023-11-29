@@ -74,6 +74,7 @@ const Reports = () => {
                     loading="lazy"
                     fill
                     objectFit="contain"
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -84,6 +85,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -94,6 +96,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -104,6 +107,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -114,6 +118,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -124,6 +129,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -134,6 +140,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -144,6 +151,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -154,6 +162,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>
@@ -164,6 +173,7 @@ const Reports = () => {
                     alt="review screenshot"
                     loading="lazy"
                     fill
+                    sizes="75wv"
                   />
                 </ImageContainer>
               </Slide>

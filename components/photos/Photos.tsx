@@ -40,7 +40,6 @@ const Photos: React.FC = () => {
 
   const handleCloseClick = () => {
     const path = router.asPath.replace("photos", "");
-    console.log(path);
     router.push(path);
   };
 

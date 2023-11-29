@@ -89,8 +89,8 @@ const Questions = () => {
           </InnerFormWrapper>
         </StyledForm>
         <ConditionsText>
-          Отправляя заявку, вы&nbsp;соглашаетесь на&nbsp;обработку{" "}
-          <ConditionsLink>персональных данных</ConditionsLink>
+          Отправляя заявку, вы&nbsp;соглашаетесь с&nbsp;
+          <ConditionsLink href="https://www.gamhome.ru/documents/privacy_policy.pdf" target="_blank">Политикой конфиденциальности</ConditionsLink>
         </ConditionsText>
       </Container>
     </Wrapper>

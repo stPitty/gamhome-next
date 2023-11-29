@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import LogoSVG from "../../../public/assets/svg/LogoSVG";
-import { BlackColor, Font } from "../../../common/enums";
+import { BlackColor, Font, OtherColor } from "../../../common/enums";
 import Button from "../../UI/button/Button";
 import { ButtonSize, ButtonType } from "../../UI/button/enums";
 import { ChildrenProp } from "../../../common/form_utils/types";
@@ -18,6 +18,9 @@ import { Hook } from "../../../common/routes";
 import { TModalState } from "../../../redux/slicers/types";
 import Modal from "../../UI/modal/Modal";
 import { freeConsult } from "../../../redux/slicers/modalStateSlicer";
+import AdaptiveTextDivider from "../../UI/adaptive_text_divider/AdaptiveTextDivider";
+import Head from "next/head";
+import Script from "next/script";
 
 const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   const [scrolled, setScrolled] = useState<boolean>(false);
@@ -26,7 +29,6 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
 
   const dispatch = useAppDispatch();
   const handleWindowScroll = (e: any) => {
-    console.log(window.scrollY);
     if (e.currentTarget.scrollY > 0) {
       setScrolled(true);
     }
@@ -53,6 +55,38 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
   return (
     <>
       <Wrapper>
+        {/*Yandex.Metrika*/}
+        <Script type="text/javascript" id="yandex-metrika">
+          {`(function (m, e, t, r, i, k, a) {
+            m[i] = m[i] || function () {
+              (m[i].a = m[i].a || []).push(arguments)
+            };
+            m[i].l = 1 * new Date();
+            for (var j = 0; j < document.scripts.length; j++) {
+              if (document.scripts[j].src === r) {
+                return;
+              }
+            }
+            k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+          })
+          (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+            ym(95615785, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+          });`}
+        </Script>
+        <noscript>
+          <div>
+            <img
+              src="https://mc.yandex.ru/watch/95615785"
+              style={{ position: "absolute", left: "-9999px" }}
+              alt=""
+            />
+          </div>
+        </noscript>
         <Container>
           <HeaderContainer isScrolled={scrolled}>
             <HeaderLeftBlock>
@@ -155,27 +189,61 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
               </Link>
             </LgMenu>
             <Divider />
-            <FooterConditionsBlock>
+            <TextContainer>
               <ConditionsText>
-                Использование сервиса означает согласие с&nbsp;
-                <ConditionsLink
-                  href="/documents/privacy_policy.pdf"
-                  target="_blank"
-                >
-                  Политикой конфиденциальности
-                </ConditionsLink>{" "}
-                и&nbsp;
-                <ConditionsLink
-                  href="/documents/user_agreement.pdf"
-                  target="_blank"
-                >
+                Использование сервиса означает согласие
+                <AdaptiveTextDivider lg={true} sm={true} xs={true} /> с{" "}
+                <TextLink href="/documents/user_agreement.pdf" target="_blank">
                   Пользовательским соглашением
-                </ConditionsLink>
+                </TextLink>
+                <AdaptiveTextDivider xs={true} /> и
+                <TextLink href="/documents/privacy_policy.pdf" target="_blank">
+                  {" "}
+                  Политикой конфиденциальности
+                </TextLink>
               </ConditionsText>
-              <ConditionsText>
-                Иллюстраци взяты с&nbsp;icons8.com
-              </ConditionsText>
-            </FooterConditionsBlock>
+              <br />
+              <Text>
+                &copy;&nbsp;2023,{" "}
+                <TextLink href="https://gamhome.ru" target="_blank">
+                  gamhome.ru
+                </TextLink>
+                &nbsp;&mdash; интернет-сервис для поиска и&nbsp;проведения
+                операций с&nbsp;недвижимостью. <br />
+                ИП&nbsp;Гамолин Е.Д., ИНН: 463232652970, ОГРН: 322508100612708,
+                <br />
+                Фактический адрес: 141507, Московская обл., г.о. Солнечногорск,
+                д. Тиминово
+              </Text>
+              <br />
+              <Text>
+                Иллюстрации взяты с{" "}
+                <TextLink href="https://icons8.com" target="_blank">
+                  icons8.com
+                </TextLink>
+              </Text>
+            </TextContainer>
+            {/*<FooterConditionsBlock>*/}
+            {/*  <ConditionsText>*/}
+            {/*    Использование сервиса означает согласие с&nbsp;*/}
+            {/*    <ConditionsLink*/}
+            {/*      href="/documents/privacy_policy.pdf"*/}
+            {/*      target="_blank"*/}
+            {/*    >*/}
+            {/*      Политикой конфиденциальности*/}
+            {/*    </ConditionsLink>{" "}*/}
+            {/*    и&nbsp;*/}
+            {/*    <ConditionsLink*/}
+            {/*      href="/documents/user_agreement.pdf"*/}
+            {/*      target="_blank"*/}
+            {/*    >*/}
+            {/*      Пользовательским соглашением*/}
+            {/*    </ConditionsLink>*/}
+            {/*  </ConditionsText>*/}
+            {/*  <ConditionsText>*/}
+            {/*    Иллюстраци взяты с&nbsp;icons8.com*/}
+            {/*  </ConditionsText>*/}
+            {/*</FooterConditionsBlock>*/}
           </FooterContainer>
         </Container>
       </Wrapper>
@@ -187,6 +255,61 @@ const LandingLayout: FC<ChildrenProp> = ({ children }) => {
     </>
   );
 };
+
+const TextLink = styled.a`
+  color: ${OtherColor.LINK};
+  cursor: pointer;
+  &:hover {
+    color: ${OtherColor.LINK_HOVER};
+    transition: 0.1s linear all;
+  }
+`;
+
+const Text = styled.p`
+  font-family: ${Font.ROBOTO};
+  font-size: 16px;
+  line-height: 24px;
+  color: ${BlackColor.BLACK_80};
+  margin: 0;
+  text-align: center;
+  @media screen and (max-width: 1439px) {
+    text-align: start;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @media screen and (max-width: 1439px) and (min-width: 768px) {
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    //padding-left: 36px;
+    //padding-right: 36px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    width: 768px;
+    //padding-left: 40px;
+    //padding-right: 40px;
+  }
+  @media screen and (max-width: 767px) {
+    width: 375px;
+    margin-top: 6px;
+    align-items: flex-start;
+  }
+  @media screen and (max-width: 767px) and (min-width: 375px) {
+    //padding-left: 13px;
+    //padding-right: 13px;
+  }
+  @media screen and (max-width: 374px) {
+    width: 320px;
+    //padding-left: 16px;
+    //padding-right: 16px;
+  }
+`;
 
 const MenuBtnText = styled.span`
   @media screen and (max-width: 374px) {
