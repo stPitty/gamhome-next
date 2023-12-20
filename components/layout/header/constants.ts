@@ -10,11 +10,6 @@ const menuItems: MenuItem[] = [
     isRedirect: true,
   },
   {
-    id: 2,
-    name: MenuEntryName.CHECK_OBJ,
-    link: Hook.CHECK_OBJ,
-  },
-  {
     id: 3,
     name: MenuEntryName.SERVICES,
     link: Hook.SERVICES,

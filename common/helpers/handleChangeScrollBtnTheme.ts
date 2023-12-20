@@ -36,7 +36,7 @@ const handleChangeScrollBtnTheme =
             scrollBtn?.getClientRects()[0].bottom <=
               cardWithImage?.getClientRects()[0].bottom + 24 &&
             scrollBtn?.getClientRects()[0].top >=
-              cardWithImage?.getClientRects()[0].top + cardWithImageQuantifier;
+              cardWithImage?.getClientRects()[0].top - 24;
         }
 
         if (partners) {

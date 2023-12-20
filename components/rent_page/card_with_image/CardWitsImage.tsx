@@ -21,26 +21,31 @@ const CardWitsImage = () => {
   };
 
   return (
-    <Container id={Hook.CARD_WITH_IMG}>
-      <ColumnImage />
-      <TextWrapper>
-        <HeaderText>
-          Съезжаете <AdaptiveTextDivider sm={true} xs={true} />с квартиры?
-          <AdaptiveTextDivider md={true} />
-          <MarkedText>Заплатим 10%</MarkedText>,{" "}
-          <AdaptiveTextDivider lg={true} sm={true} xs={true} />
-          за&nbsp;рекомендацию нас собственнику
-        </HeaderText>
-        <Text>
-          Мы&nbsp;быстро найдем новых жильцов, а вы получите&nbsp;10%
-          от&nbsp;нашей комиссии
-        </Text>
-        <StyledButton onClick={handleButtonClick} buttonSize={ButtonSize.LARGE}>
-          Оставить заявку
-        </StyledButton>
-      </TextWrapper>
-      <RowImage />
-    </Container>
+    <Wrapper>
+      <Container id={Hook.CARD_WITH_IMG}>
+        <ColumnImage />
+        <TextWrapper>
+          <HeaderText>
+            Съезжаете <AdaptiveTextDivider sm={true} xs={true} />с квартиры?
+            <AdaptiveTextDivider md={true} />
+            <MarkedText>Заплатим 10%</MarkedText>,{" "}
+            <AdaptiveTextDivider lg={true} sm={true} xs={true} />
+            за&nbsp;рекомендацию нас собственнику
+          </HeaderText>
+          <Text>
+            Мы&nbsp;быстро найдем новых жильцов, а вы получите&nbsp;10%
+            от&nbsp;нашей комиссии
+          </Text>
+          <StyledButton
+            onClick={handleButtonClick}
+            buttonSize={ButtonSize.LARGE}
+          >
+            Оставить заявку
+          </StyledButton>
+        </TextWrapper>
+        <RowImage />
+      </Container>
+    </Wrapper>
   );
 };
 
@@ -164,17 +169,17 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 182px 64px 64px;
+  padding: 64px;
   border-radius: 48px;
   background-color: ${BlackColor.BLACK_SECONDARY};
   column-gap: 112px;
   @media screen and (max-width: 1439px) and (min-width: 1024px) {
     column-gap: 32px;
-    padding: 182px 36px 64px;
+    padding: 64px 36px;
   }
   @media screen and (max-width: 1023px) and (min-width: 768px) {
     flex-direction: column;
-    padding: 160px 40px 64px;
+    padding: 64px 40px;
     row-gap: 40px;
   }
   @media screen and (max-width: 767px) {
@@ -182,6 +187,21 @@ const Container = styled.div`
     padding: 0;
     row-gap: 40px;
     border-radius: 24px;
+  }
+`;
+
+const Wrapper = styled.div`
+  margin-top: 112px;
+  width: 100%;
+  display: flex;
+  @media screen and (max-width: 1439px) and (min-width: 1024px) {
+    column-gap: 32px;
+  }
+  @media screen and (max-width: 1023px) and (min-width: 768px) {
+    margin-top: 96px;
+  }
+  @media screen and (max-width: 767px) {
+    margin-top: 64px;
   }
 `;
 
