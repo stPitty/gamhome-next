@@ -226,6 +226,24 @@ const GamHomeServicesWrapper = styled.div`
   @media screen and (max-width: 374px) {
     width: 288px;
   }
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(0, 0, 0);
+  & > *,
+  & > *:after,
+  & > *:before {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    webkit-font-smoothing: antialiased;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 `;
 
 const StyledButton = styled(Button)`

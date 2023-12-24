@@ -71,7 +71,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_1.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     objectFit="contain"
                     sizes="75wv"
@@ -83,7 +82,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_2.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -94,7 +92,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_3.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -105,7 +102,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_4.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -116,7 +112,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_5.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -127,7 +122,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_6.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -138,7 +132,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_7.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -149,7 +142,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_8.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -160,7 +152,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_9.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -171,7 +162,6 @@ const Reports = () => {
                   <Image
                     src="/images/landing/report_10.jpg"
                     alt="review screenshot"
-                    loading="lazy"
                     fill
                     sizes="75wv"
                   />
@@ -286,6 +276,24 @@ const ReportsContainer = styled.div`
 const ReportsWrapper = styled.div`
   overflow: hidden;
   margin-left: 0;
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
+  webkit-font-smoothing: antialiased;
+  -webkit-transform: translate3d(0, 0, 0);
+  & > *,
+  & > *:after,
+  & > *:before {
+    -webkit-transform: translateZ(0);
+    -moz-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    -o-transform: translateZ(0);
+    transform: translateZ(0);
+    webkit-font-smoothing: antialiased;
+    -webkit-transform: translate3d(0, 0, 0);
+  }
 `;
 
 const ContentWrapper = styled.div`
