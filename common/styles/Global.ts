@@ -2,7 +2,17 @@ import { createGlobalStyle } from "styled-components";
 import { BlackColor, BrandColor, LightBlueColor, WhiteColor } from "../enums";
 
 const Global = createGlobalStyle`
-  html,
+    //* {
+    //    -webkit-transform: translateZ(0);
+    //    -moz-transform: translateZ(0);
+    //    -ms-transform: translateZ(0);
+    //    -o-transform: translateZ(0);
+    //    transform: translateZ(0);
+    //    webkit-font-smoothing: antialiased;
+    //    -webkit-transform: translate3d(0, 0, 0);
+    //}
+    
+    html,
   body {
     padding: 0;
     margin: 0;
